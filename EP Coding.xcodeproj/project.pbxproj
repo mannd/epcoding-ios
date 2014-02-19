@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
+		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
+		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
 		8EDBEBFD180CCDEB0041A4E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */; };
 		8EDBEBFF180CCDEB0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
@@ -39,7 +41,10 @@
 /* Begin PBXFileReference section */
 		8E60902818B514C1001F3D7A /* EPSHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSHelpViewController.h; sourceTree = "<group>"; };
 		8E60902918B514C1001F3D7A /* EPSHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSHelpViewController.m; sourceTree = "<group>"; };
-		8EDBEBF7180CCDEB0041A4E3 /* epcoding-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "epcoding-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
+		8E60902D18B55142001F3D7A /* EPSTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSTestViewController.h; sourceTree = "<group>"; };
+		8E60902E18B55142001F3D7A /* EPSTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSTestViewController.m; sourceTree = "<group>"; };
+		8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EP Coding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -100,7 +105,7 @@
 		8EDBEBF8180CCDEB0041A4E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8EDBEBF7180CCDEB0041A4E3 /* epcoding-ios.app */,
+				8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */,
 				8EDBEC1E180CCDEC0041A4E3 /* epcoding-iosTests.xctest */,
 			);
 			name = Products;
@@ -132,6 +137,8 @@
 				8EDBEC01180CCDEB0041A4E3 /* Supporting Files */,
 				8E60902818B514C1001F3D7A /* EPSHelpViewController.h */,
 				8E60902918B514C1001F3D7A /* EPSHelpViewController.m */,
+				8E60902D18B55142001F3D7A /* EPSTestViewController.h */,
+				8E60902E18B55142001F3D7A /* EPSTestViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 		8EDBEC01180CCDEB0041A4E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E60902B18B54335001F3D7A /* help.html */,
 				8EDBEC02180CCDEB0041A4E3 /* epcoding-ios-Info.plist */,
 				8EDBEC03180CCDEB0041A4E3 /* InfoPlist.strings */,
 				8EDBEC06180CCDEB0041A4E3 /* main.m */,
@@ -182,7 +190,7 @@
 			);
 			name = "epcoding-ios";
 			productName = "epcoding-ios";
-			productReference = 8EDBEBF7180CCDEB0041A4E3 /* epcoding-ios.app */;
+			productReference = 8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8EDBEC1D180CCDEC0041A4E3 /* epcoding-iosTests */ = {
@@ -218,7 +226,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8EDBEBF2180CCDEB0041A4E3 /* Build configuration list for PBXProject "epcoding-ios" */;
+			buildConfigurationList = 8EDBEBF2180CCDEB0041A4E3 /* Build configuration list for PBXProject "EP Coding" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -243,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDBEC11180CCDEB0041A4E3 /* Main_iPad.storyboard in Resources */,
+				8E60902C18B54335001F3D7A /* help.html in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
 				8EDBEC0E180CCDEB0041A4E3 /* Main_iPhone.storyboard in Resources */,
 				8EDBEC05180CCDEB0041A4E3 /* InfoPlist.strings in Resources */,
@@ -267,6 +276,7 @@
 				8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */,
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
 				8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */,
+				8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */,
 				8EDBEC0B180CCDEB0041A4E3 /* EPSAppDelegate.m in Sources */,
 				8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */,
 			);
@@ -408,7 +418,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-ios/epcoding-ios-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EP Coding";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -421,7 +431,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-ios/epcoding-ios-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "EP Coding";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -471,7 +481,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8EDBEBF2180CCDEB0041A4E3 /* Build configuration list for PBXProject "epcoding-ios" */ = {
+		8EDBEBF2180CCDEB0041A4E3 /* Build configuration list for PBXProject "EP Coding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8EDBEC2D180CCDEC0041A4E3 /* Debug */,

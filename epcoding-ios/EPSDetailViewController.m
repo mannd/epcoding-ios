@@ -47,7 +47,7 @@
     [self configureView];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-//    [btn addTarget:self action:@selector(showAbout) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(showAbout) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -55,6 +55,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showAbout
+{
+    [self performSegueWithIdentifier:@"showHelp" sender:nil];
+
 }
 
 #pragma mark - Split view

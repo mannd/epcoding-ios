@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface EPSHelpViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 @end

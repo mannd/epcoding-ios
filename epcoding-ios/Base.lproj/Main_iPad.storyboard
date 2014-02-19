@@ -51,11 +51,48 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <segue destination="Ce6-ZL-qUX" kind="push" identifier="showHelp" id="Mvd-nK-6ZG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448" y="248"/>
+            <point key="canvasLocation" x="460" y="248"/>
+        </scene>
+        <!--Help View Controller - Help-->
+        <scene sceneID="aEm-0s-yDR">
+            <objects>
+                <viewController id="Ce6-ZL-qUX" customClass="EPSHelpViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e4t-xU-8lu"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-TZ-uVO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="djv-4K-E69">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVN-VN-sUk">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pVN-VN-sUk" firstAttribute="top" secondItem="djv-4K-E69" secondAttribute="top" id="4Rw-vC-wMh"/>
+                            <constraint firstAttribute="bottom" secondItem="pVN-VN-sUk" secondAttribute="bottom" id="4w7-tM-0AQ"/>
+                            <constraint firstItem="pVN-VN-sUk" firstAttribute="leading" secondItem="djv-4K-E69" secondAttribute="leading" id="WOY-hg-8aq"/>
+                            <constraint firstAttribute="trailing" secondItem="pVN-VN-sUk" secondAttribute="trailing" id="qY7-XA-Pnw"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Help" id="hEv-75-I3j"/>
+                    <connections>
+                        <outlet property="webView" destination="pVN-VN-sUk" id="uCk-Hs-GyC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qWw-bO-2Hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="238"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
