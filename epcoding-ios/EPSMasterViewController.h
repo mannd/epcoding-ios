@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) EPSDetailViewController *detailViewController;
 
+@property (strong, nonatomic) NSArray *procedureTypes;
+
 @end

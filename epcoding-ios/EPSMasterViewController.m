@@ -30,11 +30,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    // self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+//    self.navigationItem.rightBarButtonItem = addButton;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    NSArray *array = [[NSArray alloc] initWithObjects:
+                      @"AFB Ablation",
+                      @"SVT Ablation",
+                      @"VT Ablation",
+                      @"AV Node Ablation",
+                      @"EP Testing",
+                      @"New PPM",
+                      @"New ICD",
+                      @"Replace PPM",
+                      @"Replace ICD",
+                      @"Upgrade/Revise/Extract",
+                      @"SubQ ICD",
+                      @"Other Procedure",
+                      @"All EP Codes", nil];
+    self.procedureTypes = array;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) // iPad
+            [self setTitle:@"Procedures"];
+        else
+            [self setTitle:@"EP Coding"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,22 +85,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return _procedureTypes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    //NSDate *object = _objects[indexPath.row];
+    //cell.textLabel.text = [object description];
+    NSString *label = _procedureTypes[indexPath.row];
+    cell.textLabel.text = label;
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
