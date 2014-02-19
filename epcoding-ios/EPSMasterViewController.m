@@ -34,9 +34,16 @@
 
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 //    self.navigationItem.rightBarButtonItem = addButton;
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        [btn addTarget:self action:@selector(showAbout) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+
     
     NSArray *array = [[NSArray alloc] initWithObjects:
                       @"AFB Ablation",
@@ -74,6 +81,10 @@
     [_objects insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)showAbout {
+    [self performSegueWithIdentifier:@"showHelp" sender:nil];
 }
 
 #pragma mark - Table View
