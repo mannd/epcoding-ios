@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8EDBEBF6180CCDEB0041A4E3"
-               BuildableName = "epcoding-ios.app"
+               BuildableName = "EP Coding.app"
                BlueprintName = "epcoding-ios"
                ReferencedContainer = "container:EP Coding.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EDBEBF6180CCDEB0041A4E3"
-            BuildableName = "epcoding-ios.app"
+            BuildableName = "EP Coding.app"
             BlueprintName = "epcoding-ios"
             ReferencedContainer = "container:EP Coding.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EDBEBF6180CCDEB0041A4E3"
-            BuildableName = "epcoding-ios.app"
+            BuildableName = "EP Coding.app"
             BlueprintName = "epcoding-ios"
             ReferencedContainer = "container:EP Coding.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EDBEBF6180CCDEB0041A4E3"
-            BuildableName = "epcoding-ios.app"
+            BuildableName = "EP Coding.app"
             BlueprintName = "epcoding-ios"
             ReferencedContainer = "container:EP Coding.xcodeproj">
          </BuildableReference>
