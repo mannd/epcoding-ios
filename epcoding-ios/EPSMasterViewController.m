@@ -11,7 +11,7 @@
 #import "EPSDetailViewController.h"
 
 @interface EPSMasterViewController () {
-    NSMutableArray *_objects;
+
 }
 @end
 
@@ -30,21 +30,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    // self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        [btn addTarget:self action:@selector(showAbout) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
+        [self setTitle:@"EP Coding"];
     }
+    else
+        [self setTitle:@"Procedures"];
     
     self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
-
-    
     NSArray *array = [[NSArray alloc] initWithObjects:
                       @"AFB Ablation",
                       @"SVT Ablation",
@@ -61,10 +58,6 @@
                       @"All EP Codes", nil];
     self.procedureTypes = array;
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) // iPad
-            [self setTitle:@"Procedures"];
-        else
-            [self setTitle:@"EP Coding"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,17 +66,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)showAbout {
+- (void)showHelp {
     [self performSegueWithIdentifier:@"showHelp" sender:nil];
 }
 
@@ -103,8 +86,6 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    //NSDate *object = _objects[indexPath.row];
-    //cell.textLabel.text = [object description];
     NSString *label = _procedureTypes[indexPath.row];
     cell.textLabel.text = label;
     return cell;
@@ -114,16 +95,6 @@
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
 }
 
 /*
@@ -145,8 +116,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+        NSString *procedure = _procedureTypes[indexPath.row];
+        self.detailViewController.detailItem = procedure;
     }
 }
 
@@ -154,8 +125,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        NSString *procedure = _procedureTypes[indexPath.row];
+        [[segue destinationViewController] setDetailItem:procedure];
     }
 }
 

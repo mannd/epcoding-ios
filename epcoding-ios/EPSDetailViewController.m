@@ -37,6 +37,7 @@
 
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [self.detailItem description];
+        self.title = _detailItem;
     }
 }
 
@@ -47,7 +48,7 @@
     [self configureView];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    [btn addTarget:self action:@selector(showAbout) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -57,17 +58,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showAbout
-{
+- (void)showHelp {
     [self performSegueWithIdentifier:@"showHelp" sender:nil];
-
 }
 
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+    barButtonItem.title = NSLocalizedString(@"Procedures", @"Procedures");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
