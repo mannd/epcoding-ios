@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "EPSCode.h"
 
 @interface epcoding_iosTests : XCTestCase
 
@@ -26,9 +27,48 @@
     [super tearDown];
 }
 
-- (void)testExample
+//- (void)testExample
+//{
+//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//}
+
+- (void)testCode
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    
+    EPSCode *code = [[EPSCode alloc] initWithNumber:@"99999" description:@"Test Code" isAddOn:YES];
+    XCTAssertTrue([[code number] isEqualToString:@"99999"], @"Test failed");
+    XCTAssertTrue([[code description] isEqualToString:@"Test Code"], @"Test failed");
+    XCTAssertTrue([code isAddOn], @"Test failed");
+    XCTAssertTrue([[code unformattedCodeNumberFirst] isEqualToString:@"(+99999) Test Code"]);
+    code.plusShown = YES;
+    XCTAssertTrue([[code unformattedCodeDescriptionFirst] isEqualToString:@"Test Code (+99999)"]);
+    code.descriptonShown = YES;
+    code.descriptionShortened = NO;
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999) Test Code"]);
+    code.plusShown = NO;
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(99999) Test Code"]);
+    code.isAddOn = NO;
+    XCTAssertTrue([[code unformattedCodeNumberFirst] isEqualToString:@"(99999) Test Code"]);
+    code.plusShown = YES;
+    XCTAssertTrue([[code unformattedCodeDescriptionFirst] isEqualToString:@"Test Code (99999)"]);
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(99999) Test Code"]);
+    code.plusShown = NO;
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(99999) Test Code"]);
+    code.isAddOn = YES;
+    code.plusShown = YES;
+    code.description = @"This is an incredibly long description of a code, blah, blah, blah.";
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999) This is an incredibly long description of a code, blah, blah, blah."]);
+    code.descriptonShown = NO;
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999)"]);
+    code.descriptonShown = YES;
+    code.descriptionShortened = YES;
+    XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999) This is an incredibly..."]);
+
+    
+    
+
+
 }
 
 @end
