@@ -26,7 +26,6 @@
 - (NSString *)formattedCode
 {
     NSString *s = [[NSString alloc] initWithFormat:@"(%@)%@", [self formattedCodeNumber], self.descriptonShown ? [[NSString alloc] initWithFormat:@" %@", [self formattedDescription]] : @""];
-    NSLog(@"%@", s);
     return s;
 }
 

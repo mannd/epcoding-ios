@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "EPSCode.h"
+#import "EPSCodes.h"
 
 @interface epcoding_iosTests : XCTestCase
 
@@ -34,8 +35,6 @@
 
 - (void)testCode
 {
-    
-    
     EPSCode *code = [[EPSCode alloc] initWithNumber:@"99999" description:@"Test Code" isAddOn:YES];
     XCTAssertTrue([[code number] isEqualToString:@"99999"], @"Test failed");
     XCTAssertTrue([[code description] isEqualToString:@"Test Code"], @"Test failed");
@@ -64,11 +63,14 @@
     code.descriptonShown = YES;
     code.descriptionShortened = YES;
     XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999) This is an incredibly..."]);
+}
 
-    
-    
-
-
+- (void)testCodes
+{
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    [EPSCodes addCode:[[EPSCode alloc] initWithNumber:@"99999" description:@"Test Code" isAddOn:NO]toDictionary:dictionary];
+    EPSCode *code = [dictionary valueForKey:@"99999"];
+    XCTAssertTrue([code.description isEqualToString:@"Test Code"]);
 }
 
 @end
