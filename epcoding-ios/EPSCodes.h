@@ -11,7 +11,7 @@
 
 @interface EPSCodes : NSObject
 
-+ (NSDictionary *)createMap;
-+ (void)addCode:(EPSCode *)code toDictionary:(NSDictionary *)dictionary;
++ (NSMutableDictionary *)createMap;
++ (void)addCode:(EPSCode *)code toDictionary:(NSMutableDictionary *)dictionary;
 
 @end

@@ -69,8 +69,15 @@
 {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     [EPSCodes addCode:[[EPSCode alloc] initWithNumber:@"99999" description:@"Test Code" isAddOn:NO]toDictionary:dictionary];
-    EPSCode *code = [dictionary valueForKey:@"99999"];
+    EPSCode *code = [dictionary objectForKey:@"99999"];
     XCTAssertTrue([code.description isEqualToString:@"Test Code"]);
+    // test presence of specific codes
+    NSMutableDictionary *codeDictionary = [EPSCodes createMap];
+    EPSCode *code1 = [codeDictionary objectForKey:@"0319T"];
+    XCTAssertTrue([code1.description isEqualToString:@"Implantation of SubQ ICD system (generator & electrode)"]);
+    XCTAssertTrue([code1.number isEqualToString:@"0319T"]);
+    XCTAssertFalse([code1 isAddOn]);
+    
 }
 
 @end

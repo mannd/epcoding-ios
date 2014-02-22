@@ -10,12 +10,13 @@
 
 @implementation EPSCodes
 
-static NSMutableDictionary *codeMap;
-
-+ (NSDictionary *)createMap
++ (NSMutableDictionary *)createMap
 {
-    NSMutableDictionary * dictionary;
-    
+    static NSMutableDictionary *dictionary;
+    if (dictionary == nil) {
+        dictionary = [[NSMutableDictionary alloc] init];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"0319T" description:@"Implantation of SubQ ICD system (generator & electrode)" isAddOn:NO] toDictionary:dictionary];
+    }
     return dictionary;
 }
 
