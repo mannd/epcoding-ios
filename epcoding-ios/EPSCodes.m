@@ -10,7 +10,7 @@
 
 @implementation EPSCodes
 
-+ (NSMutableDictionary *)createMap
++ (NSMutableDictionary *)allCodes
 {
     static NSMutableDictionary *dictionary;
     if (dictionary == nil) {
@@ -126,12 +126,7 @@
         
         // Unlisted procedure
         [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
-        
-
-
-
-
-        
+    
     }
     return dictionary;
 }
@@ -140,6 +135,21 @@
 {
     [dictionary setObject:code forKey:code.number];
 }
+
++ (EPSCode *)getCodeForNumber:(NSString *)codeNumber
+{
+    return [[EPSCodes allCodes] objectForKey:codeNumber];
+}
+
++ (NSMutableDictionary *)getCodesForCodeNumbers:(NSArray *)codeNumbers {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    for (id codeNumber in codeNumbers)  {
+        EPSCode *code = [EPSCodes getCodeForNumber:codeNumber];
+        [dictionary setObject:code forKey:codeNumber];
+    }
+    return dictionary;
+}
+
 
 
 @end
