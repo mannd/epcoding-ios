@@ -10,7 +10,8 @@
 
 @implementation EPSCodes
 
-+ (NSMutableDictionary *)allCodes
+
++ (NSDictionary *)allCodes
 {
     static NSMutableDictionary *dictionary;
     if (dictionary == nil) {
@@ -141,7 +142,8 @@
     return [[EPSCodes allCodes] objectForKey:codeNumber];
 }
 
-+ (NSMutableDictionary *)getCodesForCodeNumbers:(NSArray *)codeNumbers {
++ (NSDictionary *)getCodesForCodeNumbers:(NSArray *)codeNumbers
+{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     for (id codeNumber in codeNumbers)  {
         EPSCode *code = [EPSCodes getCodeForNumber:codeNumber];
@@ -150,6 +152,51 @@
     return dictionary;
 }
 
+// all the codes sets (e.g. afbAblationPrimaryCodes) are contained in this dictionary
+// Format of keys: e.g. afbAblationPrimaryCodes, deviceSecondaryCodes, etc.
++ (NSDictionary *)codeDictionary
+{
+    static NSMutableDictionary *dictionary;
+    if (dictionary == nil) {
+        dictionary = [[NSMutableDictionary alloc] init];
+        // Primary codes
+        [dictionary setObject:@[@"93656"] forKey:@"afbAblationPrimaryCodes"];
+        [dictionary setObject:@[@"93653"] forKey:@"svtAblationPrimaryCodes"];
+        [dictionary setObject:@[@"93654"] forKey:@"vtAblationPrimaryCodes"];
+        [dictionary setObject:@[@"93650"] forKey:@"avnAblationPrimaryCodes"];
+        [dictionary setObject:@[@"93619", @"93620"] forKey:@"epTestingPrimaryCodes"];
+        [dictionary setObject:@[@"0319T", @"0320T", @"0321T", @"0322T", @"0323T", @"0324T", @"0325T", @"0326T", @"0327T", @"0328T"] forKey:@"subQIcdPrimaryCodes"];
+        [dictionary setObject:@[@"33282", @"33284", @"93660", @"92960", @"92961", @"76000"] forKey:@"otherProcedurePrimaryCodes"];
+        [dictionary setObject:@[@"33206", @"33207", @"33208", @"33225"] forKey:@"newPpmPrimaryCodes"];
+        [dictionary setObject:@[@"33227", @"33228", @"33229"] forKey:@"ppmGeneratorReplacementPrimaryCodes"];
+        [dictionary setObject:@[@"33249", @"33225"] forKey:@"newIcdPrimaryCodes"];
+        [dictionary setObject:@[@"33262", @"33263", @"33264"] forKey:@"IcdReplacementPrimaryCodes"];
+        [dictionary setObject:@[@"33216", @"33217", @"33224", @"33215", @"33226", @"33233", @"33241", @"33234", @"33235", @"33244", @"33214", @"33206", @"33207", @"33208", @"33249", @"33225", @"33212", @"33213", @"33240", @"33230", @"33231", @"33222", @"33223", @"33218", @"33220"] forKey:@"deviceUpgradePrimaryCodes"];
+        // Secondary codes
+        [dictionary setObject:@[@"93655", @"93657", @"93609", @"93613", @"93621", @"93622", @"93623", @"93662", @"93462", @"36620"] forKey:@"ablationSecondaryCodes"];
+        [dictionary setObject:@[@"93600", @"93619", @"93620", @"93609", @"93613", @"33207", @"33208", @"33210", @"33249", @"33225", @"92960", @"92961"] forKey:@"avnAblationSecondaryCodes"];
+        [dictionary setObject:@[@"33210", @"33218", @"33220", @"92960", @"92961"] forKey:@"deviceSecondaryCodes"];
+        [dictionary setObject:@[@"33210", @"33218", @"33220", @"92960", @"92961"] forKey:@"upgradeSecondaryCodes"];
+        [dictionary setObject:@[@"93641", @"33210", @"33999", @"92960", @"92961"] forKey:@"icdDeviceSecondaryCodes"];
+        [dictionary setObject:@[@"93641", @"33210", @"33218", @"33220", @"92960", @"92961"] forKey:@"icdReplacementSecondaryCodes"];
+        // Disabled codes
+        [dictionary setObject:@[@"93621", @"93462"] forKey:@"afbAblationDisabledCodes"];
+        [dictionary setObject:@[@"93657"] forKey:@"svtAblationDisabledCodes"];
+        [dictionary setObject:@[@"93657", @"93609", @"93613", @"93622"] forKey:@"vtAblationDisabledCodes"];
+        [dictionary setObject:@[@"93657", @"93655"] forKey:@"epTestingDisabledCodes"];
+       
+    }
+    return dictionary;
+}
 
+
+// Not sure if best to return all codes sorted by pure code number in a array, return the code numbers sorted, or what.  Will wait until the checkboxes are implemented to determine this.
+//+ (NSArray *)allCodesDescriptionsSorted
+//{
+//    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+//    [dictionary addEntriesFromDictionary:[EPSCodes allCodes]];
+//    [dictionary ]
+//    
+//}
 
 @end

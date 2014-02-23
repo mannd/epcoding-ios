@@ -72,7 +72,7 @@
     EPSCode *code = [dictionary objectForKey:@"99999"];
     XCTAssertTrue([code.description isEqualToString:@"Test Code"]);
     // test presence of specific codes
-    NSMutableDictionary *codeDictionary = [EPSCodes allCodes];
+    NSDictionary *codeDictionary = [EPSCodes allCodes];
     EPSCode *code1 = [codeDictionary objectForKey:@"0319T"];
     XCTAssertTrue([code1.description isEqualToString:@"Implantation of SubQ ICD system (generator & electrode)"]);
     XCTAssertTrue([code1.number isEqualToString:@"0319T"]);
@@ -88,11 +88,15 @@
     XCTAssertTrue([code4.number isEqualToString:@"93624"]);
     XCTAssertFalse([code4 isAddOn]);
     NSArray *codeNumbers = @[@"0319T", @"93624", @"93622"];
-    NSMutableDictionary *codeDictionary2 = [EPSCodes getCodesForCodeNumbers:codeNumbers];
+    NSDictionary *codeDictionary2 = [EPSCodes getCodesForCodeNumbers:codeNumbers];
     EPSCode *newCode = [codeDictionary2 valueForKey:@"93624"];
     XCTAssertTrue([newCode.description isEqualToString:@"Follow-up EP testing"]);
     EPSCode *newCode2 = [codeDictionary2 valueForKey:@"93622"];
     XCTAssertTrue([newCode2.number isEqualToString:@"93622"]);
+    NSArray *ablationCodes = [[EPSCodes codeDictionary] valueForKey:@"afbAblationPrimaryCodes"];
+    XCTAssertTrue([[ablationCodes objectAtIndex:0] isEqualToString:@"93656"]);
+    NSArray *disabledAblationCodes = [[EPSCodes codeDictionary] valueForKey:@"afbAblationDisabledCodes"];
+    XCTAssertTrue([[disabledAblationCodes objectAtIndex:0] isEqualToString:@"93621"]);
 
     
     
