@@ -10,12 +10,14 @@
 
 @implementation EPSProcedureKey
 
-- (id)initWithPrimaryKey:(NSString *)primaryKey secondarykey:(NSString *)secondaryKey disabledKey:(NSString *)disabledKey
+- (id)initWithPrimaryKey:(NSString *)primaryKey secondaryKey:(NSString *)secondaryKey disabledKey:(NSString *)disabledKey disablePrimaryCodes:(BOOL)disablePrimaryCodes ignoreNoSecondaryCodesSelected:(BOOL)ignoreNoSecondaryCodesSelected;
 {
     if ([super init]) {
         self.primaryCodesKey = primaryKey;
         self.secondaryCodesKey = secondaryKey;
         self.disabledCodesKey = disabledKey;
+        self.disablePrimaryCodes = disablePrimaryCodes;
+        self.ignoreNoSecondaryCodesSelected = ignoreNoSecondaryCodesSelected;
     }
     return self;
 }

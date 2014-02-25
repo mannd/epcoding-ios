@@ -23,7 +23,7 @@
 #define ALL_EP_CODES_TITLE @"All EP Codes"
 
 // somewhat arbitrary string 
-#define NO_CODE_ENTRY @"EPSNoCodeEntry1234"
+#define NO_CODE_KEY @"EPSNoCodeKEY1234"
 
 @interface EPSProcedureKeys : NSObject
 + (NSDictionary *)keyDictionary;

@@ -13,7 +13,9 @@
 @property (strong, nonatomic) NSString *primaryCodesKey;
 @property (strong, nonatomic) NSString *secondaryCodesKey;
 @property (strong, nonatomic) NSString *disabledCodesKey;
+@property BOOL disablePrimaryCodes;
+@property BOOL ignoreNoSecondaryCodesSelected;
 
-- (id)initWithPrimaryKey:(NSString *)primaryKey secondaryKey:(NSString *)secondaryKey disabledKey:(NSString *)disabledKey;
+- (id)initWithPrimaryKey:(NSString *)primaryKey secondaryKey:(NSString *)secondaryKey disabledKey:(NSString *)disabledKey disablePrimaryCodes:(BOOL)disablePrimaryCodes ignoreNoSecondaryCodesSelected:(BOOL)ignoreNoSecondaryCodesSelected;
 
 @end
