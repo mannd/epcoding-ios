@@ -7,10 +7,14 @@
 //
 
 #import "EPSDetailViewController.h"
+#import "EPSCodes.h"
 
 @interface EPSDetailViewController ()
+
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
 - (void)configureView;
+
 @end
 
 @implementation EPSDetailViewController
@@ -37,6 +41,7 @@
 
     if (self.detailItem) {
         self.title = _detailItem;
+       // NSDictionary *dictionary = [EPSCodes codeDictionary];
     }
 }
 

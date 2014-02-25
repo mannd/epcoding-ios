@@ -9,6 +9,7 @@
 #import "EPSMasterViewController.h"
 
 #import "EPSDetailViewController.h"
+#import "EPSProcedureKeys.h"
 
 @interface EPSMasterViewController () {
 
@@ -43,19 +44,19 @@
     self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     NSArray *array = [[NSArray alloc] initWithObjects:
-                      @"AFB Ablation",
-                      @"SVT Ablation",
-                      @"VT Ablation",
-                      @"AV Node Ablation",
-                      @"EP Testing",
-                      @"New PPM",
-                      @"New ICD",
-                      @"Replace PPM",
-                      @"Replace ICD",
-                      @"Upgrade/Revise/Extract",
-                      @"SubQ ICD",
-                      @"Other Procedure",
-                      @"All EP Codes", nil];
+                      AFB_ABLATION_TITLE,
+                      SVT_ABLATION_TITLE,
+                      VT_ABLATION_TITLE,
+                      AVN_ABLATION_TITLE,
+                      EP_TESTING_TITLE,
+                      NEW_PPM_TITLE,
+                      NEW_ICD_TITLE,
+                      REPLACE_PPM_TITLE,
+                      REPLACE_ICD_TITLE,
+                      UPGRADE_SYSTEM_TITLE,
+                      SUBQ_ICD_TITLE,
+                      OTHER_PROCEDURE_TITLE,
+                      ALL_EP_CODES_TITLE, nil];
     self.procedureTypes = array;
     
 }

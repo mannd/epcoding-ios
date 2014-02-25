@@ -10,6 +10,10 @@
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
+		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
+		8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
+		8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
+		8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
 		8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
 		8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
 		8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C2118B92C6F0007E198 /* EPSCodes.m */; };
@@ -48,6 +52,10 @@
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		8E60902D18B55142001F3D7A /* EPSTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSTestViewController.h; sourceTree = "<group>"; };
 		8E60902E18B55142001F3D7A /* EPSTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSTestViewController.m; sourceTree = "<group>"; };
+		8E9AEEFC18BCFEB700B6BC1C /* EPSProcedureKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKeys.h; sourceTree = "<group>"; };
+		8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSProcedureKeys.m; sourceTree = "<group>"; };
+		8E9AEF0018BCFF4800B6BC1C /* EPSProcedureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKey.h; sourceTree = "<group>"; };
+		8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSProcedureKey.m; sourceTree = "<group>"; };
 		8EC43C1C18B7D09B0007E198 /* EPSCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCode.h; sourceTree = "<group>"; };
 		8EC43C1D18B7D09B0007E198 /* EPSCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCode.m; sourceTree = "<group>"; };
 		8EC43C2018B92C6F0007E198 /* EPSCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodes.h; sourceTree = "<group>"; };
@@ -68,7 +76,7 @@
 		8EDBEC13180CCDEB0041A4E3 /* EPSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPSMasterViewController.m; sourceTree = "<group>"; };
 		8EDBEC15180CCDEB0041A4E3 /* EPSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPSDetailViewController.h; sourceTree = "<group>"; };
 		8EDBEC16180CCDEB0041A4E3 /* EPSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPSDetailViewController.m; sourceTree = "<group>"; };
-		8EDBEC18180CCDEB0041A4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8EDBEC18180CCDEB0041A4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "epcoding-ios/Images.xcassets"; sourceTree = "<group>"; };
 		8EDBEC1E180CCDEC0041A4E3 /* epcoding-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "epcoding-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEC1F180CCDEC0041A4E3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8EDBEC27180CCDEC0041A4E3 /* epcoding-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "epcoding-iosTests-Info.plist"; sourceTree = "<group>"; };
@@ -104,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */,
+				8EDBEC18180CCDEB0041A4E3 /* Images.xcassets */,
+				8EDBEC01180CCDEB0041A4E3 /* Supporting Files */,
 				8EDBEC25180CCDEC0041A4E3 /* epcoding-iosTests */,
 				8EDBEBF9180CCDEB0041A4E3 /* Frameworks */,
 				8EDBEBF8180CCDEB0041A4E3 /* Products */,
@@ -141,8 +151,6 @@
 				8EDBEC13180CCDEB0041A4E3 /* EPSMasterViewController.m */,
 				8EDBEC15180CCDEB0041A4E3 /* EPSDetailViewController.h */,
 				8EDBEC16180CCDEB0041A4E3 /* EPSDetailViewController.m */,
-				8EDBEC18180CCDEB0041A4E3 /* Images.xcassets */,
-				8EDBEC01180CCDEB0041A4E3 /* Supporting Files */,
 				8E60902818B514C1001F3D7A /* EPSHelpViewController.h */,
 				8E60902918B514C1001F3D7A /* EPSHelpViewController.m */,
 				8E60902D18B55142001F3D7A /* EPSTestViewController.h */,
@@ -151,6 +159,10 @@
 				8EC43C1D18B7D09B0007E198 /* EPSCode.m */,
 				8EC43C2018B92C6F0007E198 /* EPSCodes.h */,
 				8EC43C2118B92C6F0007E198 /* EPSCodes.m */,
+				8E9AEEFC18BCFEB700B6BC1C /* EPSProcedureKeys.h */,
+				8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */,
+				8E9AEF0018BCFF4800B6BC1C /* EPSProcedureKey.h */,
+				8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -165,6 +177,7 @@
 				8EDBEC08180CCDEB0041A4E3 /* epcoding-ios-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = "epcoding-ios";
 			sourceTree = "<group>";
 		};
 		8EDBEC25180CCDEC0041A4E3 /* epcoding-iosTests */ = {
@@ -285,6 +298,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
+				8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */,
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
 				8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */,
@@ -300,8 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
 				8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
+				8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
