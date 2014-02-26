@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPSDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface EPSDetailViewController : UIViewController <UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) id detailItem;
+
+@property (weak, nonatomic) NSMutableArray *primaryCodes;
+@property (weak, nonatomic) NSMutableArray *secondaryCodes;
+@property (weak, nonatomic) NSMutableArray *disabledCodes;
+@property BOOL disablePrimaryCodes;
+@property BOOL ignoreNoSecondaryCodesSelected;
 
 @property (weak, nonatomic) IBOutlet UITableView *codeTableView;
 

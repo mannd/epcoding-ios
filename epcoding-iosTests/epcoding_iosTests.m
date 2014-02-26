@@ -88,10 +88,10 @@
     XCTAssertTrue([code4.number isEqualToString:@"93624"]);
     XCTAssertFalse([code4 isAddOn]);
     NSArray *codeNumbers = @[@"0319T", @"93624", @"93622"];
-    NSDictionary *codeDictionary2 = [EPSCodes getCodesForCodeNumbers:codeNumbers];
-    EPSCode *newCode = [codeDictionary2 valueForKey:@"93624"];
+    NSArray *codeArray2 = [EPSCodes getCodesForCodeNumbers:codeNumbers];
+    EPSCode *newCode = [codeArray2 objectAtIndex:1];
     XCTAssertTrue([newCode.description isEqualToString:@"Follow-up EP testing"]);
-    EPSCode *newCode2 = [codeDictionary2 valueForKey:@"93622"];
+    EPSCode *newCode2 = [codeArray2 objectAtIndex:2];
     XCTAssertTrue([newCode2.number isEqualToString:@"93622"]);
     NSArray *ablationCodes = [[EPSCodes codeDictionary] valueForKey:@"afbAblationPrimaryCodes"];
     XCTAssertTrue([[ablationCodes objectAtIndex:0] isEqualToString:@"93656"]);

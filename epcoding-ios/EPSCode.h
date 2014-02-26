@@ -16,6 +16,7 @@
 @property BOOL plusShown;
 @property BOOL descriptionShortened;
 @property BOOL descriptonShown;
+@property BOOL selected;
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;
 

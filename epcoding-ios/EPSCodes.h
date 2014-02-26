@@ -14,7 +14,7 @@
 + (NSDictionary *)allCodes;
 + (void)addCode:(EPSCode *)code toDictionary:(NSMutableDictionary *)dictionary;
 + (EPSCode *)getCodeForNumber:(NSString *)codeNumber;
-+ (NSDictionary *)getCodesForCodeNumbers:(NSArray *)codeNumbers;
++ (NSMutableArray *)getCodesForCodeNumbers:(NSArray *)codeNumbers;
 
 + (NSDictionary *)codeDictionary;
 

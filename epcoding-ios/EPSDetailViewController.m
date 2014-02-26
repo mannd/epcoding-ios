@@ -8,6 +8,8 @@
 
 #import "EPSDetailViewController.h"
 #import "EPSCodes.h"
+#import "EPSProcedureKeys.h"
+#import "EPSProcedureKey.h"
 
 @interface EPSDetailViewController ()
 
@@ -25,9 +27,11 @@
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        
+
         // Update the view.
         [self configureView];
+     
+
     }
 
     if (self.masterPopoverController != nil) {
@@ -41,7 +45,25 @@
 
     if (self.detailItem) {
         self.title = _detailItem;
-       // NSDictionary *dictionary = [EPSCodes codeDictionary];
+        NSDictionary *codeDictionary = [EPSCodes codeDictionary];
+        NSDictionary *keyDictionary = [EPSProcedureKeys keyDictionary];
+        NSString *primaryCodeKey = [[keyDictionary valueForKey:_detailItem] primaryCodesKey];
+        NSString *secondaryCodeKey = [[keyDictionary valueForKey:_detailItem] secondaryCodesKey];
+        NSString *disabledCodeKey = [[keyDictionary valueForKey:_detailItem] disabledCodesKey];
+        self.disablePrimaryCodes = [[keyDictionary valueForKey:_detailItem] disablePrimaryCodes];
+        self.ignoreNoSecondaryCodesSelected = [[keyDictionary valueForKey:_detailItem] ignoreNoSecondaryCodesSelected];
+        NSArray *primaryKeys = [codeDictionary valueForKey:primaryCodeKey];
+        self.primaryCodes = [EPSCodes getCodesForCodeNumbers:primaryKeys];
+        if (![secondaryCodeKey isEqualToString:NO_CODE_KEY]) {
+            NSArray *secondaryKeys = [codeDictionary valueForKey:secondaryCodeKey];
+            self.secondaryCodes = [EPSCodes getCodesForCodeNumbers:secondaryKeys];
+        }
+        if (![disabledCodeKey isEqualToString:NO_CODE_KEY]) {
+            NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
+            self.disabledCodes = [EPSCodes getCodesForCodeNumbers:disabledKeys];
+        }
+        // must reload data for iPad detail view to refresh
+        [self.codeTableView reloadData];
     }
 }
 
@@ -81,5 +103,114 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger numberOfRows = 0;
+    switch (section) {
+        case 0:
+            numberOfRows = [self.primaryCodes count];
+            break;
+        case 1:
+            numberOfRows = [self.secondaryCodes count];
+            break;
+        default:
+            break;
+    }
+    return numberOfRows;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (self.secondaryCodes == nil) {
+        return 1;
+    }
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = [[NSString alloc] init];
+    switch(section) {
+        case 0:
+            title = @"Primary Codes";
+            break;
+        case 1:
+            title = @"Other Codes";
+            break;
+        default:
+            title = nil;
+            break;
+    }
+    return title;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    BOOL selected = NO;
+    NSString *label = [[NSString alloc] init];
+    if ([indexPath section] == 0) {
+        label = [[self.primaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
+        selected = [[self.primaryCodes objectAtIndex:indexPath.row] selected];
+    }
+    else if (self.secondaryCodes != nil) {
+        label = [[self.secondaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
+        selected = [[self.secondaryCodes objectAtIndex:indexPath.row] selected];
+    }   // max 2 sections
+    
+    cell.textLabel.text = label;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
+    cell.accessoryType = (selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSUInteger row = indexPath.row;
+    NSUInteger section = indexPath.section;
+    if (section == 0) {
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [[self.primaryCodes objectAtIndex:row] setSelected:NO];
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [[self.primaryCodes objectAtIndex:row] setSelected:YES];
+            
+        }
+    } else {
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [[self.secondaryCodes objectAtIndex:row] setSelected:NO];
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [[self.secondaryCodes objectAtIndex:row] setSelected:YES];
+            
+        }
+    }
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+}
+
 
 @end
