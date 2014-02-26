@@ -30,8 +30,6 @@
 
         // Update the view.
         [self configureView];
-     
-
     }
 
     if (self.masterPopoverController != nil) {
@@ -159,17 +157,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     BOOL selected = NO;
-    NSString *label = [[NSString alloc] init];
     if ([indexPath section] == 0) {
-        label = [[self.primaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
+        cell.textLabel.text = [[self.primaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
         selected = [[self.primaryCodes objectAtIndex:indexPath.row] selected];
     }
-    else if (self.secondaryCodes != nil) {
-        label = [[self.secondaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
+    else {
+        cell.textLabel.text = [[self.secondaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
         selected = [[self.secondaryCodes objectAtIndex:indexPath.row] selected];
     }   // max 2 sections
     
-    cell.textLabel.text = label;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
@@ -194,7 +190,6 @@
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [[self.primaryCodes objectAtIndex:row] setSelected:YES];
-            
         }
     } else {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
@@ -204,7 +199,6 @@
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [[self.secondaryCodes objectAtIndex:row] setSelected:YES];
-            
         }
     }
 
