@@ -76,12 +76,13 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController setToolbarHidden:NO];
-    UIBarButtonItem *buttonItem = [[ UIBarButtonItem alloc ] initWithTitle: @"Select All"
+    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize"
                                                                      style: UIBarButtonItemStyleBordered
                                                                     target: self
                                                                     action: nil ];
-    UIBarButtonItem *buttonNext = [[UIBarButtonItem alloc]initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:nil];
-    self.toolbarItems = [ NSArray arrayWithObjects: buttonItem, buttonNext, nil ];
+    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.toolbarItems = [ NSArray arrayWithObjects: buttonSummarize, buttonClear, buttonSave, nil ];
     // e.g. @selector(goNext:)
 
 
@@ -172,17 +173,20 @@
     NSUInteger row = [indexPath row];
     NSUInteger section = [indexPath section];
     if (section == 0) {
-        cell.textLabel.text = [[self.primaryCodes objectAtIndex:row] unformattedCodeNumberFirst];
+        cell.detailTextLabel.text = [[self.primaryCodes objectAtIndex:row] unformattedCodeDescription];
+        cell.textLabel.text = [[self.primaryCodes objectAtIndex:row] unformattedCodeNumber];
         isSelected = [[self.primaryCodes objectAtIndex:row] selected];
     }
     else {
-        cell.textLabel.text = [[self.secondaryCodes objectAtIndex:row] unformattedCodeNumberFirst];
+        cell.detailTextLabel.text = [[self.secondaryCodes objectAtIndex:row] unformattedCodeDescription];
+        cell.textLabel.text = [[self.secondaryCodes objectAtIndex:row] unformattedCodeNumber];
+
         isSelected = [[self.secondaryCodes objectAtIndex:row] selected];
     }   // max 2 sections
     
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
+    //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     cell.accessoryType = (isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
     
     return cell;

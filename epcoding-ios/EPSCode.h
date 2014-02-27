@@ -24,5 +24,7 @@
 
 - (NSString *)unformattedCodeDescriptionFirst;
 - (NSString *)unformattedCodeNumberFirst;
+- (NSString *)unformattedCodeNumber;
+- (NSString *)unformattedCodeDescription;
 
 @end

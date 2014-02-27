@@ -66,7 +66,10 @@
     return [[NSString alloc] initWithFormat:@"%@%@", self.isAddOn ? @"+" : @"", self.number];
 }
 
-
+- (NSString *)unformattedCodeDescription
+{
+    return self.description;
+}
 
 
 
