@@ -61,7 +61,9 @@
             self.disabledCodes = [EPSCodes getCodesForCodeNumbers:disabledKeys];
         }
         // must reload data for iPad detail view to refresh
-        [self.codeTableView reloadData];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            [self.codeTableView reloadData];
+        }
     }
 }
 
@@ -73,6 +75,16 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController setToolbarHidden:NO];
+    UIBarButtonItem *buttonItem = [[ UIBarButtonItem alloc ] initWithTitle: @"Select All"
+                                                                     style: UIBarButtonItemStyleBordered
+                                                                    target: self
+                                                                    action: nil ];
+    UIBarButtonItem *buttonNext = [[UIBarButtonItem alloc]initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:nil];
+    self.toolbarItems = [ NSArray arrayWithObjects: buttonItem, buttonNext, nil ];
+    // e.g. @selector(goNext:)
+
+
 
 }
 
@@ -149,29 +161,37 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    static NSString *codeCellIdentifier = @"CodeCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:codeCellIdentifier];
     }
-    BOOL selected = NO;
-    if ([indexPath section] == 0) {
-        cell.textLabel.text = [[self.primaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
-        selected = [[self.primaryCodes objectAtIndex:indexPath.row] selected];
+    BOOL isSelected = NO;
+    NSUInteger row = [indexPath row];
+    NSUInteger section = [indexPath section];
+    if (section == 0) {
+        cell.textLabel.text = [[self.primaryCodes objectAtIndex:row] unformattedCodeNumberFirst];
+        isSelected = [[self.primaryCodes objectAtIndex:row] selected];
     }
     else {
-        cell.textLabel.text = [[self.secondaryCodes objectAtIndex:indexPath.row] unformattedCodeNumberFirst];
-        selected = [[self.secondaryCodes objectAtIndex:indexPath.row] selected];
+        cell.textLabel.text = [[self.secondaryCodes objectAtIndex:row] unformattedCodeNumberFirst];
+        isSelected = [[self.secondaryCodes objectAtIndex:row] selected];
     }   // max 2 sections
     
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
-    cell.accessoryType = (selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    cell.accessoryType = (isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return NO;
 }
 
 #pragma mark - Table view delegate
