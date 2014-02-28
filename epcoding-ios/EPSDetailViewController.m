@@ -65,6 +65,7 @@
         if (![secondaryCodeKey isEqualToString:NO_CODE_KEY]) {
             NSArray *secondaryKeys = [codeDictionary valueForKey:secondaryCodeKey];
             self.secondaryCodes = [EPSCodes getCodesForCodeNumbers:secondaryKeys];
+            [self load];
         }
         if (![disabledCodeKey isEqualToString:NO_CODE_KEY]) {
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
@@ -78,9 +79,11 @@
         }
         else {
             cellHeight = 65;
-            // not clear if just need this for iphone
-            [self clearEntries];
         }
+        // not clear if just need this for iphone
+        [self clearEntries];
+        // load defaults
+        [self load];
     }
 }
 
@@ -93,14 +96,10 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController setToolbarHidden:NO];
-    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize"
-                                                                     style: UIBarButtonItemStyleBordered
-                                                                    target: self
-                                                                    action: nil ];
+    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStyleBordered target: self action: @selector(summarizeCoding)];
     UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearEntries)];
-    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveCoding)];
     self.toolbarItems = [ NSArray arrayWithObjects: buttonSummarize, buttonClear, buttonSave, nil ];
-    // e.g. @selector(goNext:)
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,7 +109,8 @@
     // TODO check to see how resources handled in iOS 7.  Do I need to do this?
 }
 
-- (void)showHelp {
+- (void)showHelp
+{
     [self performSegueWithIdentifier:@"showHelp" sender:nil];
 }
 
@@ -118,6 +118,58 @@
 {
     [self clearSelected];
     [self.codeTableView reloadData];
+}
+
+- (void)saveCoding
+{
+    if (self.secondaryCodes == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No codes to save" message:@"Only additional codes can be saved. This group has only primary codes." delegate:self
+            cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save default codes" message:@"Save selected codes as a default?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        [alert show];
+    }
+        
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self save];
+    }
+}
+
+- (void)save
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *selectedCodes = [[NSMutableArray alloc] init];
+    for (EPSCode *code in self.secondaryCodes) {
+        if ([code selected]) {
+            [selectedCodes addObject:[code number]];
+        }
+    }
+    [defaults setValue:selectedCodes forKey:_detailItem];
+}
+
+- (void)load
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *array = [defaults arrayForKey:_detailItem];
+    if (array != nil) {
+        NSSet *set = [[NSSet alloc] initWithArray:array];
+        for (EPSCode *code in self.secondaryCodes) {
+            if ([set containsObject:[code number]]) {
+                [code setSelected:YES];
+            }
+        }
+    }
+}
+
+- (void)summarizeCoding
+{
+    
 }
 
 - (void)clearSelected
@@ -202,7 +254,6 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
     }
-    BOOL isSelected = NO;
     BOOL isDisabled = NO;
     NSUInteger row = [indexPath row];
     NSUInteger section = [indexPath section];
@@ -220,8 +271,6 @@
 
     cell.textLabel.text = [code unformattedCodeDescription];
     cell.detailTextLabel.text = [code unformattedCodeNumber];
-    isSelected = [code selected];
-    
    
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -241,9 +290,9 @@
         [cell setUserInteractionEnabled:NO];
     }
     else {
-        cell.accessoryType = (isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+        cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
         // must specifically set this, or will be set randomly
-        cell.backgroundColor = (isSelected ? [UIColor HIGHLIGHT] : [UIColor whiteColor]);
+        cell.backgroundColor = ([code selected] ? [UIColor HIGHLIGHT] : [UIColor whiteColor]);
         //[cell setBackgroundColor:[UIColor whiteColor]];
         [cell setUserInteractionEnabled:YES];
     }
