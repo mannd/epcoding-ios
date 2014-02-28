@@ -11,6 +11,8 @@
 #import "EPSProcedureKeys.h"
 #import "EPSProcedureKey.h"
 
+#define HIGHLIGHT yellowColor
+
 @interface EPSDetailViewController ()
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -76,6 +78,8 @@
         }
         else {
             cellHeight = 65;
+            // not clear if just need this for iphone
+            [self clearEntries];
         }
     }
 }
@@ -112,6 +116,12 @@
 
 - (void)clearEntries
 {
+    [self clearSelected];
+    [self.codeTableView reloadData];
+}
+
+- (void)clearSelected
+{
     for (EPSCode *primaryCode in self.primaryCodes) {
         if (!self.disablePrimaryCodes) {
             primaryCode.selected = NO;
@@ -119,9 +129,7 @@
     }
     for (EPSCode *secondaryCode in self.secondaryCodes) {
         secondaryCode.selected = NO;
-        
     }
-    [self.codeTableView reloadData];
 }
 
 #pragma mark - Split view
@@ -235,7 +243,8 @@
     else {
         cell.accessoryType = (isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
         // must specifically set this, or will be set randomly
-        [cell setBackgroundColor:nil];
+        cell.backgroundColor = (isSelected ? [UIColor HIGHLIGHT] : [UIColor whiteColor]);
+        //[cell setBackgroundColor:[UIColor whiteColor]];
         [cell setUserInteractionEnabled:YES];
     }
     
@@ -264,23 +273,28 @@
     if (section == 0) {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.backgroundColor = [UIColor whiteColor];
             [[self.primaryCodes objectAtIndex:row] setSelected:NO];
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.backgroundColor = [UIColor HIGHLIGHT];
             [[self.primaryCodes objectAtIndex:row] setSelected:YES];
         }
     } else {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.backgroundColor = [UIColor whiteColor];
+
             [[self.secondaryCodes objectAtIndex:row] setSelected:NO];
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.backgroundColor = [UIColor HIGHLIGHT];
+
             [[self.secondaryCodes objectAtIndex:row] setSelected:YES];
         }
     }
-
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
