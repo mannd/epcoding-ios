@@ -144,6 +144,9 @@
 
 + (NSMutableArray *)getCodesForCodeNumbers:(NSArray *)codeNumbers
 {
+    if (codeNumbers == nil) {
+        return nil;
+    }
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (id codeNumber in codeNumbers)  {
         EPSCode *code = [EPSCodes getCodeForNumber:codeNumber];
