@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) NSMutableArray *primaryCodes;
 @property (strong, nonatomic) NSMutableArray *secondaryCodes;
-@property (strong, nonatomic) NSMutableArray *disabledCodes;
+@property (strong, nonatomic) NSSet *disabledCodesSet;
 @property BOOL disablePrimaryCodes;
 @property BOOL ignoreNoSecondaryCodesSelected;
 

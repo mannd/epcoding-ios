@@ -66,7 +66,7 @@
         }
         if (![disabledCodeKey isEqualToString:NO_CODE_KEY]) {
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
-            self.disabledCodes = [EPSCodes getCodesForCodeNumbers:disabledKeys];
+            self.disabledCodesSet = [NSSet setWithArray:disabledKeys];
         }
         // must reload data for iPad detail view to refresh, also use default cell height
         // TODO can I get default cell height from somewhere?
@@ -93,13 +93,10 @@
                                                                      style: UIBarButtonItemStyleBordered
                                                                     target: self
                                                                     action: nil ];
-    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearEntries)];
     UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:nil];
     self.toolbarItems = [ NSArray arrayWithObjects: buttonSummarize, buttonClear, buttonSave, nil ];
     // e.g. @selector(goNext:)
-
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,13 +104,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     // TODO check to see how resources handled in iOS 7.  Do I need to do this?
-    self.primaryCodes = nil;
-    self.secondaryCodes = nil;
-    self.disabledCodes = nil;
 }
 
 - (void)showHelp {
     [self performSegueWithIdentifier:@"showHelp" sender:nil];
+}
+
+- (void)clearEntries
+{
+    for (EPSCode *primaryCode in self.primaryCodes) {
+        if (!self.disablePrimaryCodes) {
+            primaryCode.selected = NO;
+        }
+    }
+    for (EPSCode *secondaryCode in self.secondaryCodes) {
+        secondaryCode.selected = NO;
+        
+    }
+    [self.codeTableView reloadData];
 }
 
 #pragma mark - Split view
@@ -187,23 +195,49 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
     }
     BOOL isSelected = NO;
+    BOOL isDisabled = NO;
     NSUInteger row = [indexPath row];
     NSUInteger section = [indexPath section];
     EPSCode *code;
     if (section == 0) {
         code = [self.primaryCodes objectAtIndex:row];
+        isDisabled = self.disablePrimaryCodes;
     }
     else {
         code = [self.secondaryCodes objectAtIndex:row];
+        if ([self.disabledCodesSet containsObject:[code number]]) {
+            isDisabled = YES;
+        }
     }
+
     cell.textLabel.text = [code unformattedCodeDescription];
     cell.detailTextLabel.text = [code unformattedCodeNumber];
     isSelected = [code selected];
-
+    
+   
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
-    cell.accessoryType = (isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    
+    
+    if (isDisabled) {
+        // primary disabled codes always selected, secondary never selected
+        if (section == 0) { // primary code
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [cell setBackgroundColor:[UIColor greenColor]];
+        }
+        else {  // secondary code
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [cell setBackgroundColor:[UIColor redColor]];
+        }
+        [cell setUserInteractionEnabled:NO];
+    }
+    else {
+        cell.accessoryType = (isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+        // must specifically set this, or will be set randomly
+        [cell setBackgroundColor:nil];
+        [cell setUserInteractionEnabled:YES];
+    }
     
     return cell;
 }
