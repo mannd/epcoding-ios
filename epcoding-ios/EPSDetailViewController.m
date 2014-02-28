@@ -20,6 +20,9 @@
 @end
 
 @implementation EPSDetailViewController
+{
+    NSInteger cellHeight;
+}
 
 #pragma mark - Managing the detail item
 
@@ -50,8 +53,13 @@
         NSString *disabledCodeKey = [[keyDictionary valueForKey:_detailItem] disabledCodesKey];
         self.disablePrimaryCodes = [[keyDictionary valueForKey:_detailItem] disablePrimaryCodes];
         self.ignoreNoSecondaryCodesSelected = [[keyDictionary valueForKey:_detailItem] ignoreNoSecondaryCodesSelected];
-        NSArray *primaryKeys = [codeDictionary valueForKey:primaryCodeKey];
-        self.primaryCodes = [EPSCodes getCodesForCodeNumbers:primaryKeys];
+        if ([primaryCodeKey isEqualToString:ALL_EP_CODES_PRIMARY_CODES]) {
+            self.primaryCodes = [EPSCodes allCodesSorted];
+        }
+        else {
+            NSArray *primaryKeys = [codeDictionary valueForKey:primaryCodeKey];
+            self.primaryCodes = [EPSCodes getCodesForCodeNumbers:primaryKeys];
+        }
         if (![secondaryCodeKey isEqualToString:NO_CODE_KEY]) {
             NSArray *secondaryKeys = [codeDictionary valueForKey:secondaryCodeKey];
             self.secondaryCodes = [EPSCodes getCodesForCodeNumbers:secondaryKeys];
@@ -60,9 +68,14 @@
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
             self.disabledCodes = [EPSCodes getCodesForCodeNumbers:disabledKeys];
         }
-        // must reload data for iPad detail view to refresh
+        // must reload data for iPad detail view to refresh, also use default cell height
+        // TODO can I get default cell height from somewhere?
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            cellHeight = 44;    // seems to be the default height for iPhone
             [self.codeTableView reloadData];
+        }
+        else {
+            cellHeight = 65;
         }
     }
 }
@@ -93,6 +106,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    // TODO check to see how resources handled in iOS 7.  Do I need to do this?
+    self.primaryCodes = nil;
+    self.secondaryCodes = nil;
+    self.disabledCodes = nil;
 }
 
 - (void)showHelp {
@@ -167,23 +184,22 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:codeCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
     }
     BOOL isSelected = NO;
     NSUInteger row = [indexPath row];
     NSUInteger section = [indexPath section];
+    EPSCode *code;
     if (section == 0) {
-        cell.detailTextLabel.text = [[self.primaryCodes objectAtIndex:row] unformattedCodeDescription];
-        cell.textLabel.text = [[self.primaryCodes objectAtIndex:row] unformattedCodeNumber];
-        isSelected = [[self.primaryCodes objectAtIndex:row] selected];
+        code = [self.primaryCodes objectAtIndex:row];
     }
     else {
-        cell.detailTextLabel.text = [[self.secondaryCodes objectAtIndex:row] unformattedCodeDescription];
-        cell.textLabel.text = [[self.secondaryCodes objectAtIndex:row] unformattedCodeNumber];
+        code = [self.secondaryCodes objectAtIndex:row];
+    }
+    cell.textLabel.text = [code unformattedCodeDescription];
+    cell.detailTextLabel.text = [code unformattedCodeNumber];
+    isSelected = [code selected];
 
-        isSelected = [[self.secondaryCodes objectAtIndex:row] selected];
-    }   // max 2 sections
-    
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -191,6 +207,11 @@
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return cellHeight;
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -29,7 +29,7 @@
         [dictionary setObject:[[EPSProcedureKey alloc] initWithPrimaryKey:@"upgradeSystemPrimaryCodes" secondaryKey:@"deviceSecondaryCodes" disabledKey:NO_CODE_KEY disablePrimaryCodes:NO ignoreNoSecondaryCodesSelected:YES] forKey:UPGRADE_SYSTEM_TITLE];
         [dictionary setObject:[[EPSProcedureKey alloc] initWithPrimaryKey:@"otherProcedurePrimaryCodes" secondaryKey:NO_CODE_KEY disabledKey:NO_CODE_KEY disablePrimaryCodes:NO ignoreNoSecondaryCodesSelected:YES] forKey:OTHER_PROCEDURE_TITLE];
         [dictionary setObject:[[EPSProcedureKey alloc] initWithPrimaryKey:@"subQIcdPrimaryCodes" secondaryKey:NO_CODE_KEY disabledKey:NO_CODE_KEY disablePrimaryCodes:NO ignoreNoSecondaryCodesSelected:NO] forKey:SUBQ_ICD_TITLE];
-        [dictionary setObject:[[EPSProcedureKey alloc] initWithPrimaryKey:@"allEpCodesPrimaryCodes" secondaryKey:NO_CODE_KEY disabledKey:NO_CODE_KEY disablePrimaryCodes:NO ignoreNoSecondaryCodesSelected:NO] forKey:ALL_EP_CODES_TITLE];
+        [dictionary setObject:[[EPSProcedureKey alloc] initWithPrimaryKey:ALL_EP_CODES_PRIMARY_CODES secondaryKey:NO_CODE_KEY disabledKey:NO_CODE_KEY disablePrimaryCodes:NO ignoreNoSecondaryCodesSelected:NO] forKey:ALL_EP_CODES_TITLE];
     }
     
     return dictionary;

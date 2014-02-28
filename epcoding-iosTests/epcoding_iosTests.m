@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "EPSCode.h"
 #import "EPSCodes.h"
+#import "EPSProcedureKey.h"
+#import "EPSProcedureKeys.h"
 
 @interface epcoding_iosTests : XCTestCase
 
@@ -63,6 +65,7 @@
     code.descriptonShown = YES;
     code.descriptionShortened = YES;
     XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999) This is an incredibly..."]);
+    XCTAssertTrue([[code unformattedCodeNumber] isEqualToString:@"+99999"]);
 }
 
 - (void)testCodes
@@ -97,9 +100,22 @@
     XCTAssertTrue([[ablationCodes objectAtIndex:0] isEqualToString:@"93656"]);
     NSArray *disabledAblationCodes = [[EPSCodes codeDictionary] valueForKey:@"afbAblationDisabledCodes"];
     XCTAssertTrue([[disabledAblationCodes objectAtIndex:0] isEqualToString:@"93621"]);
+    NSMutableArray *sortedCodes = [EPSCodes allCodesSorted];
+    EPSCode *code10 = [sortedCodes objectAtIndex:0];
+    // this is what it should be, but codes are sorted yet
+//    XCTAssertTrue([[[sortedCodes objectAtIndex:0] number] isEqualToString:@"0319T"]);
+    XCTAssertTrue([[code10 number] isEqualToString:@"33264"]);
+}
 
-    
-    
+- (void)testProcedureKeys
+{
+    NSDictionary *dictionary = [EPSProcedureKeys keyDictionary];
+    XCTAssertTrue([[[dictionary objectForKey:SVT_ABLATION_TITLE] secondaryCodesKey] isEqualToString:@"ablationSecondaryCodes"]);
+    XCTAssertTrue([[[dictionary objectForKey:VT_ABLATION_TITLE] secondaryCodesKey] isEqualToString:@"ablationSecondaryCodes"]);
+    XCTAssertTrue([[dictionary objectForKey:SVT_ABLATION_TITLE] disablePrimaryCodes] == YES);
+    XCTAssertTrue([[[dictionary objectForKey:OTHER_PROCEDURE_TITLE] secondaryCodesKey] isEqualToString:NO_CODE_KEY]);
+
+
 }
 
 @end

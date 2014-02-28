@@ -25,6 +25,9 @@
 // somewhat arbitrary string 
 #define NO_CODE_KEY @"EPSNoCodeKEY1234"
 
+// special code for all EP codes primary codes
+#define ALL_EP_CODES_PRIMARY_CODES @"allEpCodesPrimaryCodes"
+
 @interface EPSProcedureKeys : NSObject
 + (NSDictionary *)keyDictionary;
 

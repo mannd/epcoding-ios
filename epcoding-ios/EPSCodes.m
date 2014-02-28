@@ -192,14 +192,21 @@
     return dictionary;
 }
 
++ (NSMutableArray *)allCodesSorted
+{
+    NSDictionary *dictionary = [self allCodes];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    // Not sure this is best way to do this.  This seems to iterate over the keys of dictionary.a
+    // Would like to get all the values out instead and skip a step.
+    for (id code in dictionary)  {
+        [array addObject:code];
+    }
 
-// Not sure if best to return all codes sorted by pure code number in a array, return the code numbers sorted, or what.  Will wait until the checkboxes are implemented to determine this.
-//+ (NSArray *)allCodesDescriptionsSorted
-//{
-//    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-//    [dictionary addEntriesFromDictionary:[EPSCodes allCodes]];
-//    [dictionary ]
-//    
-//}
+    NSMutableArray *codes = [self getCodesForCodeNumbers:array];
+    /// TODO Need to figure out how to sort this
+    //    [array sortUsingSelector:@selector(sortOnCodeNumber)];
+    
+    return codes;
+}
 
 @end

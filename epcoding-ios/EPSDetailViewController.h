@@ -18,6 +18,6 @@
 @property BOOL disablePrimaryCodes;
 @property BOOL ignoreNoSecondaryCodesSelected;
 
-@property (strong, nonatomic) IBOutlet UITableView *codeTableView;
+@property (weak, nonatomic) IBOutlet UITableView *codeTableView;
 
 @end
