@@ -9,6 +9,7 @@
 #import "EPSCodeSummaryTableViewController.h"
 #import "EPSCode.h"
 #import "EPSCodeAnalyzer.h"
+#import "EPSCodeError.h"
 
 @interface EPSCodeSummaryTableViewController ()
 @property (strong, nonatomic) EPSCodeAnalyzer *codeAnalyzer;
@@ -32,6 +33,7 @@
     [self setTitle:@"Code Summary"];
     EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:self.selectedPrimaryCodes secondaryCodes:self.selectedSecondaryCodes ignoreNoSecondaryCodes:self.ignoreNoSecondaryCodesSelected];
     self.codeAnalyzer = analyzer;
+    self.codeErrors = [analyzer analysis];
     self.selectedCodes = [analyzer allCodes];
 //    
 
@@ -46,6 +48,23 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIColor *)colorForWarningLevel:(enum status)level {
+    UIColor *color = [[UIColor alloc] init];
+    switch (level) {
+        case GOOD:
+            color = [UIColor greenColor];
+            break;
+        case WARNING:
+            color = [UIColor orangeColor];
+            break;
+        case ERROR:
+        default:
+            color = [UIColor redColor];
+            break;
+    }
+    return color;
 }
 
 #pragma mark - Table view data source
@@ -69,7 +88,7 @@
     // Return the number of rows in the section.
     if (section == 0)
         return [self.selectedCodes count];
-    return 0;
+    return [self.codeErrors count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,13 +103,29 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    cell.textLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeNumber];
-    cell.detailTextLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeDescription];
-    [cell setBackgroundColor:[UIColor greenColor]];
+    if ([indexPath section] == 0) {
+        cell.textLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeNumber];
+        cell.detailTextLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeDescription];
+        cell.backgroundColor = [self colorForWarningLevel:[[self.selectedCodes objectAtIndex:[indexPath row]] codeStatus]];
+    }
+    else {
+        cell.textLabel.text = [[self.codeErrors objectAtIndex:[indexPath row]] message];
+        cell.backgroundColor = [self colorForWarningLevel:[[self.codeErrors objectAtIndex:[indexPath row]] warningLevel]];
 
+    }
+    
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath section] == 1)
+        return 65;
+    return 44;
+}
+
 
 /*
 // Override to support conditional editing of the table view.

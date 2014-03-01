@@ -8,10 +8,11 @@
 
 #import "EPSCodeAnalyzer.h"
 #import "EPSCode.h"
+#import "EPSCodeError.h"
 
-#define WARNING @"\u26A0"
-#define ERROR @"\u620"
-#define OK @"\u263A"
+//#define WARNING @"\u26A0"
+//#define ERROR @"\u620"
+//#define OK @"\u263A"
 
 @implementation EPSCodeAnalyzer
 
@@ -47,9 +48,16 @@
 - (NSArray *)analysis
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    if (self.primaryCodes == nil && self.secondaryCodes == nil) {
-        
+    if ([self.primaryCodes count] == 0 && [self.secondaryCodes count] == 0) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No codes selected."]];
+        return array;
     }
+    if ([self.primaryCodes count] == 0) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:ERROR withMessage:@"No primary codes selected.  You shouldn't just have additional codes selected."]];
+    }
+    
+    if ([array count] == 0)
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
 
     return array;
 }

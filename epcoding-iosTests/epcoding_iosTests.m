@@ -147,6 +147,11 @@
         code.isAddOn = YES;
     }
     XCTAssertTrue([analyzer allAddOnCodes]);
+    EPSCodeAnalyzer *analyzer1 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:nil secondaryCodes:nil ignoreNoSecondaryCodes:YES];
+    NSArray *results = [analyzer1 analysis];
+    XCTAssertTrue([results count] == 1);
+    XCTAssertTrue([[[results objectAtIndex:0] message] isEqualToString:@"No codes selected."]);
+    XCTAssertTrue([[results objectAtIndex:0] warningLevel] == WARNING);
    
 }
 
