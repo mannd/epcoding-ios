@@ -142,6 +142,12 @@
     NSArray *allCodeNumbers = [analyzer allCodeNumbers];
     XCTAssertTrue([[allCodeNumbers objectAtIndex:0] isEqualToString:@"00000"]);
     XCTAssertTrue([[allCodeNumbers objectAtIndex:5] isEqualToString:@"00005"]);
+    XCTAssertTrue(![analyzer allAddOnCodes]);
+    for (EPSCode *code in [analyzer allCodes]) {
+        code.isAddOn = YES;
+    }
+    XCTAssertTrue([analyzer allAddOnCodes]);
+   
 }
 
 - (void)testCodeError
@@ -152,7 +158,7 @@
     EPSCode *code3 = [[EPSCode alloc] initWithNumber:@"00003" description:@"testcode3" isAddOn:NO];
     EPSCode *code4 = [[EPSCode alloc] initWithNumber:@"00004" description:@"testcode4" isAddOn:NO];
     EPSCode *code5 = [[EPSCode alloc] initWithNumber:@"00005" description:@"testcode5" isAddOn:NO];
-    NSArray *codes = @[code0, code1, code2, code3, code4, code5];
+    NSMutableArray *codes = [NSMutableArray arrayWithArray:@[code0, code1, code2, code3, code4, code5]];
     EPSCodeError *codeError = [[EPSCodeError alloc] initWithCodes:codes withWarningLevel:ERROR withMessage:@"This is a test error."];
     XCTAssertTrue([codeError warningLevel] == ERROR);
     NSMutableArray *array = [codeError codes];

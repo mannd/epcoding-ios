@@ -54,6 +54,17 @@
     return array;
 }
 
+- (BOOL)allAddOnCodes
+{
+    BOOL allAddOns = YES;
+    for (EPSCode *code in [self allCodes]) {
+        if (![code isAddOn]) {
+            allAddOns = NO;
+        }
+    }
+    return allAddOns;
+}
+
 
 
 

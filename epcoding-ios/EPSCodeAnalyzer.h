@@ -20,5 +20,6 @@
 
 - (NSArray *)allCodes;
 - (NSArray *)allCodeNumbers;
+- (BOOL)allAddOnCodes;
 
 @end
