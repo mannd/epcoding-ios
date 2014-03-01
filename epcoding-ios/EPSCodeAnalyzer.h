@@ -10,6 +10,15 @@
 
 @interface EPSCodeAnalyzer : NSObject
 
+@property (weak, nonatomic) NSArray *primaryCodes;
+@property (weak, nonatomic) NSArray *secondaryCodes;
+@property BOOL ignoreNoSecondaryCodes;
+
 - (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes;
+
+- (NSArray *)analysis;
+
+- (NSArray *)allCodes;
+- (NSArray *)allCodeNumbers;
 
 @end

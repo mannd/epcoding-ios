@@ -22,6 +22,8 @@
 		8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
 		8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
 		8ECCF8B318C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
+		8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */; };
+		8ECCF8B718C2324A00001DC6 /* EPSCodeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
 		8EDBEBFD180CCDEB0041A4E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */; };
 		8EDBEBFF180CCDEB0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
@@ -68,6 +70,8 @@
 		8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCodeSummaryTableViewController.m; sourceTree = "<group>"; };
 		8ECCF8B018C1CB9700001DC6 /* EPSCodeAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodeAnalyzer.h; sourceTree = "<group>"; };
 		8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCodeAnalyzer.m; sourceTree = "<group>"; };
+		8ECCF8B418C2324A00001DC6 /* EPSCodeError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodeError.h; sourceTree = "<group>"; };
+		8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCodeError.m; sourceTree = "<group>"; };
 		8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EP Coding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -175,6 +179,8 @@
 				8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */,
 				8ECCF8B018C1CB9700001DC6 /* EPSCodeAnalyzer.h */,
 				8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */,
+				8ECCF8B418C2324A00001DC6 /* EPSCodeError.h */,
+				8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
+				8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */,
 				8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
 				8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */,
@@ -335,6 +342,7 @@
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
 				8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */,
+				8ECCF8B718C2324A00001DC6 /* EPSCodeError.m in Sources */,
 				8ECCF8B318C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

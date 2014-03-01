@@ -17,6 +17,9 @@
 @property BOOL descriptionShortened;
 @property BOOL descriptonShown;
 @property BOOL selected;
+@property enum status codeStatus;
+
+enum status {GOOD, WARNING, ERROR};
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;
 

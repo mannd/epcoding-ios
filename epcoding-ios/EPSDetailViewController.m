@@ -283,7 +283,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:codeCellIdentifier];
+        }
+        else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
+        }
     }
     BOOL isDisabled = NO;
     NSUInteger row = [indexPath row];

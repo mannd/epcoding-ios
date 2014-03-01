@@ -17,6 +17,7 @@
         self.number = number;
         self.description = description;
         self.isAddOn = isAddOn;
+        self.codeStatus = GOOD;
     }
     return self;
 }

@@ -29,8 +29,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:self.selectedPrimaryCodes secondaryCodes:self.selectedSecondaryCodes ignoreNoSecondaryCodes:self.ignoreNoSecondaryCodesSelected];
-//    self.codeAnalyzer = analyzer;
+    [self setTitle:@"Code Summary"];
+    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:self.selectedPrimaryCodes secondaryCodes:self.selectedSecondaryCodes ignoreNoSecondaryCodes:self.ignoreNoSecondaryCodesSelected];
+    self.codeAnalyzer = analyzer;
+    self.selectedCodes = [analyzer allCodes];
 //    
 
     // Uncomment the following line to preserve selection between presentations.
@@ -50,9 +52,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -65,10 +66,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section == 0)
-        return [self.selectedPrimaryCodes count];
+        return [self.selectedCodes count];
     return 0;
 }
 
@@ -77,11 +77,17 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    else {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    cell.textLabel.text = [[self.selectedPrimaryCodes objectAtIndex:[indexPath row]] number];
+    cell.textLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeNumber];
+    cell.detailTextLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeDescription];
+    [cell setBackgroundColor:[UIColor greenColor]];
+
     
     return cell;
 }

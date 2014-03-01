@@ -10,7 +10,7 @@
 
 @interface EPSCodeSummaryTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic)NSMutableArray *selectedCodes;
+@property (strong, nonatomic)NSArray *selectedCodes;
 @property (strong, nonatomic)NSArray *selectedPrimaryCodes;
 @property (strong, nonatomic)NSArray *selectedSecondaryCodes;
 @property BOOL ignoreNoSecondaryCodesSelected;
