@@ -38,11 +38,32 @@
                     <connections>
                         <outlet property="codeTableView" destination="JTO-Jv-BHk" id="9f9-EE-QN5"/>
                         <segue destination="Ce6-ZL-qUX" kind="push" identifier="showHelp" id="Mvd-nK-6ZG"/>
+                        <segue destination="4Ry-Dj-9Bm" kind="push" identifier="showSummary" id="ka1-zr-2vU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="466" y="528"/>
+        </scene>
+        <!--Code Summary Table View Controller-->
+        <scene sceneID="Ojs-VO-BIy">
+            <objects>
+                <tableViewController id="4Ry-Dj-9Bm" customClass="EPSCodeSummaryTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1pj-Fb-4jf">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <connections>
+                            <outlet property="dataSource" destination="4Ry-Dj-9Bm" id="e6J-pb-JwJ"/>
+                            <outlet property="delegate" destination="4Ry-Dj-9Bm" id="hpR-u6-irI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="lur-ch-psC"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qdr-uM-uFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="1350"/>
         </scene>
         <!--Help View Controller - Help-->
         <scene sceneID="aEm-0s-yDR">

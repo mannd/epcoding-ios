@@ -18,6 +18,10 @@
 		8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
 		8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C2118B92C6F0007E198 /* EPSCodes.m */; };
 		8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C2118B92C6F0007E198 /* EPSCodes.m */; };
+		8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
+		8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
+		8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
+		8ECCF8B318C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
 		8EDBEBFD180CCDEB0041A4E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */; };
 		8EDBEBFF180CCDEB0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
@@ -60,6 +64,10 @@
 		8EC43C1D18B7D09B0007E198 /* EPSCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCode.m; sourceTree = "<group>"; };
 		8EC43C2018B92C6F0007E198 /* EPSCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodes.h; sourceTree = "<group>"; };
 		8EC43C2118B92C6F0007E198 /* EPSCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCodes.m; sourceTree = "<group>"; };
+		8ECCF8AC18C1268200001DC6 /* EPSCodeSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodeSummaryTableViewController.h; sourceTree = "<group>"; };
+		8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCodeSummaryTableViewController.m; sourceTree = "<group>"; };
+		8ECCF8B018C1CB9700001DC6 /* EPSCodeAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodeAnalyzer.h; sourceTree = "<group>"; };
+		8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCodeAnalyzer.m; sourceTree = "<group>"; };
 		8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EP Coding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +171,10 @@
 				8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */,
 				8E9AEF0018BCFF4800B6BC1C /* EPSProcedureKey.h */,
 				8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */,
+				8ECCF8AC18C1268200001DC6 /* EPSCodeSummaryTableViewController.h */,
+				8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */,
+				8ECCF8B018C1CB9700001DC6 /* EPSCodeAnalyzer.h */,
+				8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -299,9 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
+				8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
 				8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */,
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
+				8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */,
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */,
@@ -315,11 +329,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
 				8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
 				8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */,
+				8ECCF8B318C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

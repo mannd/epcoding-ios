@@ -10,6 +10,7 @@
 #import "EPSCodes.h"
 #import "EPSProcedureKeys.h"
 #import "EPSProcedureKey.h"
+#import "EPSCodeSummaryTableViewController.h"
 
 #define HIGHLIGHT yellowColor
 
@@ -80,7 +81,6 @@
         else {
             cellHeight = 65;
         }
-        // not clear if just need this for iphone
         [self clearEntries];
         // load defaults
         [self load];
@@ -106,7 +106,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    // TODO check to see how resources handled in iOS 7.  Do I need to do this?
 }
 
 - (void)showHelp
@@ -134,12 +133,6 @@
         
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self save];
-    }
-}
 
 - (void)save
 {
@@ -169,8 +162,32 @@
 
 - (void)summarizeCoding
 {
-    
+    [self performSegueWithIdentifier:@"showSummary" sender:nil];
 }
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showSummary"]) {
+        // get selected codes (need primary, secondary, etc.  but for now
+        NSMutableArray *primaryArray = [[NSMutableArray alloc] init];
+        for (EPSCode *code in self.primaryCodes) {
+            if ([code selected]) {
+                [primaryArray addObject:code];
+            }
+        }
+        [[segue destinationViewController] setSelectedPrimaryCodes:primaryArray];
+        NSMutableArray *secondaryArray = [[NSMutableArray alloc] init];
+        for (EPSCode *code in self.secondaryCodes) {
+            if ([code selected]) {
+                [secondaryArray addObject:code];
+            }
+        }
+        [[segue destinationViewController] setSelectedSecondaryCodes:secondaryArray];
+        [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:self.ignoreNoSecondaryCodesSelected];
+    }
+}
+
 
 - (void)clearSelected
 {
@@ -183,6 +200,16 @@
         secondaryCode.selected = NO;
     }
 }
+
+#pragma mark - Alert view
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self save];
+    }
+}
+
 
 #pragma mark - Split view
 
@@ -220,6 +247,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    // this ensures no title for blank table (iPad startup)
+    if (self.primaryCodes == nil) {
+        return 0;
+    }
     if (self.secondaryCodes == nil) {
         return 1;
     }
@@ -280,10 +311,12 @@
     if (isDisabled) {
         // primary disabled codes always selected, secondary never selected
         if (section == 0) { // primary code
+            code.selected = YES;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [cell setBackgroundColor:[UIColor greenColor]];
         }
         else {  // secondary code
+            code.selected = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
             [cell setBackgroundColor:[UIColor redColor]];
         }
