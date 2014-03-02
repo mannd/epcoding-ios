@@ -22,24 +22,22 @@
         self.primaryCodes = primaryCodes;
         self.secondaryCodes = secondaryCodes;
         self.ignoreNoSecondaryCodes = ignoreNoSecondaryCodes;
+        NSMutableArray *array = [NSMutableArray  arrayWithArray:[self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes]];
+        self.allCodes = array;
     }
     return self;
-}
-
-// If you do analysis first, proper status will be set on these codes, otherwise all
-// default to OK.
-- (NSArray *)allCodes
-{
-    NSArray *array = [self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes];
-    return array;
 }
 
 // analyzer uses code numbers for analysis
 - (NSArray *)allCodeNumbers
 {
+    return [self codeNumbersFromCodes:[self allCodes]];
+}
+
+- (NSArray *)codeNumbersFromCodes:(NSArray *)codes
+{
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    NSArray *allCodes = [self allCodes];
-    for (EPSCode *code in allCodes) {
+    for (EPSCode *code in codes) {
         [array addObject:[code number]];
     }
     return array;
@@ -53,13 +51,25 @@
         return array;
     }
     if ([self.primaryCodes count] == 0) {
-        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:ERROR withMessage:@"No primary codes selected.  You shouldn't just have additional codes selected."]];
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:ERROR withMessage:@"No primary codes selected.  All codes are other codes."]];
+        [self markCodes:self.allCodes withWarning:ERROR];
+    }
+    if ([self.secondaryCodes count] == 0 && !self.ignoreNoSecondaryCodes) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No other codes selected.  This is ok but be certain you aren't other codes."]];
+        [self markCodes:self.allCodes withWarning:WARNING];
     }
     
     if ([array count] == 0)
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
 
     return array;
+}
+
+- (void)markCodes:(NSMutableArray *)codes withWarning:(enum status)level
+{
+    for (EPSCode *code in codes) {
+        [code markCodeStatus:level];
+    }
 }
 
 - (BOOL)allAddOnCodes
@@ -72,6 +82,14 @@
     }
     return allAddOns;
 }
+
+// return code numbers formated like this "[99999, 99991]"
+- (NSString *)codeNumbersToString:(NSArray *)codeNumbers
+{
+    NSString *string = [codeNumbers componentsJoinedByString:@","];
+    return [NSString stringWithFormat:@"[%@] ", string];
+}
+
 
 
 

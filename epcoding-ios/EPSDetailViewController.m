@@ -173,6 +173,8 @@
         NSMutableArray *primaryArray = [[NSMutableArray alloc] init];
         for (EPSCode *code in self.primaryCodes) {
             if ([code selected]) {
+                // reset code status to GOOD
+                code.codeStatus = GOOD;
                 [primaryArray addObject:code];
             }
         }
@@ -180,6 +182,7 @@
         NSMutableArray *secondaryArray = [[NSMutableArray alloc] init];
         for (EPSCode *code in self.secondaryCodes) {
             if ([code selected]) {
+                code.codeStatus = GOOD;
                 [secondaryArray addObject:code];
             }
         }
@@ -311,6 +314,9 @@
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+    // default gray color looks bad when background color is red or orange
+    cell.detailTextLabel.textColor = [UIColor blackColor];
+
     
     
     if (isDisabled) {

@@ -11,7 +11,7 @@
 @implementation EPSCode
 
 
--(id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn
+- (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn
 {
     if ([super init]) {
         self.number = number;
@@ -20,6 +20,14 @@
         self.codeStatus = GOOD;
     }
     return self;
+}
+
+- (void)markCodeStatus:(enum status)status
+{
+    // only go up on level or leave alone, never go down
+    if (status > self.codeStatus) {
+        self.codeStatus = status;
+    }
 }
 
 // This function returns the formatted code used in the summary box, affected by

@@ -68,6 +68,17 @@
     code.descriptionShortened = YES;
     XCTAssertTrue([[code formattedCode] isEqualToString:@"(+99999) This is an incredibly..."]);
     XCTAssertTrue([[code unformattedCodeNumber] isEqualToString:@"+99999"]);
+    // test mark code status only goes up in threat level
+    EPSCode *codeGreen = [[EPSCode alloc] initWithNumber:@"10000" description:@"start green" isAddOn:NO];
+    XCTAssertTrue(codeGreen.codeStatus == GOOD);
+    [codeGreen markCodeStatus:WARNING];
+    XCTAssertTrue(codeGreen.codeStatus == WARNING);
+    [codeGreen markCodeStatus:GOOD];
+    XCTAssertTrue(codeGreen.codeStatus == WARNING);
+    [codeGreen markCodeStatus:ERROR];
+    XCTAssertTrue(codeGreen.codeStatus == ERROR);
+    [codeGreen markCodeStatus:WARNING];
+    XCTAssertTrue(codeGreen.codeStatus == ERROR);
 }
 
 - (void)testCodes
@@ -152,7 +163,10 @@
     XCTAssertTrue([results count] == 1);
     XCTAssertTrue([[[results objectAtIndex:0] message] isEqualToString:@"No codes selected."]);
     XCTAssertTrue([[results objectAtIndex:0] warningLevel] == WARNING);
-   
+    NSArray *codeNumbers = [analyzer codeNumbersFromCodes:primaryCodes];
+    XCTAssertTrue([[codeNumbers objectAtIndex:2] isEqualToString:@"00002"]);
+    // note there is space after terminal "]" in next method
+    XCTAssertTrue([[analyzer1 codeNumbersToString:codeNumbers] isEqualToString:@"[00000,00001,00002] "]);
 }
 
 - (void)testCodeError

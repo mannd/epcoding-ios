@@ -23,6 +23,8 @@ enum status {GOOD, WARNING, ERROR};
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;
 
+- (void)markCodeStatus:(enum status)status;
+
 - (NSString *)formattedCode;
 
 - (NSString *)unformattedCodeDescriptionFirst;
