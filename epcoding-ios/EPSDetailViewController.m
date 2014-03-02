@@ -268,7 +268,7 @@
             title = @"Primary Codes";
             break;
         case 1:
-            title = @"Other Codes";
+            title = @"Additional Codes";
             break;
         default:
             title = nil;
@@ -276,7 +276,6 @@
     }
     return title;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

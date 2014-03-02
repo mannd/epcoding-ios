@@ -24,4 +24,7 @@
 - (BOOL)allAddOnCodes;
 - (NSString *)codeNumbersToString:(NSArray *)codeNumbers;
 
+- (BOOL)noMappingCodesForAblation;
+- (NSArray *)hasBadComboWithCodeNumberSet:(NSSet *)codeNumberSet andBadCodeNumbers:(NSArray *)badCodeNumbers;
+
 @end
