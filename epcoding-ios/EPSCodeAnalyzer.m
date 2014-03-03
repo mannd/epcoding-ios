@@ -46,9 +46,6 @@
     return set;
 }
 
-/// TODO: maybe should be static method, but problem is it either is mutated by analysis
-/// processing so changes, or it doesn't change, so list of codes has too many codes.
-/// maybe need to make a deep copy to use this each time?
 // This can't be a static method, as it needs to be recreated each go around.
 // If it is static, the changes to the CodeErrors persist.
 - (NSArray *)duplicateCodeErrors
@@ -65,6 +62,14 @@
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0322T", @"0323T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0327T", @"0328T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
                                                                                            
+    return array;
+}
+
+- (NSArray *)specialFirstCodeErrors
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33233", @"33227", @"33228", @"33229", @"33213", @"33213",                                                                              @"33221"]] withWarningLevel:ERROR withMessage:@"Don't use generator removal and insertion or replacement codes together."]];
+    // TODO more codes
     return array;
 }
 
@@ -114,8 +119,10 @@
     }
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
     [array addObjectsFromArray:duplicateCodeErrors];
-
-
+    NSArray *firstSpecialCodeErrors = [self firstSpecialCodeNumberErrors];
+    [array addObjectsFromArray:firstSpecialCodeErrors];
+    NSArray *firstNeedsOthersCodeErrors = [self firstNeedsOthersCodeNumberErrors];
+    [array addObjectsFromArray:firstNeedsOthersCodeErrors];
     
     if ([array count] == 0)
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
@@ -171,6 +178,34 @@
             [array addObject:codeError];
         }
     }
+    return array;
+}
+
+- (NSArray *)firstSpecialCodeNumberErrors
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSSet *codeNumberSet = [self allCodeNumberSet];
+    for (EPSCodeError* codeError in [self specialFirstCodeErrors]) {
+        NSArray *badCombo = codeError.codes;
+        if ([codeNumberSet containsObject:[badCombo objectAtIndex:0]]) {
+            NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:codeNumberSet
+                                                     andBadCodeNumbers:badCombo];
+            if ([badCodeList count] > 1) {
+                NSMutableArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
+                [self markCodes:codes withWarning:[codeError warningLevel]];
+                codeError.codes = [NSMutableArray arrayWithArray:badCodeList];
+                [array addObject:codeError];
+            }
+
+        }
+    }
+    return array;
+}
+
+- (NSArray *)firstNeedsOthersCodeNumberErrors
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
     return array;
 }
 
