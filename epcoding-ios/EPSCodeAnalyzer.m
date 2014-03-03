@@ -101,6 +101,7 @@
         [self markCodes:self.allCodes withWarning:WARNING];
     }
 
+
     
     if ([array count] == 0)
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
@@ -146,13 +147,17 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (EPSCodeError *codeError in [EPSCodeAnalyzer duplicateCodeErrors]) {
         NSArray *badCombo = codeError.codes;
-        
+        NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:[self allCodeNumberSet] andBadCodeNumbers:badCombo];
+        if ([badCodeList count] > 1) {
+          //  [array addObject:<#(id)#>]
+          // add error code including codes, warning, message
+        }
     }
     return array;
 }
 
 // returns list of matching bad codes
-- (NSArray *)hasBadComboWithCodeNumberSet:(NSSet *)codeNumberSet andBadCodeNumbers:(NSArray *)badCodeNumbers
+- (NSArray *)codesWithBadCombosFromCodeSet:(NSSet *)codeNumberSet andBadCodeNumbers:(NSArray *)badCodeNumbers
 {
     NSMutableArray *badCodeNumberArray = [[NSMutableArray alloc] init];
     for (NSString *badCodeNumber in badCodeNumbers) {
@@ -167,7 +172,7 @@
 - (NSString *)codeNumbersToString:(NSArray *)codeNumbers
 {
     NSString *string = [codeNumbers componentsJoinedByString:@","];
-    return [NSString stringWithFormat:@"[%@] ", string];
+    return [NSString stringWithFormat:@"[%@]", string];
 }
 
 

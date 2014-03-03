@@ -166,19 +166,18 @@
     NSArray *codeNumbers = [analyzer codeNumbersFromCodes:primaryCodes];
     XCTAssertTrue([[codeNumbers objectAtIndex:2] isEqualToString:@"00002"]);
     // note there is space after terminal "]" in next method
-    XCTAssertTrue([[analyzer1 codeNumbersToString:codeNumbers] isEqualToString:@"[00000,00001,00002] "]);
+    XCTAssertTrue([[analyzer1 codeNumbersToString:codeNumbers] isEqualToString:@"[00000,00001,00002]"]);
     EPSCode *afbAblationCode = [[EPSCode alloc] initWithNumber:@"93653" description:nil isAddOn:NO];
     EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:nil ignoreNoSecondaryCodes:NO];
     XCTAssertTrue([analyzer2 noMappingCodesForAblation]);
     EPSCode *twoDMappingCode = [[EPSCode alloc] initWithNumber:@"93609" description:nil isAddOn:NO];
     EPSCodeAnalyzer *analyzer3 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:@[twoDMappingCode] ignoreNoSecondaryCodes:NO];
     XCTAssertFalse([analyzer3 noMappingCodesForAblation]);
-//    - (NSArray *)hasBadComboWithCodeNumberSet:(NSSet *)codeNumberSet andBadCodeNumbers:(NSArray *)badCodeNumbers;
-    NSSet *codeNumberSet = [NSSet setWithArray:primaryCodes];
+    NSSet *codeNumberSet = [NSSet setWithArray:@[@"00000", @"00001", @"00002", @"00003"]];
     NSArray *badCodes = @[@"00000", @"00002"];
-    NSArray *badCodeResult = [analyzer hasBadComboWithCodeNumberSet:codeNumberSet andBadCodeNumbers:badCodes];
+    NSArray *badCodeResult = [analyzer codesWithBadCombosFromCodeSet:codeNumberSet andBadCodeNumbers:badCodes];
     NSLog(@"Bad codes = %@", [analyzer codeNumbersToString:badCodeResult]);
-    XCTAssertTrue([[analyzer codeNumbersToString:badCodeResult] isEqualToString:@"[00000,00002] "]);
+    XCTAssertTrue([[analyzer codeNumbersToString:badCodeResult] isEqualToString:@"[00000,00002]"]);
     
 
 }
