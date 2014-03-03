@@ -8,6 +8,7 @@
 
 #import "EPSCodeAnalyzer.h"
 #import "EPSCode.h"
+#import "EPSCodes.h"
 #import "EPSCodeError.h"
 
 //#define WARNING @"\u26A0"
@@ -51,6 +52,7 @@
     static NSMutableArray *array;
     if (array == nil) {
         // duplicate mapping codes
+        array = [[NSMutableArray alloc] init];
         [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93609", @"93613"]] withWarningLevel:ERROR withMessage:@"You shouldn't combine 2D and 3D mapping codes."]];
     }
     return array;
@@ -97,9 +99,12 @@
         [self markCodes:self.allCodes withWarning:WARNING];
     }
     if ([self noMappingCodesForAblation]) {
-        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No mapping codes for ablation.  You should be able to code 2D or 3D mapping."]];
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No mapping codes for ablation."]];
         [self markCodes:self.allCodes withWarning:WARNING];
     }
+    NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
+    [array addObjectsFromArray:duplicateCodeErrors];
+    // mark codes here?
 
 
     
@@ -149,8 +154,10 @@
         NSArray *badCombo = codeError.codes;
         NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:[self allCodeNumberSet] andBadCodeNumbers:badCombo];
         if ([badCodeList count] > 1) {
-          //  [array addObject:<#(id)#>]
-          // add error code including codes, warning, message
+            [array addObject:codeError];
+            // mark codes?
+            NSMutableArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
+            [self markCodes:codes withWarning:[codeError warningLevel]];
         }
     }
     return array;
@@ -169,8 +176,11 @@
 }
 
 // return code numbers formated like this "[99999, 99991]"
-- (NSString *)codeNumbersToString:(NSArray *)codeNumbers
++ (NSString *)codeNumbersToString:(NSArray *)codeNumbers
 {
+    if (codeNumbers == nil || [codeNumbers count] == 0) {
+        return nil;
+    }
     NSString *string = [codeNumbers componentsJoinedByString:@","];
     return [NSString stringWithFormat:@"[%@]", string];
 }

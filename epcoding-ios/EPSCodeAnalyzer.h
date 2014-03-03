@@ -22,7 +22,7 @@
 - (NSArray *)allCodeNumbers;
 - (NSArray *)codeNumbersFromCodes:(NSArray *)codes;
 - (BOOL)allAddOnCodes;
-- (NSString *)codeNumbersToString:(NSArray *)codeNumbers;
++ (NSString *)codeNumbersToString:(NSArray *)codeNumbers;
 
 - (BOOL)noMappingCodesForAblation;
 - (NSArray *)codesWithBadCombosFromCodeSet:(NSSet *)codeNumberSet andBadCodeNumbers:(NSArray *)badCodeNumbers;

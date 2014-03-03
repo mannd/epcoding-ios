@@ -104,14 +104,18 @@
     }
     // Configure the cell...
     if ([indexPath section] == 0) {
-        cell.textLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeNumber];
-        cell.detailTextLabel.text = [[self.selectedCodes objectAtIndex:[indexPath row]] unformattedCodeDescription];
-        cell.backgroundColor = [self colorForWarningLevel:[[self.selectedCodes objectAtIndex:[indexPath row]] codeStatus]];
+        EPSCode *code = [self.selectedCodes objectAtIndex:[indexPath row]];
+        cell.textLabel.text = [code unformattedCodeNumber];
+        cell.detailTextLabel.text = [code unformattedCodeDescription];
+        cell.backgroundColor = [self colorForWarningLevel:[code codeStatus]];
     }
     else {
-        cell.textLabel.text = [[self.codeErrors objectAtIndex:[indexPath row]] message];
-        cell.backgroundColor = [self colorForWarningLevel:[[self.codeErrors objectAtIndex:[indexPath row]] warningLevel]];
-
+        EPSCodeError *error = [self.codeErrors objectAtIndex:[indexPath row]];
+        cell.textLabel.text = [error message];
+        NSString *errorCodes = [EPSCodeAnalyzer codeNumbersToString:[error codes]];
+        cell.detailTextLabel.text = errorCodes;
+        cell.textLabel.font = [UIFont systemFontOfSize:16.0f];
+        cell.backgroundColor = [self colorForWarningLevel:[error warningLevel]];
     }
     
     cell.textLabel.numberOfLines = 0;
@@ -124,7 +128,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([indexPath section] == 1)
-        return 65;
+        return 80;
     return 44;
 }
 
