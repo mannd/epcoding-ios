@@ -11,6 +11,11 @@
 #import "EPSCodeAnalyzer.h"
 #import "EPSCodeError.h"
 
+//#define WARNING_SYMBOL @"\u26A0"
+//#define ERROR_SYMBOL @"\u2620"
+//#define OK_SYMBOL @"\u263A"
+
+
 @interface EPSCodeSummaryTableViewController ()
 @property (strong, nonatomic) EPSCodeAnalyzer *codeAnalyzer;
 @end

@@ -11,9 +11,8 @@
 #import "EPSCodes.h"
 #import "EPSCodeError.h"
 
-//#define WARNING @"\u26A0"
-//#define ERROR @"\u620"
-//#define OK @"\u263A"
+
+#define DEFAULT_DUPLICATE_ERROR @"These codes shouldn't be combined."
 
 @implementation EPSCodeAnalyzer
 
@@ -47,6 +46,9 @@
     return set;
 }
 
+/// TODO: maybe should be static method, but problem is it either is mutated by analysis
+/// processing so changes, or it doesn't change, so list of codes has too many codes.
+/// maybe need to make a deep copy to use this each time?
 // This can't be a static method, as it needs to be recreated each go around.
 // If it is static, the changes to the CodeErrors persist.
 - (NSArray *)duplicateCodeErrors
@@ -54,7 +56,15 @@
     // duplicate mapping codes
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93609", @"93613"]] withWarningLevel:ERROR withMessage:@"You shouldn't combine 2D and 3D mapping codes."]];
-    
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"92960", @"92961"]] withWarningLevel:ERROR withMessage:@"You can't code for both internal and external cardioversion."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33206", @"33207", @"33208", @"33227", @"33228", @"33229"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33240", @"33230", @"33231", @"33262", @"33263", @"33264"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93600", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93653", @"93654", @"93656"]] withWarningLevel:ERROR withMessage:@"You can't combine primary ablation codes."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0319T", @"0320T", @"0321T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0322T", @"0323T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0327T", @"0328T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+                                                                                           
     return array;
 }
 
@@ -66,7 +76,7 @@
 
 - (NSSet *)allCodeNumberSet
 {
-    return [[NSSet alloc] initWithArray:[self allCodeNumbers]];
+    return[[NSSet alloc] initWithArray:[self allCodeNumbers]];
 }
 
 - (NSArray *)codeNumbersFromCodes:(NSArray *)codes
@@ -149,14 +159,16 @@
 - (NSArray *)combinationCodeNumberErrors
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSSet *codeNumberSet = [self allCodeNumberSet];
     for (EPSCodeError *codeError in [self duplicateCodeErrors]) {
         NSArray *badCombo = codeError.codes;
-        NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:[self allCodeNumberSet] andBadCodeNumbers:badCombo];
+        NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:codeNumberSet
+                                                 andBadCodeNumbers:badCombo];
         if ([badCodeList count] > 1) {
-            [array addObject:codeError];
-            // mark codes?
             NSMutableArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
             [self markCodes:codes withWarning:[codeError warningLevel]];
+            codeError.codes = [NSMutableArray arrayWithArray:badCodeList];
+            [array addObject:codeError];
         }
     }
     return array;
