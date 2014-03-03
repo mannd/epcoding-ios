@@ -47,14 +47,14 @@
     return set;
 }
 
-+ (NSArray *)duplicateCodeErrors
+// This can't be a static method, as it needs to be recreated each go around.
+// If it is static, the changes to the CodeErrors persist.
+- (NSArray *)duplicateCodeErrors
 {
-    static NSMutableArray *array;
-    if (array == nil) {
-        // duplicate mapping codes
-        array = [[NSMutableArray alloc] init];
-        [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93609", @"93613"]] withWarningLevel:ERROR withMessage:@"You shouldn't combine 2D and 3D mapping codes."]];
-    }
+    // duplicate mapping codes
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93609", @"93613"]] withWarningLevel:ERROR withMessage:@"You shouldn't combine 2D and 3D mapping codes."]];
+    
     return array;
 }
 
@@ -104,7 +104,6 @@
     }
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
     [array addObjectsFromArray:duplicateCodeErrors];
-    // mark codes here?
 
 
     
@@ -150,7 +149,7 @@
 - (NSArray *)combinationCodeNumberErrors
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (EPSCodeError *codeError in [EPSCodeAnalyzer duplicateCodeErrors]) {
+    for (EPSCodeError *codeError in [self duplicateCodeErrors]) {
         NSArray *badCombo = codeError.codes;
         NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:[self allCodeNumberSet] andBadCodeNumbers:badCombo];
         if ([badCodeList count] > 1) {
