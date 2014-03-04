@@ -68,8 +68,14 @@
 - (NSArray *)specialFirstCodeErrors
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33233", @"33227", @"33228", @"33229", @"33213", @"33213",                                                                              @"33221"]] withWarningLevel:ERROR withMessage:@"Don't use generator removal and insertion or replacement codes together."]];
-    // TODO more codes
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33233", @"33227", @"33228", @"33229", @"33213", @"33213",                                                                         @"33221"]] withWarningLevel:ERROR withMessage:@"Don't use generator removal and insertion or replacement codes together."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33214", @"33227", @"33228", @"33229"]] withWarningLevel:ERROR withMessage:@"Don't use PPM upgrade code with generator replacement codes"]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93656", @"93621", @"93462"]] withWarningLevel:ERROR withMessage:@"Code(s) selected are already included in AFB Ablation."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93653", @"93657"]] withWarningLevel:ERROR withMessage:@"AFB Ablation should not be added on to SVT ablation.  Use AFB ablation as the primary code."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93654", @"93657", @"93609", @"93613", @"93622"]] withWarningLevel:ERROR withMessage:@"Code(s) cannot be add to VT Ablation."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93650", @"93609", @"93613"]] withWarningLevel:WARNING withMessage:@"It is not clear if mapping codes can be combined with AV node ablaton."]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93650", @"93600", @"93619", @"93620"]] withWarningLevel:WARNING withMessage:@"It is unclear if AV node ablation can be combined with EP testing codes."]];
+    
     return array;
 }
 
