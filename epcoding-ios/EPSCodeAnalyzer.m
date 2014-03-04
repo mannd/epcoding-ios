@@ -79,6 +79,14 @@
     return array;
 }
 
+- (NSArray *)firstCodeNeedsOthersErrors
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33225", @"33206", @"33207", @"33208", @"33249"]] withWarningLevel:ERROR withMessage:@"Must use 33225 with new device implant code"]];
+    
+    return array;
+}
+
 // analyzer uses code numbers for analysis
 - (NSArray *)allCodeNumbers
 {
@@ -187,6 +195,9 @@
     return array;
 }
 
+// This tests for errors where a single code should not be used with
+// multiple other codes. E.g. PPM removal should not be used with any of the
+// specially, i.e. skips testing if the first number is not present
 - (NSArray *)firstSpecialCodeNumberErrors
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -208,9 +219,25 @@
     return array;
 }
 
+// This tests to see if at least one necessary accompanying code is present
+// if first code is present
 - (NSArray *)firstNeedsOthersCodeNumberErrors
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSSet *codeNumberSet = [self allCodeNumberSet];
+    for (EPSCodeError* codeError in [self firstCodeNeedsOthersErrors]) {
+        NSArray *badCombo = codeError.codes;
+        if ([codeNumberSet containsObject:[badCombo objectAtIndex:0]]) {
+            NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:codeNumberSet
+                                                     andBadCodeNumbers:badCombo];
+            if ([badCodeList count] == 1) { // oops only first code present
+                NSArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
+                [self markCodes:codes withWarning:[codeError warningLevel]];
+                codeError.codes = [NSMutableArray arrayWithArray:badCodeList];
+                [array addObject:codeError];
+            }
+        }
+    }
     
     return array;
 }
