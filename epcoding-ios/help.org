@@ -123,14 +123,14 @@
    - You can add mapping codes, but don't add ablation codes to EP
      testing.
 ** New PPM or ICD
-   - Use 33206 - 33208 for new PPM depending on number of leads.
+   - Use 33206 to 33208 for new PPM depending on number of leads.
    - Use 33249 for new single or dual ICD.
    - Add code 33225 to dual chamber device code for PPM or ICD with CRT.
    - Add 93641 if you do DFT testing during the ICD implant.
    - Placing a sub-cutaneous array is probably best coded with 33999
      (unlisted surgical procedure code).
 ** Replace PPM or ICD
-   - Use 33227 - 33229 for PPM replacement and 33262 - 33264 for ICD
+   - Use 33227 to 33229 for PPM replacement and 33262 to 33264 for ICD
      replacement depending on number of leads.
    - Do not add generator removal codes to these codes!
    - Add 93641 if you do DFT testing during ICD generator replacement.
@@ -164,7 +164,7 @@
     - Use combination of generator removal and lead removal codes as
       appropriate.
 *** New/replacement device
-    - PPM: 33206 - 33208
+    - PPM: 33206 to 33208
     - ICD: 33249
     - Plus LV lead: 33225
 *** Upgrade of system
