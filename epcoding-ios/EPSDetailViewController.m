@@ -269,13 +269,13 @@
     NSString *title = [[NSString alloc] init];
     switch(section) {
         case 0:
-            title = @"Primary Codes";
+            title = (isAllCodesModule ? @"Codes Sorted By Number" : @"Primary Codes");
             break;
         case 1:
             title = @"Additional Codes";
             break;
         default:
-            title = nil;
+            title = @"";
             break;
     }
     return title;
