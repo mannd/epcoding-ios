@@ -142,7 +142,7 @@
     return [[EPSCodes allCodes] objectForKey:codeNumber];
 }
 
-+ (NSMutableArray *)getCodesForCodeNumbers:(NSArray *)codeNumbers
++ (NSArray *)getCodesForCodeNumbers:(NSArray *)codeNumbers
 {
     if (codeNumbers == nil) {
         return nil;
@@ -195,7 +195,7 @@
     return dictionary;
 }
 
-+ (NSMutableArray *)allCodesSorted
++ (NSArray *)allCodesSorted
 {
     NSDictionary *dictionary = [self allCodes];
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -205,11 +205,10 @@
         [array addObject:code];
     }
 
-    NSMutableArray *codes = [self getCodesForCodeNumbers:array];
-    /// TODO Need to figure out how to sort this
-    //    [array sortUsingSelector:@selector(sortOnCodeNumber)];
+    NSArray *codes = [self getCodesForCodeNumbers:array];
+    NSArray *sortedCodes = [codes sortedArrayUsingSelector:@selector(compareCodes:)];
     
-    return codes;
+    return sortedCodes;
 }
 
 @end

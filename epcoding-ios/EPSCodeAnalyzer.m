@@ -130,7 +130,7 @@
     return array;
 }
 
-- (void)markCodes:(NSMutableArray *)codes withWarning:(enum status)level
+- (void)markCodes:(NSArray *)codes withWarning:(enum status)level
 {
     for (EPSCode *code in codes) {
         [code markCodeStatus:level];
@@ -172,7 +172,7 @@
         NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:codeNumberSet
                                                  andBadCodeNumbers:badCombo];
         if ([badCodeList count] > 1) {
-            NSMutableArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
+            NSArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
             [self markCodes:codes withWarning:[codeError warningLevel]];
             codeError.codes = [NSMutableArray arrayWithArray:badCodeList];
             [array addObject:codeError];
@@ -191,7 +191,7 @@
             NSArray *badCodeList = [self codesWithBadCombosFromCodeSet:codeNumberSet
                                                      andBadCodeNumbers:badCombo];
             if ([badCodeList count] > 1) {
-                NSMutableArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
+                NSArray *codes = [EPSCodes getCodesForCodeNumbers:badCodeList];
                 [self markCodes:codes withWarning:[codeError warningLevel]];
                 codeError.codes = [NSMutableArray arrayWithArray:badCodeList];
                 [array addObject:codeError];

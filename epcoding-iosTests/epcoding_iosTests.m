@@ -79,6 +79,12 @@
     XCTAssertTrue(codeGreen.codeStatus == ERROR);
     [codeGreen markCodeStatus:WARNING];
     XCTAssertTrue(codeGreen.codeStatus == ERROR);
+    NSArray *codes = @[code, codeGreen];
+    XCTAssertTrue([codes indexOfObjectIdenticalTo:code] == 0);
+    NSArray *sortedCodes = [codes sortedArrayUsingSelector:@selector(compareCodes:)];
+    XCTAssertTrue([sortedCodes indexOfObjectIdenticalTo:code] == 1);
+
+    
 }
 
 - (void)testCodes

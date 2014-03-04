@@ -25,6 +25,7 @@
 @implementation EPSDetailViewController
 {
     NSInteger cellHeight;
+    BOOL isAllCodesModule;
 }
 
 #pragma mark - Managing the detail item
@@ -48,6 +49,7 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
+        isAllCodesModule = NO;
         self.title = _detailItem;
         NSDictionary *codeDictionary = [EPSCodes codeDictionary];
         NSDictionary *keyDictionary = [EPSProcedureKeys keyDictionary];
@@ -58,6 +60,8 @@
         self.ignoreNoSecondaryCodesSelected = [[keyDictionary valueForKey:_detailItem] ignoreNoSecondaryCodesSelected];
         if ([primaryCodeKey isEqualToString:ALL_EP_CODES_PRIMARY_CODES]) {
             self.primaryCodes = [EPSCodes allCodesSorted];
+            self.secondaryCodes = nil;
+            isAllCodesModule = YES;
         }
         else {
             NSArray *primaryKeys = [codeDictionary valueForKey:primaryCodeKey];
@@ -306,10 +310,14 @@
             isDisabled = YES;
         }
     }
-
-    cell.textLabel.text = [code unformattedCodeDescription];
-    cell.detailTextLabel.text = [code unformattedCodeNumber];
-   
+    if (isAllCodesModule) {
+        cell.detailTextLabel.text = [code unformattedCodeDescription];
+        cell.textLabel.text = [code unformattedCodeNumber];
+    }
+    else {
+        cell.textLabel.text = [code unformattedCodeDescription];
+        cell.detailTextLabel.text = [code unformattedCodeNumber];
+    }
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];

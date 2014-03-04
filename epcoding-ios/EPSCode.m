@@ -80,6 +80,9 @@
     return self.description;
 }
 
-
+- (NSComparisonResult)compareCodes:(id)object
+{
+    return [self.number compare:[object number]];
+}
 
 @end
