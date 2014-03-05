@@ -27,5 +27,6 @@
 - (BOOL)noMappingCodesForAblation;
 - (NSArray *)codesWithBadCombosFromCodeSet:(NSSet *)codeNumberSet andBadCodeNumbers:(NSArray *)badCodeNumbers;
 - (NSArray *)firstSpecialCodeNumberErrors;
+- (NSArray *)duplicateCodeErrors;
 
 @end

@@ -12,9 +12,11 @@
 @interface EPSCodeError : NSObject
 
 @property enum status warningLevel;
-@property (weak, nonatomic) NSMutableArray *codes;
-@property (weak, nonatomic) NSString *message;
+@property (strong, nonatomic) NSMutableArray *codes;
+@property (strong, nonatomic) NSString *message;
+
 
 - (id)initWithCodes:(NSMutableArray *)codes withWarningLevel:(enum status)level withMessage:(NSString *)message;
+
 
 @end
