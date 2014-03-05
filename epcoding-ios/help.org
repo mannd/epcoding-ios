@@ -53,7 +53,7 @@
    - Codes are organized logically, not necessarily in numeric
      order, with description given first, followed by code number.
    - Select codes by tapping them.
-   - Codes that must be selected for a particular procedure are blue
+   - Codes that must be selected for a particular procedure are green
      and already selected.  Codes that cannot be selected are red.
      Codes you select are yellow.
    - Tap *Summarize* at the bottom of the screen to show a summary of

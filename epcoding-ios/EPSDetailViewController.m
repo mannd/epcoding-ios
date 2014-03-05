@@ -88,6 +88,9 @@
         [self clearEntries];
         // load defaults
         [self load];
+        
+        //[self.navigationController setToolbarHidden:(self.primaryCodes == nil)];
+    
     }
 }
 
@@ -99,12 +102,19 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController setToolbarHidden:NO];
+    //[self.navigationController setToolbarHidden:NO];
     UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStyleBordered target: self action: @selector(summarizeCoding)];
     UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearEntries)];
     UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveCoding)];
     self.toolbarItems = [ NSArray arrayWithObjects: buttonSummarize, buttonClear, buttonSave, nil ];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:NO];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -125,6 +135,9 @@
 
 - (void)saveCoding
 {
+    if (self.primaryCodes == nil) {
+        return;
+    }
     if (self.secondaryCodes == nil) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No codes to save" message:@"Only additional codes can be saved. This group has only primary codes." delegate:self
             cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -166,6 +179,9 @@
 
 - (void)summarizeCoding
 {
+    if (self.primaryCodes == nil) {
+        return;
+    }
     [self performSegueWithIdentifier:@"showSummary" sender:nil];
 }
 
@@ -198,6 +214,9 @@
 
 - (void)clearSelected
 {
+    if (self.primaryCodes == nil) {
+        return;
+    }
     for (EPSCode *primaryCode in self.primaryCodes) {
         if (!self.disablePrimaryCodes) {
             primaryCode.selected = NO;
@@ -296,6 +315,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
         }
     }
+    
     BOOL isDisabled = NO;
     NSUInteger row = [indexPath row];
     NSUInteger section = [indexPath section];

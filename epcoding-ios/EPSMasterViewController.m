@@ -42,6 +42,8 @@
         [self setTitle:@"Procedures"];
     
     self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+
 
     NSArray *array = [[NSArray alloc] initWithObjects:
                       AFB_ABLATION_TITLE,
@@ -60,6 +62,13 @@
     self.procedureTypes = array;
     
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -37,6 +37,12 @@
     [self.webView loadRequest:requestObj];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES];
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {
