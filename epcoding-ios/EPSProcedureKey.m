@@ -12,7 +12,7 @@
 
 - (id)initWithPrimaryKey:(NSString *)primaryKey secondaryKey:(NSString *)secondaryKey disabledKey:(NSString *)disabledKey disablePrimaryCodes:(BOOL)disablePrimaryCodes ignoreNoSecondaryCodesSelected:(BOOL)ignoreNoSecondaryCodesSelected;
 {
-    if ([super init]) {
+    if (self  = [super init]) {
         self.primaryCodesKey = primaryKey;
         self.secondaryCodesKey = secondaryKey;
         self.disabledCodesKey = disabledKey;

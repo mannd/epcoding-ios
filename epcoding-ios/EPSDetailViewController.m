@@ -285,7 +285,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *title = [[NSString alloc] init];
+    NSString *title;
     switch(section) {
         case 0:
             title = (isAllCodesModule ? @"Codes Sorted By Number" : @"Primary Codes");

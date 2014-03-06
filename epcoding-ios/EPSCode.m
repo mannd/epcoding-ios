@@ -13,7 +13,7 @@
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn
 {
-    if ([super init]) {
+    if (self = [super init]) {
         self.number = number;
         self.description = description;
         self.isAddOn = isAddOn;

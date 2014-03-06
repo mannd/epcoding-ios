@@ -18,7 +18,7 @@
 
 - (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes
 {
-    if ([super init]) {
+    if (self = [super init]) {
         self.primaryCodes = primaryCodes;
         self.secondaryCodes = secondaryCodes;
         self.ignoreNoSecondaryCodes = ignoreNoSecondaryCodes;

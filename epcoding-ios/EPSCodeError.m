@@ -12,7 +12,7 @@
 
 - (id)initWithCodes:(NSMutableArray *)codes withWarningLevel:(enum status)level withMessage:(NSString *)message
 {
-    if ([super init]) {
+    if (self = [super init]) {
         self.codes = codes;
         self.warningLevel = level;
         self.message = message;
