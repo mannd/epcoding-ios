@@ -58,7 +58,9 @@
                       UPGRADE_SYSTEM_TITLE,
                       SUBQ_ICD_TITLE,
                       OTHER_PROCEDURE_TITLE,
-                      ALL_EP_CODES_TITLE, nil];
+                      ALL_EP_CODES_TITLE,
+                      SEARCH_CODES_TITLE,
+                      DEVICE_WIZARD_TITLE, nil];
     self.procedureTypes = array;
     
 }

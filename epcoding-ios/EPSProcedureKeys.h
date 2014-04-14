@@ -21,6 +21,8 @@
 #define SUBQ_ICD_TITLE @"SubQ ICD"
 #define OTHER_PROCEDURE_TITLE @"Other Procedures"
 #define ALL_EP_CODES_TITLE @"All EP Codes"
+#define SEARCH_CODES_TITLE @"Search Codes"
+#define DEVICE_WIZARD_TITLE @"Device Wizard"
 
 // somewhat arbitrary string 
 #define NO_CODE_KEY @"EPSNoCodeKEY1234"
