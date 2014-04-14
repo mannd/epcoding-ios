@@ -11,6 +11,7 @@
 @class EPSDetailViewController;
 
 @interface EPSMasterViewController : UITableViewController
+    <UIActionSheetDelegate>
 
 @property (strong, nonatomic) EPSDetailViewController *detailViewController;
 

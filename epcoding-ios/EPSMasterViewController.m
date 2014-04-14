@@ -33,9 +33,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
+        self.navigationItem.rightBarButtonItem = btn;
         [self setTitle:@"EP Coding"];
     }
     else
@@ -58,9 +57,7 @@
                       UPGRADE_SYSTEM_TITLE,
                       SUBQ_ICD_TITLE,
                       OTHER_PROCEDURE_TITLE,
-                      ALL_EP_CODES_TITLE,
-                      SEARCH_CODES_TITLE,
-                      DEVICE_WIZARD_TITLE, nil];
+                      ALL_EP_CODES_TITLE, nil];
     self.procedureTypes = array;
     
 }
@@ -78,8 +75,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showHelp {
-    [self performSegueWithIdentifier:@"showHelp" sender:nil];
+- (void)showMenu {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Search", @"Device Wizard", @"Help", nil];
+        [actionSheet showInView:self.view];
+
 }
 
 #pragma mark - Table View
@@ -109,21 +109,6 @@
     return NO;
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -139,6 +124,14 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *procedure = _procedureTypes[indexPath.row];
         [[segue destinationViewController] setDetailItem:procedure];
+    }
+}
+
+// UIActionSheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==  2) {
+        [self performSegueWithIdentifier:@"showHelp" sender:nil];
     }
 }
 

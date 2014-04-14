@@ -99,9 +99,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    [btn addTarget:self action:@selector(showHelp) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
+    self.navigationItem.rightBarButtonItem = btn;
     //[self.navigationController setToolbarHidden:NO];
     UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStyleBordered target: self action: @selector(summarizeCoding)];
     UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearEntries)];
@@ -121,6 +120,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)showMenu {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Search", @"Device Wizard", @"Help", nil];
+    [actionSheet showInView:self.view];
+    
+}
+
 
 - (void)showHelp
 {
@@ -418,6 +425,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
+
+// UIActionSheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==  2) {
+        [self showHelp];
+    }
+}
+
 
 
 @end
