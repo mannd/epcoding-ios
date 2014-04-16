@@ -10,6 +10,8 @@
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
+		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
+		8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
 		8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
 		8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
@@ -61,6 +63,8 @@
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		8E60902D18B55142001F3D7A /* EPSTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSTestViewController.h; sourceTree = "<group>"; };
 		8E60902E18B55142001F3D7A /* EPSTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSTestViewController.m; sourceTree = "<group>"; };
+		8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSearchTableViewController.h; sourceTree = "<group>"; };
+		8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSearchTableViewController.m; sourceTree = "<group>"; };
 		8E9AEEFC18BCFEB700B6BC1C /* EPSProcedureKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKeys.h; sourceTree = "<group>"; };
 		8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSProcedureKeys.m; sourceTree = "<group>"; };
 		8E9AEF0018BCFF4800B6BC1C /* EPSProcedureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKey.h; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */,
 				8ECCF8B418C2324A00001DC6 /* EPSCodeError.h */,
 				8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */,
+				8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */,
+				8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
 				8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */,
+				8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */,
 				8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */,
@@ -351,6 +358,7 @@
 				8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
 				8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */,
+				8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
 				8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
 				8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */,

@@ -130,8 +130,13 @@
 // UIActionSheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex ==  2) {
-        [self performSegueWithIdentifier:@"showHelp" sender:nil];
+    switch (buttonIndex) {
+        case 0:
+            [self performSegueWithIdentifier:@"showSearch" sender:self];
+            break;
+        case 2:
+            [self performSegueWithIdentifier:@"showHelp" sender:self];
+            break;
     }
 }
 
