@@ -85,6 +85,7 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"33999" description:@"Unlisted surgical procedure, e.g. SubQ array lead" isAddOn:NO] toDictionary:dictionary];
         
         // Misc
+        [self addCode:[[EPSCode alloc] initWithNumber:@"35476" description:@"Venous angioplasty" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"36620" description:@"Arterial line placement" isAddOn:NO] toDictionary:dictionary];
         
         // note fluoroscopy included in device codes, but this code

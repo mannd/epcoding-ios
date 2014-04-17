@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -61,11 +61,50 @@
                     </navigationItem>
                     <connections>
                         <segue destination="AC6-jm-IC1" kind="push" identifier="showHelp" id="C50-HG-CSB"/>
+                        <segue destination="TTq-Yn-86s" kind="push" identifier="showSearch" id="YLD-YZ-RKw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="423" y="64"/>
+        </scene>
+        <!--Search Table View Controller-->
+        <scene sceneID="nDW-MQ-pmk">
+            <objects>
+                <tableViewController id="TTq-Yn-86s" customClass="EPSSearchTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zwx-UM-v6E">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="F9G-gT-lyJ">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="TTq-Yn-86s" id="Qpt-xk-KtZ"/>
+                            </connections>
+                        </searchBar>
+                        <connections>
+                            <outlet property="dataSource" destination="TTq-Yn-86s" id="w5j-c0-And"/>
+                            <outlet property="delegate" destination="TTq-Yn-86s" id="Od4-ks-4yW"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Hmv-4B-gDW" id="D12-Wc-kgA"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mgg-HG-bhY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Hmv-4B-gDW">
+                    <connections>
+                        <outlet property="delegate" destination="TTq-Yn-86s" id="dI3-tW-HVw"/>
+                        <outlet property="searchBar" destination="F9G-gT-lyJ" id="sXe-XY-k2S"/>
+                        <outlet property="searchContentsController" destination="TTq-Yn-86s" id="1V9-nJ-gbb"/>
+                        <outlet property="searchResultsDataSource" destination="TTq-Yn-86s" id="sDM-0p-her"/>
+                        <outlet property="searchResultsDelegate" destination="TTq-Yn-86s" id="YpZ-Dm-iex"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="423" y="-617"/>
         </scene>
         <!--Help View Controller - Help-->
         <scene sceneID="hlK-Qw-0K3">
