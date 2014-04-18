@@ -227,20 +227,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="leh-V0-2gY">
-                                <rect key="frame" x="20" y="144" width="728" height="137"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="leh-V0-2gY">
+                                <rect key="frame" x="20" y="20" width="728" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="261" id="cnX-TU-hsx"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udF-Dz-MbB">
-                                <rect key="frame" x="20" y="65" width="728" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4CA-va-Ujx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4CA-va-Ujx">
                                 <rect key="frame" x="20" y="289" width="728" height="588"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,11 +248,19 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="leh-V0-2gY" secondAttribute="trailing" constant="20" symbolic="YES" id="0sq-X1-BdF"/>
+                            <constraint firstItem="4CA-va-Ujx" firstAttribute="top" secondItem="leh-V0-2gY" secondAttribute="bottom" constant="8" symbolic="YES" id="8Mf-EI-VJp"/>
+                            <constraint firstItem="leh-V0-2gY" firstAttribute="top" secondItem="JFJ-fA-hnb" secondAttribute="top" constant="20" symbolic="YES" id="IOw-u5-VVO"/>
+                            <constraint firstItem="4CA-va-Ujx" firstAttribute="trailing" secondItem="leh-V0-2gY" secondAttribute="trailing" id="JBH-N0-1lB"/>
+                            <constraint firstItem="leh-V0-2gY" firstAttribute="leading" secondItem="JFJ-fA-hnb" secondAttribute="leading" constant="20" symbolic="YES" id="RQs-VN-7uH"/>
+                            <constraint firstItem="leh-V0-2gY" firstAttribute="leading" secondItem="4CA-va-Ujx" secondAttribute="leading" id="fuI-rf-bUz"/>
+                            <constraint firstItem="9Yz-1P-CDp" firstAttribute="top" secondItem="4CA-va-Ujx" secondAttribute="bottom" constant="147" id="ogz-FU-8Gh"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="codeTableView" destination="4CA-va-Ujx" id="fWr-wU-RWH"/>
                         <outlet property="contentLabel" destination="leh-V0-2gY" id="Y1B-am-Rle"/>
-                        <outlet property="titleLabel" destination="udF-Dz-MbB" id="mlK-IG-CS6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fq-ye-W6N" userLabel="First Responder" sceneMemberID="firstResponder"/>

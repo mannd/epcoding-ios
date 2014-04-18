@@ -27,19 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    int numPages = 6;
-    // Do any additional setup after loading the view.
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (int i = 0; i < numPages; ++i) {
-        array[i] = [NSString stringWithFormat:@"Step %d", i + 1];
-    }
-    self.pageTitles = array;
     self.pageContent = @[
-                         @"Is this a new implant or simple generator replacement? If so select the appropriate code below. Otherwise go to next step.",
-                         @"Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33244 which covers this entire procedure. If you are also adding an LV cardiac vein lead add code +33225. Otherwise go to the next step.",
-                         @"Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so use one of the codes below. Otherwise go on to the next step", @"OK. We have addressed the simple scenarios. What's left are lead and generator removals/extractions, and device upgrades. Start off by selecting what hardware (if any) was removed, and then go to the next step.",
-                         @"Now if you added any hardware, code what you added.vIf you added a generator and leads, use the new or replacement system codes (e.g. new single chamber PPM).  If you just added a lead or a generator, code for the specific device(s) you added.  Then go to the next step.",
-                         @"Did you do anything else? If so select from the choices below. Select Done to see a summary of your codes."];
+                         @"Step 1. Is this a new implant or simple generator replacement? If so select the appropriate code below. Otherwise go to next step.",
+                         @"Step 2. Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33244 which covers this entire procedure. If you are also adding an LV cardiac vein lead add code +33225. Otherwise go to the next step.",
+                         @"Step 3. Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so use one of the codes below. Otherwise go on to the next step",
+                         @"Step 4. We have addressed the simple scenarios. What's left are lead and generator removals/extractions, and device upgrades. Start off by selecting what hardware (if any) was removed, and then go to the next step.",
+                         @"Step 5. Now if you added any hardware, code what you added.vIf you added a generator and leads, use the new or replacement system codes (e.g. new single chamber PPM).  If you just added a lead or a generator, code for the specific device(s) you added.  Then go to the next step.",
+                         @"Step 6. Did you do anything else? If so select from the choices below. Select Done to see a summary of your codes."];
     self.codes = [EPSCodes allCodesSorted];
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -89,11 +83,10 @@
 
 - (EPSWizardContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
+    if (([self.pageContent count] == 0) || (index >= [self.pageContent count])) {
         return nil;
     }
     EPSWizardContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"EPSWizardContentViewController"];
-    pageContentViewController.titleText = self.pageTitles[index];
     pageContentViewController.contentText = self.pageContent[index];
     pageContentViewController.pageIndex = index;
     pageContentViewController.codes = self.codes;
@@ -122,7 +115,7 @@
     }
     
     index++;
-    if (index == [self.pageTitles count]) {
+    if (index == [self.pageContent count]) {
         return nil;
     }
     return [self viewControllerAtIndex:index];
@@ -130,7 +123,7 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return [self.pageTitles count];
+    return [self.pageContent count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.titleLabel.text = self.titleText;
     self.contentLabel.text = self.contentText;
     self.contentLabel.numberOfLines = 0;
     [self.contentLabel sizeToFit];
