@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EPSWizardContentViewController.h"
 
-@interface EPSWizardViewController : UIPageViewController
+@interface EPSWizardViewController : UIViewController
+    <UIPageViewControllerDataSource>
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+
+@property (strong, nonatomic) NSArray *pageTitles;
+@property (strong, nonatomic) NSArray *pageContent;
 
 @end

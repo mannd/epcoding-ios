@@ -31,6 +31,8 @@
 		8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */; };
 		8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
 		8EDAD2011901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
+		8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */; };
+		8EDAD2051901286900CE48CF /* EPSWizardContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
 		8EDBEBFD180CCDEB0041A4E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */; };
 		8EDBEBFF180CCDEB0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
@@ -86,6 +88,8 @@
 		8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-2.0.txt"; sourceTree = "<group>"; };
 		8EDAD1FE1901243900CE48CF /* EPSWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardViewController.h; sourceTree = "<group>"; };
 		8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSWizardViewController.m; sourceTree = "<group>"; };
+		8EDAD2021901286900CE48CF /* EPSWizardContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardContentViewController.h; sourceTree = "<group>"; };
+		8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSWizardContentViewController.m; sourceTree = "<group>"; };
 		8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EP Coding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -201,6 +205,8 @@
 				8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */,
 				8EDAD1FE1901243900CE48CF /* EPSWizardViewController.h */,
 				8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */,
+				8EDAD2021901286900CE48CF /* EPSWizardContentViewController.h */,
+				8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */,
+				8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */,
 				8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */,
 				8EDBEC0B180CCDEB0041A4E3 /* EPSAppDelegate.m in Sources */,
 				8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */,
@@ -364,6 +371,7 @@
 			files = (
 				8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
+				8EDAD2051901286900CE48CF /* EPSWizardContentViewController.m in Sources */,
 				8EDAD2011901243900CE48CF /* EPSWizardViewController.m in Sources */,
 				8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,

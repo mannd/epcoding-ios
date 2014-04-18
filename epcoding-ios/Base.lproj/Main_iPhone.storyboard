@@ -4,6 +4,25 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--Wizard View Controller-->
+        <scene sceneID="kvk-QB-zUZ">
+            <objects>
+                <viewController id="05p-WQ-bw0" customClass="EPSWizardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K8V-aN-N1a"/>
+                        <viewControllerLayoutGuide type="bottom" id="adH-Gl-Cn1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZLO-wq-8Zy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="i7a-Hm-6b0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="339-xP-pzU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-446" y="50"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="cUi-kZ-frf">
             <objects>
@@ -17,7 +36,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="64"/>
+            <point key="canvasLocation" x="63" y="418"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
@@ -62,31 +81,59 @@
                     <connections>
                         <segue destination="AC6-jm-IC1" kind="push" identifier="showHelp" id="C50-HG-CSB"/>
                         <segue destination="TTq-Yn-86s" kind="push" identifier="showSearch" id="YLD-YZ-RKw"/>
-                        <segue destination="rCQ-tA-nym" kind="push" identifier="showWizard" id="dc9-al-IXI"/>
+                        <segue destination="05p-WQ-bw0" kind="push" identifier="showWizard" id="9Ja-fE-s0X"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="423" y="64"/>
         </scene>
-        <!--Wizard View Controller-->
-        <scene sceneID="Gg5-rW-29N">
+        <!--Wizard Content View Controller-->
+        <scene sceneID="7br-Td-mEx">
             <objects>
-                <viewController id="rCQ-tA-nym" customClass="EPSWizardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EPSWizardContentViewController" id="uNH-KO-xXY" customClass="EPSWizardContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vby-KA-d2t"/>
-                        <viewControllerLayoutGuide type="bottom" id="pOc-MI-SqP"/>
+                        <viewControllerLayoutGuide type="top" id="wqj-RB-jpb"/>
+                        <viewControllerLayoutGuide type="bottom" id="y75-Pe-MKS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gqN-hN-EIf">
+                    <view key="view" contentMode="scaleToFill" id="0tI-U5-xTM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ContentLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFW-9M-m2l">
+                                <rect key="frame" x="20" y="84" width="265" height="194"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TitleLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS2-Ed-PTu">
+                                <rect key="frame" x="20" y="84" width="280" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jAn-l0-eHh"/>
+                    <connections>
+                        <outlet property="contentLabel" destination="GFW-9M-m2l" id="umt-Ug-PXm"/>
+                        <outlet property="titleLabel" destination="PS2-Ed-PTu" id="tSL-Bc-Vbi"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j5j-QS-EVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t3Q-NC-n3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="-617"/>
+            <point key="canvasLocation" x="-422" y="-617"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="mo9-O2-RiI">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="A1k-ej-G7w" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="i0E-IQ-r8O"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kYJ-jh-TRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-45" y="-642"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="nDW-MQ-pmk">
@@ -124,7 +171,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="423" y="-695"/>
+            <point key="canvasLocation" x="423" y="-713"/>
         </scene>
         <!--Help View Controller - Help-->
         <scene sceneID="hlK-Qw-0K3">
@@ -179,7 +226,7 @@
                         <outlet property="codeTableView" destination="J8B-h8-kG5" id="iyl-H0-FkV"/>
                         <segue destination="AC6-jm-IC1" kind="push" identifier="showHelp" id="03l-Cc-IOm"/>
                         <segue destination="qbA-AN-8uK" kind="push" identifier="showSummary" id="lRW-35-58A"/>
-                        <segue destination="rCQ-tA-nym" kind="push" identifier="showWizard" id="qzn-kw-uhX"/>
+                        <segue destination="05p-WQ-bw0" kind="push" identifier="showWizard" id="YXc-ze-54g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
@@ -212,7 +259,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dc9-al-IXI"/>
-        <segue reference="C50-HG-CSB"/>
+        <segue reference="YXc-ze-54g"/>
+        <segue reference="03l-Cc-IOm"/>
     </inferredMetricsTieBreakers>
 </document>
