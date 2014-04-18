@@ -29,6 +29,8 @@
 		8ECCF8BB18C65E7100001DC6 /* help.org in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BA18C65E7100001DC6 /* help.org */; };
 		8ECCF8BD18C65E9000001DC6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BC18C65E9000001DC6 /* README.md */; };
 		8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */; };
+		8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
+		8EDAD2011901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
 		8EDBEBFD180CCDEB0041A4E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */; };
 		8EDBEBFF180CCDEB0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
@@ -82,6 +84,8 @@
 		8ECCF8BA18C65E7100001DC6 /* help.org */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = help.org; sourceTree = "<group>"; };
 		8ECCF8BC18C65E9000001DC6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-2.0.txt"; sourceTree = "<group>"; };
+		8EDAD1FE1901243900CE48CF /* EPSWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardViewController.h; sourceTree = "<group>"; };
+		8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSWizardViewController.m; sourceTree = "<group>"; };
 		8EDBEBF7180CCDEB0041A4E3 /* EP Coding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EP Coding.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -195,6 +199,8 @@
 				8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */,
 				8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */,
 				8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */,
+				8EDAD1FE1901243900CE48CF /* EPSWizardViewController.h */,
+				8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 				8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */,
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
 				8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
+				8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */,
 				8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */,
 				8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
@@ -357,6 +364,7 @@
 			files = (
 				8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
+				8EDAD2011901243900CE48CF /* EPSWizardViewController.m in Sources */,
 				8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,

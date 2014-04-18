@@ -433,6 +433,9 @@
         case 0:
             [self performSegueWithIdentifier:@"showSearch" sender:self];
             break;
+        case 1:
+            [self performSegueWithIdentifier:@"showWizard" sender:self];
+            break;
         case 2:
             [self performSegueWithIdentifier:@"showHelp" sender:self];
             break;

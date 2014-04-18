@@ -62,11 +62,31 @@
                     <connections>
                         <segue destination="AC6-jm-IC1" kind="push" identifier="showHelp" id="C50-HG-CSB"/>
                         <segue destination="TTq-Yn-86s" kind="push" identifier="showSearch" id="YLD-YZ-RKw"/>
+                        <segue destination="rCQ-tA-nym" kind="push" identifier="showWizard" id="dc9-al-IXI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="423" y="64"/>
+        </scene>
+        <!--Wizard View Controller-->
+        <scene sceneID="Gg5-rW-29N">
+            <objects>
+                <viewController id="rCQ-tA-nym" customClass="EPSWizardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vby-KA-d2t"/>
+                        <viewControllerLayoutGuide type="bottom" id="pOc-MI-SqP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gqN-hN-EIf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jAn-l0-eHh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j5j-QS-EVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1" y="-617"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="nDW-MQ-pmk">
@@ -104,7 +124,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="423" y="-617"/>
+            <point key="canvasLocation" x="423" y="-695"/>
         </scene>
         <!--Help View Controller - Help-->
         <scene sceneID="hlK-Qw-0K3">
@@ -159,6 +179,7 @@
                         <outlet property="codeTableView" destination="J8B-h8-kG5" id="iyl-H0-FkV"/>
                         <segue destination="AC6-jm-IC1" kind="push" identifier="showHelp" id="03l-Cc-IOm"/>
                         <segue destination="qbA-AN-8uK" kind="push" identifier="showSummary" id="lRW-35-58A"/>
+                        <segue destination="rCQ-tA-nym" kind="push" identifier="showWizard" id="qzn-kw-uhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
@@ -191,6 +212,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="03l-Cc-IOm"/>
+        <segue reference="dc9-al-IXI"/>
+        <segue reference="C50-HG-CSB"/>
     </inferredMetricsTieBreakers>
 </document>

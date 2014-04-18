@@ -40,11 +40,32 @@
                         <segue destination="Ce6-ZL-qUX" kind="push" identifier="showHelp" id="Mvd-nK-6ZG"/>
                         <segue destination="4Ry-Dj-9Bm" kind="push" identifier="showSummary" id="ka1-zr-2vU"/>
                         <segue destination="nzB-TU-9Vd" kind="push" identifier="showSearch" id="bIa-Hl-gS9"/>
+                        <segue destination="gdS-iy-Uvn" kind="push" identifier="showWizard" id="w8h-2m-a3r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="466" y="528"/>
+        </scene>
+        <!--Wizard View Controller-->
+        <scene sceneID="SSy-IE-qBh">
+            <objects>
+                <viewController id="gdS-iy-Uvn" customClass="EPSWizardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Nv-t9-OYg"/>
+                        <viewControllerLayoutGuide type="bottom" id="HzZ-yH-cCb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hmw-6O-O0H">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dGF-0b-SR7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pTo-O9-94P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="401" y="1432"/>
         </scene>
         <!--Code Summary Table View Controller-->
         <scene sceneID="Ojs-VO-BIy">
