@@ -7,6 +7,7 @@
 //
 
 #import "EPSWizardViewController.h"
+#import "EPSCodes.h"
 
 @interface EPSWizardViewController ()
 
@@ -33,8 +34,13 @@
         array[i] = [NSString stringWithFormat:@"Step %d", i + 1];
     }
     self.pageTitles = array;
-    self.pageContent = @[@"First page content", @"Second page content", @"3", @"4", @"5", @"6"];
-    
+    self.pageContent = @[
+                         @"Is this a new implant or simple generator replacement? If so select the appropriate code below. Otherwise go to next step.",
+                         @"Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33244 which covers this entire procedure. If you are also adding an LV cardiac vein lead add code +33225. Otherwise go to the next step.",
+                         @"Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so use one of the codes below. Otherwise go on to the next step", @"OK. We have addressed the simple scenarios. What's left are lead and generator removals/extractions, and device upgrades. Start off by selecting what hardware (if any) was removed, and then go to the next step.",
+                         @"Now if you added any hardware, code what you added.vIf you added a generator and leads, use the new or replacement system codes (e.g. new single chamber PPM).  If you just added a lead or a generator, code for the specific device(s) you added.  Then go to the next step.",
+                         @"Did you do anything else? If so select from the choices below. Select Done to see a summary of your codes."];
+    self.codes = [EPSCodes allCodesSorted];
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
@@ -49,9 +55,13 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    [self setTitle:@"Device Wizard"];
+    [self setTitle:@"Wizard"];
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
+    self.navigationItem.rightBarButtonItem = btn;
+}
 
-    
+- (void)summarize {
+    // TODO
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -82,12 +92,11 @@
     if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
         return nil;
     }
-    
-    // Create a new view controller and pass suitable data.
     EPSWizardContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"EPSWizardContentViewController"];
     pageContentViewController.titleText = self.pageTitles[index];
     pageContentViewController.contentText = self.pageContent[index];
     pageContentViewController.pageIndex = index;
+    pageContentViewController.codes = self.codes;
     
     return pageContentViewController;
 }
