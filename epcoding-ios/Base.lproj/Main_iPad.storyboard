@@ -292,6 +292,9 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="g5O-NE-SR6"/>
+                    <connections>
+                        <segue destination="4Ry-Dj-9Bm" kind="push" identifier="showWizardSummary" id="HbE-bm-eGa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOo-6s-VMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -303,4 +306,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="HbE-bm-eGa"/>
+    </inferredMetricsTieBreakers>
 </document>

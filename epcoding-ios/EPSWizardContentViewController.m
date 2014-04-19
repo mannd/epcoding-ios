@@ -34,12 +34,14 @@
     self.contentLabel.text = self.contentText;
     self.contentLabel.numberOfLines = 0;
     [self.contentLabel sizeToFit];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         cellHeight = 44;    // seems to be the default height for iPhone
         // [self.codeTableView reloadData];
     }
     else {
         cellHeight = 65;
+        [self.contentLabel setFont:[UIFont systemFontOfSize:14.0f]];
     }
     
     
@@ -102,6 +104,13 @@
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
+    
+    cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    // must specifically set this, or will be set randomly
+    cell.backgroundColor = ([code selected] ? [UIColor yellowColor] : [UIColor whiteColor]);
+    //[cell setBackgroundColor:[UIColor whiteColor]];
+    [cell setUserInteractionEnabled:YES];
+
     
     return cell;
 }

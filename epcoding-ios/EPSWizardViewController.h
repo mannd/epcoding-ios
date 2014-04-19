@@ -15,5 +15,8 @@
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray *pageContent;
 @property (strong, nonatomic) NSArray *codes;
+@property (strong, nonatomic) NSArray *codeNumbers;
+@property (strong, nonatomic) NSArray *codeArrays;
+@property (strong, nonatomic) NSMutableArray *selectedCodes;
 
 @end

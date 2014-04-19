@@ -18,6 +18,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="i7a-Hm-6b0"/>
+                    <connections>
+                        <segue destination="qbA-AN-8uK" kind="push" identifier="showWizardSummary" id="BRj-pJ-ffR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="339-xP-pzU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -86,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="423" y="64"/>
+            <point key="canvasLocation" x="453" y="486"/>
         </scene>
         <!--Wizard Content View Controller-->
         <scene sceneID="7br-Td-mEx">
@@ -245,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="869" y="64"/>
+            <point key="canvasLocation" x="725" y="116"/>
         </scene>
         <!--Code Summary Table View Controller-->
         <scene sceneID="MzD-Pl-4Ry">
@@ -275,5 +278,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="YXc-ze-54g"/>
         <segue reference="03l-Cc-IOm"/>
+        <segue reference="BRj-pJ-ffR"/>
     </inferredMetricsTieBreakers>
 </document>
