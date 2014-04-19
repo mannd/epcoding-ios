@@ -13,7 +13,6 @@
     <UIPageViewControllerDataSource>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-
 @property (strong, nonatomic) NSArray *pageContent;
 @property (strong, nonatomic) NSArray *codes;
 

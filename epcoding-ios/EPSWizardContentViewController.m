@@ -14,6 +14,9 @@
 @end
 
 @implementation EPSWizardContentViewController
+{
+    NSInteger cellHeight;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +34,13 @@
     self.contentLabel.text = self.contentText;
     self.contentLabel.numberOfLines = 0;
     [self.contentLabel sizeToFit];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        cellHeight = 44;    // seems to be the default height for iPhone
+        // [self.codeTableView reloadData];
+    }
+    else {
+        cellHeight = 65;
+    }
     
     
 }
@@ -64,16 +74,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *searchCellIdentifier = @"wizardCell";
+    static NSString *wizardCellIdentifier = @"wizardCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:wizardCellIdentifier];
     
     if (cell == nil) {
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:searchCellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:wizardCellIdentifier];
         }
         else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:searchCellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:wizardCellIdentifier];
         }
     }
     
@@ -87,12 +97,19 @@
     cell.textLabel.text = [code unformattedCodeNumber];
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
     
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return cellHeight;
+}
+
 
 #pragma mark - Table view delegate
 
