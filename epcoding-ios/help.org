@@ -28,7 +28,7 @@
    - [[New PPM or ICD]]
    - [[Replace PPM or ICD]]
    - [[SubQ ICD]]
-   - [[Upgrade/revision/extraction]]
+   - [[Upgrade/revise/extract]]
    - [[Other procedure]]
    - [[All EP codes]]
    - [[Abbreviations]]
@@ -65,6 +65,10 @@
      (e.g. always do 3D mapping with SVT ablation), save the codes and
      they will pre-selected when you usee the app again. Note that
      primary code selections are not saved.
+   - Tap the menu icon on the upper right of the screen for more options.
+     - Tap *Search* to search for codes by name or number.
+     - Tap *Device Wizard* to steer you through complex device
+       upgrades and revisions.
    - The all EP codes module lists every EP procedure code in
      numerical order, with code number given first.  It is the /a la
      carte/ menu of *EP Coding*.
@@ -80,6 +84,8 @@
 ** General hints
    - Use the specific procedure modules rather than the all EP codes
      module for coding procedures.
+   - You may find it easier to use the *Device Wizard* to do device
+     upgrade coding rather than use the Upgrade/Revise/Extract module.
    - Use the all EP codes module if you need to look up a specific
      code, as they are listed in numeric order in this module.
    - There are some rarely used codes in the all EP codes module that
@@ -137,9 +143,11 @@
 ** SubQ ICD
    - These are emerging technology codes that are temporary and will
      probably be changed in the next revision of the codes.
-** Upgrade/revision/extraction
+** Upgrade/revise/extract
    - This is the most complicated coding area. We will break this
-     down into some specific situations.
+     down into some specific situations.  You can also use
+     the *Device Wizard* to lead you through this.  This is the
+     simplest way to do this!
    - Note codes are arranged in logical groups, not necessarily in
      numeric order.
 *** Lead addition only, no change in generator
