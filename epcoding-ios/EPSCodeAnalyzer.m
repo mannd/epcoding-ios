@@ -82,7 +82,7 @@
 - (NSArray *)firstCodeNeedsOthersErrors
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33225", @"33206", @"33207", @"33208", @"33249"]] withWarningLevel:ERROR withMessage:@"Must use 33225 with new device implant code"]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33225", @"33206", @"33207", @"33208", @"33249", @"33214"]] withWarningLevel:ERROR withMessage:@"Must use 33225 with new device implant code"]];
     
     return array;
 }
