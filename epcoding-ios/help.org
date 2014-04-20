@@ -13,6 +13,16 @@
 #+LINK_UP:   
 #+LINK_HOME: 
 #+XSLT:
+* Help file creation
+   - use C-c @ to select EP Coding Help headline
+   - [[EP Coding Help]]
+   - C-c C-e export to html, buffer
+   - Save buffer to help.html
+   - Note I have added (setq org-export-html-postamble nil) in
+     ~/.emacs to suppress footer information.
+   - Above group of statements in buffer are for formatting the HTML
+* Next header is Help text for EP Coding app!!
+
 * EP Coding Help
 ** Contents
    - [[Who should use EP Coding?]]
