@@ -11,7 +11,7 @@
 @interface EPSCode : NSObject
 
 @property (weak, nonatomic) NSString *number;
-@property (weak, nonatomic) NSString *description;
+@property (weak, nonatomic) NSString *fullDescription;
 @property BOOL isAddOn;
 @property BOOL plusShown;
 @property BOOL descriptionShortened;
