@@ -15,7 +15,7 @@
 {
     if (self = [super init]) {
         self.number = number;
-        self.description = description;
+        self.fullDescription = description;
         self.isAddOn = isAddOn;
         self.codeStatus = GOOD;
     }
@@ -40,7 +40,7 @@
 
 - (NSString *)formattedDescription
 {
-    return self.descriptionShortened ? [self truncateString:self.description newLength:24] : self.description;
+    return self.descriptionShortened ? [self truncateString:self.fullDescription newLength:24] : self.fullDescription;
 }
 
 - (NSString *)formattedCodeNumber
@@ -61,13 +61,13 @@
 // and are used for the checkbox checklists, not for summary screen
 - (NSString *)unformattedCodeDescriptionFirst
 {
-    return [[NSString alloc] initWithFormat:@"%@ (%@)", self.description,
+    return [[NSString alloc] initWithFormat:@"%@ (%@)", self.fullDescription,
             [self unformattedCodeNumber]];
 }
 
 - (NSString *)unformattedCodeNumberFirst
 {
-    return [[NSString alloc] initWithFormat:@"(%@) %@", [self unformattedCodeNumber], self.description];
+    return [[NSString alloc] initWithFormat:@"(%@) %@", [self unformattedCodeNumber], self.fullDescription];
 }
 
 - (NSString *)unformattedCodeNumber
@@ -77,7 +77,7 @@
 
 - (NSString *)unformattedCodeDescription
 {
-    return self.description;
+    return self.fullDescription;
 }
 
 - (NSComparisonResult)compareCodes:(id)object
