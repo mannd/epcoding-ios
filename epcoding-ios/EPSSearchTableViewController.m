@@ -114,7 +114,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"description contains[c] %@ OR number contains %@", searchText, searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"fullDescription contains[c] %@ OR number contains %@", searchText, searchText];
     self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
 
 }
