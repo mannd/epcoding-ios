@@ -73,7 +73,7 @@
    - Tap *Save* to save your selection of additional codes as a
      default.  If you nearly always select the same additional codes
      (e.g. always do 3D mapping with SVT ablation), save the codes and
-     they will pre-selected when you usee the app again. Note that
+     they will pre-selected when you use the app again. Note that
      primary code selections are not saved.
    - Tap the menu icon on the upper right of the screen for more options.
      - Tap *Search* to search for codes by name or number.
@@ -115,7 +115,7 @@
      transseptal puncture.
    - Add 93657 if additional AFB ablation done beyond pulmonary vein
      isolation.
-   - Add 93655 if separate supraventicular arrhythmia mechanism
+   - Add 93655 if separate supraventricular arrhythmia mechanism
      ablated (e.g. focal atrial tachycardia).
 ** SVT ablation
    - Includes comprehensive EP testing.
