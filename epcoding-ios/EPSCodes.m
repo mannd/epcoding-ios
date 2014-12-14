@@ -18,23 +18,24 @@
         dictionary = [[NSMutableDictionary alloc] init];
         
         // SubQ ICD
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0319T" description:@"Implantation of SubQ ICD system (generator & electrode)" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0320T" description:@"Insertion of SubQ defibrillator electrode only" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0321T" description:@"Insertion of SubQ ICD generator only with existing electrode" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0322T" description:@"Removal of SubQ ICD generator only" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0323T" description:@"Removal and Replacement of SubQ ICD generator" isAddOn:NO] toDictionary:dictionary];
-		[self addCode:[[EPSCode alloc] initWithNumber:@"0324T" description:@"Removal of SubQ ICD electrode" isAddOn:NO] toDictionary:dictionary];
-		[self addCode:[[EPSCode alloc] initWithNumber:@"0325T" description:@"Repositioning of SubQ ICD electrode and/or generator" isAddOn:NO] toDictionary:dictionary];
-		[self addCode:[[EPSCode alloc] initWithNumber:@"0326T" description:@"EP evaluation of SubQ ICD system" isAddOn:NO] toDictionary:dictionary];
-		[self addCode:[[EPSCode alloc] initWithNumber:@"0327T" description:@"Interrogation of SubQ ICD system" isAddOn:NO] toDictionary:dictionary];
-		[self addCode:[[EPSCode alloc] initWithNumber:@"0328T" description:@"Programming of SubQ ICD system" isAddOn:NO] toDictionary:dictionary];
-		[self addCode:[[EPSCode alloc] initWithNumber:@"33206" description:@"New or replacement PPM with new A lead" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33270" description:@"New or replacement SubQ ICD system, includes testing" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33271" description:@"Insertion of SubQ defibrillator electrode only" isAddOn:NO] toDictionary:dictionary];
+		[self addCode:[[EPSCode alloc] initWithNumber:@"33272" description:@"Removal of SubQ ICD electrode" isAddOn:NO] toDictionary:dictionary];
+		[self addCode:[[EPSCode alloc] initWithNumber:@"33273" description:@"Repositioning of SubQ ICD electrode" isAddOn:NO] toDictionary:dictionary];
+
+        // other PPM
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33206" description:@"New or replacement PPM with new A lead" isAddOn:NO] toDictionary:dictionary];
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33207" description:@"New or replacement PPM with new V lead" isAddOn:NO] toDictionary:dictionary];
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33208" description:@"New or replacement PPM with new A and V leads" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"33210" description:@"Insert temporary transvenous pacing electrode" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"33211" description:@"Insert temporary transvenous A and V pacing electrodes" isAddOn:NO] toDictionary:dictionary];
         
         // Leadless PPM
+        [self addCode:[[EPSCode alloc] initWithNumber:@"0387T" description:@"New or replacement leadless PPM" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"0388T" description:@"Transcatheter removal of leadless PPM" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"0389T" description:@"Programming evaluation/testing of leadless PPM" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"0390T" description:@"Peri-procedural device evaluation/testing of leadless PPM" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"0391T" description:@"Interrogation of leadless PPM" isAddOn:NO] toDictionary:dictionary];
         
 		// PPM Generators
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33212" description:@"Implant single chamber PPM generator, existing lead" isAddOn:NO] toDictionary:dictionary];
@@ -172,7 +173,7 @@
         [dictionary setObject:@[@"93654"] forKey:@"vtAblationPrimaryCodes"];
         [dictionary setObject:@[@"93650"] forKey:@"avnAblationPrimaryCodes"];
         [dictionary setObject:@[@"93619", @"93620"] forKey:@"epTestingPrimaryCodes"];
-        [dictionary setObject:@[@"0319T", @"0320T", @"0321T", @"0322T", @"0323T", @"0324T", @"0325T", @"0326T", @"0327T", @"0328T"] forKey:@"subQIcdPrimaryCodes"];
+        [dictionary setObject:@[@"33270", @"33271", @"33272", @"33273", @"0387T", @"0388T", @"0389T", @"0390T", @"0391T"] forKey:@"subQIcdPrimaryCodes"];
         [dictionary setObject:@[@"33282", @"33284", @"93660", @"92960", @"92961", @"76000"] forKey:@"otherProcedurePrimaryCodes"];
         [dictionary setObject:@[@"33206", @"33207", @"33208", @"33225"] forKey:@"newPpmPrimaryCodes"];
         [dictionary setObject:@[@"33227", @"33228", @"33229"] forKey:@"replacePpmPrimaryCodes"];
