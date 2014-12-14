@@ -22,7 +22,6 @@
      ~/.emacs to suppress footer information.
    - Above group of statements in buffer are for formatting the HTML
 * Next header is Help text for EP Coding app!!
-
 * EP Coding Help
 ** Contents
    - [[Who should use EP Coding?]]
