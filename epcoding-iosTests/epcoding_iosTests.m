@@ -95,9 +95,9 @@
     XCTAssertTrue([code.fullDescription isEqualToString:@"Test Code"]);
     // test presence of specific codes
     NSDictionary *codeDictionary = [EPSCodes allCodes];
-    EPSCode *code1 = [codeDictionary objectForKey:@"0319T"];
-    XCTAssertTrue([code1.fullDescription isEqualToString:@"Implantation of SubQ ICD system (generator & electrode)"]);
-    XCTAssertTrue([code1.number isEqualToString:@"0319T"]);
+    EPSCode *code1 = [codeDictionary objectForKey:@"33270"];
+    XCTAssertTrue([code1.fullDescription isEqualToString:@"New or replacement SubQ ICD system, includes testing"]);
+    XCTAssertTrue([code1.number isEqualToString:@"33270"]);
     XCTAssertFalse([code1 isAddOn]);
     EPSCode *code2 = [codeDictionary objectForKey:@"93624"];
     XCTAssertTrue([code2.fullDescription isEqualToString:@"Follow-up EP testing"]);
@@ -109,7 +109,7 @@
     XCTAssertTrue([code4.fullDescription isEqualToString:@"Follow-up EP testing"]);
     XCTAssertTrue([code4.number isEqualToString:@"93624"]);
     XCTAssertFalse([code4 isAddOn]);
-    NSArray *codeNumbers = @[@"0319T", @"93624", @"93622"];
+    NSArray *codeNumbers = @[@"33270", @"93624", @"93622"];
     NSArray *codeArray2 = [EPSCodes getCodesForCodeNumbers:codeNumbers];
     EPSCode *newCode = [codeArray2 objectAtIndex:1];
     XCTAssertTrue([newCode.fullDescription isEqualToString:@"Follow-up EP testing"]);
