@@ -18,7 +18,7 @@
 #define REPLACE_PPM_TITLE @"Replace PPM"
 #define REPLACE_ICD_TITLE @"Replace ICD"
 #define UPGRADE_SYSTEM_TITLE @"Upgrade/Revise/Extract"
-#define SUBQ_ICD_TITLE @"SubQ ICD"
+#define SUBQ_ICD_TITLE @"SubQ ICD/Leadless PPM"
 #define OTHER_PROCEDURE_TITLE @"Other Procedures"
 #define ALL_EP_CODES_TITLE @"All EP Codes"
 #define SEARCH_CODES_TITLE @"Search Codes"

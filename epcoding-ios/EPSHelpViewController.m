@@ -8,7 +8,7 @@
 
 #import "EPSHelpViewController.h"
 
-#define VERSION @"1.2"
+#define VERSION @"1.3"
 
 @interface EPSHelpViewController ()
 
