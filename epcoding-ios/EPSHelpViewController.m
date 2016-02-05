@@ -8,7 +8,7 @@
 
 #import "EPSHelpViewController.h"
 
-#define VERSION @"1.3"
+#define VERSION @"1.4"
 
 @interface EPSHelpViewController ()
 
@@ -53,7 +53,7 @@
 
 - (void)showAbout
 {
-    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
+    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2016 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
     NSString *title = @"EP Coding";
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:details delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
