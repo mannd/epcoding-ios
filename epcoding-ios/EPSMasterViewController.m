@@ -1,4 +1,4 @@
-//
+    //
 //  EPSMasterViewController.m
 //  epcoding-ios
 //
@@ -18,28 +18,27 @@
 
 @implementation EPSMasterViewController
 
-- (void)awakeFromNib
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.clearsSelectionOnViewWillAppear = NO;
-        self.preferredContentSize = CGSizeMake(320.0, 600.0);
-    }
-    [super awakeFromNib];
-}
+//- (void)awakeFromNib
+//{
+////    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        self.clearsSelectionOnViewWillAppear = NO;
+// //       self.preferredContentSize = CGSizeMake(320.0, 600.0);
+////    }
+//    [super awakeFromNib];
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
         self.navigationItem.rightBarButtonItem = btn;
         [self setTitle:@"EP Coding"];
-    }
-    else
-        [self setTitle:@"Procedures"];
-    
+//    }
+//    else
+//        [self setTitle:@"Procedures"];
+//    
     self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
 
@@ -64,7 +63,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewDidAppear:animated];
+    self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [self.navigationController setToolbarHidden:YES];
     
 }
@@ -111,20 +111,23 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSString *procedure = _procedureTypes[indexPath.row];
-        self.detailViewController.detailItem = procedure;
-    }
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        NSString *procedure = _procedureTypes[indexPath.row];
+//        self.detailViewController.detailItem = procedure;
+////    }
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *procedure = _procedureTypes[indexPath.row];
-        [[segue destinationViewController] setDetailItem:procedure];
+        EPSDetailViewController *controller = (EPSDetailViewController *)[[segue destinationViewController] topViewController];
+        [controller setDetailItem:procedure];
+//        self.detailViewController.detailItem = procedure;
+//        [[segue destinationViewController] setDetailItem:procedure];
     }
 }
 

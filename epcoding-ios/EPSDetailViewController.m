@@ -78,13 +78,13 @@
         }
         // must reload data for iPad detail view to refresh, also use default cell height
         // TODO can I get default cell height from somewhere?
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cellHeight = 44;    // seems to be the default height for iPhone
+//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//            cellHeight = 44;    // seems to be the default height for iPhone
             [self.codeTableView reloadData];
-        }
-        else {
+//        }
+//        else {
             cellHeight = 65;
-        }
+//        }
         [self clearEntries];
         // load defaults
         [self load];
@@ -316,12 +316,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
     
     if (cell == nil) {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+     //   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:codeCellIdentifier];
-        }
-        else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
-        }
+//        }
+//        else {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
+//        }
     }
     
     BOOL isDisabled = NO;
