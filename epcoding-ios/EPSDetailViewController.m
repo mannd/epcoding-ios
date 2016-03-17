@@ -122,6 +122,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) traitCollectionDidChange: (UITraitCollection *) previousTraitCollection {
+    [super traitCollectionDidChange: previousTraitCollection];
+    if ((self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
+        || (self.traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass)) {
+        // your custom implementation here
+        NSLog(@"detail view orientation change");
+    }
+}
+
 - (void)showMenu {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Search", @"Device Wizard", @"Help", nil];

@@ -11,6 +11,27 @@
 #import "EPSDetailViewController.h"
 #import "EPSProcedureKeys.h"
 
+//extension UISplitViewController {
+//    func toggleMasterView() {
+//        let barButtonItem = self.displayModeButtonItem()
+//        UIApplication.sharedApplication().sendAction(barButtonItem.action, to: barButtonItem.target, from: nil, forEvent: nil)
+//    }
+//}
+
+@interface UISplitViewController (ExtendedSplitViewController)
+
+
+@end
+
+@implementation UISplitViewController (ExtendedSplitViewController)
+
+- (void)toggleMasterView {
+    UIBarButtonItem *barButtonItem = self.displayModeButtonItem;
+    [[UIApplication sharedApplication] sendAction:barButtonItem.action to:barButtonItem.target from:nil forEvent:nil];
+}
+
+@end
+
 @interface EPSMasterViewController () {
 
 }
@@ -18,14 +39,14 @@
 
 @implementation EPSMasterViewController
 
-//- (void)awakeFromNib
-//{
+- (void)awakeFromNib
+{
 ////    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        self.clearsSelectionOnViewWillAppear = NO;
+        self.clearsSelectionOnViewWillAppear = NO;
 // //       self.preferredContentSize = CGSizeMake(320.0, 600.0);
 ////    }
-//    [super awakeFromNib];
-//}
+    [super awakeFromNib];
+}
 
 - (void)viewDidLoad
 {
@@ -74,6 +95,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) traitCollectionDidChange: (UITraitCollection *) previousTraitCollection {
+    [super traitCollectionDidChange: previousTraitCollection];
+    if ((self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
+        || (self.traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass)) {
+        // your custom implementation here
+        NSLog(@"orientation change");
+        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+            NSLog(@"horizontal compact");
+        }
+    }
 }
 
 - (void)showMenu {
@@ -126,6 +159,7 @@
         NSString *procedure = _procedureTypes[indexPath.row];
         EPSDetailViewController *controller = (EPSDetailViewController *)[[segue destinationViewController] topViewController];
         [controller setDetailItem:procedure];
+        [self.splitViewController toggleMasterView];
 //        self.detailViewController.detailItem = procedure;
 //        [[segue destinationViewController] setDetailItem:procedure];
     }
