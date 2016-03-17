@@ -35,7 +35,8 @@
     self.contentLabel.numberOfLines = 0;
     [self.contentLabel sizeToFit];
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
+ //   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         cellHeight = 44;    // seems to be the default height for iPhone
         // [self.codeTableView reloadData];
     }
@@ -81,7 +82,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:wizardCellIdentifier];
     
     if (cell == nil) {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
+        //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:wizardCellIdentifier];
         }
         else {
