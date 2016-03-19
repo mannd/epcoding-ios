@@ -43,9 +43,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = btn;
+    // Menu button only appears in Master view on phones, not on compact iPad views
+    if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
+        self.navigationItem.rightBarButtonItem = btn;
+    }
     [self setTitle:@"Procedures"];
     
     NSArray *array = [[NSArray alloc] initWithObjects:
@@ -70,11 +72,6 @@
     [super viewDidAppear:animated];
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [self.navigationController setToolbarHidden:YES];
-    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-        // this should get rid of the button on the Ipad and leave it on the phone
-        self.navigationItem.rightBarButtonItem = nil;
-    }
-    
 }
 
 - (void)didReceiveMemoryWarning
