@@ -32,10 +32,7 @@
 
 - (void)awakeFromNib
 {
-    ////    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
     self.clearsSelectionOnViewWillAppear = NO;
-    // //       self.preferredContentSize = CGSizeMake(320.0, 600.0);
-    ////    }
     [super awakeFromNib];
 }
 
@@ -43,11 +40,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    // Menu button only appears in Master view on phones, not on compact iPad views
-    if (self.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
-        self.navigationItem.rightBarButtonItem = btn;
-    }
     [self setTitle:@"Procedures"];
     
     NSArray *array = [[NSArray alloc] initWithObjects:
@@ -78,18 +70,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) traitCollectionDidChange: (UITraitCollection *) previousTraitCollection {
-    [super traitCollectionDidChange: previousTraitCollection];
-    if ((self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
-        || (self.traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass)) {
-        // your custom implementation here
-        NSLog(@"orientation change");
-        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
-            NSLog(@"horizontal compact");
-        }
-    }
 }
 
 - (void)showMenu {

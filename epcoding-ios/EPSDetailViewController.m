@@ -70,22 +70,9 @@
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
             self.disabledCodesSet = [NSSet setWithArray:disabledKeys];
         }
-        // must reload data for iPad detail view to refresh, also use default cell height
-        // TODO can I get default cell height from somewhere?
-        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cellHeight = 44;    // seems to be the default height for iPhone
-           // [self.codeTableView reloadData];
-        }
-        else {
-            cellHeight = 65;
-        }
         [self clearEntries];
         // load defaults
         [self load];
-        
-        //[self.navigationController setToolbarHidden:(self.primaryCodes == nil)];
-    
     }
 }
 
@@ -93,13 +80,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    cellHeight = 65;
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
     //[self.navigationController setToolbarHidden:NO];
-    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStyleBordered target: self action: @selector(summarizeCoding)];
-    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearEntries)];
-    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveCoding)];
+    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
+    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
+    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
     self.toolbarItems = [ NSArray arrayWithObjects: buttonSummarize, buttonClear, buttonSave, nil ];
 }
 
@@ -117,17 +105,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) traitCollectionDidChange: (UITraitCollection *) previousTraitCollection {
-    [super traitCollectionDidChange: previousTraitCollection];
-    if ((self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
-        || (self.traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass)) {
-        // your custom implementation here
-        NSLog(@"reload data");
-        //[self.codeTableView reloadData];
-        [self.codeTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    }
 }
 
 - (void)showMenu {
@@ -307,14 +284,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
     
     if (cell == nil) {
-        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-     //   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:codeCellIdentifier];
-        }
-//        }
-        else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
-       }
     }
     
     BOOL isDisabled = NO;

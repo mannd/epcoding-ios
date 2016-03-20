@@ -20,7 +20,9 @@
 @property (strong, nonatomic) EPSCodeAnalyzer *codeAnalyzer;
 @end
 
-@implementation EPSCodeSummaryTableViewController
+@implementation EPSCodeSummaryTableViewController {
+    NSInteger cellHeight;
+}
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,6 +38,7 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Code Summary"];
+    cellHeight = 65;
     EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:self.selectedPrimaryCodes secondaryCodes:self.selectedSecondaryCodes ignoreNoSecondaryCodes:self.ignoreNoSecondaryCodesSelected];
     self.codeAnalyzer = analyzer;
     self.codeErrors = [analyzer analysis];
@@ -103,13 +106,7 @@
     
     
     if (cell == nil) {
-        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        }
-        else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
     if ([indexPath section] == 0) {
@@ -138,7 +135,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([indexPath section] == 1)
         return 80;
-    return 44;
+    return cellHeight;
 }
 
 

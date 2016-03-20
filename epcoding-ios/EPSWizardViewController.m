@@ -65,13 +65,8 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [self setTitle:@"Device Wizard"];
-    }
-    else {
-        [self setTitle:@"Wizard"];
-    }
+    [self setTitle:@"Device Wizard"];
+    
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
     self.navigationItem.rightBarButtonItem = btn;
 }
