@@ -34,17 +34,8 @@
     self.contentLabel.text = self.contentText;
     self.contentLabel.numberOfLines = 0;
     [self.contentLabel sizeToFit];
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        cellHeight = 44;    // seems to be the default height for iPhone
-        // [self.codeTableView reloadData];
-    }
-    else {
-        cellHeight = 65;
-        [self.contentLabel setFont:[UIFont systemFontOfSize:14.0f]];
-    }
-    
-    
+    cellHeight = 65;
+    [self.contentLabel setFont:[UIFont systemFontOfSize:14.0f]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,12 +72,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:wizardCellIdentifier];
     
     if (cell == nil) {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:wizardCellIdentifier];
-        }
-        else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:wizardCellIdentifier];
-        }
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:wizardCellIdentifier];
     }
     
     NSUInteger row = [indexPath row];

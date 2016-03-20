@@ -65,18 +65,13 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [self setTitle:@"Device Wizard"];
-    }
-    else {
-        [self setTitle:@"Wizard"];
-    }
+    [self setTitle:@"Device Wizard"];
+    
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
     self.navigationItem.rightBarButtonItem = btn;
 }
 
 - (void)summarize {
-    // TODO
     NSMutableArray *codes = [[NSMutableArray alloc] init];
     for (NSArray *array in self.codeArrays) {
         for (EPSCode *code in array) {

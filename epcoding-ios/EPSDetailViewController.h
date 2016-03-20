@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPSDetailViewController : UIViewController <UISplitViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIActionSheetDelegate>
+@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) id detailItem;
 

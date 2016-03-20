@@ -11,8 +11,20 @@
 #import "EPSDetailViewController.h"
 #import "EPSProcedureKeys.h"
 
-@interface EPSMasterViewController () {
+// Extension to allow toggle the master view in portrait mode
+// See http://stackoverflow.com/questions/27243158/hiding-the-master-view-controller-with-uisplitviewcontroller-in-ios8
+@interface UISplitViewController (ExtendedSplitViewController)
+@end
 
+@implementation UISplitViewController (ExtendedSplitViewController)
+- (void)toggleMasterView {
+    UIBarButtonItem *barButtonItem = self.displayModeButtonItem;
+    [[UIApplication sharedApplication] sendAction:barButtonItem.action to:barButtonItem.target from:nil forEvent:nil];
+}
+@end
+
+@interface EPSMasterViewController () {
+    
 }
 @end
 
@@ -20,30 +32,16 @@
 
 - (void)awakeFromNib
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.clearsSelectionOnViewWillAppear = NO;
-        self.preferredContentSize = CGSizeMake(320.0, 600.0);
-    }
+    self.clearsSelectionOnViewWillAppear = NO;
     [super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
-        self.navigationItem.rightBarButtonItem = btn;
-        [self setTitle:@"EP Coding"];
-    }
-    else
-        [self setTitle:@"Procedures"];
+    // Do any additional setup after loading the view, typically from a nib.
+    [self setTitle:@"Procedures"];
     
-    self.detailViewController = (EPSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-
-
     NSArray *array = [[NSArray alloc] initWithObjects:
                       AFB_ABLATION_TITLE,
                       SVT_ABLATION_TITLE,
@@ -59,16 +57,14 @@
                       OTHER_PROCEDURE_TITLE,
                       ALL_EP_CODES_TITLE, nil];
     self.procedureTypes = array;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewDidAppear:animated];
+    self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [self.navigationController setToolbarHidden:YES];
-    
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -77,10 +73,10 @@
 }
 
 - (void)showMenu {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Search", @"Device Wizard", @"Help", nil];
-        [actionSheet showInView:self.view];
-
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Search", @"Device Wizard", @"Help", nil];
+    [actionSheet showInView:self.view];
+    
 }
 
 #pragma mark - Table View
@@ -98,7 +94,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
+    
     NSString *label = _procedureTypes[indexPath.row];
     cell.textLabel.text = label;
     return cell;
@@ -110,21 +106,16 @@
     return NO;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSString *procedure = _procedureTypes[indexPath.row];
-        self.detailViewController.detailItem = procedure;
-    }
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *procedure = _procedureTypes[indexPath.row];
-        [[segue destinationViewController] setDetailItem:procedure];
+        EPSDetailViewController *controller = (EPSDetailViewController *)[[segue destinationViewController] topViewController];
+        [controller setDetailItem:procedure];
+        [self.splitViewController toggleMasterView];
+        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
 

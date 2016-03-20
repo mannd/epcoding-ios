@@ -16,8 +16,6 @@
 
 @interface EPSDetailViewController ()
 
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
-
 - (void)configureView;
 
 @end
@@ -38,10 +36,6 @@
         // Update the view.
         [self configureView];
     }
-
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
 }
 
 - (void)configureView
@@ -76,21 +70,9 @@
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
             self.disabledCodesSet = [NSSet setWithArray:disabledKeys];
         }
-        // must reload data for iPad detail view to refresh, also use default cell height
-        // TODO can I get default cell height from somewhere?
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cellHeight = 44;    // seems to be the default height for iPhone
-            [self.codeTableView reloadData];
-        }
-        else {
-            cellHeight = 65;
-        }
         [self clearEntries];
         // load defaults
         [self load];
-        
-        //[self.navigationController setToolbarHidden:(self.primaryCodes == nil)];
-    
     }
 }
 
@@ -98,13 +80,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    cellHeight = 65;
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
     //[self.navigationController setToolbarHidden:NO];
-    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStyleBordered target: self action: @selector(summarizeCoding)];
-    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearEntries)];
-    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleBordered target:self action:@selector(saveCoding)];
+    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
+    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
+    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
     self.toolbarItems = [ NSArray arrayWithObjects: buttonSummarize, buttonClear, buttonSave, nil ];
 }
 
@@ -114,6 +97,8 @@
     [self.navigationController setToolbarHidden:NO];
     
 }
+
+
 
 
 - (void)didReceiveMemoryWarning
@@ -244,23 +229,6 @@
     }
 }
 
-
-#pragma mark - Split view
-
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-    barButtonItem.title = NSLocalizedString(@"Procedures", @"Procedures");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -316,12 +284,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
     
     if (cell == nil) {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:codeCellIdentifier];
-        }
-        else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
-        }
     }
     
     BOOL isDisabled = NO;

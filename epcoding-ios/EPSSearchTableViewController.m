@@ -34,16 +34,7 @@
     [super viewDidLoad];
     [self setTitle:@"Search Codes"];
     self.codes = [EPSCodes allCodesSorted];
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        cellHeight = 44;    // seems to be the default height for iPhone
-       // [self.codeTableView reloadData];
-    }
-    else {
-        cellHeight = 65;
-    }
-
-
+    cellHeight = 65;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,12 +69,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
     
     if (cell == nil) {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:searchCellIdentifier];
-        }
-        else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:searchCellIdentifier];
-        }
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:searchCellIdentifier];
     }
     
     NSUInteger row = [indexPath row];
