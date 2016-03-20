@@ -72,7 +72,6 @@
 }
 
 - (void)summarize {
-    // TODO
     NSMutableArray *codes = [[NSMutableArray alloc] init];
     for (NSArray *array in self.codeArrays) {
         for (EPSCode *code in array) {
