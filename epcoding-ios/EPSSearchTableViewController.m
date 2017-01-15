@@ -35,12 +35,28 @@
     [self setTitle:@"Search Codes"];
     self.codes = [EPSCodes allCodesSorted];
     cellHeight = 65;
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
+
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"fullDescription contains[c] %@ OR number contains %@", searchText, searchText];
+    self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
+    
 }
 
 #pragma mark - Table view data source
@@ -53,14 +69,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (self.searchController.active) {
         return [self.searchResults count];
         
     } else {
         return [self.codes count];
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -75,7 +90,7 @@
     NSUInteger row = [indexPath row];
     EPSCode *code = nil;
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (self.searchController.active) {
         code = [self.searchResults objectAtIndex:indexPath.row];
     }
     else {
@@ -96,23 +111,13 @@
     return cellHeight;
 }
 
+#pragma mark - UISearchController delegate
 
-
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"fullDescription contains[c] %@ OR number contains %@", searchText, searchText];
-    self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
-
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
+    NSString *searchString = searchController.searchBar.text;
+    [self filterContentForSearchText:searchString scope:nil];
+    [self.tableView reloadData];
 }
 
 

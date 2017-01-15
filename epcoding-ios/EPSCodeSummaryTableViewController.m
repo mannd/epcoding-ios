@@ -43,6 +43,8 @@
     self.codeAnalyzer = analyzer;
     self.codeErrors = [analyzer analysis];
     self.selectedCodes = [analyzer allCodes];
+    
+    
 //    
 
     // Uncomment the following line to preserve selection between presentations.
