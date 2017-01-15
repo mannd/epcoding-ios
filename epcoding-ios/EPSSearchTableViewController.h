@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPSSearchTableViewController : UITableViewController
+@interface EPSSearchTableViewController : UITableViewController <UISearchResultsUpdating, UISearchBarDelegate>
+
+@property (strong, nonatomic) UISearchController *searchController;
 
 @property (strong, nonatomic) NSArray *codes;
 @property (strong, nonatomic) NSArray *searchResults;
