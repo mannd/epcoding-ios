@@ -133,8 +133,14 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
         
         // New sedation codes, 2017
-        [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
-    
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99151" description:@"Mod sedation, same MD, initial 15 min, pt < 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99152" description:@"Mod sedation, same MD, initial 15 min, pt ≥ 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99153" description:@"Mod sedation, same MD, each additional 15 min" isAddOn:YES] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99155" description:@"Mod sedation, different MD, initial 15 min, pt < 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99156" description:@"Mod sedation, different MD, initial 15 min, pt ≥ 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99157" description:@"Mod sedation, different MD, each additional 15 min" isAddOn:YES] toDictionary:dictionary];
+        
+
     }
     return dictionary;
 }
