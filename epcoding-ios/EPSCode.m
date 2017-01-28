@@ -18,6 +18,8 @@
         self.fullDescription = description;
         self.isAddOn = isAddOn;
         self.codeStatus = GOOD;
+        // multiplier only shown if > 0
+        self.multipier = 0;
     }
     return self;
 }
@@ -43,9 +45,11 @@
     return self.descriptionShortened ? [self truncateString:self.fullDescription newLength:24] : self.fullDescription;
 }
 
+// below only used in unit tests
 - (NSString *)formattedCodeNumber
 {
     return [[NSString alloc] initWithFormat:@"%@", self.plusShown ? [self unformattedCodeNumber] : self.number];
+ 
 }
 
 - (NSString *)truncateString:(NSString *)s newLength:(int)newLength
@@ -72,7 +76,12 @@
 
 - (NSString *)unformattedCodeNumber
 {
-    return [[NSString alloc] initWithFormat:@"%@%@", self.isAddOn ? @"+" : @"", self.number];
+    if (self.multipier < 1) {
+        return [[NSString alloc] initWithFormat:@"%@%@", self.isAddOn ? @"+" : @"", self.number];
+    }
+    else {
+        return [[NSString alloc] initWithFormat:@"%@%@ x %lu", self.isAddOn ? @"+" : @"", self.number, (unsigned long)self.multipier];
+    }
 }
 
 - (NSString *)unformattedCodeDescription

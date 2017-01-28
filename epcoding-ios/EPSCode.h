@@ -18,6 +18,7 @@
 @property BOOL descriptonShown;
 @property BOOL selected;
 @property enum status codeStatus;
+@property NSUInteger multipier;
 
 enum status {GOOD, WARNING, ERROR};
 
