@@ -131,6 +131,9 @@
         
         // Unlisted procedure
         [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
+        
+        // New sedation codes, 2017
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
     
     }
     return dictionary;

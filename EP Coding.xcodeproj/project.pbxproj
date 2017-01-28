@@ -10,6 +10,7 @@
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
+		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
@@ -68,6 +69,8 @@
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		8E60902D18B55142001F3D7A /* EPSTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSTestViewController.h; sourceTree = "<group>"; };
 		8E60902E18B55142001F3D7A /* EPSTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSTestViewController.m; sourceTree = "<group>"; };
+		8E84DBB21E2C223700CB851D /* EPSModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifier.h; sourceTree = "<group>"; };
+		8E84DBB31E2C223700CB851D /* EPSModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifier.m; sourceTree = "<group>"; };
 		8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSearchTableViewController.h; sourceTree = "<group>"; };
 		8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSearchTableViewController.m; sourceTree = "<group>"; };
 		8E9AEEFC18BCFEB700B6BC1C /* EPSProcedureKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKeys.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */,
 				8EDAD2021901286900CE48CF /* EPSWizardContentViewController.h */,
 				8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */,
+				8E84DBB21E2C223700CB851D /* EPSModifier.h */,
+				8E84DBB31E2C223700CB851D /* EPSModifier.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
 				8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
 				8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */,
+				8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */,
 				8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */,
 				8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
