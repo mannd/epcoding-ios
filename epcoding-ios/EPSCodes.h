@@ -19,4 +19,6 @@
 
 + (NSDictionary *)codeDictionary;
 
++ (NSUInteger)codeMultiplier:(NSInteger)time;
+
 @end

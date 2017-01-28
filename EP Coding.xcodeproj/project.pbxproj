@@ -303,6 +303,7 @@
 						DevelopmentTeam = W74NPJXYEG;
 					};
 					8EDBEC1D180CCDEC0041A4E3 = {
+						DevelopmentTeam = W74NPJXYEG;
 						TestTargetID = 8EDBEBF6180CCDEB0041A4E3;
 					};
 				};
@@ -564,7 +565,8 @@
 		8EDBEC33180CCDEC0041A4E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/epcoding-ios.app/epcoding-ios";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = W74NPJXYEG;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
@@ -575,7 +577,7 @@
 				INFOPLIST_FILE = "epcoding-iosTests/epcoding-iosTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.epstudios.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EP Coding.app/EP Coding";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -583,14 +585,15 @@
 		8EDBEC34180CCDEC0041A4E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/epcoding-ios.app/epcoding-ios";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = W74NPJXYEG;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-iosTests/epcoding-iosTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.epstudios.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EP Coding.app/EP Coding";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

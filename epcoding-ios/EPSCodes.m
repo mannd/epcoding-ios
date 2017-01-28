@@ -224,4 +224,12 @@
     return sortedCodes;
 }
 
++ (NSUInteger)codeMultiplier:(NSInteger)time {
+    if (time <= 22)
+        return 0;
+    float multiplier = (time - 15) / 15.0;
+    multiplier = roundf(multiplier);
+    return (NSUInteger)multiplier;
+}
+
 @end

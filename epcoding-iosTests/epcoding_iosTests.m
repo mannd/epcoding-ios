@@ -217,4 +217,22 @@
     XCTAssertTrue([[[array objectAtIndex:1] number] isEqualToString:@"00001"]);
 }
 
+- (void)testCodeMultiplier {
+    XCTAssert([EPSCodes codeMultiplier:40] == 2);
+    XCTAssert([EPSCodes codeMultiplier:37] == 1);
+    XCTAssert([EPSCodes codeMultiplier:22] == 0);
+    XCTAssert([EPSCodes codeMultiplier:23] == 1);
+    XCTAssert([EPSCodes codeMultiplier:38] == 2);
+    XCTAssert([EPSCodes codeMultiplier:67] == 3);
+    XCTAssert([EPSCodes codeMultiplier:68] == 4);
+    XCTAssert([EPSCodes codeMultiplier:81] == 4);
+    XCTAssert([EPSCodes codeMultiplier:10] == 0);
+    XCTAssert([EPSCodes codeMultiplier:0] == 0);
+    XCTAssert([EPSCodes codeMultiplier:-10] == 0);
+
+;
+
+
+}
+
 @end
