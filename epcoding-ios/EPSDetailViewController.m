@@ -109,10 +109,24 @@
 }
 
 - (void)showMenu {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Search", @"Device Wizard", @"Help", nil];
-    [actionSheet showInView:self.view];
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction* searchAction = [UIAlertAction actionWithTitle:@"Search" style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showSearch" sender:self];}];
+        [actionSheet addAction:searchAction];
+        UIAlertAction* wizardAction = [UIAlertAction actionWithTitle:@"Device Wizard" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showWizard" sender:self];}];
+        [actionSheet addAction:wizardAction];
+        UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showHelp" sender:self];}];
+        [actionSheet addAction:helpAction];
     
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        [actionSheet addAction:cancelAction];
+    
+        actionSheet.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+
+        [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 
@@ -173,7 +187,7 @@
 
 - (void)calculateSedation
 {
-        // TODO: calculate sedation dialog
+    [self performSegueWithIdentifier:@"showSedation" sender:nil];
 }
 
 - (void)summarizeCoding
@@ -397,23 +411,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
-
-// UIActionSheet delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            [self performSegueWithIdentifier:@"showSearch" sender:self];
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"showWizard" sender:self];
-            break;
-        case 2:
-            [self performSegueWithIdentifier:@"showHelp" sender:self];
-            break;
-    }
-}
-
 
 
 

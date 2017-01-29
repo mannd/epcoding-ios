@@ -88,6 +88,17 @@
     return array;
 }
 
+// TODO: sedation code logic
+// warning if only sedation codes chosen if they are same physician as procedural MD
+// warning if no sedation codes chosen
+// warning if other physician sedation codes chosen
+- (NSArray *)badSedationCodeErrors
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"99115", @"99156", @"99157"]] withWarningLevel:ERROR withMessage:@"Sedation code(s) for another MD can't be charged by MD performing procedure."]];
+    return array;
+}
+
 // analyzer uses code numbers for analysis
 - (NSArray *)allCodeNumbers
 {
