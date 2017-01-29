@@ -143,19 +143,28 @@
 
 - (void)saveCoding
 {
+    // FIXME: even with no secondary codes selected this dialog offers to save codes.  Why?
     if (self.primaryCodes == nil) {
         return;
     }
     if (self.secondaryCodes == nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No codes to save" message:@"Only additional codes can be saved. This group has only primary codes." delegate:self
-            cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No codes to save" message:@"Only additional codes can be saved. This group has only primary codes." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save default codes" message:@"Save selected codes as a default?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Save default codes" message:@"Save selected codes as a default?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive
+                                                         handler:^(UIAlertAction * action) {[self save];}];
+        [alert addAction:okAction];
+      
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                             handler:nil];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-        
 }
 
 
@@ -237,15 +246,6 @@
     }
     for (EPSCode *secondaryCode in self.secondaryCodes) {
         secondaryCode.selected = NO;
-    }
-}
-
-#pragma mark - Alert view
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self save];
     }
 }
 
