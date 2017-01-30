@@ -91,6 +91,9 @@
     UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
     self.toolbarItems = [ NSArray arrayWithObjects: buttonSedation, buttonSummarize, buttonClear, buttonSave, nil ];
+    self.sedationTime = 0;
+    self.sameMDPerformsSedation = YES;
+    self.patientOver5YearsOld = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -194,6 +197,9 @@
 
 - (void)calculateSedation
 {
+    if (self.primaryCodes == nil) {
+        return;
+    }
     [self performSegueWithIdentifier:@"showSedation" sender:nil];
 }
 
@@ -232,6 +238,10 @@
     else if ([[segue identifier] isEqualToString:@"showSedation"]) {
         EPSSedationViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
+        viewController.time = self.sedationTime;
+        viewController.ageOver5 = self.patientOver5YearsOld;
+        viewController.sameMD = self.sameMDPerformsSedation;
+    
     }
 }
 
@@ -241,6 +251,12 @@
     NSLog(@"cancel = %d", cancel);
     NSLog(@"sameMD = %d", sameMD);
     NSLog(@"lessThan5 = %d", lessThan5);
+    if (cancel) {
+        return;
+    }
+    self.sameMDPerformsSedation = sameMD;
+    self.patientOver5YearsOld = !lessThan5;
+    self.sedationTime = time;
 }
 
 

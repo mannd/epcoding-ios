@@ -19,6 +19,9 @@
     // Do any additional setup after loading the view.
     self.canceled = YES;
     self.timeTextField.delegate = self;
+    [self.sameMDSwitch setOn:self.sameMD];
+    [self.patientAgeSwitch setOn:self.ageOver5];
+    self.sedationTime.text = [NSString stringWithFormat:@"%lu", self.time];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +51,11 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSInteger time = [self.timeTextField.text integerValue];
-    [self.delegate sendSedationDataBack:!self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time];
+}
+
+- (IBAction)dismissKeyboard:(id)sender {
+    [self.timeTextField resignFirstResponder];
 }
 
 - (IBAction)cancelAction:(id)sender {

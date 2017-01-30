@@ -25,6 +25,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
 
 @property BOOL canceled;
+@property BOOL sameMD;
+@property BOOL ageOver5;
+@property NSInteger time;
+
+- (IBAction)dismissKeyboard:(id)sender;
+
 
 
 

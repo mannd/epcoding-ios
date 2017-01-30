@@ -273,7 +273,7 @@
                         <viewControllerLayoutGuide type="top" id="avD-Qg-8KE"/>
                         <viewControllerLayoutGuide type="bottom" id="382-1B-enq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="K52-NS-u7z">
+                    <view key="view" contentMode="scaleToFill" id="K52-NS-u7z" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -387,6 +387,9 @@
                             <constraint firstItem="O2c-hb-2eA" firstAttribute="centerX" secondItem="K52-NS-u7z" secondAttribute="centerX" id="xOa-j6-gzb"/>
                             <constraint firstItem="kaj-uw-vbu" firstAttribute="centerX" secondItem="K52-NS-u7z" secondAttribute="centerX" id="xnz-dr-ihk"/>
                         </constraints>
+                        <connections>
+                            <action selector="dismissKeyboard:" destination="su0-aQ-mXq" eventType="touchUpInside" id="KtP-hn-jQ4"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="patientAgeSwitch" destination="5QL-tq-0nI" id="Qkx-cU-bvg"/>

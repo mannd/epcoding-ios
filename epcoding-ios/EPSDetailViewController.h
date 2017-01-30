@@ -20,4 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *codeTableView;
 
+@property NSInteger sedationTime;
+@property BOOL sameMDPerformsSedation;
+@property BOOL patientOver5YearsOld;
+
 @end
