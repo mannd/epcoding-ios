@@ -8,11 +8,29 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPSSedationViewController : UIViewController
+@protocol sendDataProtocol <NSObject>
+
+-(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time;
+
+@end
+
+@interface EPSSedationViewController : UIViewController <UITextFieldDelegate>
 - (IBAction)SameMDAction:(id)sender;
 - (IBAction)patientAgeAction:(id)sender;
 - (IBAction)timeStepperAction:(id)sender;
 @property (strong, nonatomic) IBOutlet UIStepper *timeStepper;
 @property (strong, nonatomic) IBOutlet UITextField *sedationTime;
+@property (strong, nonatomic) IBOutlet UISwitch *sameMDSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *patientAgeSwitch;
+@property (strong, nonatomic) IBOutlet UITextField *timeTextField;
+
+@property BOOL canceled;
+
+
+
+- (IBAction)cancelAction:(id)sender;
+- (IBAction)addCodesAction:(id)sender;
+
+@property(nonatomic,assign)id delegate;
 
 @end

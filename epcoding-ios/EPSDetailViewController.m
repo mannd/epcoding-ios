@@ -11,6 +11,7 @@
 #import "EPSProcedureKeys.h"
 #import "EPSProcedureKey.h"
 #import "EPSCodeSummaryTableViewController.h"
+#import "EPSSedationViewController.h"
 
 #define HIGHLIGHT yellowColor
 
@@ -98,9 +99,6 @@
     [self.navigationController setToolbarHidden:NO];
     
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -231,6 +229,18 @@
         [[segue destinationViewController] setSelectedSecondaryCodes:secondaryArray];
         [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:self.ignoreNoSecondaryCodesSelected];
     }
+    else if ([[segue identifier] isEqualToString:@"showSedation"]) {
+        EPSSedationViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+    }
+}
+
+-(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time
+{
+    NSLog(@"time = %lu", time);
+    NSLog(@"cancel = %d", cancel);
+    NSLog(@"sameMD = %d", sameMD);
+    NSLog(@"lessThan5 = %d", lessThan5);
 }
 
 

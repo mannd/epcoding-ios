@@ -278,13 +278,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6q-iU-tn5">
-                                <rect key="frame" x="135.5" y="132.5" width="51" height="31"/>
+                                <rect key="frame" x="135.5" y="256" width="51" height="31"/>
                                 <connections>
                                     <action selector="SameMDAction:" destination="6ET-1T-qPj" eventType="valueChanged" id="6d6-bU-ybu"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QL-tq-0nI">
-                                <rect key="frame" x="135.5" y="258" width="51" height="31"/>
+                                <rect key="frame" x="135.5" y="381.5" width="51" height="31"/>
                                 <connections>
                                     <action selector="patientAgeAction:" destination="6ET-1T-qPj" eventType="valueChanged" id="HJ0-cq-Q2U"/>
                                 </connections>
@@ -292,21 +292,18 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6j5-03-zxa">
                                 <rect key="frame" x="16" y="430" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelAction:" destination="6ET-1T-qPj" eventType="touchUpInside" id="F6a-vp-fxE"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procedure MD performed sedation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaj-uw-vbu">
-                                <rect key="frame" x="27.5" y="88" width="265.5" height="20.5"/>
+                                <rect key="frame" x="27.5" y="211.5" width="265.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient age 5 years or older" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2c-hb-2eA">
-                                <rect key="frame" x="55" y="213.5" width="210" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of minutes of sedation time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFp-wk-4IC">
-                                <rect key="frame" x="23" y="339" width="274.5" height="20.5"/>
+                                <rect key="frame" x="55" y="337" width="210" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -314,18 +311,27 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AcF-jS-XKx">
                                 <rect key="frame" x="228" y="430" width="76" height="30"/>
                                 <state key="normal" title="Add Codes"/>
+                                <connections>
+                                    <action selector="addCodesAction:" destination="6ET-1T-qPj" eventType="touchUpInside" id="Num-Aa-OVQ"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of minutes of sedation time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFp-wk-4IC">
+                                <rect key="frame" x="23" y="88" width="274.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXR-YF-A2N">
-                                <rect key="frame" x="63" y="383.5" width="194" height="29"/>
+                                <rect key="frame" x="63" y="132.5" width="194" height="29"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfR-Eq-EXh">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfR-Eq-EXh">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="6Jc-gj-cS1"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="DTF-JI-5ml">
                                         <rect key="frame" x="100" y="0.0" width="94" height="29"/>
@@ -341,6 +347,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BFp-wk-4IC" firstAttribute="top" secondItem="avD-Qg-8KE" secondAttribute="bottom" constant="24" id="4p1-bj-162">
+                                <variation key="heightClass=compact-widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="5QL-tq-0nI" firstAttribute="top" secondItem="O2c-hb-2eA" secondAttribute="bottom" constant="24" id="5iK-5n-hh8">
                                 <variation key="heightClass=compact-widthClass=compact" constant="8"/>
                                 <variation key="heightClass=compact-widthClass=regular" constant="12"/>
@@ -360,19 +369,16 @@
                                 <variation key="heightClass=compact-widthClass=compact" constant="8"/>
                                 <variation key="heightClass=compact-widthClass=regular" constant="12"/>
                             </constraint>
-                            <constraint firstItem="kaj-uw-vbu" firstAttribute="top" secondItem="avD-Qg-8KE" secondAttribute="bottom" constant="24" id="aIb-hH-wkz">
-                                <variation key="heightClass=compact-widthClass=compact" constant="8"/>
-                            </constraint>
                             <constraint firstItem="382-1B-enq" firstAttribute="top" secondItem="6j5-03-zxa" secondAttribute="bottom" constant="20" id="dER-Wz-XCi">
                                 <variation key="heightClass=compact-widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="kaj-uw-vbu" firstAttribute="top" secondItem="QXR-YF-A2N" secondAttribute="bottom" constant="50" id="e3b-8m-6JU">
+                                <variation key="heightClass=compact-widthClass=compact" constant="18"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="30"/>
                             </constraint>
                             <constraint firstItem="AcF-jS-XKx" firstAttribute="trailing" secondItem="K52-NS-u7z" secondAttribute="trailingMargin" id="gvg-fl-Gr4"/>
                             <constraint firstItem="C6q-iU-tn5" firstAttribute="centerX" secondItem="K52-NS-u7z" secondAttribute="centerX" id="hRi-rT-IRF"/>
                             <constraint firstItem="QXR-YF-A2N" firstAttribute="centerX" secondItem="K52-NS-u7z" secondAttribute="centerX" id="kj5-hI-ZQo"/>
-                            <constraint firstItem="BFp-wk-4IC" firstAttribute="top" secondItem="5QL-tq-0nI" secondAttribute="bottom" constant="50" id="pDl-SJ-5ui">
-                                <variation key="heightClass=compact-widthClass=compact" constant="18"/>
-                                <variation key="heightClass=compact-widthClass=regular" constant="30"/>
-                            </constraint>
                             <constraint firstItem="QXR-YF-A2N" firstAttribute="top" secondItem="BFp-wk-4IC" secondAttribute="bottom" constant="24" id="rrc-G0-2md">
                                 <variation key="heightClass=compact-widthClass=compact" constant="12"/>
                                 <variation key="heightClass=compact-widthClass=regular" constant="12"/>
@@ -383,8 +389,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="patientAgeSwitch" destination="5QL-tq-0nI" id="Qkx-cU-bvg"/>
+                        <outlet property="sameMDSwitch" destination="C6q-iU-tn5" id="dmI-WG-Y9J"/>
                         <outlet property="sedationTime" destination="YfR-Eq-EXh" id="dg9-YI-YoZ"/>
                         <outlet property="timeStepper" destination="DTF-JI-5ml" id="V3D-QZ-tRn"/>
+                        <outlet property="timeTextField" destination="YfR-Eq-EXh" id="9Ix-4B-qCG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="su0-aQ-mXq" userLabel="First Responder" sceneMemberID="firstResponder"/>

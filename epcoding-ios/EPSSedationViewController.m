@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.canceled = YES;
+    self.timeTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,4 +44,36 @@
 
 - (IBAction)timeStepperAction:(id)sender {
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSInteger time = [self.timeTextField.text integerValue];
+    [self.delegate sendSedationDataBack:!self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time];
+}
+
+- (IBAction)cancelAction:(id)sender {
+    self.canceled = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+- (IBAction)addCodesAction:(id)sender {
+    if (![self.timeTextField.text integerValue]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Time not a number" message:@"Time must be a positive whole number." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    self.canceled = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 @end
