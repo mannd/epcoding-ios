@@ -21,7 +21,7 @@
     self.timeTextField.delegate = self;
     [self.sameMDSwitch setOn:self.sameMD];
     [self.patientAgeSwitch setOn:self.ageOver5];
-    self.sedationTime.text = [NSString stringWithFormat:@"%lu", self.time];
+    self.timeTextField.text = [NSString stringWithFormat:@"%lu", self.time];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,9 +43,6 @@
 }
 
 - (IBAction)patientAgeAction:(id)sender {
-}
-
-- (IBAction)timeStepperAction:(id)sender {
 }
 
 -(void)viewWillDisappear:(BOOL)animated

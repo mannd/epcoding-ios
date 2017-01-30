@@ -17,9 +17,6 @@
 @interface EPSSedationViewController : UIViewController <UITextFieldDelegate>
 - (IBAction)SameMDAction:(id)sender;
 - (IBAction)patientAgeAction:(id)sender;
-- (IBAction)timeStepperAction:(id)sender;
-@property (strong, nonatomic) IBOutlet UIStepper *timeStepper;
-@property (strong, nonatomic) IBOutlet UITextField *sedationTime;
 @property (strong, nonatomic) IBOutlet UISwitch *sameMDSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *patientAgeSwitch;
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
