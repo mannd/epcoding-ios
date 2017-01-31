@@ -22,6 +22,10 @@
     [self.sameMDSwitch setOn:self.sameMD];
     [self.patientAgeSwitch setOn:self.ageOver5];
     self.timeTextField.text = [NSString stringWithFormat:@"%lu", self.time];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
+    UIBarButtonItem *addCodesButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Codes" style: UIBarButtonItemStylePlain target: self action: @selector(addCodesAction:)];
+    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, addCodesButton, nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

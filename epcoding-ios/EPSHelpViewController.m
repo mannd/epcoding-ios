@@ -53,11 +53,12 @@
 
 - (void)showAbout
 {
-    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2016 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
+    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2017 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
     NSString *title = @"EP Coding";
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:details delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:details preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
