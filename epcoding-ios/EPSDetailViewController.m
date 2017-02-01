@@ -72,6 +72,8 @@
             self.disabledCodesSet = [NSSet setWithArray:disabledKeys];
         }
         [self clearEntries];
+        NSMutableArray *sedationCodes = [[NSMutableArray alloc] init];
+        self.sedationCodes = sedationCodes;
         // load defaults
         [self load];
     }
@@ -194,11 +196,79 @@
     }
 }
 
+- (BOOL)sedationCodesAssigned {
+    return self.sedationCodes != nil && self.sedationCodes.count > 0;
+}
+
+- (void)showSedationCodeSummary:(BOOL)noCodesExist {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"No sedation codes assigned." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *editCodes = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
+    UIAlertAction *addCodes = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    if (noCodesExist) {
+        [alert addAction:addCodes];
+    }
+    else {
+        [alert addAction:editCodes];
+        NSString *firstCode = [[self.sedationCodes objectAtIndex:0] unformattedCodeNumber];
+        NSString *secondCode = @"";
+        if ([self.sedationCodes count] == 2) {
+            secondCode = [[self.sedationCodes objectAtIndex:1] unformattedCodeNumber];
+        }
+        alert.message = [NSString stringWithFormat:@"%@\n%@", firstCode, secondCode];
+    }
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)calculateSedation
 {
+    // this means we are in a master view, otherwise there are always primaryCodes
     if (self.primaryCodes == nil) {
         return;
     }
+    [self showSedationCodeSummary:![self sedationCodesAssigned]];
+    return;
+
+}
+
+- (void)determineSedationCoding {
+    [self.sedationCodes removeAllObjects];
+    if (self.sedationTime >= 10) {
+        if (self.sameMDPerformsSedation) {
+            if (self.patientOver5YearsOld) {
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
+            }
+            else {
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99152"]];
+            }
+        }
+        else {
+            if (self.patientOver5YearsOld) {
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99155"]];
+            }
+            else {
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99156"]];
+            }
+        }
+    }
+    if (self.sedationTime >= 23) {
+        NSInteger multiplier = [EPSCodes codeMultiplier:self.sedationTime];
+        EPSCode *code = [[EPSCode alloc] init];
+        if (self.sameMDPerformsSedation) {
+            code = [EPSCodes getCodeForNumber:@"99153"];
+        }
+        else {
+            code = [EPSCodes getCodeForNumber:@"99157"];
+        }
+        code.multipier = multiplier;
+        [self.sedationCodes addObject:code];
+    }
+    
+}
+
+- (void)openSedationView {
+    // add sedation info if it exists
     [self performSegueWithIdentifier:@"showSedation" sender:nil];
 }
 
@@ -246,16 +316,14 @@
 
 -(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time
 {
-    NSLog(@"time = %lu", time);
-    NSLog(@"cancel = %d", cancel);
-    NSLog(@"sameMD = %d", sameMD);
-    NSLog(@"lessThan5 = %d", lessThan5);
     if (cancel) {
         return;
     }
     self.sameMDPerformsSedation = sameMD;
     self.patientOver5YearsOld = !lessThan5;
     self.sedationTime = time;
+    [self determineSedationCoding];
+    [self showSedationCodeSummary:![self sedationCodesAssigned]];
 }
 
 
