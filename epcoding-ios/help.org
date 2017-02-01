@@ -1,4 +1,4 @@
-#+TITLE:     EP Coding Help
+#+TITLE:     
 #+AUTHOR:    David Mann
 #+EMAIL:     mannd@epstudiossoftware.com
 #+DATE:      2014-02-08 Sat
@@ -240,4 +240,4 @@
      accuracy of the app, so use at your own risk.
    - For questions, error reporting or suggestions contact
      [[mailto:mannd@epstudiossoftware.com][EP Studios]].
-   - Website: [[www.epstudiossoftware.com]]
+   - Website: [[https://www.epstudiossoftware.com]]
