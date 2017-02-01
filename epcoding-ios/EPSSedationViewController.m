@@ -7,6 +7,7 @@
 //
 
 #import "EPSSedationViewController.h"
+#import "EPSTimeCalculatorViewController.h"
 
 @interface EPSSedationViewController ()
 
@@ -33,15 +34,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showTimeCalculator"]) {
+        EPSTimeCalculatorViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+    }
 }
-*/
+
+-(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time;
+{
+    NSLog(@"time = %lu", time);
+    NSLog(@"cancel = %d", canceled);
+    if (canceled) {
+        return;
+    }
+    self.time = time;
+    self.timeTextField.text = [NSString stringWithFormat:@"%lu", time];
+}
+
 
 - (IBAction)SameMDAction:(id)sender {
 }
