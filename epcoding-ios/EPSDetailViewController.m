@@ -14,6 +14,8 @@
 #import "EPSSedationViewController.h"
 
 #define HIGHLIGHT yellowColor
+#define DISABLED_COLOR lightGrayColor
+//#define DISABLED_COLOR whiteColor
 
 @interface EPSDetailViewController ()
 
@@ -25,6 +27,7 @@
 {
     NSInteger cellHeight;
     BOOL isAllCodesModule;
+    UIImage *backgroundImage;
 }
 
 #pragma mark - Managing the detail item
@@ -95,6 +98,7 @@
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
+    backgroundImage = [UIImage imageNamed:@"stripes2.png"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -460,7 +464,11 @@
         else {  // secondary code
             code.selected = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
-            [cell setBackgroundColor:[UIColor redColor]];
+            
+            // TODO: prohibited cell with striped background
+            cell.backgroundView = [[UIView alloc] init];
+            cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+            [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
         }
         [cell setUserInteractionEnabled:NO];
     }
