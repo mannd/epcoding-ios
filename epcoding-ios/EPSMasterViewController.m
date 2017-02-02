@@ -57,6 +57,11 @@
                       OTHER_PROCEDURE_TITLE,
                       ALL_EP_CODES_TITLE, nil];
     self.procedureTypes = array;
+    // put right button only on iPhone, it will appear twice in the view on iPad
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
+        self.navigationItem.rightBarButtonItem = btn;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -132,6 +137,8 @@
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
 }
+
+
 
 
 @end
