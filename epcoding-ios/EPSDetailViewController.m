@@ -98,7 +98,7 @@
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
-    backgroundImage = [UIImage imageNamed:@"stripes2.png"];
+    backgroundImage = [UIImage imageNamed:@"stripes5.png"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -417,10 +417,7 @@
     static NSString *codeCellIdentifier = @"CodeCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
-    
-    if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
-    }
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
     
     BOOL isDisabled = NO;
     NSUInteger row = [indexPath row];
