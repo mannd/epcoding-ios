@@ -25,4 +25,8 @@
 @property BOOL sameMDPerformsSedation;
 @property BOOL patientOver5YearsOld;
 
+@property (strong, nonatomic) UIBarButtonItem *buttonSummarize;
+@property (strong, nonatomic) UIBarButtonItem *buttonClear;
+@property (strong, nonatomic) UIBarButtonItem *buttonSave;
+
 @end

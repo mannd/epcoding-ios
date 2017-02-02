@@ -88,10 +88,10 @@
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
     UIBarButtonItem *buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
-    UIBarButtonItem *buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
-    UIBarButtonItem *buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
-    UIBarButtonItem *buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
-    self.toolbarItems = [ NSArray arrayWithObjects: buttonSedation, buttonSummarize, buttonClear, buttonSave, nil ];
+    self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
+    self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
+    self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
+    self.toolbarItems = [ NSArray arrayWithObjects: buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil ];
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
@@ -101,6 +101,11 @@
 {
     [super viewDidAppear:YES];
     [self.navigationController setToolbarHidden:NO];
+    // Sedation action sheet will disable these buttons, so must re-enable them on
+    // return from sedation view.
+    [self.buttonSummarize setEnabled:YES];
+    [self.buttonClear setEnabled:YES];
+    [self.buttonSave setEnabled:YES];
     
 }
 
@@ -201,10 +206,10 @@
 }
 
 - (void)showSedationCodeSummary:(BOOL)noCodesExist {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"No sedation codes assigned." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"No sedation codes assigned." preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *editCodes = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
     UIAlertAction *addCodes = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){[self.buttonSummarize setEnabled:YES]; [self.buttonSave setEnabled:YES]; [self.buttonClear setEnabled:YES];}];
     if (noCodesExist) {
         [alert addAction:addCodes];
     }
@@ -218,6 +223,16 @@
         alert.message = [NSString stringWithFormat:@"%@\n%@", firstCode, secondCode];
     }
     [alert addAction:cancel];
+    
+
+    // needed for iPad actionsheet
+    alert.popoverPresentationController.barButtonItem = self.toolbarItems.firstObject;
+    
+    // must inactivate other buttons or weird things happen
+    [self.buttonSummarize setEnabled:NO];
+    [self.buttonSave setEnabled:NO];
+    [self.buttonClear setEnabled:NO];
+
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -300,6 +315,9 @@
                 code.codeStatus = GOOD;
                 [secondaryArray addObject:code];
             }
+        }
+        for (EPSCode *code in self.sedationCodes) {
+            [secondaryArray addObject:code];
         }
         [[segue destinationViewController] setSelectedSecondaryCodes:secondaryArray];
         [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:self.ignoreNoSecondaryCodesSelected];
