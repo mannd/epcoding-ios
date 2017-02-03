@@ -16,13 +16,15 @@
 
 @implementation EPSCodeAnalyzer
 
-- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes
+- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes
 {
     if (self = [super init]) {
         self.primaryCodes = primaryCodes;
         self.secondaryCodes = secondaryCodes;
+        self.sedationCodes = sedationCodes;
         self.ignoreNoSecondaryCodes = ignoreNoSecondaryCodes;
         NSMutableArray *array = [NSMutableArray  arrayWithArray:[self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes]];
+        [array addObjectsFromArray:self.sedationCodes];
         self.allCodes = array;
     }
     return self;
@@ -119,6 +121,10 @@
     return array;
 }
 
+- (NSSet *)initialSedationCodeSet {
+    return [[NSSet alloc] initWithObjects:@"99151", @"99152", @"99155", @"99156", nil];
+}
+
 - (NSArray *)analysis
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -141,6 +147,11 @@
     }
     if ([self noMappingCodesForAblation]) {
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No mapping codes for ablation."]];
+        [self markCodes:self.allCodes withWarning:WARNING];
+    }
+    // warn for no sedation codes
+    if ([self mismatchedSedationCodes] == 1) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you provide sedation services?  Sedation codes are no longer bundled with the procedure codes [2017]."]];
         [self markCodes:self.allCodes withWarning:WARNING];
     }
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
@@ -275,6 +286,50 @@
     NSString *string = [codeNumbers componentsJoinedByString:@","];
     return [NSString stringWithFormat:@"[%@]", string];
 }
+
+// return specific error codes to be handled by caller
+// 0 is no error
+// TODO: make #defines for error numbers
+// may need to make this a bitmap, or something mod 10 to combine error codes?
+- (NSUInteger)mismatchedSedationCodes {
+    // impossible to have more than 2 sedation codes per case
+    if ([self.sedationCodes count] < 1) {
+        // no sedation codes, give warning
+        return 1; // NO_SEDATION_CODES_WARNING
+    }
+    if ([self.sedationCodes count] > 2) {
+        return 2; // TOO_MANY_SEDATION_CODES_ERROR
+    }
+    // handle single sedation codes
+    NSString *firstCode = [self.sedationCodes objectAtIndex:0];
+    if ([self.sedationCodes count] == 1) {
+        // gosh we only have sedation codes
+        if ([self.allCodes count] == 1) {
+            if ([firstCode isEqualToString:@"99151"] || [firstCode isEqualToString:@"99152"]) {
+                return 3; // USING_NONSTANDALONE_SEDATION_CODES_ALONE
+            }
+        }
+        if (![[self initialSedationCodeSet] containsObject:firstCode]) {
+            return 4; // USE_OF_ADDITIONAL_SEDATION_CODE_WITHOUT_FIRST_CODE
+        }
+        // etc!
+        
+    }
+    return 0;
+}
+
+/*
+ Sedation code tests
+ - no sedation codes - warning - DONE
+ - sedation codes not matching - mixing by MD and not by MD sedation codes
+ - additional minutes codes without initial sedation code
+ - other MD sedation codes along with procedural codes
+ - same MD sedation codes without procedure codes
+ 
+ 
+ 
+ 
+ */
 
 
 

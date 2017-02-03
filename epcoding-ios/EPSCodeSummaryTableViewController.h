@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSArray *selectedCodes;
 @property (strong, nonatomic) NSArray *selectedPrimaryCodes;
 @property (strong, nonatomic) NSArray *selectedSecondaryCodes;
+@property (strong, nonatomic) NSArray *selectedSedationCodes;
 @property (strong, nonatomic) NSArray *codeErrors;
 @property BOOL ignoreNoSecondaryCodesSelected;
 

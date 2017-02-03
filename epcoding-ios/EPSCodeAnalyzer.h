@@ -12,10 +12,11 @@
 
 @property (weak, nonatomic) NSArray *primaryCodes;
 @property (weak, nonatomic) NSArray *secondaryCodes;
+@property (weak, nonatomic) NSArray *sedationCodes;
 @property (strong, nonatomic) NSMutableArray *allCodes;
 @property BOOL ignoreNoSecondaryCodes;
 
-- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes;
+- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes;
 
 - (NSArray *)analysis;
 

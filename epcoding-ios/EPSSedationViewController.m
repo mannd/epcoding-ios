@@ -49,8 +49,6 @@
 
 -(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time;
 {
-    NSLog(@"time = %lu", time);
-    NSLog(@"cancel = %d", canceled);
     if (canceled) {
         return;
     }
@@ -68,7 +66,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSInteger time = [self.timeTextField.text integerValue];
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time > 0 ? time : 0];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -83,7 +81,7 @@
 
 - (IBAction)addCodesAction:(id)sender {
     if (![self.timeTextField.text integerValue]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Time not a number" message:@"Time must be a positive whole number." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAlert];
         [self presentViewController:alert animated:YES completion:nil];

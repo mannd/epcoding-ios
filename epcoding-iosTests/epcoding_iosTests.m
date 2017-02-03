@@ -152,7 +152,7 @@
     EPSCode *code5 = [[EPSCode alloc] initWithNumber:@"00005" description:@"testcode5" isAddOn:NO];
     NSArray *primaryCodes = @[code0, code1, code2];
     NSArray *secondaryCodes = @[code3, code4, code5];
-    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes secondaryCodes:secondaryCodes ignoreNoSecondaryCodes:NO];
+    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes secondaryCodes:secondaryCodes  ignoreNoSecondaryCodes:NO sedationCodes:nil];
     XCTAssertTrue([[analyzer allCodes] count] == 6);
     XCTAssertTrue([[[[analyzer allCodes] objectAtIndex:3] number] isEqualToString:@"00003"]);
     XCTAssertTrue([[[[analyzer allCodes] objectAtIndex:5] fullDescription] isEqualToString:@"testcode5"]);
@@ -164,7 +164,7 @@
         code.isAddOn = YES;
     }
     XCTAssertTrue([analyzer allAddOnCodes]);
-    EPSCodeAnalyzer *analyzer1 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:nil secondaryCodes:nil ignoreNoSecondaryCodes:YES];
+    EPSCodeAnalyzer *analyzer1 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:nil secondaryCodes:nil ignoreNoSecondaryCodes:YES sedationCodes:nil];
     NSArray *results = [analyzer1 analysis];
     XCTAssertTrue([results count] == 1);
     XCTAssertTrue([[[results objectAtIndex:0] message] isEqualToString:@"No codes selected."]);
@@ -174,10 +174,10 @@
     // note there is space after terminal "]" in next method
     XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codeNumbers] isEqualToString:@"[00000,00001,00002]"]);
     EPSCode *afbAblationCode = [[EPSCode alloc] initWithNumber:@"93653" description:nil isAddOn:NO];
-    EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:nil ignoreNoSecondaryCodes:NO];
+    EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:nil ignoreNoSecondaryCodes:NO sedationCodes:nil];
     XCTAssertTrue([analyzer2 noMappingCodesForAblation]);
     EPSCode *twoDMappingCode = [[EPSCode alloc] initWithNumber:@"93609" description:nil isAddOn:NO];
-    EPSCodeAnalyzer *analyzer3 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:@[twoDMappingCode] ignoreNoSecondaryCodes:NO];
+    EPSCodeAnalyzer *analyzer3 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:@[twoDMappingCode] ignoreNoSecondaryCodes:NO sedationCodes:nil];
     XCTAssertFalse([analyzer3 noMappingCodesForAblation]);
     NSSet *codeNumberSet = [NSSet setWithArray:@[@"00000", @"00001", @"00002", @"00003"]];
     NSArray *badCodes = @[@"00000", @"00002"];
@@ -191,10 +191,13 @@
     EPSCode *code02 = [[EPSCode alloc] initWithNumber:@"33228" description:@"testcode0" isAddOn:NO];
     EPSCode *code03 = [[EPSCode alloc] initWithNumber:@"00000" description:@"testcode0" isAddOn:NO];
     NSArray *primaryCodes1 = @[code01, code02, code03];
-    EPSCodeAnalyzer *analyzer5 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes1 secondaryCodes:secondaryCodes ignoreNoSecondaryCodes:NO];
+    EPSCode *codeSedation01 = [[EPSCode alloc] initWithNumber:@"99152" description:@"sedationcode" isAddOn:NO];
+    NSArray *sedationCodes = @[codeSedation01];
+    EPSCodeAnalyzer *analyzer5 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes1 secondaryCodes:secondaryCodes ignoreNoSecondaryCodes:NO sedationCodes:sedationCodes];
     NSArray *errorCodes = [analyzer5 analysis];
     EPSCodeError *errorCode1 = [errorCodes objectAtIndex:0];
     NSArray *codes10 = [errorCode1 codes];
+    NSLog(@"%@", [EPSCodeAnalyzer codeNumbersToString:codes10]);
     XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codes10] isEqualToString:@"[33233,33228]"]);
     XCTAssertTrue([EPSCodeAnalyzer codeNumbersToString:nil] == nil);
     
@@ -229,9 +232,21 @@
     XCTAssert([EPSCodes codeMultiplier:10] == 0);
     XCTAssert([EPSCodes codeMultiplier:0] == 0);
     XCTAssert([EPSCodes codeMultiplier:-10] == 0);
+}
 
-;
-
+//+ (NSString *)codeNumberFromCodeString:(NSString *)codeString leavePlus:(BOOL)leavePlus {
+- (void)testCodeNumberFromCodeString {
+    NSString *testString = [EPSCodes codeNumberFromCodeString:@"+88888-26 x 5" leavePlus:YES];
+    XCTAssertTrue([testString isEqualToString:@"+88888"]);
+    testString = [EPSCodes codeNumberFromCodeString:@"+88888-26 x 5" leavePlus:NO];
+    XCTAssertTrue([testString isEqualToString:@"88888"]);
+    testString = [EPSCodes codeNumberFromCodeString:@"77777" leavePlus:YES];
+    XCTAssertTrue([testString isEqualToString:@"77777"]);
+    testString = [EPSCodes codeNumberFromCodeString:@"+8888" leavePlus:NO];
+    XCTAssertTrue([testString isEqualToString:@""]);
+    testString = [EPSCodes codeNumberFromCodeString:@"+88" leavePlus:YES];
+    XCTAssertTrue([testString isEqualToString:@""]);
+    
 
 }
 

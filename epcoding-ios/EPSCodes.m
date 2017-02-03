@@ -232,4 +232,28 @@
     return (NSUInteger)multiplier;
 }
 
++ (NSString *)codeNumberFromCodeString:(NSString *)codeString leavePlus:(BOOL)leavePlus {
+    // assumes legitimate code string is passed, minimal error checking
+    // takes something like "+99999-26 x 5" and returns simple code number "99999"
+    // if leavePlus then returns "+99999" if plus present
+    NSString *pureCodeNumber = @"";
+    if ([codeString length] < 5) {
+        return @"";
+    }
+    BOOL hasPlus = ([codeString characterAtIndex:0] == '+');
+    if (hasPlus && [codeString length] < 6) {
+        return @"";
+    }
+    if (hasPlus) {
+        pureCodeNumber = [codeString substringWithRange:NSMakeRange(1, 5)];
+    }
+    else {
+        pureCodeNumber = [codeString substringWithRange:NSMakeRange(0, 5)];
+    }
+    if (leavePlus && hasPlus) {
+        pureCodeNumber = [NSString stringWithFormat:@"+%@", pureCodeNumber];
+    }
+    return pureCodeNumber;
+}
+
 @end

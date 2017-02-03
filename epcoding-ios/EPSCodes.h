@@ -17,6 +17,8 @@
 + (NSArray *)getCodesForCodeNumbers:(NSArray *)codeNumbers;
 + (NSArray *)allCodesSorted;
 
++ (NSString *)codeNumberFromCodeString:(NSString *)codeString leavePlus:(BOOL)leavePlus;
+
 + (NSDictionary *)codeDictionary;
 
 + (NSUInteger)codeMultiplier:(NSInteger)time;

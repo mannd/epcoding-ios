@@ -90,11 +90,11 @@
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
-    UIBarButtonItem *buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
+    self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
     self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
     self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
-    self.toolbarItems = [ NSArray arrayWithObjects: buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil ];
+    self.toolbarItems = [ NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil ];
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
@@ -107,10 +107,10 @@
     [self.navigationController setToolbarHidden:NO];
     // Sedation action sheet will disable these buttons, so must re-enable them on
     // return from sedation view.
+    [self.buttonSedation setEnabled:!isAllCodesModule];
     [self.buttonSummarize setEnabled:YES];
     [self.buttonClear setEnabled:YES];
-    [self.buttonSave setEnabled:YES];
-    
+    [self.buttonSave setEnabled:!isAllCodesModule];
 }
 
 - (void)didReceiveMemoryWarning
@@ -215,7 +215,13 @@
     UIAlertAction *addCodes = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){[self.buttonSummarize setEnabled:YES]; [self.buttonSave setEnabled:YES]; [self.buttonClear setEnabled:YES];}];
     if (noCodesExist) {
-        [alert addAction:addCodes];
+        if (self.sedationTime < 10 && self.sedationTime > 0) {
+            alert.message = @"Sedation time < 10 mins\nNo sedation codes assigned.";
+            [alert addAction:editCodes];
+        }
+        else {
+            [alert addAction:addCodes];
+        }
     }
     else {
         [alert addAction:editCodes];
@@ -256,18 +262,18 @@
     if (self.sedationTime >= 10) {
         if (self.sameMDPerformsSedation) {
             if (self.patientOver5YearsOld) {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99152"]];
             }
             else {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99152"]];
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
             }
         }
         else {
             if (self.patientOver5YearsOld) {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99155"]];
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99156"]];
             }
             else {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99156"]];
+                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
             }
         }
     }
@@ -303,6 +309,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showSummary"]) {
+        EPSCodeSummaryTableViewController *viewController = segue.destinationViewController;
         // get selected codes (need primary, secondary, etc.  but for now
         NSMutableArray *primaryArray = [[NSMutableArray alloc] init];
         for (EPSCode *code in self.primaryCodes) {
@@ -312,7 +319,6 @@
                 [primaryArray addObject:code];
             }
         }
-        [[segue destinationViewController] setSelectedPrimaryCodes:primaryArray];
         NSMutableArray *secondaryArray = [[NSMutableArray alloc] init];
         for (EPSCode *code in self.secondaryCodes) {
             if ([code selected]) {
@@ -320,11 +326,15 @@
                 [secondaryArray addObject:code];
             }
         }
+        NSMutableArray *sedationArray = [[NSMutableArray alloc] init];
         for (EPSCode *code in self.sedationCodes) {
-            [secondaryArray addObject:code];
+            code.codeStatus = GOOD;
+            [sedationArray addObject:code];
         }
-        [[segue destinationViewController] setSelectedSecondaryCodes:secondaryArray];
-        [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:self.ignoreNoSecondaryCodesSelected];
+        [viewController setSelectedPrimaryCodes:primaryArray];
+        [viewController setSelectedSecondaryCodes:secondaryArray];
+        [viewController setIgnoreNoSecondaryCodesSelected:self.ignoreNoSecondaryCodesSelected];
+        [viewController setSelectedSedationCodes:sedationArray];
     }
     else if ([[segue identifier] isEqualToString:@"showSedation"]) {
         EPSSedationViewController *viewController = segue.destinationViewController;
