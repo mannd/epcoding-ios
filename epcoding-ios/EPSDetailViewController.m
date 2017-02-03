@@ -58,6 +58,7 @@
         self.ignoreNoSecondaryCodesSelected = [[keyDictionary valueForKey:_detailItem] ignoreNoSecondaryCodesSelected];
         if ([primaryCodeKey isEqualToString:ALL_EP_CODES_PRIMARY_CODES]) {
             self.primaryCodes = [EPSCodes allCodesSorted];
+            [EPSCodes clearMultipliers:self.primaryCodes];
             self.secondaryCodes = nil;
             isAllCodesModule = YES;
         }
@@ -90,7 +91,7 @@
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
-    self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
+    self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Add Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
     self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
     self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
@@ -98,6 +99,7 @@
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
+    self.noSedationAdministered = NO;
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
 }
 
@@ -214,7 +216,11 @@
     UIAlertAction *editCodes = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
     UIAlertAction *addCodes = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){[self.buttonSummarize setEnabled:YES]; [self.buttonSave setEnabled:YES]; [self.buttonClear setEnabled:YES];}];
-    if (noCodesExist) {
+    if (self.noSedationAdministered) {
+        alert.message = @"No sedation administered for this procedure.";
+        [alert addAction:editCodes];
+    }
+    else if (noCodesExist) {
         if (self.sedationTime < 10 && self.sedationTime > 0) {
             alert.message = @"Sedation time < 10 mins\nNo sedation codes assigned.";
             [alert addAction:editCodes];
@@ -346,7 +352,7 @@
     }
 }
 
--(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time
+-(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation
 {
     if (cancel) {
         return;
@@ -355,7 +361,12 @@
     self.patientOver5YearsOld = !lessThan5;
     self.sedationTime = time;
     [self determineSedationCoding];
-    [self showSedationCodeSummary:![self sedationCodesAssigned]];
+    self.noSedationAdministered = noSedation;
+    if (self.noSedationAdministered || self.sedationTime > 0 || !self.sameMDPerformsSedation) {
+        self.buttonSedation.title = @"Edit Sedation";
+    }
+ //   [self showSedationCodeSummary:![self sedationCodesAssigned]];
+    NSLog(@"No sedation = %d", noSedation);
 }
 
 

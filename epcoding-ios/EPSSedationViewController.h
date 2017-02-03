@@ -10,7 +10,7 @@
 
 @protocol sendDataProtocol <NSObject>
 
--(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time;
+-(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation;
 
 @end
 
@@ -25,12 +25,13 @@
 @property BOOL sameMD;
 @property BOOL ageOver5;
 @property NSInteger time;
+@property BOOL noSedation;
 
 - (IBAction)dismissKeyboard:(id)sender;
 
 
 
-
+- (IBAction)noSedationAction:(id)sender;
 - (IBAction)cancelAction:(id)sender;
 - (IBAction)addCodesAction:(id)sender;
 

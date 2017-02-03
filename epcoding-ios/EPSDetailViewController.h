@@ -24,6 +24,7 @@
 @property NSInteger sedationTime;
 @property BOOL sameMDPerformsSedation;
 @property BOOL patientOver5YearsOld;
+@property BOOL noSedationAdministered;
 
 @property (strong, nonatomic) UIBarButtonItem *buttonSedation;
 @property (strong, nonatomic) UIBarButtonItem *buttonSummarize;

@@ -22,5 +22,6 @@
 + (NSDictionary *)codeDictionary;
 
 + (NSUInteger)codeMultiplier:(NSInteger)time;
++ (void)clearMultipliers:(NSArray *)array;
 
 @end

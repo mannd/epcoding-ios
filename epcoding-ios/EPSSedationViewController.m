@@ -23,9 +23,11 @@
     [self.sameMDSwitch setOn:self.sameMD];
     [self.patientAgeSwitch setOn:self.ageOver5];
     self.timeTextField.text = [NSString stringWithFormat:@"%lu", self.time];
+    self.noSedation = NO;
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
-    UIBarButtonItem *addCodesButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Codes" style: UIBarButtonItemStylePlain target: self action: @selector(addCodesAction:)];
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, addCodesButton, nil];
+    UIBarButtonItem *noSedationButton = [[UIBarButtonItem alloc] initWithTitle:@"No Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(noSedationAction:)];
+    UIBarButtonItem *addCodesButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Codes" style: UIBarButtonItemStyleDone target: self action: @selector(addCodesAction:)];
+    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, noSedationButton, addCodesButton, nil];
 
 }
 
@@ -66,7 +68,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSInteger time = [self.timeTextField.text integerValue];
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time > 0 ? time : 0];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time > 0 ? time : 0 noSedation:self.noSedation];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -79,9 +81,16 @@
     
 }
 
+- (IBAction)noSedationAction:(id)sender {
+    self.time = 0;
+    self.canceled = NO;
+    self.noSedation = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)addCodesAction:(id)sender {
     if (![self.timeTextField.text integerValue]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number more than 0.  If no sedation was performed, choose No Sedation button instead." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAlert];
         [self presentViewController:alert animated:YES completion:nil];

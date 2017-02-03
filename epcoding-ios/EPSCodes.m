@@ -214,7 +214,7 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     // Not sure this is best way to do this.  This seems to iterate over the keys of dictionary.a
     // Would like to get all the values out instead and skip a step.
-    for (id code in dictionary)  {
+    for (NSString *code in dictionary)  {
         [array addObject:code];
     }
 
@@ -254,6 +254,12 @@
         pureCodeNumber = [NSString stringWithFormat:@"+%@", pureCodeNumber];
     }
     return pureCodeNumber;
+}
+
++ (void)clearMultipliers:(NSArray *)array {
+    for (EPSCode *code in array) {
+        code.multipier = 0;
+    }
 }
 
 @end
