@@ -279,15 +279,9 @@
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6q-iU-tn5">
                                 <rect key="frame" x="135.5" y="256" width="51" height="31"/>
-                                <connections>
-                                    <action selector="SameMDAction:" destination="6ET-1T-qPj" eventType="valueChanged" id="6d6-bU-ybu"/>
-                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QL-tq-0nI">
                                 <rect key="frame" x="135.5" y="381.5" width="51" height="31"/>
-                                <connections>
-                                    <action selector="patientAgeAction:" destination="6ET-1T-qPj" eventType="valueChanged" id="HJ0-cq-Q2U"/>
-                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procedure MD performed sedation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaj-uw-vbu">
                                 <rect key="frame" x="27.5" y="211.5" width="265.5" height="20.5"/>

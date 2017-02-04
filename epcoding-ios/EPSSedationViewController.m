@@ -58,17 +58,9 @@
     self.timeTextField.text = [NSString stringWithFormat:@"%lu", time];
 }
 
-
-- (IBAction)SameMDAction:(id)sender {
-}
-
-- (IBAction)patientAgeAction:(id)sender {
-}
-
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSInteger time = [self.timeTextField.text integerValue];
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMDSwitch.isOn lessThan5:!self.patientAgeSwitch.isOn sedationTime:time > 0 ? time : 0 noSedation:self.noSedation];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time noSedation:self.noSedation];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -85,20 +77,53 @@
     self.time = 0;
     self.canceled = NO;
     self.noSedation = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    [self showResults];
 }
 
 - (IBAction)addCodesAction:(id)sender {
-    if (![self.timeTextField.text integerValue]) {
+    // if time is zero or not an integer or if not same MD performing then give error message
+    if (![self.timeTextField.text integerValue] && [self.sameMDSwitch isOn]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number more than 0.  If no sedation was performed, choose No Sedation button instead." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:cancelAlert];
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
+    self.time = [self.timeTextField.text integerValue];
     self.canceled = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+    self.noSedation = NO;
+    self.sameMD = [self.sameMDSwitch isOn];
+    self.ageOver5 = [self.patientAgeSwitch isOn];
+    [self showResults];
 }
+
+- (void)showResults {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Results" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){    [self.navigationController popViewControllerAnimated:YES];}];
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    if (self.noSedation) {
+        alert.message = @"No sedation used during this procedure.  No sedation codes added.";
+    }
+    else if (self.time > 0 && self.time < 10) {
+        alert.message = @"Sedation time < 10 minutes.  No sedation codes can be added.";
+    }
+    else if (!self.sameMD) {
+        if (self.time < 1) {
+            alert.message = @"Sedation administered by different MD than one performing procedure.  No sedation time given.  No sedation codes added.";
+        }
+        else {
+            alert.message = @"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes added with warning.";
+        }
+    }
+    else {
+        alert.message = @"Sedation codes added.";
+    }
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+// MARK: textfield delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
