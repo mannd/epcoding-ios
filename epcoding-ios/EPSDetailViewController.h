@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 

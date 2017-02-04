@@ -101,6 +101,14 @@
     self.patientOver5YearsOld = YES;
     self.noSedationAdministered = NO;
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
+    
+    // add long press handler
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0; //seconds
+    longPress.delegate = self;
+    [self.codeTableView addGestureRecognizer:longPress];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -547,6 +555,22 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+}
+
+#pragma mark - UIGestureRecognizer delegate
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.codeTableView];
+    
+    NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        NSLog(@"long press on table view but not on a row");
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"long press on table view at row %ld", indexPath.row);
+    } else {
+        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+    }
 }
 
 
