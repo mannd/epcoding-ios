@@ -19,7 +19,8 @@
         self.isAddOn = isAddOn;
         self.codeStatus = GOOD;
         // multiplier only shown if > 0
-        self.multipier = 0;
+        self.multiplier = 0;
+        self.modifiers = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -76,11 +77,11 @@
 
 - (NSString *)unformattedCodeNumber
 {
-    if (self.multipier < 1) {
-        return [[NSString alloc] initWithFormat:@"%@%@", self.isAddOn ? @"+" : @"", self.number];
+    if (self.multiplier < 1) {
+        return [[NSString alloc] initWithFormat:@"%@%@%@", self.isAddOn ? @"+" : @"", self.number, [self modiferString]];
     }
     else {
-        return [[NSString alloc] initWithFormat:@"%@%@ x %lu", self.isAddOn ? @"+" : @"", self.number, (unsigned long)self.multipier];
+        return [[NSString alloc] initWithFormat:@"%@%@%@ x %lu", self.isAddOn ? @"+" : @"", self.number, [self modiferString], (unsigned long)self.multiplier];
     }
 }
 
@@ -94,4 +95,24 @@
     return [self.number compare:[object number]];
 }
 
+- (void)addModifier:(EPSModifier *)modifier {
+    [self.modifiers addObject:modifier];
+}
+
+- (void)clearModifiers {
+    [self.modifiers removeAllObjects];
+}
+
+- (NSString *)modiferString {
+    if ([self.modifiers count] < 1) {
+        return @"";
+    }
+    else {
+        NSString *modifierString = @"";
+        for (EPSModifier *modifier in self.modifiers) {
+            modifierString = [modifierString stringByAppendingString:[NSString stringWithFormat:@"-%@", modifier.number]];
+        }
+        return modifierString;
+    }
+}
 @end

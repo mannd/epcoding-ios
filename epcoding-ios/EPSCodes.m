@@ -258,7 +258,20 @@
 
 + (void)clearMultipliers:(NSArray *)array {
     for (EPSCode *code in array) {
-        code.multipier = 0;
+        code.multiplier = 0;
+    }
+}
+
++ (void)clearModifiers:(NSArray *)array {
+    for (EPSCode *code in array) {
+        [code clearModifiers];
+    }
+}
+
++ (void)clearMultipliersAndModifiers:(NSArray *)array {
+    for (EPSCode *code in array) {
+        code.multiplier = 0;
+        [code clearModifiers];
     }
 }
 

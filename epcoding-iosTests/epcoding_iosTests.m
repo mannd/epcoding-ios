@@ -13,6 +13,7 @@
 #import "EPSProcedureKeys.h"
 #import "EPSCodeAnalyzer.h"
 #import "EPSCodeError.h"
+#import "EPSModifier.h"
 
 @interface epcoding_iosTests : XCTestCase
 
@@ -246,8 +247,35 @@
     XCTAssertTrue([testString isEqualToString:@""]);
     testString = [EPSCodes codeNumberFromCodeString:@"+88" leavePlus:YES];
     XCTAssertTrue([testString isEqualToString:@""]);
-    
+}
 
+- (void)testModifiers {
+    EPSCode *testCode = [[EPSCode alloc] initWithNumber:@"99999" description:@"Test code" isAddOn:NO];
+    EPSModifier *testModifier = [[EPSModifier alloc] initWithNumber:@"99" andDescription:@"Test modifier"];
+    XCTAssertTrue([testModifier.fullDescription isEqualToString:@"Test modifier"]);
+    [testCode addModifier:testModifier];
+    NSString *testCodeString = [testCode unformattedCodeNumber];
+    XCTAssertTrue([testCodeString isEqualToString:@"99999-99"]);
+    [testCode clearModifiers];
+    testCodeString = [testCode unformattedCodeNumber];
+    XCTAssertTrue([testCodeString isEqualToString:@"99999"]);
+    EPSModifier *testModifier2 = [[EPSModifier alloc] initWithNumber:@"88" andDescription:@"Test modifier 2"];
+    [testCode addModifier:testModifier2];
+    [testCode addModifier:testModifier];
+    testCodeString = [testCode unformattedCodeNumber];
+    NSLog(@"%@", testCodeString);
+    XCTAssertTrue([testCodeString isEqualToString:@"99999-88-99"]);
+    testCode.multiplier = 20;
+    testCodeString = [testCode unformattedCodeNumber];
+    XCTAssertTrue([testCodeString isEqualToString:@"99999-88-99 x 20"]);
+    [testCode clearModifiers];
+    testCodeString = [testCode unformattedCodeNumber];
+    XCTAssertTrue([testCodeString isEqualToString:@"99999 x 20"]);
+    [testCode addModifier:testModifier];
+    XCTAssertTrue([testCode.modifiers count] == 1);
+    EPSModifier *modifier = [[testCode modifiers] objectAtIndex:0];
+    NSLog(@"modifier description = %@", modifier.fullDescription);
+    XCTAssertTrue([modifier.fullDescription isEqualToString:@"Test modifier"]);
 }
 
 @end

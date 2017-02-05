@@ -23,5 +23,7 @@
 
 + (NSUInteger)codeMultiplier:(NSInteger)time;
 + (void)clearMultipliers:(NSArray *)array;
++ (void)clearModifiers:(NSArray *)array;
++ (void)clearMultipliersAndModifiers:(NSArray *)array;
 
 @end

@@ -300,7 +300,7 @@
         else {
             code = [EPSCodes getCodeForNumber:@"99157"];
         }
-        code.multipier = multiplier;
+        code.multiplier = multiplier;
         [self.sedationCodes addObject:code];
     }
     
@@ -568,6 +568,8 @@
         NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         NSLog(@"long press on table view at row %ld", indexPath.row);
+        [self performSegueWithIdentifier:@"showModifiers" sender:nil];
+
     } else {
         NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
     }

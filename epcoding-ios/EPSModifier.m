@@ -10,4 +10,19 @@
 
 @implementation EPSModifier
 
+
+- (id)initWithNumber:(NSString *)number andDescription:(NSString *)description {
+    if (self = [super init]) {
+        self.number = number;
+        self.fullDescription = description;
+    }
+    return self;
+}
+
+- (NSComparisonResult)compareModifiers:(id)object
+{
+    return [self.number compare:[object number]];
+}
+
+
 @end

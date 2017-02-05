@@ -13,5 +13,7 @@
 @property (weak, nonatomic) NSString *number;
 @property (weak, nonatomic) NSString *fullDescription;
 
+- (id)initWithNumber:(NSString *)number andDescription:(NSString *)description;
+- (NSComparisonResult)compareModifiers:(id)object;
 
 @end

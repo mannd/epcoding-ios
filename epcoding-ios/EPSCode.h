@@ -7,22 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EPSModifier.h"
 
 @interface EPSCode : NSObject
 
-@property (weak, nonatomic) NSString *number;
-@property (weak, nonatomic) NSString *fullDescription;
+@property (strong, nonatomic) NSString *number;
+@property (strong, nonatomic) NSString *fullDescription;
 @property BOOL isAddOn;
 @property BOOL plusShown;
 @property BOOL descriptionShortened;
 @property BOOL descriptonShown;
 @property BOOL selected;
 @property enum status codeStatus;
-@property NSInteger multipier;
+@property NSInteger multiplier;
+@property (strong, nonatomic) NSMutableArray *modifiers;
 
 enum status {GOOD, WARNING, ERROR};
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;
+
+- (void)addModifier:(EPSModifier *)modifier;
+- (void)clearModifiers;
 
 - (void)markCodeStatus:(enum status)status;
 
@@ -33,4 +38,6 @@ enum status {GOOD, WARNING, ERROR};
 - (NSString *)unformattedCodeNumber;
 - (NSString *)unformattedCodeDescription;
 - (NSComparisonResult)compareCodes:(id)object;
+- (NSString *)modiferString;
+
 @end
