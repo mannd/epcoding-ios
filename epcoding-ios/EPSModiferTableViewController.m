@@ -29,6 +29,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSArray *array = [EPSModifiers allModifiersSorted];
+    [EPSModifiers clearSelectedAllModifiers];
     cancel = YES;
     self.modifiers = array;
     self.title = [NSString stringWithFormat:@"%@ Modifiers",self.code.number];
@@ -37,7 +38,9 @@
     self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, addButton, nil];
     for (EPSModifier *modifier in self.modifiers) {
         for (EPSModifier *codeModifier in self.code.modifiers) {
-            modifier.selected = [modifier.number isEqualToString:codeModifier.number];
+            if ([modifier.number isEqualToString:codeModifier.number]) {
+                modifier.selected = YES;
+            }
         }
     }
 

@@ -211,16 +211,8 @@
 + (NSArray *)allCodesSorted
 {
     NSDictionary *dictionary = [self allCodes];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    // Not sure this is best way to do this.  This seems to iterate over the keys of dictionary.a
-    // Would like to get all the values out instead and skip a step.
-    for (NSString *code in dictionary)  {
-        [array addObject:code];
-    }
-
-    NSArray *codes = [self getCodesForCodeNumbers:array];
-    NSArray *sortedCodes = [codes sortedArrayUsingSelector:@selector(compareCodes:)];
-    
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[dictionary allValues]];
+    NSArray *sortedCodes = [array sortedArrayUsingSelector:@selector(compareCodes:)];
     return sortedCodes;
 }
 

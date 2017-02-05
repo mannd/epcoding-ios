@@ -388,11 +388,11 @@
     if (cancel) {
         return;
     }
+    [selectedCode clearModifiers];
     for (EPSModifier *modifier in modifiers) {
         [selectedCode addModifier:modifier];
     }
     [self.codeTableView reloadData];
-    NSLog(@"Send modifier data back");
 }
 
 - (void)clearSelected

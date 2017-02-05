@@ -14,5 +14,6 @@
 + (NSDictionary *)allModifiers;
 + (void)addModifier:(EPSModifier *)modifier toDictionary:(NSMutableDictionary *)dictionary;
 + (NSArray *)allModifiersSorted;
++ (void)clearSelectedAllModifiers;
 
 @end

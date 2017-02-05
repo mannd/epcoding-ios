@@ -10,16 +10,6 @@
 
 @implementation EPSModifiers
 
-//+ (NSDictionary *)allCodes
-//{
-//    static NSMutableDictionary *dictionary;
-//    if (dictionary == nil) {
-//        dictionary = [[NSMutableDictionary alloc] init];
-//        
-//        // SubQ ICD
-//        [self addCode:[[EPSCode alloc] initWithNumber:@"33270" description:@"New or replacement SubQ ICD system, includes testing" isAddOn:NO] toDictionary:dictionary];
-//
-
 + (NSDictionary *)allModifiers
 {
     static NSMutableDictionary *dictionary;
@@ -55,5 +45,14 @@
 {
     [dictionary setObject:modifier forKey:modifier.number];
 }
+
++ (void)clearSelectedAllModifiers
+{
+    NSArray *array = [EPSModifiers allModifiersSorted];
+    for (EPSModifier *modifier in array) {
+        modifier.selected = NO;
+    }
+}
+
 
 @end
