@@ -12,6 +12,7 @@
 #import "EPSProcedureKey.h"
 #import "EPSCodeSummaryTableViewController.h"
 #import "EPSSedationViewController.h"
+#import "EPSModiferTableViewController.h"
 
 #define HIGHLIGHT yellowColor
 #define DISABLED_COLOR lightGrayColor
@@ -28,6 +29,7 @@
     NSInteger cellHeight;
     BOOL isAllCodesModule;
     UIImage *backgroundImage;
+    EPSCode *selectedCode;  // used for code with long press
 }
 
 #pragma mark - Managing the detail item
@@ -59,6 +61,7 @@
         if ([primaryCodeKey isEqualToString:ALL_EP_CODES_PRIMARY_CODES]) {
             self.primaryCodes = [EPSCodes allCodesSorted];
             [EPSCodes clearMultipliers:self.primaryCodes];
+            [EPSCodes clearModifiers:self.primaryCodes];
             self.secondaryCodes = nil;
             isAllCodesModule = YES;
         }
@@ -356,11 +359,15 @@
         viewController.time = self.sedationTime;
         viewController.ageOver5 = self.patientOver5YearsOld;
         viewController.sameMD = self.sameMDPerformsSedation;
-    
+    }
+    else if ([[segue identifier] isEqualToString:@"showModifiers"]) {
+        EPSModiferTableViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+        viewController.code = selectedCode;
     }
 }
 
--(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation
 {
     if (cancel) {
         return;
@@ -377,6 +384,16 @@
     NSLog(@"No sedation = %d", noSedation);
 }
 
+-(void)sendModifierDataBack:(BOOL)cancel selectedModifiers:(NSArray *)modifiers {
+    if (cancel) {
+        return;
+    }
+    for (EPSModifier *modifier in modifiers) {
+        [selectedCode addModifier:modifier];
+    }
+    [self.codeTableView reloadData];
+    NSLog(@"Send modifier data back");
+}
 
 - (void)clearSelected
 {
@@ -565,9 +582,18 @@
     
     NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
     if (indexPath == nil) {
+        selectedCode = nil;
         NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         NSLog(@"long press on table view at row %ld", indexPath.row);
+        NSUInteger section = indexPath.section;
+        NSUInteger row = indexPath.row;
+        if (section == 0) {
+            selectedCode = [self.primaryCodes objectAtIndex:row];
+        }
+        else {
+            selectedCode = [self.secondaryCodes objectAtIndex:row];
+        }
         [self performSegueWithIdentifier:@"showModifiers" sender:nil];
 
     } else {

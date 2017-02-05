@@ -44,6 +44,12 @@
     return sortedModifiers;
 }
 
++ (NSSet *)allModifiersSet
+{
+    NSSet *set = [NSSet setWithArray:[EPSModifiers allModifiersSorted]];
+    return set;
+}
+
 
 + (void)addModifier:(EPSModifier *)modifier toDictionary:(NSMutableDictionary *)dictionary
 {

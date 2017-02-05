@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) NSString *number;
 @property (weak, nonatomic) NSString *fullDescription;
+@property BOOL selected;
 
 - (id)initWithNumber:(NSString *)number andDescription:(NSString *)description;
 - (NSComparisonResult)compareModifiers:(id)object;

@@ -9,7 +9,12 @@
 #import "EPSModiferTableViewController.h"
 #import "EPSModifiers.h"
 
+#define HIGHLIGHT_COLOR cyanColor
+
 @interface EPSModiferTableViewController ()
+{
+    BOOL cancel;
+}
 
 @end
 
@@ -24,12 +29,48 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSArray *array = [EPSModifiers allModifiersSorted];
+    cancel = YES;
     self.modifiers = array;
+    self.title = [NSString stringWithFormat:@"%@ Modifiers",self.code.number];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction)];
+    UIBarButtonItem *addButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Modifiers" style: UIBarButtonItemStyleDone target: self action: @selector(addAction)];
+    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, addButton, nil];
+    for (EPSModifier *modifier in self.modifiers) {
+        for (EPSModifier *codeModifier in self.code.modifiers) {
+            modifier.selected = [modifier.number isEqualToString:codeModifier.number];
+        }
+    }
+
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.delegate sendModifierDataBack:cancel selectedModifiers:[self selectedModifiers]];
+}
+
+- (NSArray *)selectedModifiers {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (EPSModifier *modifier in self.modifiers) {
+        if (modifier.selected) {
+            [array addObject:modifier];
+        }
+    }
+    return [NSArray arrayWithArray:array];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)cancelAction {
+    cancel = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)addAction {
+    cancel = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -62,49 +103,35 @@
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
-    //cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    cell.accessoryType = ([modifier selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
         // must specifically set this, or will be set randomly
-    //cell.backgroundColor = ([code selected] ? [UIColor HIGHLIGHT] : [UIColor whiteColor]);
+    cell.backgroundColor = ([modifier selected] ? [UIColor HIGHLIGHT_COLOR] : [UIColor whiteColor]);
         //[cell setBackgroundColor:[UIColor whiteColor]];
     [cell setUserInteractionEnabled:YES];
     
     return cell;
 }
 
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSUInteger row = indexPath.row;
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.backgroundColor = [UIColor whiteColor];
+        [[self.modifiers objectAtIndex:row] setSelected:NO];
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.backgroundColor = [UIColor HIGHLIGHT_COLOR];
+        [[self.modifiers objectAtIndex:row] setSelected:YES];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

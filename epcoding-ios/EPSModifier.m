@@ -15,6 +15,7 @@
     if (self = [super init]) {
         self.number = number;
         self.fullDescription = description;
+        self.selected = NO;
     }
     return self;
 }

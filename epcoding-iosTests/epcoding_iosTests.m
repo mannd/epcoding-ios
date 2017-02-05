@@ -276,6 +276,13 @@
     EPSModifier *modifier = [[testCode modifiers] objectAtIndex:0];
     NSLog(@"modifier description = %@", modifier.fullDescription);
     XCTAssertTrue([modifier.fullDescription isEqualToString:@"Test modifier"]);
+    // prevent duplicate modifiers
+    [testCode clearModifiers];
+    testCode.multiplier = 0;
+    [testCode addModifier:testModifier];
+    [testCode addModifier:testModifier];
+    XCTAssertTrue([testCode.modifiers count] == 1);
+    XCTAssertTrue([[testCode unformattedCodeNumber] isEqualToString:@"99999-99"]);
 }
 
 @end

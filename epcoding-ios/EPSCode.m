@@ -16,6 +16,7 @@
     if (self = [super init]) {
         self.number = number;
         self.fullDescription = description;
+        self.selected = NO;
         self.isAddOn = isAddOn;
         self.codeStatus = GOOD;
         // multiplier only shown if > 0
@@ -96,6 +97,12 @@
 }
 
 - (void)addModifier:(EPSModifier *)modifier {
+    // don't duplicate modifiers
+    for (EPSModifier *m in self.modifiers) {
+        if ([m.number isEqualToString:modifier.number]) {
+            return;
+        }
+    }
     [self.modifiers addObject:modifier];
 }
 
