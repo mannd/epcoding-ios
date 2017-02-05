@@ -81,6 +81,11 @@
         [self clearEntries];
         NSMutableArray *sedationCodes = [[NSMutableArray alloc] init];
         self.sedationCodes = sedationCodes;
+        // reset all codes to unadorned codes (but will be overriden by saved codes)
+        [EPSCodes clearMultipliersAndModifiers:self.primaryCodes];
+        [EPSCodes clearMultipliersAndModifiers:self.secondaryCodes];
+        [EPSCodes clearMultipliersAndModifiers:self.sedationCodes];
+
         // load defaults
         [self load];
     }
@@ -168,6 +173,7 @@
 - (void)saveCoding
 {
     // FIXME: even with no secondary codes selected this dialog offers to save codes.  Why?
+    // FIXME: need to save modifiers even if no codes selected
     if (self.primaryCodes == nil) {
         return;
     }
@@ -179,7 +185,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Save default codes" message:@"Save selected codes as a default?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Save default codes" message:@"Save selected codes and modifiers as a default?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction * action) {[self save];}];
         [alert addAction:okAction];
@@ -593,6 +599,9 @@
         }
         else {
             selectedCode = [self.secondaryCodes objectAtIndex:row];
+        }
+        if ([self.disabledCodesSet containsObject:[selectedCode number]]) {
+            return;
         }
         [self performSegueWithIdentifier:@"showModifiers" sender:nil];
 
