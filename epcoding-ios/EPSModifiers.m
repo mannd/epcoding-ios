@@ -17,7 +17,9 @@
         dictionary = [[NSMutableDictionary alloc] init];
         
         [self addModifier:[[EPSModifier alloc] initWithNumber:@"26" andDescription:@"Professional component"] toDictionary:dictionary];
+        [self addModifier:[[EPSModifier alloc] initWithNumber:@"51" andDescription:@"Multiple procedures (NB: many EP codes are modifier 51 exempt)"] toDictionary:dictionary];
         [self addModifier:[[EPSModifier alloc] initWithNumber:@"52" andDescription:@"Reduced services"] toDictionary:dictionary];
+        [self addModifier:[[EPSModifier alloc] initWithNumber:@"53" andDescription:@"Discontinued procedure due to patient risk"] toDictionary:dictionary];
         [self addModifier:[[EPSModifier alloc] initWithNumber:@"59" andDescription:@"Distinct procedural service"] toDictionary:dictionary];
         [self addModifier:[[EPSModifier alloc] initWithNumber:@"76" andDescription:@"Repeat procedure by same MD"] toDictionary:dictionary];
         [self addModifier:[[EPSModifier alloc] initWithNumber:@"78" andDescription:@"Return to OR for related procedure during post-op period"] toDictionary:dictionary];
@@ -40,6 +42,16 @@
     return set;
 }
 
++ (NSDictionary *)defaultModifiers
+{
+    static NSMutableDictionary *dictionary;
+    if (dictionary == nil ) {
+        dictionary = [[NSMutableDictionary alloc] init];
+        // TODO: dictionary key is EPSCode; value is NSArray of modifier numbers
+    }
+    return dictionary;
+}
+
 
 + (void)addModifier:(EPSModifier *)modifier toDictionary:(NSMutableDictionary *)dictionary
 {
@@ -53,6 +65,12 @@
         modifier.selected = NO;
     }
 }
+
++ (EPSModifier *)getModifierForNumber:(NSString *)modifierNumber
+{
+    return [[EPSModifiers allModifiers] objectForKey:modifierNumber];
+}
+
 
 
 @end

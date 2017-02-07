@@ -85,7 +85,17 @@
         [EPSCodes clearMultipliersAndModifiers:self.primaryCodes];
         [EPSCodes clearMultipliersAndModifiers:self.secondaryCodes];
         [EPSCodes clearMultipliersAndModifiers:self.sedationCodes];
-
+        /* TODO: 
+         Modifiers are code module specific and come in 3 layers:
+         1. Programmatic defaults - recommended modifiers that really shouldn't need to be changed, exception being allcode modules
+         where there are no programmatic defaults but just pure codes (but they can be changed by other layers to follow.
+         2. Saved modifiers - if someone doesn't want to use a modifier, it can be deleted and saved, or new modifiers can be added.  These will be per code module and will override layer 1.
+         3. Added modifiers.  These are added per appearance of the module and don't last between uses.  They are specific to a specific case.
+         */
+        // Thus:
+        // [self loadDefaultModifiers];
+        // [self loadSavedModifiers];
+        // no loading of added modifiers; they disappear when loading new view
         // load defaults
         [self load];
     }
@@ -99,7 +109,7 @@
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
-    self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Add Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
+    self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
     self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
     self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
@@ -383,11 +393,10 @@
     self.sedationTime = time;
     [self determineSedationCoding];
     self.noSedationAdministered = noSedation;
-    if (self.noSedationAdministered || self.sedationTime > 0 || !self.sameMDPerformsSedation) {
-        self.buttonSedation.title = @"Edit Sedation";
-    }
+//    if (self.noSedationAdministered || self.sedationTime > 0 || !self.sameMDPerformsSedation) {
+//        self.buttonSedation.title = @"Edit Sedation";
+//    }
  //   [self showSedationCodeSummary:![self sedationCodesAssigned]];
-    NSLog(@"No sedation = %d", noSedation);
 }
 
 -(void)sendModifierDataBack:(BOOL)cancel selectedModifiers:(NSArray *)modifiers {

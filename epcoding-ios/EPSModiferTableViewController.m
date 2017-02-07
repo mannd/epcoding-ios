@@ -14,6 +14,7 @@
 @interface EPSModiferTableViewController ()
 {
     BOOL cancel;
+    NSInteger cellHeight;
 }
 
 @end
@@ -28,14 +29,18 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    cellHeight = 65;
     NSArray *array = [EPSModifiers allModifiersSorted];
     [EPSModifiers clearSelectedAllModifiers];
     cancel = YES;
     self.modifiers = array;
     self.title = [NSString stringWithFormat:@"%@ Modifiers",self.code.number];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction)];
-    UIBarButtonItem *addButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Modifiers" style: UIBarButtonItemStyleDone target: self action: @selector(addAction)];
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, addButton, nil];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle: @"Add" style: UIBarButtonItemStyleDone target: self action: @selector(addAction)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:nil];
+    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil];
     for (EPSModifier *modifier in self.modifiers) {
         for (EPSModifier *codeModifier in self.code.modifiers) {
             if ([modifier.number isEqualToString:codeModifier.number]) {
@@ -84,6 +89,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.modifiers count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+        return cellHeight;
 }
 
 

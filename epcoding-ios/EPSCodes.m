@@ -7,6 +7,7 @@
 //
 
 #import "EPSCodes.h"
+#import "EPSModifiers.h"
 
 @implementation EPSCodes
 
@@ -94,6 +95,10 @@
         // note fluoroscopy included in device codes, but this code
         // used e.g to evaluate a lead such as a Riata
         [self addCode:[[EPSCode alloc] initWithNumber:@"76000" description:@"Fluoroscopic lead evaluation" isAddOn:NO] toDictionary:dictionary];
+        
+        // TEE - but only by different MD than performing procedure
+        
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93355" description:@"TEE for guidance of transcatheter intervention, performed by different MD than MD performing intervention." isAddOn:NO] toDictionary:dictionary];
         // Ablation and EP testing codes
         
         // EP Testing and Mapping ///////////////////////
@@ -104,7 +109,14 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"93619" description:@"EP testing without attempted arrhythmia induction" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93620" description:@"EP testing with attempted arrhythmia induction" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93621" description:@"LA pacing & recording" isAddOn:YES] toDictionary:dictionary];
+        
+        
         [self addCode:[[EPSCode alloc] initWithNumber:@"93622" description:@"LV pacing & recording" isAddOn:YES] toDictionary:dictionary];
+        
+        // TODO: This is wiped out by clear modifiers when each codeTable loads.  Where to add these modifiers?
+//        EPSCode *code93622 = [self getCodeForNumber:@"93622"];
+//        [code93622 addModifier:[EPSModifiers getModifierForNumber:@"26"]];
+        
         [self addCode:[[EPSCode alloc] initWithNumber:@"93623" description:@"Induce post IV drug" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93624" description:@"Follow-up EP testing" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93631" description:@"Intra-op mapping" isAddOn:NO] toDictionary:dictionary];

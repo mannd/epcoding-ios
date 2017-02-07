@@ -103,7 +103,14 @@
             return;
         }
     }
-    [self.modifiers addObject:modifier];
+    // Modifier 26 is a "pricing modifier" and must have first position in modifiers.
+    // There are other such modifiers, but none in the small subset of modifiers used here.
+    if ([modifier.number isEqualToString:@"26"]) {
+        [self.modifiers insertObject:modifier atIndex:0];
+    }
+    else {
+        [self.modifiers addObject:modifier];
+    }
 }
 
 - (void)clearModifiers {
