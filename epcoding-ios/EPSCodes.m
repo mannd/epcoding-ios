@@ -18,6 +18,9 @@
     if (dictionary == nil) {
         dictionary = [[NSMutableDictionary alloc] init];
         
+        // hopefully rarely needed!
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33010" description:@"Pericardiocentesis" isAddOn:NO] toDictionary:dictionary];
+        
         // SubQ ICD
         [self addCode:[[EPSCode alloc] initWithNumber:@"33270" description:@"New or replacement SubQ ICD system, includes testing" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"33271" description:@"Insertion of SubQ defibrillator electrode only" isAddOn:NO] toDictionary:dictionary];
@@ -140,6 +143,9 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"93462" description:@"Transseptal cath" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93660" description:@"Tilt table test" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93662" description:@"Intracardiac echo" isAddOn:YES] toDictionary:dictionary];
+        
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93724" description:@"Noninvasive programmed stimulation" isAddOn:NO] toDictionary:dictionary];
+
         
         // Unlisted procedure
         [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
@@ -271,6 +277,28 @@
         [code clearModifiers];
     }
 }
+
++ (NSDictionary *)defaultModifiers
+{
+    static NSMutableDictionary *dictionary;
+    if (dictionary == nil ) {
+        dictionary = [[NSMutableDictionary alloc] init];
+        NSMutableArray *modifierArray = [[NSMutableArray alloc] init];
+        // start with codes with 26 modifier as standard
+        [modifierArray addObject:[EPSModifiers getModifierForNumber:@"26"]];
+        [dictionary setObject:modifierArray forKey:@"93621"];
+        [dictionary setObject:modifierArray forKey:@"93622"];
+        [dictionary setObject:modifierArray forKey:@"93609"];
+        [dictionary setObject:modifierArray forKey:@"93662"];
+        [dictionary setObject:modifierArray forKey:@"76000"];
+        [dictionary setObject:modifierArray forKey:@"93642"];
+        [dictionary setObject:modifierArray forKey:@"93660"];
+        // TODO: add the rest here
+    }
+    return dictionary;
+}
+
+
 
 + (void)clearMultipliersAndModifiers:(NSArray *)array {
     for (EPSCode *code in array) {

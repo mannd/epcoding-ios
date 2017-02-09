@@ -1,17 +1,17 @@
 //
-//  EPSModiferTableViewController.m
+//  EPSModifierTableViewController.m
 //  EP Coding
 //
 //  Created by David Mann on 2/4/17.
 //  Copyright © 2017 David Mann. All rights reserved.
 //
 
-#import "EPSModiferTableViewController.h"
+#import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
 
 #define HIGHLIGHT_COLOR cyanColor
 
-@interface EPSModiferTableViewController ()
+@interface EPSModifierTableViewController ()
 {
     BOOL cancel;
     NSInteger cellHeight;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation EPSModiferTableViewController
+@implementation EPSModifierTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

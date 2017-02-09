@@ -1,5 +1,5 @@
 //
-//  EPSModiferTableViewController.h
+//  EPSModifierTableViewController.h
 //  EP Coding
 //
 //  Created by David Mann on 2/4/17.
@@ -15,7 +15,7 @@
 
 @end
 
-@interface EPSModiferTableViewController : UITableViewController
+@interface EPSModifierTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *modifiers;
 @property (weak, nonatomic) EPSCode *code;

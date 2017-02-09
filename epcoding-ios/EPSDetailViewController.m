@@ -12,7 +12,8 @@
 #import "EPSProcedureKey.h"
 #import "EPSCodeSummaryTableViewController.h"
 #import "EPSSedationViewController.h"
-#import "EPSModiferTableViewController.h"
+#import "EPSModifierTableViewController.h"
+#import "EPSModifiers.h"
 
 #define HIGHLIGHT yellowColor
 #define DISABLED_COLOR lightGrayColor
@@ -96,8 +97,12 @@
         // [self loadDefaultModifiers];
         // [self loadSavedModifiers];
         // no loading of added modifiers; they disappear when loading new view
+        [self loadDefaultModifiers];
+        
         // load defaults
         [self load];
+        
+
     }
 }
 
@@ -230,6 +235,25 @@
             if ([set containsObject:[code number]]) {
                 [code setSelected:YES];
             }
+        }
+    }
+}
+
+
+//[selectedCode clearModifiers];
+//for (EPSModifier *modifier in modifiers) {
+//    [selectedCode addModifier:modifier];
+//}
+//
+- (void)loadDefaultModifiers
+{
+    if (isAllCodesModule) {
+        return;
+    }
+    for (EPSCode *code in self.secondaryCodes) {
+        NSArray *modifiers = [[EPSCodes defaultModifiers] valueForKey:code.number];
+        if (modifiers != nil) {
+            [code addModifiers:modifiers];
         }
     }
 }
@@ -377,7 +401,7 @@
         viewController.sameMD = self.sameMDPerformsSedation;
     }
     else if ([[segue identifier] isEqualToString:@"showModifiers"]) {
-        EPSModiferTableViewController *viewController = segue.destinationViewController;
+        EPSModifierTableViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
         viewController.code = selectedCode;
     }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E3751481E46950200075653 /* EPSModifiers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3751471E46950200075653 /* EPSModifiers.m */; };
-		8E37514B1E46C27B00075653 /* EPSModiferTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E37514A1E46C27B00075653 /* EPSModiferTableViewController.m */; };
+		8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */; };
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
@@ -71,8 +71,8 @@
 /* Begin PBXFileReference section */
 		8E3751461E46950200075653 /* EPSModifiers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifiers.h; sourceTree = "<group>"; };
 		8E3751471E46950200075653 /* EPSModifiers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifiers.m; sourceTree = "<group>"; };
-		8E3751491E46C27B00075653 /* EPSModiferTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModiferTableViewController.h; sourceTree = "<group>"; };
-		8E37514A1E46C27B00075653 /* EPSModiferTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModiferTableViewController.m; sourceTree = "<group>"; };
+		8E3751491E46C27B00075653 /* EPSModifierTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifierTableViewController.h; sourceTree = "<group>"; };
+		8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifierTableViewController.m; sourceTree = "<group>"; };
 		8E60902818B514C1001F3D7A /* EPSHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSHelpViewController.h; sourceTree = "<group>"; };
 		8E60902918B514C1001F3D7A /* EPSHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSHelpViewController.m; sourceTree = "<group>"; };
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
@@ -236,8 +236,8 @@
 				8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */,
 				8EC0E8221E3FF03500090E2B /* EPSTimeCalculatorViewController.h */,
 				8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */,
-				8E3751491E46C27B00075653 /* EPSModiferTableViewController.h */,
-				8E37514A1E46C27B00075653 /* EPSModiferTableViewController.m */,
+				8E3751491E46C27B00075653 /* EPSModifierTableViewController.h */,
+				8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -399,7 +399,7 @@
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */,
 				8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */,
-				8E37514B1E46C27B00075653 /* EPSModiferTableViewController.m in Sources */,
+				8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */,
 				8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */,
 				8EDBEC0B180CCDEB0041A4E3 /* EPSAppDelegate.m in Sources */,
 				8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */,

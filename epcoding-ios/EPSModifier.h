@@ -10,8 +10,8 @@
 
 @interface EPSModifier : NSObject
 
-@property (weak, nonatomic) NSString *number;
-@property (weak, nonatomic) NSString *fullDescription;
+@property (strong, nonatomic) NSString *number;
+@property (strong, nonatomic) NSString *fullDescription;
 @property BOOL selected;
 
 - (id)initWithNumber:(NSString *)number andDescription:(NSString *)description;

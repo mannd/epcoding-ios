@@ -42,16 +42,6 @@
     return set;
 }
 
-+ (NSDictionary *)defaultModifiers
-{
-    static NSMutableDictionary *dictionary;
-    if (dictionary == nil ) {
-        dictionary = [[NSMutableDictionary alloc] init];
-        // TODO: dictionary key is EPSCode; value is NSArray of modifier numbers
-    }
-    return dictionary;
-}
-
 
 + (void)addModifier:(EPSModifier *)modifier toDictionary:(NSMutableDictionary *)dictionary
 {

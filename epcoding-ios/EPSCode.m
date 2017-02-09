@@ -7,6 +7,7 @@
 //
 
 #import "EPSCode.h"
+#import "EPSModifier.h"
 
 @implementation EPSCode
 
@@ -79,10 +80,10 @@
 - (NSString *)unformattedCodeNumber
 {
     if (self.multiplier < 1) {
-        return [[NSString alloc] initWithFormat:@"%@%@%@", self.isAddOn ? @"+" : @"", self.number, [self modiferString]];
+        return [[NSString alloc] initWithFormat:@"%@%@%@", self.isAddOn ? @"+" : @"", self.number, [self modifierString]];
     }
     else {
-        return [[NSString alloc] initWithFormat:@"%@%@%@ x %lu", self.isAddOn ? @"+" : @"", self.number, [self modiferString], (unsigned long)self.multiplier];
+        return [[NSString alloc] initWithFormat:@"%@%@%@ x %lu", self.isAddOn ? @"+" : @"", self.number, [self modifierString], (unsigned long)self.multiplier];
     }
 }
 
@@ -113,20 +114,29 @@
     }
 }
 
+- (void)addModifiers:(NSArray *)modifiers {
+    for (EPSModifier *modifier in modifiers) {
+        [self addModifier:modifier];
+    }
+
+}
+
 - (void)clearModifiers {
     [self.modifiers removeAllObjects];
 }
 
-- (NSString *)modiferString {
+- (NSString *)modifierString {
     if ([self.modifiers count] < 1) {
         return @"";
     }
     else {
-        NSString *modifierString = @"";
+        NSString *modString = @"";
         for (EPSModifier *modifier in self.modifiers) {
-            modifierString = [modifierString stringByAppendingString:[NSString stringWithFormat:@"-%@", modifier.number]];
+            NSString *newModifier = [NSString stringWithFormat:@"-%@", modifier.number];
+            modString = [modString stringByAppendingString:newModifier];
+//            modifierString = [modifierString stringByAppendingString:[NSString stringWithFormat:@"-%@", modifier.number]];
         }
-        return modifierString;
+        return modString;
     }
 }
 @end

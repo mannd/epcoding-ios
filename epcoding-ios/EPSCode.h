@@ -27,6 +27,7 @@ enum status {GOOD, WARNING, ERROR};
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;
 
 - (void)addModifier:(EPSModifier *)modifier;
+- (void)addModifiers:(NSArray *)modifiers;
 - (void)clearModifiers;
 
 - (void)markCodeStatus:(enum status)status;
@@ -38,6 +39,6 @@ enum status {GOOD, WARNING, ERROR};
 - (NSString *)unformattedCodeNumber;
 - (NSString *)unformattedCodeDescription;
 - (NSComparisonResult)compareCodes:(id)object;
-- (NSString *)modiferString;
+- (NSString *)modifierString;
 
 @end
