@@ -14,6 +14,7 @@
 @interface EPSModifierTableViewController ()
 {
     BOOL cancel;
+    BOOL reset;
     NSInteger cellHeight;
 }
 
@@ -34,12 +35,13 @@
     NSArray *array = [EPSModifiers allModifiersSorted];
     [EPSModifiers clearSelectedAllModifiers];
     cancel = YES;
+    reset = NO;
     self.modifiers = array;
     self.title = [NSString stringWithFormat:@"%@ Modifiers",self.code.number];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction)];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle: @"Add" style: UIBarButtonItemStyleDone target: self action: @selector(addAction)];
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:nil];
-    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
+    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetAction)];
     self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil];
     for (EPSModifier *modifier in self.modifiers) {
         for (EPSModifier *codeModifier in self.code.modifiers) {
@@ -52,7 +54,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.delegate sendModifierDataBack:cancel selectedModifiers:[self selectedModifiers]];
+    [self.delegate sendModifierDataBack:cancel reset:reset selectedModifiers:[self selectedModifiers]];
 }
 
 - (NSArray *)selectedModifiers {
@@ -80,6 +82,30 @@
     cancel = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)saveAction {
+    cancel = NO;
+    [self saveModifiers];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)resetAction {
+    // ignore choices, return and have caller reestablish programmed defaults
+    cancel = NO;
+    reset = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)saveModifiers {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *selectedModifiers = [self selectedModifiers];
+    NSMutableArray *selectedModifierNumbers = [[NSMutableArray alloc] init];
+    for (EPSModifier *modifier in selectedModifiers) {
+        [selectedModifierNumbers addObject:modifier.number];
+    }
+    [defaults setValue:selectedModifierNumbers forKey:self.code.number];
+}
+
 
 #pragma mark - Table view data source
 

@@ -11,7 +11,7 @@
 
 @protocol sendModifiersProtocol <NSObject>
 
--(void)sendModifierDataBack:(BOOL)cancel selectedModifiers:(NSArray *)modifiers;
+-(void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers;
 
 @end
 

@@ -93,13 +93,15 @@
          2. Saved modifiers - if someone doesn't want to use a modifier, it can be deleted and saved, or new modifiers can be added.  These will be per code module and will override layer 1.
          3. Added modifiers.  These are added per appearance of the module and don't last between uses.  They are specific to a specific case.
          */
-        // Thus:
-        // [self loadDefaultModifiers];
-        // [self loadSavedModifiers];
-        // no loading of added modifiers; they disappear when loading new view
-        [self loadDefaultModifiers];
+       
+        // no default modifiers in all codes view
+        // TODO: but, must we inhibit save and reset buttons from all codes view??
+        if (!isAllCodesModule) {
+            [self loadDefaultModifiers];
+            [self loadSavedModifiers];
+        }
         
-        // load defaults
+        // load default selected codes
         [self load];
         
 
@@ -212,7 +214,6 @@
     }
 }
 
-
 - (void)save
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -239,22 +240,38 @@
     }
 }
 
-
-//[selectedCode clearModifiers];
-//for (EPSModifier *modifier in modifiers) {
-//    [selectedCode addModifier:modifier];
-//}
-//
 - (void)loadDefaultModifiers
 {
-    if (isAllCodesModule) {
-        return;
-    }
+    // TODO: do any primary codes need default modifiers?
     for (EPSCode *code in self.secondaryCodes) {
         NSArray *modifiers = [[EPSCodes defaultModifiers] valueForKey:code.number];
         if (modifiers != nil) {
             [code addModifiers:modifiers];
         }
+    }
+}
+
+- (void)loadSavedModifiers {
+    // TODO: expand to primary codes, sedation codes too?
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (EPSCode *code in self.secondaryCodes) {
+        NSArray *modifierNumbers = [defaults arrayForKey:code.number];
+        if (modifierNumbers != nil) {
+            // override default modifiers, just use saved modifiers, including no modifiers
+            [code clearModifiers];
+            for (NSString *modifierNumber in modifierNumbers) {
+                EPSModifier *modifier = [EPSModifiers getModifierForNumber:modifierNumber];
+                [code addModifier:modifier];
+            }
+        }
+    }
+}
+
+- (void)resetSavedModifiers {
+    //TODO: expand to primary codes, etc.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (EPSCode *code in self.secondaryCodes) {
+        [defaults removeObjectForKey:code.number];
     }
 }
 
@@ -423,13 +440,24 @@
  //   [self showSedationCodeSummary:![self sedationCodesAssigned]];
 }
 
--(void)sendModifierDataBack:(BOOL)cancel selectedModifiers:(NSArray *)modifiers {
+-(void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {
     if (cancel) {
         return;
     }
-    [selectedCode clearModifiers];
-    for (EPSModifier *modifier in modifiers) {
-        [selectedCode addModifier:modifier];
+    if (reset) {
+        NSLog(@"Reset modifiers");
+        // TODO: are we resetting just modified code, or all codes in module?
+// this:        [selectedCode clearModifiers];
+        // or this:
+        [EPSCodes clearModifiers:self.primaryCodes];
+        [EPSCodes clearModifiers:self.secondaryCodes];
+        [EPSCodes clearModifiers:self.sedationCodes];
+        [self resetSavedModifiers];
+        [self loadDefaultModifiers];
+    }
+    else {
+        [selectedCode clearModifiers];
+        [selectedCode addModifiers:modifiers];
     }
     [self.codeTableView reloadData];
 }
