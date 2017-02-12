@@ -95,16 +95,13 @@
          */
        
         // no default modifiers in all codes view
-        // TODO: but, must we inhibit save and reset buttons from all codes view??
         if (!isAllCodesModule) {
             [self loadDefaultModifiers];
-            [self loadSavedModifiers];
         }
-        
+        // allCodes can have saved modifiers, just no default
+        [self loadSavedModifiers];
         // load default selected codes
         [self load];
-        
-
     }
 }
 
@@ -152,6 +149,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSArray *)allPrimaryAndSecondaryCodes {
+    NSArray *allCodes = [self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes];
+    return allCodes;
 }
 
 - (void)showMenu {
@@ -254,7 +256,7 @@
 - (void)loadSavedModifiers {
     // TODO: expand to primary codes, sedation codes too?
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (EPSCode *code in self.secondaryCodes) {
+    for (EPSCode *code in [self allPrimaryAndSecondaryCodes]) {
         NSArray *modifierNumbers = [defaults arrayForKey:code.number];
         if (modifierNumbers != nil) {
             // override default modifiers, just use saved modifiers, including no modifiers
@@ -270,7 +272,7 @@
 - (void)resetSavedModifiers {
     //TODO: expand to primary codes, etc.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (EPSCode *code in self.secondaryCodes) {
+    for (EPSCode *code in [self allPrimaryAndSecondaryCodes]) {
         [defaults removeObjectForKey:code.number];
     }
 }

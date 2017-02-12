@@ -34,6 +34,8 @@
     [super viewDidLoad];
     [self setTitle:@"Search Codes"];
     self.codes = [EPSCodes allCodesSorted];
+    // only show "clean" codes during search
+    [EPSCodes clearMultipliersAndModifiers:self.codes];
     cellHeight = 65;
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
