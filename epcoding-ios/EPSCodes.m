@@ -283,17 +283,40 @@
     static NSMutableDictionary *dictionary;
     if (dictionary == nil ) {
         dictionary = [[NSMutableDictionary alloc] init];
-        NSMutableArray *modifierArray = [[NSMutableArray alloc] init];
+        // Modifer 26 alone
+        NSMutableArray *modifierArray_26 = [[NSMutableArray alloc] init];
         // start with codes with 26 modifier as standard
-        [modifierArray addObject:[EPSModifiers getModifierForNumber:@"26"]];
-        [dictionary setObject:modifierArray forKey:@"93621"];
-        [dictionary setObject:modifierArray forKey:@"93622"];
-        [dictionary setObject:modifierArray forKey:@"93609"];
-        [dictionary setObject:modifierArray forKey:@"93662"];
-        [dictionary setObject:modifierArray forKey:@"76000"];
-        [dictionary setObject:modifierArray forKey:@"93642"];
-        [dictionary setObject:modifierArray forKey:@"93660"];
-        // TODO: add the rest here
+        [modifierArray_26 addObject:[EPSModifiers getModifierForNumber:@"26"]];
+        [dictionary setObject:modifierArray_26 forKey:@"93609"];
+        [dictionary setObject:modifierArray_26 forKey:@"93620"];
+        [dictionary setObject:modifierArray_26 forKey:@"93619"];
+        [dictionary setObject:modifierArray_26 forKey:@"93621"];
+        [dictionary setObject:modifierArray_26 forKey:@"93622"];
+        [dictionary setObject:modifierArray_26 forKey:@"93662"];
+        [dictionary setObject:modifierArray_26 forKey:@"76000"];
+        [dictionary setObject:modifierArray_26 forKey:@"93641"];
+        [dictionary setObject:modifierArray_26 forKey:@"93642"];
+        [dictionary setObject:modifierArray_26 forKey:@"93660"];
+        // Modifier 26 and 59
+        NSMutableArray *modifierArray26_56 = [NSMutableArray arrayWithArray:modifierArray_26];
+        [modifierArray26_56 addObject:[EPSModifiers getModifierForNumber:@"59"]];
+        [dictionary setObject:modifierArray26_56 forKey:@"93623"];
+        
+        // Modifer Q0
+        NSMutableArray *modifierArray_Q0 = [[NSMutableArray alloc] init];
+        [modifierArray_Q0 addObject:[EPSModifiers getModifierForNumber:@"Q0"]];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33249"];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33262"];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33263"];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33264"];
+
+        // Modifier 59
+        NSMutableArray *modifierArray_59 = [[NSMutableArray alloc] init];
+        [modifierArray_59 addObject:[EPSModifiers getModifierForNumber:@"59"]];
+        [dictionary setObject:modifierArray_59 forKey:@"33222"];
+        [dictionary setObject:modifierArray_59 forKey:@"33223"];
+        [dictionary setObject:modifierArray_59 forKey:@"33620"];
+
     }
     return dictionary;
 }
@@ -306,5 +329,41 @@
         [code clearModifiers];
     }
 }
+
++ (void)loadDefaultModifiers:(NSArray *)codes {
+    for (EPSCode *code in codes) {
+        NSArray *modifiers = [[EPSCodes defaultModifiers] valueForKey:code.number];
+        if (modifiers != nil) {
+            [code addModifiers:modifiers];
+        }
+    }
+}
+
++ (void)loadSavedModifiers:(NSArray *)codes {
+    // TODO: expand to primary codes, sedation codes too?
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (EPSCode *code in codes) {
+        NSArray *modifierNumbers = [defaults arrayForKey:code.number];
+        if (modifierNumbers != nil) {
+            // override default modifiers, just use saved modifiers, including no modifiers
+            [code clearModifiers];
+            for (NSString *modifierNumber in modifierNumbers) {
+                EPSModifier *modifier = [EPSModifiers getModifierForNumber:modifierNumber];
+                [code addModifier:modifier];
+            }
+        }
+    }
+}
+
++ (void)resetSavedModifiers:(NSArray *)codes {
+    //TODO: expand to primary codes, etc.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (EPSCode *code in codes) {
+        [defaults removeObjectForKey:code.number];
+    }
+}
+
+
+
 
 @end

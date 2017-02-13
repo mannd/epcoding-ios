@@ -8,6 +8,7 @@
 
 #import "EPSWizardContentViewController.h"
 #import "EPSCodes.h"
+#import "EPSModifierTableViewController.h"
 
 @interface EPSWizardContentViewController ()
 
@@ -16,6 +17,7 @@
 @implementation EPSWizardContentViewController
 {
     NSInteger cellHeight;
+    EPSCode *selectedCode;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,6 +38,13 @@
     [self.contentLabel sizeToFit];
     cellHeight = 65;
     [self.contentLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    
+    // add long press handler
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(handleLongPress:)];
+    longPress.minimumPressDuration = 1.0; //seconds
+    longPress.delegate = self;
+    [self.codeTableView addGestureRecognizer:longPress];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,9 +53,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {
+    if (cancel) {
+        return;
+    }
+    if (reset) {
+        NSLog(@"Reset modifiers");
+        // TODO: are we resetting just modified code, or all codes in module?
+        // this:        [selectedCode clearModifiers];
+        // or this:
+        [EPSCodes clearModifiers:self.codes];
+//        [self resetSavedModifiers];
+//        [self loadDefaultModifiers];
+    }
+    else {
+        [selectedCode clearModifiers];
+        [selectedCode addModifiers:modifiers];
+    }
+    [self.codeTableView reloadData];
+}
 
 
-/*
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -54,8 +83,14 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showModifiersFromWizard"]) {
+        EPSModifierTableViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+        viewController.code = selectedCode;
+    }
+
 }
-*/
+
 
 #pragma mark - Table view data source
 
@@ -125,6 +160,30 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
+
+#pragma mark - Gesture recognizer delegate
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.codeTableView];
+    
+    NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        selectedCode = nil;
+        NSLog(@"long press on table view but not on a row");
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"long press on table view at row %ld", indexPath.row);
+        NSUInteger row = indexPath.row;
+        selectedCode = [self.codes objectAtIndex:row];
+        NSLog(@"selected code = %@", [selectedCode unformattedCodeNumber]);
+        [self performSegueWithIdentifier:@"showModifiersFromWizard" sender:nil];
+        
+    } else {
+        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+    }
+}
+
+
 
 
 @end

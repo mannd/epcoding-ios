@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EPSWizardContentViewController : UIViewController
-    <UITableViewDelegate, UITableViewDataSource>
+    <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *contentLabel;

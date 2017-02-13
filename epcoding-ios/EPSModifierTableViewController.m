@@ -43,6 +43,8 @@
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
     UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetAction)];
     self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil];
+    [self.navigationController setToolbarHidden:NO];
+    
     for (EPSModifier *modifier in self.modifiers) {
         for (EPSModifier *codeModifier in self.code.modifiers) {
             if ([modifier.number isEqualToString:codeModifier.number]) {

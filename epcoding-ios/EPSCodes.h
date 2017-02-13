@@ -26,5 +26,8 @@
 + (void)clearModifiers:(NSArray *)array;
 + (NSDictionary *)defaultModifiers;
 + (void)clearMultipliersAndModifiers:(NSArray *)array;
++ (void)loadDefaultModifiers:(NSArray *)codes;
++ (void)loadSavedModifiers:(NSArray *)codes;+ (void)resetSavedModifiers:(NSArray *)codes;
+
 
 @end

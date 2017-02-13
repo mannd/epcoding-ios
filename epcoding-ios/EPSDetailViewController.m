@@ -244,37 +244,15 @@
 
 - (void)loadDefaultModifiers
 {
-    // TODO: do any primary codes need default modifiers?
-    for (EPSCode *code in self.secondaryCodes) {
-        NSArray *modifiers = [[EPSCodes defaultModifiers] valueForKey:code.number];
-        if (modifiers != nil) {
-            [code addModifiers:modifiers];
-        }
-    }
+    [EPSCodes loadDefaultModifiers:[self allPrimaryAndSecondaryCodes]];
 }
 
 - (void)loadSavedModifiers {
-    // TODO: expand to primary codes, sedation codes too?
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (EPSCode *code in [self allPrimaryAndSecondaryCodes]) {
-        NSArray *modifierNumbers = [defaults arrayForKey:code.number];
-        if (modifierNumbers != nil) {
-            // override default modifiers, just use saved modifiers, including no modifiers
-            [code clearModifiers];
-            for (NSString *modifierNumber in modifierNumbers) {
-                EPSModifier *modifier = [EPSModifiers getModifierForNumber:modifierNumber];
-                [code addModifier:modifier];
-            }
-        }
-    }
+    [EPSCodes loadSavedModifiers:[self allPrimaryAndSecondaryCodes]];
 }
 
 - (void)resetSavedModifiers {
-    //TODO: expand to primary codes, etc.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (EPSCode *code in [self allPrimaryAndSecondaryCodes]) {
-        [defaults removeObjectForKey:code.number];
-    }
+    [EPSCodes resetSavedModifiers:[self allPrimaryAndSecondaryCodes]];
 }
 
 - (BOOL)sedationCodesAssigned {
