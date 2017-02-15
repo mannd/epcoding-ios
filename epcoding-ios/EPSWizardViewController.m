@@ -51,11 +51,14 @@
         }
     }
     self.codeArrays = array;
+    
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     
     EPSWizardContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    // need a copy of all the codes to handle reseting modifiers via the pageViewController
+    startingViewController.allCodes = self.codeArrays;
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
@@ -69,6 +72,7 @@
     
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
     self.navigationItem.rightBarButtonItem = btn;
+    NSLog(@"viewDidLoad");
     
 
 }
@@ -118,6 +122,8 @@
 
 - (EPSWizardContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
+    NSLog(@"viewControllerAtIndex");
+
     if (([self.pageContent count] == 0) || (index >= [self.pageContent count])) {
         return nil;
     }

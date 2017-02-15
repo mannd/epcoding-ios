@@ -425,10 +425,6 @@
         return;
     }
     if (reset) {
-        NSLog(@"Reset modifiers");
-        // TODO: are we resetting just modified code, or all codes in module?
-// this:        [selectedCode clearModifiers];
-        // or this:
         [EPSCodes clearModifiers:self.primaryCodes];
         [EPSCodes clearModifiers:self.secondaryCodes];
         [EPSCodes clearModifiers:self.sedationCodes];

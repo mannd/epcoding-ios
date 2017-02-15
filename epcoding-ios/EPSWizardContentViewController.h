@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSString *titleText;
 @property (strong, nonatomic) NSString *contentText;
 @property (strong, nonatomic) NSArray *codes;
+@property (strong, nonatomic) NSArray *allCodes;
 
 @end

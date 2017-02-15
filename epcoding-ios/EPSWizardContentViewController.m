@@ -45,6 +45,11 @@
     longPress.minimumPressDuration = 1.0; //seconds
     longPress.delegate = self;
     [self.codeTableView addGestureRecognizer:longPress];
+    
+    // Add default codes here
+    [self clearAllMultipliersAndModifiers];
+    [self loadDefaultModifiers];
+    [self loadSavedModifiers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,18 +58,14 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {
+- (void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {
     if (cancel) {
         return;
     }
     if (reset) {
-        NSLog(@"Reset modifiers");
-        // TODO: are we resetting just modified code, or all codes in module?
-        // this:        [selectedCode clearModifiers];
-        // or this:
-        [EPSCodes clearModifiers:self.codes];
-//        [self resetSavedModifiers];
-//        [self loadDefaultModifiers];
+        [self clearAllModifiers];
+        [self resetSavedModifiers];
+        [self loadDefaultModifiers];
     }
     else {
         [selectedCode clearModifiers];
@@ -73,8 +74,36 @@
     [self.codeTableView reloadData];
 }
 
+- (void)clearAllMultipliersAndModifiers {
+    for (NSArray *array in self.allCodes) {
+        [EPSCodes clearMultipliersAndModifiers:array];
+    }
+}
 
+- (void)clearAllModifiers {
+    for (NSArray *array in self.allCodes) {
+        [EPSCodes clearModifiers:array];
+    }
+}
 
+- (void)loadDefaultModifiers {
+    NSLog(@"Loading defaults!");
+    for (NSArray *array in self.allCodes) {
+        [EPSCodes loadDefaultModifiers:array];
+    }
+}
+
+- (void)loadSavedModifiers {
+    for (NSArray *array in self.allCodes) {
+        [EPSCodes loadSavedModifiers:array];
+    }
+}
+
+- (void)resetSavedModifiers {
+    for (NSArray *array in self.allCodes) {
+        [EPSCodes resetSavedModifiers:array];
+    }
+}
 
 #pragma mark - Navigation
 
