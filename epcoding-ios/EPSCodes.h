@@ -28,6 +28,7 @@
 + (void)clearMultipliersAndModifiers:(NSArray *)array;
 + (void)loadDefaultModifiers:(NSArray *)codes;
 + (void)loadSavedModifiers:(NSArray *)codes;+ (void)resetSavedModifiers:(NSArray *)codes;
-
++ (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5;
++ (NSString *)printSedationCodes:(NSArray *)codes separator:(NSString *)separator;
 
 @end

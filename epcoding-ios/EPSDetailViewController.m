@@ -279,12 +279,12 @@
     }
     else {
         [alert addAction:editCodes];
-        NSString *firstCode = [[self.sedationCodes objectAtIndex:0] unformattedCodeNumber];
-        NSString *secondCode = @"";
-        if ([self.sedationCodes count] == 2) {
-            secondCode = [[self.sedationCodes objectAtIndex:1] unformattedCodeNumber];
-        }
-        alert.message = [NSString stringWithFormat:@"%@\n%@", firstCode, secondCode];
+//        NSString *firstCode = [[self.sedationCodes objectAtIndex:0] unformattedCodeNumber];
+//        NSString *secondCode = @"";
+//        if ([self.sedationCodes count] == 2) {
+//            secondCode = [[self.sedationCodes objectAtIndex:1] unformattedCodeNumber];
+//        }
+        alert.message = [EPSCodes printSedationCodes:self.sedationCodes separator:@"\n"];
     }
     [alert addAction:cancel];
     
@@ -313,37 +313,8 @@
 
 - (void)determineSedationCoding {
     [self.sedationCodes removeAllObjects];
-    if (self.sedationTime >= 10) {
-        if (self.sameMDPerformsSedation) {
-            if (self.patientOver5YearsOld) {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99152"]];
-            }
-            else {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
-            }
-        }
-        else {
-            if (self.patientOver5YearsOld) {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99156"]];
-            }
-            else {
-                [self.sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
-            }
-        }
-    }
-    if (self.sedationTime >= 23) {
-        NSInteger multiplier = [EPSCodes codeMultiplier:self.sedationTime];
-        EPSCode *code = [[EPSCode alloc] init];
-        if (self.sameMDPerformsSedation) {
-            code = [EPSCodes getCodeForNumber:@"99153"];
-        }
-        else {
-            code = [EPSCodes getCodeForNumber:@"99157"];
-        }
-        code.multiplier = multiplier;
-        [self.sedationCodes addObject:code];
-    }
-    
+    NSArray *array = [EPSCodes sedationCoding:self.sedationTime sameMD:self.sameMDPerformsSedation patientOver5:self.patientOver5YearsOld];
+    [self.sedationCodes addObjectsFromArray:array];
 }
 
 - (void)openSedationView {

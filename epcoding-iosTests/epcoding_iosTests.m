@@ -285,4 +285,56 @@
     XCTAssertTrue([[testCode unformattedCodeNumber] isEqualToString:@"99999-99"]);
 }
 
+- (void)testSedationCodes {
+    NSInteger time = 23;
+    BOOL sameMD = YES;
+    BOOL ptOver5 = YES;
+    NSArray *sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    XCTAssertTrue([sedationCodes count] == 2);
+    EPSCode *code1 = [sedationCodes objectAtIndex:0];
+    EPSCode *code2 = [sedationCodes objectAtIndex:1];
+    XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99152"]);
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153 x 1"]);
+    time = 55;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    code1 = [sedationCodes objectAtIndex:0];
+    code2 = [sedationCodes objectAtIndex:1];
+    XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99152"]);
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153 x 3"]);
+    time = 70;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    code1 = [sedationCodes objectAtIndex:0];
+    code2 = [sedationCodes objectAtIndex:1];
+    XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99152"]);
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153 x 4"]);
+    sameMD = NO;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    code1 = [sedationCodes objectAtIndex:0];
+    code2 = [sedationCodes objectAtIndex:1];
+    NSLog(@"%@", [code1 unformattedCodeNumber]);
+    XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99156"]);
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99157 x 4"]);
+    ptOver5 = NO;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    code1 = [sedationCodes objectAtIndex:0];
+    code2 = [sedationCodes objectAtIndex:1];
+    XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99155"]);
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99157 x 4"]);
+    sameMD = YES;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    code1 = [sedationCodes objectAtIndex:0];
+    code2 = [sedationCodes objectAtIndex:1];
+    XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99151"]);
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153 x 4"]);
+    time = 0;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    XCTAssertTrue([sedationCodes count] == 0);
+    time = 22;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    XCTAssertTrue([sedationCodes count] == 1);
+    time = 23;
+    sedationCodes = [EPSCodes sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
+    XCTAssertTrue([sedationCodes count] == 2);
+}
+
 @end

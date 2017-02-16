@@ -8,6 +8,7 @@
 
 #import "EPSSedationViewController.h"
 #import "EPSTimeCalculatorViewController.h"
+#import "EPSCodes.h"
 
 @interface EPSSedationViewController ()
 
@@ -81,14 +82,14 @@
 }
 
 - (IBAction)addCodesAction:(id)sender {
-    // if time is zero or not an integer or if not same MD performing then give error message
-    if (![self.timeTextField.text integerValue] && [self.sameMDSwitch isOn]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number more than 0.  If no sedation was performed, choose No Sedation button instead." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAlert];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
+//    // if time is zero or not an integer or if not same MD performing then give error message
+//    if (![self.timeTextField.text integerValue] && [self.sameMDSwitch isOn]) {
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number more than 0.  If no sedation was performed, choose No Sedation button instead." preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+//        [alert addAction:cancelAlert];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
     self.time = [self.timeTextField.text integerValue];
     self.canceled = NO;
     self.noSedation = NO;
@@ -98,6 +99,7 @@
 }
 
 - (void)showResults {
+    NSArray *sedationCodes = [EPSCodes sedationCoding:self.time sameMD:self.sameMD patientOver5:self.ageOver5];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Results" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){    [self.navigationController popViewControllerAnimated:YES];}];
@@ -106,7 +108,7 @@
     if (self.noSedation) {
         alert.message = @"No sedation used during this procedure.  No sedation codes added.";
     }
-    else if (self.time > 0 && self.time < 10) {
+    else if (self.time < 10) {
         alert.message = @"Sedation time < 10 minutes.  No sedation codes can be added.";
     }
     else if (!self.sameMD) {
@@ -114,11 +116,21 @@
             alert.message = @"Sedation administered by different MD than one performing procedure.  No sedation time given.  No sedation codes added.";
         }
         else {
-            alert.message = @"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes added with warning.";
+            if ([sedationCodes count] == 1) {
+                alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
+            }
+            else {
+                alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSCodes printSedationCodes:sedationCodes separator:@" and "]];
+            }
         }
     }
     else {
-        alert.message = @"Sedation codes added.";
+        if ([sedationCodes count] == 1) {
+            alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
+        }
+        else {
+            alert.message = [NSString stringWithFormat:@"Sedation codes added: %@.", [EPSCodes printSedationCodes:sedationCodes separator:@" and "]];
+        }
     }
     [self presentViewController:alert animated:YES completion:nil];
 }

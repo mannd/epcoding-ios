@@ -363,6 +363,56 @@
     }
 }
 
++ (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5 {
+    NSMutableArray *sedationCodes = [[NSMutableArray alloc] init];
+    if (sedationTime >= 10) {
+        if (sameMD) {
+            if (patientOver5) {
+                [sedationCodes addObject:[self getCodeForNumber:@"99152"]];
+            }
+            else {
+                [sedationCodes addObject:[self getCodeForNumber:@"99151"]];
+            }
+        }
+        else {
+            if (patientOver5) {
+                [sedationCodes addObject:[self getCodeForNumber:@"99156"]];
+            }
+            else {
+                [sedationCodes addObject:[self getCodeForNumber:@"99155"]];
+            }
+        }
+    }
+    if (sedationTime >= 23) {
+        NSInteger multiplier = [self codeMultiplier:sedationTime];
+        EPSCode *code = [[EPSCode alloc] init];
+        if (sameMD) {
+            code = [self getCodeForNumber:@"99153"];
+        }
+        else {
+            code = [self getCodeForNumber:@"99157"];
+        }
+        code.multiplier = multiplier;
+        [sedationCodes addObject:code];
+    }
+    return sedationCodes;
+}
+
+// separator can be newline, or string like " and " --> note must add spaces
++ (NSString *)printSedationCodes:(NSArray *)codes separator:(NSString *)separator {
+    NSString *codeString = @"";
+    if (codes == nil || [codes count] < 1) {
+        return codeString;
+    }
+    if ([codes count] == 1) {
+        codeString = [[codes objectAtIndex:0] unformattedCodeNumber];
+    }
+    else {
+        codeString = [NSString stringWithFormat:@"%@%@%@", [[codes objectAtIndex:0] unformattedCodeNumber], separator, [[codes objectAtIndex:1] unformattedCodeNumber]];
+    }
+    return codeString;
+}
+
 
 
 
