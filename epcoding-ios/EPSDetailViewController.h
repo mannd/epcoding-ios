@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EPSCodes.h"
 
 @interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) NSSet *disabledCodesSet;
 @property BOOL disablePrimaryCodes;
 @property BOOL ignoreNoSecondaryCodesSelected;
+@property SedationStatus sedationStatus;
 
 @property (weak, nonatomic) IBOutlet UITableView *codeTableView;
 

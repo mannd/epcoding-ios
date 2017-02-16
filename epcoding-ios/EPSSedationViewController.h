@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EPSCodes.h"
 
 @protocol sendDataProtocol <NSObject>
 
--(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation;
+-(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus;
 
 @end
 
@@ -25,6 +26,7 @@
 @property BOOL ageOver5;
 @property NSInteger time;
 @property BOOL noSedation;
+@property SedationStatus sedationStatus;
 
 - (IBAction)dismissKeyboard:(id)sender;
 

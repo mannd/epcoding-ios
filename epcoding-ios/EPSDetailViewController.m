@@ -93,7 +93,8 @@
          2. Saved modifiers - if someone doesn't want to use a modifier, it can be deleted and saved, or new modifiers can be added.  These will be per code module and will override layer 1.
          3. Added modifiers.  These are added per appearance of the module and don't last between uses.  They are specific to a specific case.
          */
-       
+        
+        self.sedationStatus = Unassigned;
         // no default modifiers in all codes view
         if (!isAllCodesModule) {
             [self loadDefaultModifiers];
@@ -259,6 +260,7 @@
     return self.sedationCodes != nil && self.sedationCodes.count > 0;
 }
 
+// TODO: Refactor to just use self.sedationStatus
 - (void)showSedationCodeSummary:(BOOL)noCodesExist {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"No sedation codes assigned." preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *editCodes = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
@@ -279,11 +281,6 @@
     }
     else {
         [alert addAction:editCodes];
-//        NSString *firstCode = [[self.sedationCodes objectAtIndex:0] unformattedCodeNumber];
-//        NSString *secondCode = @"";
-//        if ([self.sedationCodes count] == 2) {
-//            secondCode = [[self.sedationCodes objectAtIndex:1] unformattedCodeNumber];
-//        }
         alert.message = [EPSCodes printSedationCodes:self.sedationCodes separator:@"\n"];
     }
     [alert addAction:cancel];
@@ -367,6 +364,7 @@
         viewController.time = self.sedationTime;
         viewController.ageOver5 = self.patientOver5YearsOld;
         viewController.sameMD = self.sameMDPerformsSedation;
+        viewController.sedationStatus = self.sedationStatus;
     }
     else if ([[segue identifier] isEqualToString:@"showModifiers"]) {
         EPSModifierTableViewController *viewController = segue.destinationViewController;
@@ -375,8 +373,7 @@
     }
 }
 
-- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation
-{
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
     if (cancel) {
         return;
     }
@@ -385,10 +382,8 @@
     self.sedationTime = time;
     [self determineSedationCoding];
     self.noSedationAdministered = noSedation;
-//    if (self.noSedationAdministered || self.sedationTime > 0 || !self.sameMDPerformsSedation) {
-//        self.buttonSedation.title = @"Edit Sedation";
-//    }
- //   [self showSedationCodeSummary:![self sedationCodesAssigned]];
+    self.sedationStatus = sedationStatus;
+    NSLog(@"Sedation status = %ld", (long)self.sedationStatus);
 }
 
 -(void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {

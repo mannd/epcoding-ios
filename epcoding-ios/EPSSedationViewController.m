@@ -61,7 +61,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time noSedation:self.noSedation];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time noSedation:self.noSedation sedationStatus:self.sedationStatus];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {
@@ -98,6 +98,29 @@
     [self showResults];
 }
 
+- (SedationStatus)determineSedationStatus {
+    if (self.canceled) {
+        return self.sedationStatus;
+    }
+    if (self.noSedation) {
+        return None;
+    }
+    if (self.time < 10) {
+        return LessThan10Mins;
+    }
+    if (!self.sameMD) {
+        if (self.time < 1) {
+            return OtherMDUnCalculated;
+        }
+        else {
+            return OtherMDCalculated;
+        }
+    }
+    else {
+        return AssignedSameMD;
+    }
+}
+
 - (void)showResults {
     NSArray *sedationCodes = [EPSCodes sedationCoding:self.time sameMD:self.sameMD patientOver5:self.ageOver5];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Results" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -105,26 +128,25 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){    [self.navigationController popViewControllerAnimated:YES];}];
     [alert addAction:cancelAction];
     [alert addAction:okAction];
-    if (self.noSedation) {
+    self.sedationStatus = [self determineSedationStatus];
+    if (self.sedationStatus == None) {
         alert.message = @"No sedation used during this procedure.  No sedation codes added.";
     }
-    else if (self.time < 10) {
+    else if (self.sedationStatus == LessThan10Mins) {
         alert.message = @"Sedation time < 10 minutes.  No sedation codes can be added.";
     }
-    else if (!self.sameMD) {
-        if (self.time < 1) {
-            alert.message = @"Sedation administered by different MD than one performing procedure.  No sedation time given.  No sedation codes added.";
+    else if (self.sedationStatus == OtherMDUnCalculated) {
+        alert.message = @"Sedation administered by different MD than one performing procedure.  No sedation time given.  No sedation codes added.";
+    }
+    else if (self.sedationStatus == OtherMDCalculated) {
+        if ([sedationCodes count] == 1) {
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
         }
         else {
-            if ([sedationCodes count] == 1) {
-                alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
-            }
-            else {
-                alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSCodes printSedationCodes:sedationCodes separator:@" and "]];
-            }
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSCodes printSedationCodes:sedationCodes separator:@" and "]];
         }
     }
-    else {
+    else {  // self.sedationStatus == AssignedSameMD
         if ([sedationCodes count] == 1) {
             alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
         }
