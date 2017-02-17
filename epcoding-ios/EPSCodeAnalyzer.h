@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EPSCodes.h"
 
 @interface EPSCodeAnalyzer : NSObject
 
@@ -15,8 +16,9 @@
 @property (weak, nonatomic) NSArray *sedationCodes;
 @property (strong, nonatomic) NSMutableArray *allCodes;
 @property BOOL ignoreNoSecondaryCodes;
+@property SedationStatus sedationStatus;
 
-- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes;
+- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes sedationStatus:(SedationStatus)sedationStatus;
 
 - (NSArray *)analysis;
 

@@ -16,7 +16,7 @@
 
 @implementation EPSCodeAnalyzer
 
-- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes
+- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes sedationStatus:(SedationStatus)sedationStatus
 {
     if (self = [super init]) {
         self.primaryCodes = primaryCodes;
@@ -26,6 +26,7 @@
         NSMutableArray *array = [NSMutableArray  arrayWithArray:[self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes]];
         [array addObjectsFromArray:self.sedationCodes];
         self.allCodes = array;
+        self.sedationStatus = sedationStatus;
     }
     return self;
 }

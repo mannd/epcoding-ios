@@ -39,7 +39,7 @@
     [super viewDidLoad];
     [self setTitle:@"Code Summary"];
     cellHeight = 65;
-    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:self.selectedPrimaryCodes secondaryCodes:self.selectedSecondaryCodes ignoreNoSecondaryCodes:self.ignoreNoSecondaryCodesSelected sedationCodes:self.selectedSedationCodes];
+    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:self.selectedPrimaryCodes secondaryCodes:self.selectedSecondaryCodes ignoreNoSecondaryCodes:self.ignoreNoSecondaryCodesSelected sedationCodes:self.selectedSedationCodes sedationStatus:self.sedationStatus];
     self.codeAnalyzer = analyzer;
     self.codeErrors = [analyzer analysis];
     self.selectedCodes = [analyzer allCodes];

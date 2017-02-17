@@ -357,6 +357,7 @@
         [viewController setSelectedSecondaryCodes:secondaryArray];
         [viewController setIgnoreNoSecondaryCodesSelected:self.ignoreNoSecondaryCodesSelected];
         [viewController setSelectedSedationCodes:sedationArray];
+        viewController.sedationStatus = self.sedationStatus;
     }
     else if ([[segue identifier] isEqualToString:@"showSedation"]) {
         EPSSedationViewController *viewController = segue.destinationViewController;
