@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EPSCode.h"
 
 @interface EPSWizardContentViewController : UIViewController
     <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>

@@ -50,6 +50,8 @@
     [self clearAllMultipliersAndModifiers];
     [self loadDefaultModifiers];
     [self loadSavedModifiers];
+    
+   
 }
 
 - (void)didReceiveMemoryWarning

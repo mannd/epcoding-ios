@@ -35,11 +35,15 @@
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"help" ofType:@"html"] isDirectory:NO];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:requestObj];
+    
+    // centers view with navigationbar in place
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:YES];
 
 }
