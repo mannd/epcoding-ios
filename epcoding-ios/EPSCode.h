@@ -9,7 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "EPSModifier.h"
 
+FOUNDATION_EXPORT NSString *const NO_SEDATION_STRING;
+FOUNDATION_EXPORT NSString *const UNASSIGNED_SEDATION_STRING;
+FOUNDATION_EXPORT NSString *const SHORT_SEDATION_TIME_STRING;
+FOUNDATION_EXPORT NSString *const OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING;
+FOUNDATION_EXPORT NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING;
+
 @interface EPSCode : NSObject
+
+typedef NS_ENUM(NSInteger, SedationStatus) {
+    Unassigned,
+    None,
+    LessThan10Mins,
+    OtherMDUnCalculated,
+    OtherMDCalculated,
+    AssignedSameMD
+};
+
 
 @property (strong, nonatomic) NSString *number;
 @property (strong, nonatomic) NSString *fullDescription;

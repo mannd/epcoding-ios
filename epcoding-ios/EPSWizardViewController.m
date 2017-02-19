@@ -10,6 +10,7 @@
 #import "EPSCodes.h"
 #import "EPSCode.h"
 #import "EPSCodeSummaryTableViewController.h"
+#import "EPSSedationCode.h"
 
 
 @interface EPSWizardViewController ()
@@ -51,7 +52,8 @@
             code.selected = NO;
         }
     }
-    EPSCode *sedationCode = [[EPSCode alloc] initWithNumber:@"SEDATION CODES" description:@"Tap to add sedation coding" isAddOn:NO];
+    EPSSedationCode *sedationCode = [[EPSSedationCode alloc] init];
+    sedationCode.sedationStatus = None;
     NSArray *sedationArray = @[sedationCode];
     [array addObject:sedationArray];
     self.codeArrays = array;

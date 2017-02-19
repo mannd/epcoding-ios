@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVN-VN-sUk">
-                                <rect key="frame" x="0.0" y="0.0" width="748" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -123,7 +123,7 @@
                             <constraint firstItem="pVN-VN-sUk" firstAttribute="top" secondItem="djv-4K-E69" secondAttribute="top" id="4Rw-vC-wMh"/>
                             <constraint firstAttribute="bottom" secondItem="pVN-VN-sUk" secondAttribute="bottom" id="4w7-tM-0AQ"/>
                             <constraint firstItem="pVN-VN-sUk" firstAttribute="leading" secondItem="djv-4K-E69" secondAttribute="leading" id="WOY-hg-8aq"/>
-                            <constraint firstAttribute="trailing" secondItem="pVN-VN-sUk" secondAttribute="trailing" constant="20" symbolic="YES" id="qY7-XA-Pnw"/>
+                            <constraint firstAttribute="trailing" secondItem="pVN-VN-sUk" secondAttribute="trailing" id="qY7-XA-Pnw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Help" id="hEv-75-I3j"/>

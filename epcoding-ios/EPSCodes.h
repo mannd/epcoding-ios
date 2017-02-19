@@ -11,14 +11,6 @@
 
 @interface EPSCodes : NSObject
 
-typedef NS_ENUM(NSInteger, SedationStatus) {
-    Unassigned,
-    None,
-    LessThan10Mins,
-    OtherMDUnCalculated,
-    OtherMDCalculated,
-    AssignedSameMD
-};
 
 + (NSDictionary *)allCodes;
 + (void)addCode:(EPSCode *)code toDictionary:(NSMutableDictionary *)dictionary;
@@ -39,5 +31,6 @@ typedef NS_ENUM(NSInteger, SedationStatus) {
 + (void)loadSavedModifiers:(NSArray *)codes;+ (void)resetSavedModifiers:(NSArray *)codes;
 + (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5;
 + (NSString *)printSedationCodes:(NSArray *)codes separator:(NSString *)separator;
++ (NSString *)sedationDetail:(NSArray *)codes sedationStatus:(SedationStatus)status;
 
 @end

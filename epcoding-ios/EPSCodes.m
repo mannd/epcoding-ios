@@ -9,6 +9,7 @@
 #import "EPSCodes.h"
 #import "EPSModifiers.h"
 
+
 @implementation EPSCodes
 
 
@@ -412,6 +413,32 @@
         codeString = [NSString stringWithFormat:@"%@%@%@", [[codes objectAtIndex:0] unformattedCodeNumber], separator, [[codes objectAtIndex:1] unformattedCodeNumber]];
     }
     return codeString;
+}
+
++ (NSString *)sedationDetail:(NSArray *)codes sedationStatus:(SedationStatus)status {
+    NSString *detail;
+    // printSedationCodes returns empty string if codes == nil
+    NSString *codeDetails = [self printSedationCodes:codes separator:@", "];
+    switch (status) {
+        case Unassigned:
+            detail = UNASSIGNED_SEDATION_STRING;
+            break;
+        case None:
+            detail = NO_SEDATION_STRING;
+            break;
+        case LessThan10Mins:
+            detail = SHORT_SEDATION_TIME_STRING;
+            break;
+        case OtherMDUnCalculated:
+            detail = OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING;
+            break;
+        case OtherMDCalculated:
+            detail = [NSString stringWithFormat:OTHER_MD_CALCULATED_SEDATION_TIME_STRING, codeDetails];
+            break;
+        case AssignedSameMD:
+            detail = codeDetails;
+    }
+    return detail;
 }
 
 

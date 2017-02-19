@@ -9,6 +9,12 @@
 #import "EPSCode.h"
 #import "EPSModifier.h"
 
+NSString *const NO_SEDATION_STRING = @"No sedation used during this procedure.";
+NSString *const UNASSIGNED_SEDATION_STRING = @"No sedation codes assigned.";
+NSString *const SHORT_SEDATION_TIME_STRING = @"No codes assigned as sedation time < 10 mins.";
+NSString *const OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING = @"Sedation performed by other MD.";
+NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed by other MD, who should use coding %@";
+
 @implementation EPSCode
 
 
