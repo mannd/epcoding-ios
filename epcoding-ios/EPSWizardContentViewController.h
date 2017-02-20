@@ -21,4 +21,12 @@
 @property (strong, nonatomic) NSArray *codes;
 @property (strong, nonatomic) NSArray *allCodes;
 
+@property (strong, nonatomic) NSMutableArray *sedationCodes;
+
+@property SedationStatus sedationStatus;
+@property NSInteger sedationTime;
+@property BOOL sameMDPerformsSedation;
+@property BOOL patientOver5YearsOld;
+@property BOOL noSedationAdministered;
+
 @end

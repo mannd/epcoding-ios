@@ -9,6 +9,8 @@
 #import "EPSWizardContentViewController.h"
 #import "EPSCodes.h"
 #import "EPSModifierTableViewController.h"
+#import "EPSSedationCode.h"
+#import "EPSSedationViewController.h"
 
 @interface EPSWizardContentViewController ()
 
@@ -46,18 +48,52 @@
     longPress.delegate = self;
     [self.codeTableView addGestureRecognizer:longPress];
     
+    self.sedationTime = 0;
+    self.sameMDPerformsSedation = YES;
+    self.patientOver5YearsOld = YES;
+    self.noSedationAdministered = NO;
+    self.sedationStatus = Unassigned;
+     
     // Add default codes here
     [self clearAllMultipliersAndModifiers];
     [self loadDefaultModifiers];
     [self loadSavedModifiers];
-    
+    NSLog(@"wizard viewDidLoad");
    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"wizard viewDidAppear");
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)determineSedationCoding {
+    [self.sedationCodes removeAllObjects];
+    NSArray *array = [EPSSedationCode sedationCoding:self.sedationTime sameMD:self.sameMDPerformsSedation patientOver5:self.patientOver5YearsOld];
+    [self.sedationCodes addObjectsFromArray:array];
+}
+
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
+    NSLog(@"send sedation data back");
+    if (cancel) {
+        return;
+    }
+    EPSSedationCode *code = (EPSSedationCode *)selectedCode;
+    self.sameMDPerformsSedation = sameMD;
+    self.patientOver5YearsOld = !lessThan5;
+    self.sedationTime = time;
+    [self.sedationCodes removeAllObjects];
+    NSArray *array = [EPSSedationCode sedationCoding:time sameMD:sameMD patientOver5:!lessThan5];
+    [self.sedationCodes addObjectsFromArray:array];
+    self.noSedationAdministered = noSedation;
+    code.sedationStatus = self.sedationStatus = sedationStatus;
+    [self.codeTableView reloadData];
 }
 
 - (void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {
@@ -119,6 +155,15 @@
         viewController.delegate = self;
         viewController.code = selectedCode;
     }
+    if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
+        NSLog(@"Showing sedation");
+        EPSSedationViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+        viewController.time = self.sedationTime;
+        viewController.ageOver5 = self.patientOver5YearsOld;
+        viewController.sameMD = self.sameMDPerformsSedation;
+        viewController.sedationStatus = self.sedationStatus;
+    }
 
 }
 
@@ -178,16 +223,22 @@
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSUInteger row = indexPath.row;
-        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.backgroundColor = [UIColor whiteColor];
-            [[self.codes objectAtIndex:row] setSelected:NO];
-        }
-        else {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            cell.backgroundColor = [UIColor yellowColor];
-            [[self.codes objectAtIndex:row] setSelected:YES];
-        }
+    selectedCode = [self.codes objectAtIndex:row];
+    if (selectedCode.number == SEDATION_CODE_NUMBER) {
+        NSLog(@"sedation code selected.");
+        [self performSegueWithIdentifier:@"showSedationFromWizard" sender:nil];
+
+    }
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.backgroundColor = [UIColor whiteColor];
+        [[self.codes objectAtIndex:row] setSelected:NO];
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.backgroundColor = [UIColor yellowColor];
+        [[self.codes objectAtIndex:row] setSelected:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
@@ -206,6 +257,11 @@
         NSLog(@"long press on table view at row %ld", indexPath.row);
         NSUInteger row = indexPath.row;
         selectedCode = [self.codes objectAtIndex:row];
+        // ignore long press for special sedation code - it has no modifiers
+        if (selectedCode.number == SEDATION_CODE_NUMBER) {
+            NSLog(@"sedation code selected");
+            return;
+        }
         NSLog(@"selected code = %@", [selectedCode unformattedCodeNumber]);
         [self performSegueWithIdentifier:@"showModifiersFromWizard" sender:nil];
         

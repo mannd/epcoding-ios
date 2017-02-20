@@ -9,6 +9,7 @@
 #import "EPSSedationViewController.h"
 #import "EPSTimeCalculatorViewController.h"
 #import "EPSCodes.h"
+#import "EPSSedationCode.h"
 
 @interface EPSSedationViewController ()
 
@@ -29,6 +30,7 @@
     UIBarButtonItem *noSedationButton = [[UIBarButtonItem alloc] initWithTitle:@"No Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(noSedationAction:)];
     UIBarButtonItem *addCodesButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Codes" style: UIBarButtonItemStyleDone target: self action: @selector(addCodesAction:)];
     self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, noSedationButton, addCodesButton, nil];
+    [self.navigationController setToolbarHidden:NO];
 
 }
 
@@ -122,7 +124,7 @@
 }
 
 - (void)showResults {
-    NSArray *sedationCodes = [EPSCodes sedationCoding:self.time sameMD:self.sameMD patientOver5:self.ageOver5];
+    NSArray *sedationCodes = [EPSSedationCode sedationCoding:self.time sameMD:self.sameMD patientOver5:self.ageOver5];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Results" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){    [self.navigationController popViewControllerAnimated:YES];}];
@@ -140,18 +142,18 @@
     }
     else if (self.sedationStatus == OtherMDCalculated) {
         if ([sedationCodes count] == 1) {
-            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@""]];
         }
         else {
-            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSCodes printSedationCodes:sedationCodes separator:@" and "]];
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@" and "]];
         }
     }
     else {  // self.sedationStatus == AssignedSameMD
         if ([sedationCodes count] == 1) {
-            alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSCodes printSedationCodes:sedationCodes separator:@""]];
+            alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@""]];
         }
         else {
-            alert.message = [NSString stringWithFormat:@"Sedation codes added: %@.", [EPSCodes printSedationCodes:sedationCodes separator:@" and "]];
+            alert.message = [NSString stringWithFormat:@"Sedation codes added: %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@" and "]];
         }
     }
     [self presentViewController:alert animated:YES completion:nil];

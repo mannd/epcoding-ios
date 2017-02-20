@@ -14,6 +14,7 @@
 #import "EPSSedationViewController.h"
 #import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
+#import "EPSSedationCode.h"
 
 #define HIGHLIGHT yellowColor
 #define DISABLED_COLOR lightGrayColor
@@ -86,15 +87,6 @@
         [EPSCodes clearMultipliersAndModifiers:self.primaryCodes];
         [EPSCodes clearMultipliersAndModifiers:self.secondaryCodes];
         [EPSCodes clearMultipliersAndModifiers:self.sedationCodes];
-        /* TODO: 
-         Modifiers are code module specific and come in 3 layers:
-         1. Programmatic defaults - recommended modifiers that really shouldn't need to be changed, exception being allcode modules
-         where there are no programmatic defaults but just pure codes (but they can be changed by other layers to follow.
-         2. Saved modifiers - if someone doesn't want to use a modifier, it can be deleted and saved, or new modifiers can be added.  These will be per code module and will override layer 1.
-         3. Added modifiers.  These are added per appearance of the module and don't last between uses.  They are specific to a specific case.
-         */
-        
-        self.sedationStatus = Unassigned;
         // no default modifiers in all codes view
         if (!isAllCodesModule) {
             [self loadDefaultModifiers];
@@ -123,6 +115,8 @@
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
     self.noSedationAdministered = NO;
+    self.sedationStatus = Unassigned;
+
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
     
     // add long press handler
@@ -281,7 +275,7 @@
     }
     else {
         [alert addAction:editCodes];
-        alert.message = [EPSCodes printSedationCodes:self.sedationCodes separator:@"\n"];
+        alert.message = [EPSSedationCode printSedationCodes:self.sedationCodes separator:@"\n"];
     }
     [alert addAction:cancel];
     
@@ -310,7 +304,7 @@
 
 - (void)determineSedationCoding {
     [self.sedationCodes removeAllObjects];
-    NSArray *array = [EPSCodes sedationCoding:self.sedationTime sameMD:self.sameMDPerformsSedation patientOver5:self.patientOver5YearsOld];
+    NSArray *array = [EPSSedationCode sedationCoding:self.sedationTime sameMD:self.sameMDPerformsSedation patientOver5:self.patientOver5YearsOld];
     [self.sedationCodes addObjectsFromArray:array];
 }
 

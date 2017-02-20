@@ -11,6 +11,7 @@
 #import "EPSCode.h"
 #import "EPSCodeSummaryTableViewController.h"
 #import "EPSSedationCode.h"
+#import "EPSSedationViewController.h"
 
 
 @interface EPSWizardViewController ()
@@ -57,6 +58,12 @@
     NSArray *sedationArray = @[sedationCode];
     [array addObject:sedationArray];
     self.codeArrays = array;
+    
+    self.sedationTime = 0;
+    self.sameMDPerformsSedation = YES;
+    self.patientOver5YearsOld = YES;
+    self.noSedationAdministered = NO;
+    self.sedationStatus = Unassigned;
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -118,6 +125,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
+    if (cancel) {
+        return;
+    }
+    self.sameMDPerformsSedation = sameMD;
+    self.patientOver5YearsOld = !lessThan5;
+    self.sedationTime = time;
+//    [self determineSedationCoding];
+    self.noSedationAdministered = noSedation;
+    self.sedationStatus = sedationStatus;
+    NSLog(@"Sedation status = %ld", (long)self.sedationStatus);
+}
+
+
 
 #pragma mark - Navigation
 
@@ -129,6 +150,19 @@
         [[segue destinationViewController] setSelectedSecondaryCodes:nil];
         [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:YES];
     }
+    else if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
+        EPSSedationViewController *viewController = segue.destinationViewController;
+        viewController.delegate = self;
+        viewController.time = self.sedationTime;
+        viewController.ageOver5 = self.patientOver5YearsOld;
+        viewController.sameMD = self.sameMDPerformsSedation;
+        viewController.sedationStatus = self.sedationStatus;
+    }
+    
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    return YES;
 }
 
 

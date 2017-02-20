@@ -19,10 +19,10 @@
 @property (strong, nonatomic) NSSet *disabledCodesSet;
 @property BOOL disablePrimaryCodes;
 @property BOOL ignoreNoSecondaryCodesSelected;
-@property SedationStatus sedationStatus;
 
 @property (weak, nonatomic) IBOutlet UITableView *codeTableView;
 
+@property SedationStatus sedationStatus;
 @property NSInteger sedationTime;
 @property BOOL sameMDPerformsSedation;
 @property BOOL patientOver5YearsOld;

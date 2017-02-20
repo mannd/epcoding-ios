@@ -8,15 +8,30 @@
 
 #import "EPSCode.h"
 
+FOUNDATION_EXPORT NSString *const SEDATION_CODE_NUMBER;
+FOUNDATION_EXPORT NSString *const NO_SEDATION_STRING;
+FOUNDATION_EXPORT NSString *const UNASSIGNED_SEDATION_STRING;
+FOUNDATION_EXPORT NSString *const SHORT_SEDATION_TIME_STRING;
+FOUNDATION_EXPORT NSString *const OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING;
+FOUNDATION_EXPORT NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING;
+
 @interface EPSSedationCode : EPSCode
 
 @property SedationStatus sedationStatus;
 @property (strong, nonatomic) EPSCode *code1;
 @property (strong, nonatomic) EPSCode *code2;
+@property (strong, nonatomic) NSMutableArray *sedationCodes;
+
++ (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5;
++ (NSUInteger)codeMultiplier:(NSInteger)time;
++ (NSString *)printSedationCodes:(NSArray *)codes separator:(NSString *)separator;
++ (NSString *)sedationDetail:(NSArray *)codes sedationStatus:(SedationStatus)status;
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;
 - (id)init;
 
 - (NSString *)unformattedCodeDescription;
+
+
 
 @end

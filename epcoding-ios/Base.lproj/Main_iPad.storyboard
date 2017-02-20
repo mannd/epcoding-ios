@@ -289,11 +289,12 @@
                         <outlet property="codeTableView" destination="4CA-va-Ujx" id="fWr-wU-RWH"/>
                         <outlet property="contentLabel" destination="leh-V0-2gY" id="Y1B-am-Rle"/>
                         <segue destination="dDT-Cp-FLU" kind="show" identifier="showModifiersFromWizard" id="ih4-PB-EIY"/>
+                        <segue destination="6ET-1T-qPj" kind="show" identifier="showSedationFromWizard" id="8MQ-V4-d1T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fq-ye-W6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146.6796875" y="1850.9516837481697"/>
+            <point key="canvasLocation" x="1897" y="1319"/>
         </scene>
         <!--Moderate Sedation-->
         <scene sceneID="DzX-HP-Dxc">
@@ -402,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="su0-aQ-mXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144.53125" y="-890.62499999999989"/>
+            <point key="canvasLocation" x="1170" y="489"/>
         </scene>
         <!--Time Calculator-->
         <scene sceneID="UCV-KI-TE7">
@@ -413,11 +414,11 @@
                         <viewControllerLayoutGuide type="bottom" id="doy-sG-5kx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FWZ-TG-f5c">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-hG-ect">
-                                <rect key="frame" x="224" y="372" width="320" height="216"/>
+                                <rect key="frame" x="224" y="404" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="507524272.503667">
                                     <!--2017-01-31 02:57:52 +0000-->
                                 </date>
@@ -426,7 +427,7 @@
                                 </connections>
                             </datePicker>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HVr-5G-1VN">
-                                <rect key="frame" x="305.5" y="20" width="157" height="29"/>
+                                <rect key="frame" x="305.5" y="40" width="157" height="29"/>
                                 <segments>
                                     <segment title="Start Time"/>
                                     <segment title="End Time"/>
@@ -452,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83X-Yw-fn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971.875" y="-891.79687499999989"/>
+            <point key="canvasLocation" x="1969" y="129"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="6KN-wE-CyP">
@@ -488,11 +489,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rJZ-SZ-PKU"/>
-        <segue reference="Mvd-nK-6ZG"/>
-        <segue reference="bIa-Hl-gS9"/>
-        <segue reference="GWJ-Yr-pBw"/>
-        <segue reference="HbE-bm-eGa"/>
         <segue reference="ih4-PB-EIY"/>
+        <segue reference="8MQ-V4-d1T"/>
+        <segue reference="Mvd-nK-6ZG"/>
+        <segue reference="rJZ-SZ-PKU"/>
+        <segue reference="GWJ-Yr-pBw"/>
+        <segue reference="bIa-Hl-gS9"/>
+        <segue reference="HbE-bm-eGa"/>
     </inferredMetricsTieBreakers>
 </document>
