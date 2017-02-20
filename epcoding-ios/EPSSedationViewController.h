@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EPSCodes.h"
+#import "EPSSedationCode.h"
 
 @protocol sendDataProtocol <NSObject>
 

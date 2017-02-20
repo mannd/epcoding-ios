@@ -89,7 +89,9 @@
 //    UIBarButtonItem *buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:nil];
 //    self.toolbarItems = [NSArray arrayWithObjects: buttonSedation, nil];
 //    
-    
+    [self.splitViewController setPresentsWithGesture:NO];
+
+
     NSLog(@"viewDidLoad");
     
 

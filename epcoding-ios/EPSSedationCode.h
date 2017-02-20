@@ -17,9 +17,16 @@ FOUNDATION_EXPORT NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING;
 
 @interface EPSSedationCode : EPSCode
 
+typedef NS_ENUM(NSInteger, SedationStatus) {
+    Unassigned,
+    None,
+    LessThan10Mins,
+    OtherMDUnCalculated,
+    OtherMDCalculated,
+    AssignedSameMD
+};
+
 @property SedationStatus sedationStatus;
-@property (strong, nonatomic) EPSCode *code1;
-@property (strong, nonatomic) EPSCode *code2;
 @property (strong, nonatomic) NSMutableArray *sedationCodes;
 
 + (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5;
@@ -31,6 +38,8 @@ FOUNDATION_EXPORT NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING;
 - (id)init;
 
 - (NSString *)unformattedCodeDescription;
+- (NSString *)printSedationCodesWithSeparator:(NSString *)separator;
+- (NSString *)sedationDetail:(SedationStatus)status;
 
 
 

@@ -53,6 +53,7 @@
     self.patientOver5YearsOld = YES;
     self.noSedationAdministered = NO;
     self.sedationStatus = Unassigned;
+    self.sedationCodes = [[NSMutableArray alloc] init];
      
     // Add default codes here
     [self clearAllMultipliersAndModifiers];
@@ -84,15 +85,17 @@
     if (cancel) {
         return;
     }
-    EPSSedationCode *code = (EPSSedationCode *)selectedCode;
+    EPSSedationCode *sedationCode = (EPSSedationCode *)selectedCode;
     self.sameMDPerformsSedation = sameMD;
     self.patientOver5YearsOld = !lessThan5;
     self.sedationTime = time;
     [self.sedationCodes removeAllObjects];
     NSArray *array = [EPSSedationCode sedationCoding:time sameMD:sameMD patientOver5:!lessThan5];
     [self.sedationCodes addObjectsFromArray:array];
+    sedationCode.sedationCodes = self.sedationCodes;
+    // TODO: need this??
     self.noSedationAdministered = noSedation;
-    code.sedationStatus = self.sedationStatus = sedationStatus;
+    sedationCode.sedationStatus = self.sedationStatus = sedationStatus;
     [self.codeTableView reloadData];
 }
 
@@ -227,9 +230,11 @@
     if (selectedCode.number == SEDATION_CODE_NUMBER) {
         NSLog(@"sedation code selected.");
         [self performSegueWithIdentifier:@"showSedationFromWizard" sender:nil];
-
+        // selected sedation codes stays selected
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [[self.codes objectAtIndex:row] setSelected:YES];
     }
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+    else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.backgroundColor = [UIColor whiteColor];
         [[self.codes objectAtIndex:row] setSelected:NO];
@@ -254,7 +259,7 @@
         selectedCode = nil;
         NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"long press on table view at row %ld", indexPath.row);
+        NSLog(@"long press on table view at row %ld", (long)indexPath.row);
         NSUInteger row = indexPath.row;
         selectedCode = [self.codes objectAtIndex:row];
         // ignore long press for special sedation code - it has no modifiers
@@ -266,7 +271,7 @@
         [self performSegueWithIdentifier:@"showModifiersFromWizard" sender:nil];
         
     } else {
-        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+        NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 

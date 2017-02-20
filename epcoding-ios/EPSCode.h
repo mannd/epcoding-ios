@@ -12,15 +12,6 @@
 
 @interface EPSCode : NSObject
 
-typedef NS_ENUM(NSInteger, SedationStatus) {
-    Unassigned,
-    None,
-    LessThan10Mins,
-    OtherMDUnCalculated,
-    OtherMDCalculated,
-    AssignedSameMD
-};
-
 
 @property (strong, nonatomic) NSString *number;
 @property (strong, nonatomic) NSString *fullDescription;

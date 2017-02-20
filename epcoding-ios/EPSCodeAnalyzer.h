@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EPSCodes.h"
+#import "EPSSedationCode.h"
 
 @interface EPSCodeAnalyzer : NSObject
 

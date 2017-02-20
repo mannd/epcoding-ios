@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EPSCode.h"
+#import "EPSSedationCode.h"
 
 @interface EPSWizardContentViewController : UIViewController
     <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>

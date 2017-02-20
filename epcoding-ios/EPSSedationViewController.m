@@ -24,7 +24,7 @@
     self.timeTextField.delegate = self;
     [self.sameMDSwitch setOn:self.sameMD];
     [self.patientAgeSwitch setOn:self.ageOver5];
-    self.timeTextField.text = [NSString stringWithFormat:@"%lu", self.time];
+    self.timeTextField.text = [NSString stringWithFormat:@"%lu", (long)self.time];
     self.noSedation = NO;
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
     UIBarButtonItem *noSedationButton = [[UIBarButtonItem alloc] initWithTitle:@"No Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(noSedationAction:)];
@@ -58,7 +58,7 @@
         return;
     }
     self.time = time;
-    self.timeTextField.text = [NSString stringWithFormat:@"%lu", time];
+    self.timeTextField.text = [NSString stringWithFormat:@"%lu", (long)time];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -111,12 +111,7 @@
         return LessThan10Mins;
     }
     if (!self.sameMD) {
-        if (self.time < 1) {
-            return OtherMDUnCalculated;
-        }
-        else {
-            return OtherMDCalculated;
-        }
+        return OtherMDCalculated;
     }
     else {
         return AssignedSameMD;

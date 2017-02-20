@@ -14,7 +14,6 @@
 #import "EPSSedationViewController.h"
 #import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
-#import "EPSSedationCode.h"
 
 #define HIGHLIGHT yellowColor
 #define DISABLED_COLOR lightGrayColor
@@ -589,7 +588,6 @@
         selectedCode = nil;
         NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"long press on table view at row %ld", indexPath.row);
         NSUInteger section = indexPath.section;
         NSUInteger row = indexPath.row;
         if (section == 0) {
@@ -604,7 +602,7 @@
         [self performSegueWithIdentifier:@"showModifiers" sender:nil];
 
     } else {
-        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+        NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 

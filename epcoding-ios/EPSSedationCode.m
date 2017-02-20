@@ -18,16 +18,10 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
 
 @implementation EPSSedationCode
 
-{
-    NSMutableArray *sedationCodes;
-}
-
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn {
     if (self = [super initWithNumber:number description:description isAddOn:isAddOn]) {
         self.sedationStatus = Unassigned;
-        self.code1 = nil;
-        self.code2 = nil;
-        sedationCodes = [[NSMutableArray alloc] init];
+        self.sedationCodes = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -38,34 +32,27 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
 }
 
 - (NSString *)unformattedCodeDescription {
-    [sedationCodes removeAllObjects];
-    if (self.code1 != nil) {
-        [sedationCodes addObject:self.code1];
-        if (self.code2 != nil) {
-            [sedationCodes addObject:self.code2];
-        }
-    }
-    NSString *detail = [EPSSedationCode sedationDetail:sedationCodes sedationStatus:self.sedationStatus];
+    NSString *detail = [EPSSedationCode sedationDetail:self.sedationCodes sedationStatus:self.sedationStatus];
     return detail;
 }
 
 + (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5 {
-    NSMutableArray *sedationCodes = [[NSMutableArray alloc] init];
+    NSMutableArray *codes = [[NSMutableArray alloc] init];
     if (sedationTime >= 10) {
         if (sameMD) {
             if (patientOver5) {
-                [sedationCodes addObject:[EPSCodes getCodeForNumber:@"99152"]];
+                [codes addObject:[EPSCodes getCodeForNumber:@"99152"]];
             }
             else {
-                [sedationCodes addObject:[EPSCodes getCodeForNumber:@"99151"]];
+                [codes addObject:[EPSCodes getCodeForNumber:@"99151"]];
             }
         }
         else {
             if (patientOver5) {
-                [sedationCodes addObject:[EPSCodes getCodeForNumber:@"99156"]];
+                [codes addObject:[EPSCodes getCodeForNumber:@"99156"]];
             }
             else {
-                [sedationCodes addObject:[EPSCodes getCodeForNumber:@"99155"]];
+                [codes addObject:[EPSCodes getCodeForNumber:@"99155"]];
             }
         }
     }
@@ -79,9 +66,9 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
             code = [EPSCodes getCodeForNumber:@"99157"];
         }
         code.multiplier = multiplier;
-        [sedationCodes addObject:code];
+        [codes addObject:code];
     }
-    return sedationCodes;
+    return codes;
 }
 
 + (NSUInteger)codeMultiplier:(NSInteger)time {
@@ -131,6 +118,14 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
             detail = codeDetails;
     }
     return detail;
+}
+
+- (NSString *)printSedationCodesWithSeparator:(NSString *)separator {
+    return [EPSSedationCode printSedationCodes:self.sedationCodes separator:separator];
+}
+
+- (NSString *)sedationDetail:(SedationStatus)status {
+    return [EPSSedationCode sedationDetail:self.sedationCodes sedationStatus:status];
 }
 
 
