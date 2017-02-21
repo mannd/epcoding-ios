@@ -148,7 +148,7 @@
         [viewController setSelectedSecondaryCodes:nil];
         [viewController setIgnoreNoSecondaryCodesSelected:YES];
         [viewController setSelectedSedationCodes:self.sedationCode.sedationCodes];
-        viewController.sedationStatus = self.sedationStatus;
+        viewController.sedationStatus = self.sedationCode.sedationStatus;
     }
     else if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
         EPSSedationViewController *viewController = segue.destinationViewController;

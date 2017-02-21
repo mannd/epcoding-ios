@@ -299,15 +299,15 @@
             [self markCodes:self.allCodes withWarning:WARNING];
             break;
         case None:
-            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Procedure was performed without sedation."]];
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No sedation codes.  Procedure was performed without sedation."]];
             [self markCodes:self.allCodes withWarning:GOOD];
             break;
         case LessThan10Mins:
-            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No sedation coding as sedation time was < 10 minutes."]];
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No sedation codes as sedation time was < 10 minutes."]];
             [self markCodes:self.allCodes withWarning:GOOD];
             break;
         case OtherMDCalculated:
-            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Sedation performed by other MD and must be submitted by that MD."]];
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Sedation performed by other MD and sedation coding must be submitted by that MD."]];
             [self markCodes:self.sedationCodes withWarning:WARNING];
             break;
         case AssignedSameMD:
