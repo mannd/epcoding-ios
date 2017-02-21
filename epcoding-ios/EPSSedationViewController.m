@@ -137,18 +137,18 @@
     }
     else if (self.sedationStatus == OtherMDCalculated) {
         if ([sedationCodes count] == 1) {
-            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@""]];
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
         }
         else {
-            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@" and "]];
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
         }
     }
     else {  // self.sedationStatus == AssignedSameMD
         if ([sedationCodes count] == 1) {
-            alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@""]];
+            alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];;
         }
         else {
-            alert.message = [NSString stringWithFormat:@"Sedation codes added: %@.", [EPSSedationCode printSedationCodes:sedationCodes separator:@" and "]];
+            alert.message = [NSString stringWithFormat:@"Sedation codes added: %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
         }
     }
     [self presentViewController:alert animated:YES completion:nil];

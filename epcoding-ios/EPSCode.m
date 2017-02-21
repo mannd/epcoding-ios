@@ -74,7 +74,7 @@
 
 - (NSString *)unformattedCodeNumberFirst
 {
-    return [[NSString alloc] initWithFormat:@"(%@) %@", [self unformattedCodeNumber], self.fullDescription];
+    return [[NSString alloc] initWithFormat:@"%@ (%@)", [self unformattedCodeNumber], self.fullDescription];
 }
 
 - (NSString *)unformattedCodeNumber

@@ -86,15 +86,8 @@
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
     self.navigationItem.rightBarButtonItem = btn;
 
-//    UIBarButtonItem *buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:nil];
-//    self.toolbarItems = [NSArray arrayWithObjects: buttonSedation, nil];
-//    
+    // prevent swipe right from pulling open master view
     [self.splitViewController setPresentsWithGesture:NO];
-
-
-    NSLog(@"viewDidLoad");
-    
-
 }
 
 - (void)summarize {

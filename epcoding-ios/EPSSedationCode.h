@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, SedationStatus) {
 + (NSArray *)sedationCoding:(NSInteger)sedationTime sameMD:(BOOL)sameMD patientOver5:(BOOL)patientOver5;
 + (NSUInteger)codeMultiplier:(NSInteger)time;
 + (NSString *)printSedationCodes:(NSArray *)codes separator:(NSString *)separator;
++ (NSString *)printSedationCodesWithDescriptions:(NSArray *)codes;
 + (NSString *)sedationDetail:(NSArray *)codes sedationStatus:(SedationStatus)status;
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description isAddOn:(BOOL)isAddOn;

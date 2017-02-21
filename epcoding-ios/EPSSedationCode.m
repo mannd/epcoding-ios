@@ -79,6 +79,20 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
     return (NSUInteger)multiplier;
 }
 
++ (NSString *)printSedationCodesWithDescriptions:(NSArray *)codes {
+    NSString *codeString = @"";
+    if (codes == nil || [codes count] < 1) {
+        return codeString;
+    }
+    if ([codes count ] == 1) {
+        codeString = [[codes objectAtIndex:0] unformattedCodeNumberFirst];
+    }
+    else {
+        codeString = [NSString stringWithFormat:@"%@ and %@", [[codes objectAtIndex:0] unformattedCodeNumberFirst], [[codes objectAtIndex:1] unformattedCodeNumberFirst]];
+    }
+    return codeString;
+}
+
 // separator can be newline, or string like " and " --> note must add spaces
 + (NSString *)printSedationCodes:(NSArray *)codes separator:(NSString *)separator {
     NSString *codeString = @"";

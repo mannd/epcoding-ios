@@ -358,7 +358,18 @@
     XCTAssert(detail == SHORT_SEDATION_TIME_STRING);
     detail = [EPSSedationCode sedationDetail:codes sedationStatus:OtherMDUnCalculated];
     XCTAssert(detail == OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING);
+}
 
+- (void)testPrintSedationCodes {
+    NSArray *codes = @[[EPSCodes getCodeForNumber:@"99152"], [EPSCodes getCodeForNumber:@"99153"]];
+    NSString *result = [EPSSedationCode printSedationCodesWithDescriptions:codes];
+    NSLog(@"%@", result);
+    NSString *predictedResult = @"99152 (Mod sedation, same MD, initial 15 min, pt ≥ 5 y/o) and +99153 (Mod sedation, same MD, each additional 15 min)";
+    XCTAssert([result isEqualToString:predictedResult]);
+    codes = @[[EPSCodes getCodeForNumber:@"99152"]];
+    result = [EPSSedationCode printSedationCodesWithDescriptions:codes];
+    predictedResult = @"99152 (Mod sedation, same MD, initial 15 min, pt ≥ 5 y/o)";
+    XCTAssert([result isEqualToString:predictedResult]);
 }
 
 @end
