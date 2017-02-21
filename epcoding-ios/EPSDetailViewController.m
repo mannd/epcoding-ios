@@ -16,12 +16,11 @@
 #import "EPSModifiers.h"
 
 #define HIGHLIGHT yellowColor
-#define DISABLED_COLOR lightGrayColor
-//#define DISABLED_COLOR whiteColor
+//#define DISABLED_COLOR lightGrayColor
+// gray stripes on white background make it easier to read code
+#define DISABLED_COLOR whiteColor
 
 @interface EPSDetailViewController ()
-
-- (void)configureView;
 
 @end
 
@@ -116,8 +115,11 @@
     self.noSedationAdministered = NO;
     self.sedationStatus = Unassigned;
     
+    // TODO: on iPad, Sedation button turns back to red when master view appears, though selected cells don't change.
+    // even when changing back and forth procedures.  Need to clear selected codes when changing procedures.
     self.buttonSedation.tintColor = [UIColor redColor];
     
+
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
     
     // add long press handler
@@ -126,7 +128,6 @@
     longPress.minimumPressDuration = 1.0; //seconds
     longPress.delegate = self;
     [self.codeTableView addGestureRecognizer:longPress];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -386,8 +387,6 @@
     self.noSedationAdministered = noSedation;
     self.sedationStatus = sedationStatus;
     self.buttonSedation.tintColor = self.buttonSave.tintColor;
-    NSLog(@"tincolor is %@", self.buttonSave.tintColor);
-    NSLog(@"Sedation status = %ld", (long)self.sedationStatus);
 }
 
 -(void)sendModifierDataBack:(BOOL)cancel reset:(BOOL)reset selectedModifiers:(NSArray *)modifiers {
@@ -596,7 +595,7 @@
     NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
     if (indexPath == nil) {
         selectedCode = nil;
-        NSLog(@"long press on table view but not on a row");
+        //NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         NSUInteger section = indexPath.section;
         NSUInteger row = indexPath.row;
@@ -612,7 +611,7 @@
         [self performSegueWithIdentifier:@"showModifiers" sender:nil];
 
     } else {
-        NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
+        //NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 

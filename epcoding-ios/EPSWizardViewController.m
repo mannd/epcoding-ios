@@ -53,9 +53,9 @@
             code.selected = NO;
         }
     }
-    EPSSedationCode *sedationCode = [[EPSSedationCode alloc] init];
-    sedationCode.sedationStatus = None;
-    NSArray *sedationArray = @[sedationCode];
+    self.sedationCode = [[EPSSedationCode alloc] init];
+    self.sedationCode.sedationStatus = None;
+    NSArray *sedationArray = @[self.sedationCode];
     [array addObject:sedationArray];
     self.codeArrays = array;
     
@@ -96,7 +96,10 @@
         for (EPSCode *code in array) {
             if ([code selected]) {
                 code.codeStatus = GOOD;
-                [codes addObject:code];
+                // Don't add the pseudo-code sedationCode
+                if (code != self.sedationCode) {
+                    [codes addObject:code];
+                }
             }
         }
     }
@@ -130,7 +133,6 @@
 //    [self determineSedationCoding];
     self.noSedationAdministered = noSedation;
     self.sedationStatus = sedationStatus;
-    NSLog(@"Sedation status = %ld", (long)self.sedationStatus);
 }
 
 
@@ -141,9 +143,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showWizardSummary"]) {
-        [[segue destinationViewController] setSelectedPrimaryCodes:self.selectedCodes];
-        [[segue destinationViewController] setSelectedSecondaryCodes:nil];
-        [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:YES];
+        EPSCodeSummaryTableViewController *viewController = segue.destinationViewController;
+        [viewController setSelectedPrimaryCodes:self.selectedCodes];
+        [viewController setSelectedSecondaryCodes:nil];
+        [viewController setIgnoreNoSecondaryCodesSelected:YES];
+        [viewController setSelectedSedationCodes:self.sedationCode.sedationCodes];
+        viewController.sedationStatus = self.sedationStatus;
     }
     else if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
         EPSSedationViewController *viewController = segue.destinationViewController;
@@ -163,8 +168,6 @@
 
 - (EPSWizardContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    NSLog(@"viewControllerAtIndex");
-
     if (([self.pageContent count] == 0) || (index >= [self.pageContent count])) {
         return nil;
     }

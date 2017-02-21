@@ -45,7 +45,7 @@
     XCTAssertTrue([[code number] isEqualToString:@"99999"], @"Test failed");
     XCTAssertTrue([[code fullDescription] isEqualToString:@"Test Code"], @"Test failed");
     XCTAssertTrue([code isAddOn], @"Test failed");
-    XCTAssertTrue([[code unformattedCodeNumberFirst] isEqualToString:@"(+99999) Test Code"]);
+    XCTAssertTrue([[code unformattedCodeNumberFirst] isEqualToString:@"+99999 (Test Code)"]);
     code.plusShown = YES;
     XCTAssertTrue([[code unformattedCodeDescriptionFirst] isEqualToString:@"Test Code (+99999)"]);
     code.descriptonShown = YES;
@@ -54,7 +54,7 @@
     code.plusShown = NO;
     XCTAssertTrue([[code formattedCode] isEqualToString:@"(99999) Test Code"]);
     code.isAddOn = NO;
-    XCTAssertTrue([[code unformattedCodeNumberFirst] isEqualToString:@"(99999) Test Code"]);
+    XCTAssertTrue([[code unformattedCodeNumberFirst] isEqualToString:@"99999 (Test Code)"]);
     code.plusShown = YES;
     XCTAssertTrue([[code unformattedCodeDescriptionFirst] isEqualToString:@"Test Code (99999)"]);
     XCTAssertTrue([[code formattedCode] isEqualToString:@"(99999) Test Code"]);
@@ -184,7 +184,8 @@
     NSSet *codeNumberSet = [NSSet setWithArray:@[@"00000", @"00001", @"00002", @"00003"]];
     NSArray *badCodes = @[@"00000", @"00002"];
     NSArray *badCodeResult = [analyzer codesWithBadCombosFromCodeSet:codeNumberSet andBadCodeNumbers:badCodes];
-    NSLog(@"Bad codes = %@", [EPSCodeAnalyzer codeNumbersToString:badCodeResult]);
+    //NSLog(@"Bad codes = %@", [EPSCodeAnalyzer codeNumbersToString:badCodeResult]);
+    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:badCodeResult] isEqualToString:@"[00000,00002]"]);
     // make sure unmatched codes are stripped off
     NSArray *newBadCodes = @[@"00000", @"00001", @"99999"];
     NSArray *badCodeResult2 = [analyzer codesWithBadCombosFromCodeSet:codeNumberSet andBadCodeNumbers:newBadCodes];
@@ -199,7 +200,7 @@
     NSArray *errorCodes = [analyzer5 analysis];
     EPSCodeError *errorCode1 = [errorCodes objectAtIndex:0];
     NSArray *codes10 = [errorCode1 codes];
-    NSLog(@"%@", [EPSCodeAnalyzer codeNumbersToString:codes10]);
+    //NSLog(@"%@", [EPSCodeAnalyzer codeNumbersToString:codes10]);
     XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codes10] isEqualToString:@"[33233,33228]"]);
     XCTAssertTrue([EPSCodeAnalyzer codeNumbersToString:nil] == nil);
     
@@ -264,7 +265,7 @@
     [testCode addModifier:testModifier2];
     [testCode addModifier:testModifier];
     testCodeString = [testCode unformattedCodeNumber];
-    NSLog(@"%@", testCodeString);
+    //NSLog(@"%@", testCodeString);
     XCTAssertTrue([testCodeString isEqualToString:@"99999-88-99"]);
     testCode.multiplier = 20;
     testCodeString = [testCode unformattedCodeNumber];
@@ -275,7 +276,7 @@
     [testCode addModifier:testModifier];
     XCTAssertTrue([testCode.modifiers count] == 1);
     EPSModifier *modifier = [[testCode modifiers] objectAtIndex:0];
-    NSLog(@"modifier description = %@", modifier.fullDescription);
+    //NSLog(@"modifier description = %@", modifier.fullDescription);
     XCTAssertTrue([modifier.fullDescription isEqualToString:@"Test modifier"]);
     // prevent duplicate modifiers
     [testCode clearModifiers];
@@ -312,7 +313,7 @@
     sedationCodes = [EPSSedationCode sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
     code1 = [sedationCodes objectAtIndex:0];
     code2 = [sedationCodes objectAtIndex:1];
-    NSLog(@"%@", [code1 unformattedCodeNumber]);
+    //NSLog(@"%@", [code1 unformattedCodeNumber]);
     XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99156"]);
     XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99157 x 4"]);
     ptOver5 = NO;
@@ -356,14 +357,12 @@
     XCTAssert(detail == NO_SEDATION_STRING);
     detail = [EPSSedationCode sedationDetail:nil sedationStatus:LessThan10Mins];
     XCTAssert(detail == SHORT_SEDATION_TIME_STRING);
-    detail = [EPSSedationCode sedationDetail:codes sedationStatus:OtherMDUnCalculated];
-    XCTAssert(detail == OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING);
 }
 
 - (void)testPrintSedationCodes {
     NSArray *codes = @[[EPSCodes getCodeForNumber:@"99152"], [EPSCodes getCodeForNumber:@"99153"]];
     NSString *result = [EPSSedationCode printSedationCodesWithDescriptions:codes];
-    NSLog(@"%@", result);
+    //NSLog(@"%@", result);
     NSString *predictedResult = @"99152 (Mod sedation, same MD, initial 15 min, pt ≥ 5 y/o) and +99153 (Mod sedation, same MD, each additional 15 min)";
     XCTAssert([result isEqualToString:predictedResult]);
     codes = @[[EPSCodes getCodeForNumber:@"99152"]];

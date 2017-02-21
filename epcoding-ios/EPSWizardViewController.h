@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSArray *codeNumbers;
 @property (strong, nonatomic) NSArray *codeArrays;
 @property (strong, nonatomic) NSMutableArray *selectedCodes;
+@property (strong, nonatomic) EPSSedationCode *sedationCode;
+
 
 @property SedationStatus sedationStatus;
 @property NSInteger sedationTime;

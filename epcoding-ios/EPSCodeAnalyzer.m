@@ -151,10 +151,13 @@
         [self markCodes:self.allCodes withWarning:WARNING];
     }
     // warn for no sedation codes
-    if ([self mismatchedSedationCodes] == 1) {
-        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you provide sedation services?  Sedation codes are no longer bundled with the procedure codes [2017]."]];
-        [self markCodes:self.allCodes withWarning:WARNING];
-    }
+//    if ([self mismatchedSedationCodes] == 1) {
+//        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you provide sedation services?  Sedation codes are no longer bundled with the procedure codes [2017]."]];
+//        [self markCodes:self.allCodes withWarning:WARNING];
+//    }
+    
+    [array addObjectsFromArray:[self evaluateSedationStatus]];
+    
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
     [array addObjectsFromArray:duplicateCodeErrors];
     NSArray *firstSpecialCodeErrors = [self firstSpecialCodeNumberErrors];
@@ -288,52 +291,30 @@
     return [NSString stringWithFormat:@"[%@]", string];
 }
 
-// return specific error codes to be handled by caller
-// 0 is no error
-// TODO: make #defines for error numbers
-// may need to make this a bitmap, or something mod 10 to combine error codes?
-- (NSUInteger)mismatchedSedationCodes {
-    // impossible to have more than 2 sedation codes per case
-    if ([self.sedationCodes count] < 1) {
-        // no sedation codes, give warning
-        return 1; // NO_SEDATION_CODES_WARNING
+- (NSArray *)evaluateSedationStatus {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    switch (self.sedationStatus) {
+        case Unassigned:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you provide sedation services?  Sedation codes are no longer bundled with the procedure codes."]];
+            [self markCodes:self.allCodes withWarning:WARNING];
+            break;
+        case None:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Procedure was performed without sedation."]];
+            [self markCodes:self.allCodes withWarning:GOOD];
+            break;
+        case LessThan10Mins:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No sedation coding as sedation time was < 10 minutes."]];
+            [self markCodes:self.allCodes withWarning:GOOD];
+            break;
+        case OtherMDCalculated:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Sedation performed by other MD and must be submitted by that MD."]];
+            [self markCodes:self.sedationCodes withWarning:WARNING];
+            break;
+        case AssignedSameMD:
+            // no warnings, everything good
+            break;
     }
-    if ([self.sedationCodes count] > 2) {
-        return 2; // TOO_MANY_SEDATION_CODES_ERROR
-    }
-    // handle single sedation codes
-    NSString *firstCode = [self.sedationCodes objectAtIndex:0];
-    if ([self.sedationCodes count] == 1) {
-        // gosh we only have sedation codes
-        if ([self.allCodes count] == 1) {
-            if ([firstCode isEqualToString:@"99151"] || [firstCode isEqualToString:@"99152"]) {
-                return 3; // USING_NONSTANDALONE_SEDATION_CODES_ALONE
-            }
-        }
-        if (![[self initialSedationCodeSet] containsObject:firstCode]) {
-            return 4; // USE_OF_ADDITIONAL_SEDATION_CODE_WITHOUT_FIRST_CODE
-        }
-        // etc!
-        
-    }
-    return 0;
+    return array;
 }
-
-/*
- Sedation code tests
- - no sedation codes - warning - DONE
- - sedation codes not matching - mixing by MD and not by MD sedation codes
- - additional minutes codes without initial sedation code
- - other MD sedation codes along with procedural codes
- - same MD sedation codes without procedure codes
- 
- 
- 
- 
- */
-
-
-
-
 
 @end

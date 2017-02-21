@@ -59,13 +59,10 @@
     [self clearAllMultipliersAndModifiers];
     [self loadDefaultModifiers];
     [self loadSavedModifiers];
-    NSLog(@"wizard viewDidLoad");
-   
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"wizard viewDidAppear");
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,7 +78,6 @@
 }
 
 - (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
-    NSLog(@"send sedation data back");
     if (cancel) {
         return;
     }
@@ -128,7 +124,6 @@
 }
 
 - (void)loadDefaultModifiers {
-    NSLog(@"Loading defaults!");
     for (NSArray *array in self.allCodes) {
         [EPSCodes loadDefaultModifiers:array];
     }
@@ -159,7 +154,6 @@
         viewController.code = selectedCode;
     }
     if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
-        NSLog(@"Showing sedation");
         EPSSedationViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
         viewController.time = self.sedationTime;
@@ -228,7 +222,6 @@
     NSUInteger row = indexPath.row;
     selectedCode = [self.codes objectAtIndex:row];
     if (selectedCode.number == SEDATION_CODE_NUMBER) {
-        NSLog(@"sedation code selected.");
         [self performSegueWithIdentifier:@"showSedationFromWizard" sender:nil];
         // selected sedation codes stays selected
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -257,7 +250,7 @@
     NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
     if (indexPath == nil) {
         selectedCode = nil;
-        NSLog(@"long press on table view but not on a row");
+        //NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         NSLog(@"long press on table view at row %ld", (long)indexPath.row);
         NSUInteger row = indexPath.row;
@@ -267,11 +260,11 @@
             NSLog(@"sedation code selected");
             return;
         }
-        NSLog(@"selected code = %@", [selectedCode unformattedCodeNumber]);
+        //NSLog(@"selected code = %@", [selectedCode unformattedCodeNumber]);
         [self performSegueWithIdentifier:@"showModifiersFromWizard" sender:nil];
         
     } else {
-        NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
+        //NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 
