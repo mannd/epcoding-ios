@@ -63,7 +63,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time noSedation:self.noSedation sedationStatus:self.sedationStatus];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time sedationStatus:self.sedationStatus];
 }
 
 - (IBAction)dismissKeyboard:(id)sender {

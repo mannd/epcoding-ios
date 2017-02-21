@@ -112,7 +112,6 @@
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
-    self.noSedationAdministered = NO;
     self.sedationStatus = Unassigned;
     
     // TODO: on iPad, Sedation button turns back to red when master view appears, though selected cells don't change.
@@ -376,7 +375,7 @@
     }
 }
 
-- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus {
     if (cancel) {
         return;
     }
@@ -384,7 +383,6 @@
     self.patientOver5YearsOld = !lessThan5;
     self.sedationTime = time;
     [self determineSedationCoding];
-    self.noSedationAdministered = noSedation;
     self.sedationStatus = sedationStatus;
     self.buttonSedation.tintColor = self.buttonSave.tintColor;
 }

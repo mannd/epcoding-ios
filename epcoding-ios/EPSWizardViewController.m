@@ -54,16 +54,10 @@
         }
     }
     self.sedationCode = [[EPSSedationCode alloc] init];
-    self.sedationCode.sedationStatus = None;
+    self.sedationCode.sedationStatus = Unassigned;
     NSArray *sedationArray = @[self.sedationCode];
     [array addObject:sedationArray];
     self.codeArrays = array;
-    
-    self.sedationTime = 0;
-    self.sameMDPerformsSedation = YES;
-    self.patientOver5YearsOld = YES;
-    self.noSedationAdministered = NO;
-    self.sedationStatus = Unassigned;
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -123,20 +117,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
-    if (cancel) {
-        return;
-    }
-    self.sameMDPerformsSedation = sameMD;
-    self.patientOver5YearsOld = !lessThan5;
-    self.sedationTime = time;
-//    [self determineSedationCoding];
-    self.noSedationAdministered = noSedation;
-    self.sedationStatus = sedationStatus;
-}
-
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -150,21 +130,7 @@
         [viewController setSelectedSedationCodes:self.sedationCode.sedationCodes];
         viewController.sedationStatus = self.sedationCode.sedationStatus;
     }
-    else if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
-        EPSSedationViewController *viewController = segue.destinationViewController;
-        viewController.delegate = self;
-        viewController.time = self.sedationTime;
-        viewController.ageOver5 = self.patientOver5YearsOld;
-        viewController.sameMD = self.sameMDPerformsSedation;
-        viewController.sedationStatus = self.sedationStatus;
-    }
-    
 }
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    return YES;
-}
-
 
 - (EPSWizardContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {

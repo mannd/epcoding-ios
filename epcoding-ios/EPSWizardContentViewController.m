@@ -51,7 +51,6 @@
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
-    self.noSedationAdministered = NO;
     self.sedationStatus = Unassigned;
     self.sedationCodes = [[NSMutableArray alloc] init];
      
@@ -71,13 +70,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)determineSedationCoding {
-    [self.sedationCodes removeAllObjects];
-    NSArray *array = [EPSSedationCode sedationCoding:self.sedationTime sameMD:self.sameMDPerformsSedation patientOver5:self.patientOver5YearsOld];
-    [self.sedationCodes addObjectsFromArray:array];
-}
-
-- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time noSedation:(BOOL)noSedation sedationStatus:(SedationStatus)sedationStatus {
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus {
+    NSLog(@"WizardContentViewController sendSedationDataBack");
     if (cancel) {
         return;
     }
@@ -89,8 +83,6 @@
     NSArray *array = [EPSSedationCode sedationCoding:time sameMD:sameMD patientOver5:!lessThan5];
     [self.sedationCodes addObjectsFromArray:array];
     sedationCode.sedationCodes = self.sedationCodes;
-    // TODO: need this??
-    self.noSedationAdministered = noSedation;
     sedationCode.sedationStatus = self.sedationStatus = sedationStatus;
     [self.codeTableView reloadData];
 }
@@ -154,6 +146,7 @@
         viewController.code = selectedCode;
     }
     if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
+        NSLog(@"segue from WizardContentViewController");
         EPSSedationViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
         viewController.time = self.sedationTime;
@@ -194,17 +187,11 @@
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
-    // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
-    
     cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
     // must specifically set this, or will be set randomly
     cell.backgroundColor = ([code selected] ? [UIColor yellowColor] : [UIColor whiteColor]);
-    //[cell setBackgroundColor:[UIColor whiteColor]];
     [cell setUserInteractionEnabled:YES];
-
-    
     return cell;
 }
 
@@ -225,6 +212,7 @@
         [self performSegueWithIdentifier:@"showSedationFromWizard" sender:nil];
         // selected sedation codes stays selected
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.backgroundColor = [UIColor yellowColor];
         [[self.codes objectAtIndex:row] setSelected:YES];
     }
     else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {

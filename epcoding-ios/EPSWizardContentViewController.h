@@ -28,6 +28,5 @@
 @property NSInteger sedationTime;
 @property BOOL sameMDPerformsSedation;
 @property BOOL patientOver5YearsOld;
-@property BOOL noSedationAdministered;
 
 @end
