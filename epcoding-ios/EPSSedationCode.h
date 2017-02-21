@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, SedationStatus) {
     Unassigned,
     None,
     LessThan10Mins,
-    OtherMDUnCalculated,
+//    OtherMDUnCalculated,
     OtherMDCalculated,
     AssignedSameMD
 };

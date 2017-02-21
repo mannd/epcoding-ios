@@ -132,9 +132,6 @@
     else if (self.sedationStatus == LessThan10Mins) {
         alert.message = @"Sedation time < 10 minutes.  No sedation codes can be added.";
     }
-    else if (self.sedationStatus == OtherMDUnCalculated) {
-        alert.message = @"Sedation administered by different MD than one performing procedure.  No sedation time given.  No sedation codes added.";
-    }
     else if (self.sedationStatus == OtherMDCalculated) {
         if ([sedationCodes count] == 1) {
             alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];

@@ -109,13 +109,15 @@
     self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
     self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
-    self.toolbarItems = [ NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil ];
+    self.toolbarItems = [NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil];
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
     self.noSedationAdministered = NO;
     self.sedationStatus = Unassigned;
-
+    
+    self.buttonSedation.tintColor = [UIColor redColor];
+    
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
     
     // add long press handler
@@ -254,27 +256,33 @@
 }
 
 // TODO: Refactor to just use self.sedationStatus
-- (void)showSedationCodeSummary:(BOOL)noCodesExist {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"No sedation codes assigned." preferredStyle:UIAlertControllerStyleActionSheet];
+- (void)showSedationCodeSummary {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *editCodes = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
     UIAlertAction *addCodes = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){[self.buttonSummarize setEnabled:YES]; [self.buttonSave setEnabled:YES]; [self.buttonClear setEnabled:YES];}];
-    if (self.noSedationAdministered) {
-        alert.message = @"No sedation administered for this procedure.";
-        [alert addAction:editCodes];
-    }
-    else if (noCodesExist) {
-        if (self.sedationTime < 10 && self.sedationTime > 0) {
-            alert.message = @"Sedation time < 10 mins\nNo sedation codes assigned.";
-            [alert addAction:editCodes];
-        }
-        else {
+    
+    switch (self.sedationStatus) {
+        case Unassigned:
+            alert.message = @"Sedation coding not yet assigned for this procedure.";
             [alert addAction:addCodes];
-        }
-    }
-    else {
-        [alert addAction:editCodes];
-        alert.message = [EPSSedationCode printSedationCodes:self.sedationCodes separator:@"\n"];
+            break;
+        case None:
+            alert.message = @"No sedation was used in this procedure.";
+            [alert addAction:editCodes];
+            break;
+        case LessThan10Mins:
+            alert.message = @"Sedation time < 10 mins\nNo sedation codes can be assigned.";
+            [alert addAction:editCodes];
+            break;
+        case OtherMDCalculated:
+            alert.message = [NSString stringWithFormat:@"Sedation by other MD, using:\n %@", [EPSSedationCode printSedationCodes:self.sedationCodes separator:@"\n"]];
+            [alert addAction:editCodes];
+            break;
+        case AssignedSameMD:
+            alert.message = [NSString stringWithFormat:@"Sedation by procedural MD, using:\n %@", [EPSSedationCode printSedationCodes:self.sedationCodes separator:@"\n"]];
+            [alert addAction:editCodes];
+            break;
     }
     [alert addAction:cancel];
     
@@ -296,7 +304,7 @@
     if (self.primaryCodes == nil) {
         return;
     }
-    [self showSedationCodeSummary:![self sedationCodesAssigned]];
+    [self showSedationCodeSummary];
     return;
 
 }
@@ -377,6 +385,8 @@
     [self determineSedationCoding];
     self.noSedationAdministered = noSedation;
     self.sedationStatus = sedationStatus;
+    self.buttonSedation.tintColor = self.buttonSave.tintColor;
+    NSLog(@"tincolor is %@", self.buttonSave.tintColor);
     NSLog(@"Sedation status = %ld", (long)self.sedationStatus);
 }
 

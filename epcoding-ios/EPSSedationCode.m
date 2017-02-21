@@ -122,9 +122,6 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
         case LessThan10Mins:
             detail = SHORT_SEDATION_TIME_STRING;
             break;
-        case OtherMDUnCalculated:
-            detail = OTHER_MD_UNCALCULATED_SEDATION_TIME_STRING;
-            break;
         case OtherMDCalculated:
             detail = [NSString stringWithFormat:OTHER_MD_CALCULATED_SEDATION_TIME_STRING, codeDetails];
             break;
