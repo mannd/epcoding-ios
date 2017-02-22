@@ -163,6 +163,9 @@
     NSArray *firstNeedsOthersCodeErrors = [self firstNeedsOthersCodeNumberErrors];
     [array addObjectsFromArray:firstNeedsOthersCodeErrors];
     
+    // modifiers
+    [array addObjectsFromArray:[self evaulateModifiers]];
+    
     if ([array count] == 0)
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
 
@@ -311,6 +314,29 @@
         case AssignedSameMD:
             // no warnings, everything good
             break;
+    }
+    return array;
+}
+
+- (NSArray *)evaulateModifiers {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    BOOL q0ModifierFound = NO;
+    for (EPSCode *code in self.allCodes) {
+        for (EPSModifier *modifier in code.modifiers) {
+            if ([modifier.number isEqualToString:@"Q0"]) {
+                [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Q0 modifier indicates primary prevention ICD.  Remove Q0 modifier for other ICD indications."]];
+                q0ModifierFound = YES;
+            }
+        }
+    }
+    if (!q0ModifierFound) {
+        // check for ICD codes without Q0 modifier
+        NSSet *icdCodeNumberSet = [[NSSet alloc] initWithArray:@[@"33249", @"33262", @"33263", @"33264"]];
+        for (EPSCode *code in self.allCodes) {
+            if ([icdCodeNumberSet containsObject:code.number]) {
+                [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Add Q0 modifier to ICD implant or generator change codes if indication is primary prevention."]];
+            }
+        }
     }
     return array;
 }
