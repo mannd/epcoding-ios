@@ -168,8 +168,9 @@
     XCTAssertTrue([analyzer allAddOnCodes]);
     EPSCodeAnalyzer *analyzer1 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:nil secondaryCodes:nil ignoreNoSecondaryCodes:YES sedationCodes:nil sedationStatus:Unassigned];
     NSArray *results = [analyzer1 analysis];
+    NSLog(@"%@", [[results objectAtIndex:0] message]);
     XCTAssertTrue([results count] == 1);
-    XCTAssertTrue([[[results objectAtIndex:0] message] isEqualToString:@"No codes selected."]);
+    XCTAssertTrue([[[results objectAtIndex:0] message] isEqualToString:@"No procedure codes selected."]);
     XCTAssertTrue([[results objectAtIndex:0] warningLevel] == WARNING);
     NSArray *codeNumbers = [analyzer codeNumbersFromCodes:primaryCodes];
     XCTAssertTrue([[codeNumbers objectAtIndex:2] isEqualToString:@"00002"]);
@@ -196,11 +197,11 @@
     NSArray *primaryCodes1 = @[code01, code02, code03];
     EPSCode *codeSedation01 = [[EPSCode alloc] initWithNumber:@"99152" description:@"sedationcode" isAddOn:NO];
     NSArray *sedationCodes = @[codeSedation01];
-    EPSCodeAnalyzer *analyzer5 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes1 secondaryCodes:secondaryCodes ignoreNoSecondaryCodes:NO sedationCodes:sedationCodes sedationStatus:Unassigned];
+    EPSCodeAnalyzer *analyzer5 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes1 secondaryCodes:secondaryCodes ignoreNoSecondaryCodes:NO sedationCodes:sedationCodes sedationStatus:AssignedSameMD];
     NSArray *errorCodes = [analyzer5 analysis];
     EPSCodeError *errorCode1 = [errorCodes objectAtIndex:0];
     NSArray *codes10 = [errorCode1 codes];
-    //NSLog(@"%@", [EPSCodeAnalyzer codeNumbersToString:codes10]);
+    NSLog(@"/n/n codes 10 is %@/n/n", [EPSCodeAnalyzer codeNumbersToString:codes10]);
     XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codes10] isEqualToString:@"[33233,33228]"]);
     XCTAssertTrue([EPSCodeAnalyzer codeNumbersToString:nil] == nil);
     

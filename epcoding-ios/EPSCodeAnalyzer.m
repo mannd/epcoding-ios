@@ -29,7 +29,9 @@
             [array addObjectsFromArray:self.sedationCodes];
             
         }
-        [EPSCodes hideMultipliers:self.sedationCodes setHidden:[self rawSedationCodesUsed]];
+        if (self.sedationCodes != nil) {
+            [EPSCodes hideMultipliers:self.sedationCodes setHidden:[self rawSedationCodesUsed]];
+        }
         self.allCodes = array;
         self.sedationStatus = sedationStatus;
     }
@@ -120,13 +122,12 @@
 - (NSArray *)analysis
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObjectsFromArray:[self evaluateSedationStatus]];
 
     // Note quick exit if no codes selected
     if ([self.primaryCodes count] == 0 && [self.secondaryCodes count] == 0) {
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No procedure codes selected."]];
         // still need to mark codes, since sedation codes may be present
-        //[self markCodes:self.allCodes withWarning:WARNING];
+        [self markCodes:self.allCodes withWarning:WARNING];
         return array;
     }
     else if ([self.primaryCodes count] == 0) {
@@ -145,7 +146,8 @@
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No mapping codes for ablation."]];
         [self markCodes:self.allCodes withWarning:WARNING];
     }
- 
+    [array addObjectsFromArray:[self evaluateSedationStatus]];
+
     
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
     [array addObjectsFromArray:duplicateCodeErrors];
