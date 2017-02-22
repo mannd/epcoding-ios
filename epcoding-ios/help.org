@@ -36,11 +36,19 @@
      order, with description given first, followed by code number.
    - Select codes by tapping them.
    - Codes that must be selected for a particular procedure are green
-     and already selected.  Codes that cannot be selected are red.
+     and already selected.  Codes that cannot be selected are crosshatched in gray..
      Codes you select are yellow.
-   - Tap *Summarize* at the bottom of the screen to show a summary of
-     the codes selected along with any warnings or errors
-     (highlighted in orange or red respectively.
+   - Long press on a code to bring up a list of common code /modifiers/
+     that can be added or removed from each code.  Further information
+     on using modifiers is presented [[Modifiers][below]].
+   - Tap *Sedation* at the bottom of the screen to add sedation codes.
+     Sedation coding is unbundled from procedure codes as of 2017 and
+     must be calculated based on sedation time and other factors.  *EP
+     Coding* includes a handy sedation calculator described further
+     [[Sedation][below]].
+   - Tap *Summarize* to show a summary of the codes selected along
+     with any comments, warnings or errors (highlighted in green,
+     orange or red respectively.
    - Tap *Clear* to clear the selected codes.
    - Tap *Save* to save your selection of additional codes as a
      default.  If you nearly always select the same additional codes
@@ -48,7 +56,10 @@
      they will pre-selected when you use the app again. Note that
      primary code selections are not saved.
    - Tap the menu icon on the upper right of the screen for more options.
-     - Tap *Search* to search for codes by name or number.
+     - Tap *Search* to search for codes by name or number.  Note that
+       due to the [[Abbreviations][abbreviations]] used, a search that you expect to have
+       results may come up empty.  For example to search for
+       pacer/pacemaker codes, search for "PPM."
      - Tap *Device Wizard* to steer you through complex device
        upgrades and revisions.
    - The all EP codes module lists every EP procedure code in
@@ -59,10 +70,10 @@
    - No surgical EP codes (e.g. LV lead via thoracotomy).
    - Some rare or obsolete codes are not included.
    - Code descriptions are paraphrased.
-   - Code components are not given or incomplete.
+   - Code components are not given or are incomplete.
    - No office based or in-patient billing codes.
    - No device programming codes.
-   - No coding modifiers are suggested.
+   - Only limited, common code modifiers are presented.
 ** General hints
    - Use the specific procedure modules rather than the all EP codes
      module for coding procedures.
@@ -82,6 +93,16 @@
      are not allowed.
    - Check with your coders or the [[https://commerce.ama-assn.org/store/][AMA documentation]] if you are not
      sure how to code a procedure.
+** TODO Sedation
+#+CAPTION: Sedation coding calculator
+[[./img/sedation.png]]
+
+#+CAPTION: Sedation time calculator
+[[./img/sedation_time_calculator.png]]
+** TODO Modifiers
+#+CAPTION: Modifier screen
+[[./img/modifiers.png]]
+
 ** AFB ablation
    - Includes comprehensive EP testing, LA pacing and recording and
      transseptal puncture.
@@ -178,7 +199,7 @@
 *** Lead repair
     - One lead repaired: 33218
     - Two leads repaired: 33220
-** Other procedure
+** Other procedures
    - These are miscellaneous EP procedures.
    - Fluoroscopy to check for lead integrity: 76000
 ** All EP codes
@@ -188,6 +209,7 @@
    - Code analysis may not check every combination of codes selected
      in this module.
    - This module can be useful to look up specific code numbers.
+   - Sedation codes are listed, but the sedation calculator is not available in this module.
 ** Abbreviations
    - A = atrial
    - AFB = atrial fibrillation
@@ -206,7 +228,7 @@
      Association.
    - A limited number of CPT® codes are used in this app, under the
      fair use doctrine of the US Copyright Act.  For a discussion of
-     the rationale see [[http://www.epstudiossoftware.com/?p=1313][here]].
+     the rationale see [[https://www.epstudiossoftware.com/fair-use-justification-of-cpt-codes-in-ep-coding/][here]].
    - The source code for EP Coding is available on [[https://github.com/mannd/epcoding-ios][GitHub]].
    - EP Coding is open source software and is licensed under the
      [[http://www.apache.org/licenses/LICENSE-2.0.html][Apache License Version 2.0]].  No guarantees are made as to the
