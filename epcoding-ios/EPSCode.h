@@ -20,6 +20,7 @@
 @property BOOL descriptionShortened;
 @property BOOL descriptonShown;
 @property BOOL selected;
+@property BOOL hideMultiplier;
 @property enum status codeStatus;
 @property NSInteger multiplier;
 @property (strong, nonatomic) NSMutableArray *modifiers;

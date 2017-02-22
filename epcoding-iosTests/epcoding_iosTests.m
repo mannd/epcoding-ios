@@ -297,6 +297,10 @@
     EPSCode *code2 = [sedationCodes objectAtIndex:1];
     XCTAssertTrue([[code1 unformattedCodeNumber] isEqualToString:@"99152"]);
     XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153 x 1"]);
+    code2.hideMultiplier = YES;
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153"]);
+    code2.hideMultiplier = NO;
+    XCTAssertTrue([[code2 unformattedCodeNumber] isEqualToString:@"+99153 x 1"]);
     time = 55;
     sedationCodes = [EPSSedationCode sedationCoding:time sameMD:sameMD patientOver5:ptOver5];
     code1 = [sedationCodes objectAtIndex:0];

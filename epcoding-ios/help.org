@@ -28,43 +28,53 @@
    - Analyzes selected codes for errors and warnings.
    - Provides [[General hints][help on how to code procedures]].
 ** How to use EP Coding
-   - Select a procedure from the list by tapping on it.
-   - Codes are organized as primary codes, at least one of which
-     needs to be selected, and additional or optional codes which
-     are commonly used with the primary procedure codes.
-   - Codes are organized logically, not necessarily in numeric
-     order, with description given first, followed by code number.
-   - Select codes by tapping them.
-   - Codes that must be selected for a particular procedure are green
-     and already selected.  Codes that cannot be selected are crosshatched in gray..
-     Codes you select are yellow.
-   - Long press on a code to bring up a list of common code /modifiers/
-     that can be added or removed from each code.  Further information
-     on using modifiers is presented [[Modifiers][below]].
-   - Tap *Sedation* at the bottom of the screen to add sedation codes.
-     Sedation coding is unbundled from procedure codes as of 2017 and
-     must be calculated based on sedation time and other factors.  *EP
-     Coding* includes a handy sedation calculator described further
-     [[Sedation][below]].
-   - Tap *Summarize* to show a summary of the codes selected along
-     with any comments, warnings or errors (highlighted in green,
-     orange or red respectively.
-   - Tap *Clear* to clear the selected codes.
-   - Tap *Save* to save your selection of additional codes as a
-     default.  If you nearly always select the same additional codes
-     (e.g. always do 3D mapping with SVT ablation), save the codes and
-     they will pre-selected when you use the app again. Note that
-     primary code selections are not saved.
-   - Tap the menu icon on the upper right of the screen for more options.
-     - Tap *Search* to search for codes by name or number.  Note that
-       due to the [[Abbreviations][abbreviations]] used, a search that you expect to have
-       results may come up empty.  For example to search for
-       pacer/pacemaker codes, search for "PPM."
-     - Tap *Device Wizard* to steer you through complex device
-       upgrades and revisions.
-   - The all EP codes module lists every EP procedure code in
-     numerical order, with code number given first.  It is the /a la
-     carte/ menu of *EP Coding*.
+*** Select a procedure
+#+CAPTION: Procedure list on iPhone
+image
+
+On an iPhone, the initial screen when the app starts shows a list of common EP procedures.  On an iPad, the list of procedures appears at the side of the screen, and it may be necessary to tap the *Procedures* button at the top left to show the list.
+
+#+CAPTION: Procedure list on iPad
+image
+
+The procedure list covers most common EP procedures.  If the procedure is not listed, you have several options.  You can use the *Wizard* (link) to code complicated device procedures.  You can *Search* (link) for specific codes.  You can also use the *All Codes* option of the procedure list, which contains all EP-related codes in numeric order.
+*** Procedure codes
+Each procedure has a list of codes
+Figure of AFB codes
+-  Codes are organized as primary codes, at least one of which
+needs to be selected, and additional or optional codes which
+are commonly used with the primary procedure codes.
+-  Select a code by tapping it.  
+-  Codes that must be selected for a particular procedure are green
+and already selected.  Codes that cannot be selected are crosshatched in gray.
+Codes you select are yellow.
+-  Long press on a code to bring up a list of common code /modifiers/
+that can be added or removed from each code.  Further information
+on using modifiers is presented [[Modifiers][below]].
+-  Tap *Sedation* at the bottom of the screen to add sedation codes.
+Sedation coding is unbundled from procedure codes as of 2017 and
+must be calculated based on sedation time and other factors.  *EP
+Coding* includes a handy sedation calculator described further
+[[Sedation][below]].
+*** Tap *Summarize* to show a summary of the codes selected along
+with any comments, warnings or errors (highlighted in green,
+orange or red respectively.
+*** Tap *Clear* to clear the selected codes.
+*** Tap *Save* to save your selection of additional codes as a
+default.  If you nearly always select the same additional codes
+(e.g. always do 3D mapping with SVT ablation), save the codes and
+they will pre-selected when you use the app again. Note that
+primary code selections are not saved.
+*** Tap the menu icon on the upper right of the screen for more options.
+**** Tap *Search* to search for codes by name or number.  Note that
+due to the [[Abbreviations][abbreviations]] used, a search that you expect to have
+results may come up empty.  For example to search for
+pacer/pacemaker codes, search for "PPM."
+**** Tap *Device Wizard* to steer you through complex device
+upgrades and revisions.
+*** The all EP codes module lists every EP procedure code in
+numerical order, with code number given first.  It is the /a la
+carte/ menu of *EP Coding*.
 ** Limitations
    - EP procedure codes only.
    - No surgical EP codes (e.g. LV lead via thoracotomy).

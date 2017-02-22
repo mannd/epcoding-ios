@@ -135,10 +135,12 @@
     [self.navigationController setToolbarHidden:NO];
     // Sedation action sheet will disable these buttons, so must re-enable them on
     // return from sedation view.
-    [self.buttonSedation setEnabled:!isAllCodesModule];
+    // sedation used for all modules
+    [self.buttonSedation setEnabled:YES];
     [self.buttonSummarize setEnabled:YES];
     [self.buttonClear setEnabled:YES];
     [self.buttonSave setEnabled:!isAllCodesModule];
+    [self.navigationController setToolbarHidden:[[self allPrimaryAndSecondaryCodes] count] == 0];
 }
 
 - (void)didReceiveMemoryWarning

@@ -79,7 +79,7 @@
 
 - (NSString *)unformattedCodeNumber
 {
-    if (self.multiplier < 1) {
+    if (self.multiplier < 1 || self.hideMultiplier) {
         return [[NSString alloc] initWithFormat:@"%@%@%@", self.isAddOn ? @"+" : @"", self.number, [self modifierString]];
     }
     else {

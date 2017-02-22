@@ -325,6 +325,12 @@
     }
 }
 
++ (void)hideMultipliers:(NSArray *)array setHidden:(BOOL)hide {
+    for (EPSCode *code in array) {
+        code.hideMultiplier = hide;
+    }
+}
+
 + (void)loadDefaultModifiers:(NSArray *)codes {
     for (EPSCode *code in codes) {
         NSArray *modifiers = [[EPSCodes defaultModifiers] valueForKey:code.number];

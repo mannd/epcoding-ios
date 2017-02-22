@@ -24,7 +24,12 @@
         self.sedationCodes = sedationCodes;
         self.ignoreNoSecondaryCodes = ignoreNoSecondaryCodes;
         NSMutableArray *array = [NSMutableArray  arrayWithArray:[self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes]];
-        [array addObjectsFromArray:self.sedationCodes];
+        // only add sedaton button sedation codes if raw codes not used
+        if (![self rawSedationCodesUsed]) {
+            [array addObjectsFromArray:self.sedationCodes];
+            
+        }
+        [EPSCodes hideMultipliers:self.sedationCodes setHidden:[self rawSedationCodesUsed]];
         self.allCodes = array;
         self.sedationStatus = sedationStatus;
     }
@@ -91,17 +96,6 @@
     return array;
 }
 
-// TODO: sedation code logic
-// warning if only sedation codes chosen if they are same physician as procedural MD
-// warning if no sedation codes chosen
-// warning if other physician sedation codes chosen
-- (NSArray *)badSedationCodeErrors
-{
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"99115", @"99156", @"99157"]] withWarningLevel:ERROR withMessage:@"Sedation code(s) for another MD can't be charged by MD performing procedure."]];
-    return array;
-}
-
 // analyzer uses code numbers for analysis
 - (NSArray *)allCodeNumbers
 {
@@ -122,9 +116,6 @@
     return array;
 }
 
-- (NSSet *)initialSedationCodeSet {
-    return [[NSSet alloc] initWithObjects:@"99151", @"99152", @"99155", @"99156", nil];
-}
 
 - (NSArray *)analysis
 {
@@ -164,7 +155,7 @@
     [array addObjectsFromArray:firstNeedsOthersCodeErrors];
     
     // modifiers
-    [array addObjectsFromArray:[self evaulateModifiers]];
+    [array addObjectsFromArray:[self evaluateModifiers]];
     
     if ([array count] == 0)
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
@@ -292,8 +283,40 @@
     return [NSString stringWithFormat:@"[%@]", string];
 }
 
+- (NSSet *)sedationCodeSet {
+    return [[NSSet alloc] initWithObjects:@"99151", @"99152", @"99153", @"99155", @"99156", @"99157", nil];
+}
+
+- (NSArray *)rawSedationCodesUsedError {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    if ([self rawSedationCodesUsed]) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Raw sedation codes selected.  Sedation codes may be inconsistent.  Further analysis of sedation codes will not be performed."]];
+        [self markCodes:self.allCodes withWarning:WARNING];
+    }
+    return array;
+}
+
+- (BOOL)rawSedationCodesUsed {
+    BOOL rawCodesUsed = NO;
+    for (EPSCode *code in self.primaryCodes) {
+        if ([[self sedationCodeSet] containsObject:code.number]) {
+            rawCodesUsed = YES;
+            break;
+        }
+    }
+    return rawCodesUsed;
+}
+
+
 - (NSArray *)evaluateSedationStatus {
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    // Deal with selecting sedation codes in All Codes and
+    // using sedation calculator at the same time
+    [array addObjectsFromArray:[self rawSedationCodesUsedError]];
+    if ([array count] > 0 ) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Result of Sedation calculator will be ignored. Delete selected raw sedation codes to use results of Sedation calculator."]];
+        return array;
+    }
     switch (self.sedationStatus) {
         case Unassigned:
             [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you supervise sedation?  Sedation codes are no longer bundled with the procedure codes."]];
@@ -318,7 +341,7 @@
     return array;
 }
 
-- (NSArray *)evaulateModifiers {
+- (NSArray *)evaluateModifiers {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     BOOL q0ModifierFound = NO;
     for (EPSCode *code in self.allCodes) {

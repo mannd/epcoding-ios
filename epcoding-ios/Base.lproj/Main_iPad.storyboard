@@ -296,10 +296,10 @@
             </objects>
             <point key="canvasLocation" x="1897" y="1319"/>
         </scene>
-        <!--Moderate Sedation-->
+        <!--Sedation-->
         <scene sceneID="DzX-HP-Dxc">
             <objects>
-                <viewController title="Moderate Sedation" id="6ET-1T-qPj" customClass="EPSSedationViewController" sceneMemberID="viewController">
+                <viewController title="Sedation" id="6ET-1T-qPj" customClass="EPSSedationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="avD-Qg-8KE"/>
                         <viewControllerLayoutGuide type="bottom" id="382-1B-enq"/>
@@ -309,31 +309,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6q-iU-tn5">
-                                <rect key="frame" x="359.5" y="256" width="51" height="31"/>
+                                <rect key="frame" x="359.5" y="212" width="51" height="31"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QL-tq-0nI">
-                                <rect key="frame" x="359.5" y="381.5" width="51" height="31"/>
+                                <rect key="frame" x="359.5" y="337.5" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procedure MD performed sedation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaj-uw-vbu">
-                                <rect key="frame" x="251.5" y="211.5" width="265.5" height="20.5"/>
+                                <rect key="frame" x="251.5" y="167.5" width="265.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient age 5 years or older" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2c-hb-2eA">
-                                <rect key="frame" x="279" y="337" width="210" height="20.5"/>
+                                <rect key="frame" x="279" y="293" width="210" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sedation time in minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFp-wk-4IC">
-                                <rect key="frame" x="290" y="88" width="188.5" height="20.5"/>
+                                <rect key="frame" x="290" y="44" width="188.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXR-YF-A2N">
-                                <rect key="frame" x="312" y="132.5" width="144" height="29"/>
+                                <rect key="frame" x="312" y="88.5" width="144" height="29"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfR-Eq-EXh">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="29"/>
