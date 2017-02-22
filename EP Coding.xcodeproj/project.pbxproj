@@ -13,42 +13,30 @@
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
 		8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
-		8E6705A61E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
 		8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */; };
 		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
-		8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
-		8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
 		8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
-		8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
 		8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB9E4CC1E43A45900767217 /* stripes5.png */; };
 		8EC0E8241E3FF03500090E2B /* EPSTimeCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */; };
 		8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
-		8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
 		8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C2118B92C6F0007E198 /* EPSCodes.m */; };
-		8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C2118B92C6F0007E198 /* EPSCodes.m */; };
 		8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
-		8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
 		8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
-		8ECCF8B318C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
 		8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */; };
-		8ECCF8B718C2324A00001DC6 /* EPSCodeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */; };
 		8ECCF8BB18C65E7100001DC6 /* help.org in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BA18C65E7100001DC6 /* help.org */; };
 		8ECCF8BD18C65E9000001DC6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BC18C65E9000001DC6 /* README.md */; };
 		8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */; };
 		8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */; };
 		8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
-		8EDAD2011901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
 		8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */; };
-		8EDAD2051901286900CE48CF /* EPSWizardContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
 		8EDBEBFD180CCDEB0041A4E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFC180CCDEB0041A4E3 /* CoreGraphics.framework */; };
 		8EDBEBFF180CCDEB0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
 		8EDBEC05180CCDEB0041A4E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDBEC03180CCDEB0041A4E3 /* InfoPlist.strings */; };
 		8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC06180CCDEB0041A4E3 /* main.m */; };
 		8EDBEC0B180CCDEB0041A4E3 /* EPSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */; };
-		8EDBEC0E180CCDEB0041A4E3 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDBEC0C180CCDEB0041A4E3 /* Main_iPhone.storyboard */; };
 		8EDBEC11180CCDEB0041A4E3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EDBEC0F180CCDEB0041A4E3 /* Main_iPad.storyboard */; };
 		8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC13180CCDEB0041A4E3 /* EPSMasterViewController.m */; };
 		8EDBEC17180CCDEB0041A4E3 /* EPSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC16180CCDEB0041A4E3 /* EPSDetailViewController.m */; };
@@ -124,7 +112,6 @@
 		8EDBEC08180CCDEB0041A4E3 /* epcoding-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epcoding-ios-Prefix.pch"; sourceTree = "<group>"; };
 		8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPSAppDelegate.h; sourceTree = "<group>"; };
 		8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPSAppDelegate.m; sourceTree = "<group>"; };
-		8EDBEC0D180CCDEB0041A4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		8EDBEC10180CCDEB0041A4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		8EDBEC12180CCDEB0041A4E3 /* EPSMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPSMasterViewController.h; sourceTree = "<group>"; };
 		8EDBEC13180CCDEB0041A4E3 /* EPSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPSMasterViewController.m; sourceTree = "<group>"; };
@@ -203,7 +190,6 @@
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
 				8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */,
-				8EDBEC0C180CCDEB0041A4E3 /* Main_iPhone.storyboard */,
 				8EDBEC0F180CCDEB0041A4E3 /* Main_iPad.storyboard */,
 				8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */,
 				8EDBEC12180CCDEB0041A4E3 /* EPSMasterViewController.h */,
@@ -372,7 +358,6 @@
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
-				8EDBEC0E180CCDEB0041A4E3 /* Main_iPhone.storyboard in Resources */,
 				8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */,
 				8EDBEC05180CCDEB0041A4E3 /* InfoPlist.strings in Resources */,
 			);
@@ -422,18 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ECCF8AF18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
-				8E9AEF0318BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
-				8EDAD2051901286900CE48CF /* EPSWizardContentViewController.m in Sources */,
-				8EDAD2011901243900CE48CF /* EPSWizardViewController.m in Sources */,
-				8EC43C2318B92C6F0007E198 /* EPSCodes.m in Sources */,
-				8E8E06E018FEE3E700170147 /* EPSSearchTableViewController.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
-				8E9AEEFF18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
-				8EC43C1F18B7D09B0007E198 /* EPSCode.m in Sources */,
-				8ECCF8B718C2324A00001DC6 /* EPSCodeError.m in Sources */,
-				8E6705A61E5A540D00F47885 /* EPSSedationCode.m in Sources */,
-				8ECCF8B318C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,14 +428,6 @@
 				8EDBEC04180CCDEB0041A4E3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8EDBEC0C180CCDEB0041A4E3 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8EDBEC0D180CCDEB0041A4E3 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		8EDBEC0F180CCDEB0041A4E3 /* Main_iPad.storyboard */ = {
