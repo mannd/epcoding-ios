@@ -129,12 +129,16 @@
 - (NSArray *)analysis
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObjectsFromArray:[self evaluateSedationStatus]];
+
     // Note quick exit if no codes selected
     if ([self.primaryCodes count] == 0 && [self.secondaryCodes count] == 0) {
-        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No codes selected."]];
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No procedure codes selected."]];
+        // still need to mark codes, since sedation codes may be present
+        //[self markCodes:self.allCodes withWarning:WARNING];
         return array;
     }
-    if ([self.primaryCodes count] == 0) {
+    else if ([self.primaryCodes count] == 0) {
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:ERROR withMessage:@"No primary codes selected.  All codes are additional codes."]];
         [self markCodes:self.allCodes withWarning:ERROR];
     }
@@ -150,13 +154,7 @@
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No mapping codes for ablation."]];
         [self markCodes:self.allCodes withWarning:WARNING];
     }
-    // warn for no sedation codes
-//    if ([self mismatchedSedationCodes] == 1) {
-//        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you provide sedation services?  Sedation codes are no longer bundled with the procedure codes [2017]."]];
-//        [self markCodes:self.allCodes withWarning:WARNING];
-//    }
-    
-    [array addObjectsFromArray:[self evaluateSedationStatus]];
+ 
     
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
     [array addObjectsFromArray:duplicateCodeErrors];
@@ -295,11 +293,11 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     switch (self.sedationStatus) {
         case Unassigned:
-            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you provide sedation services?  Sedation codes are no longer bundled with the procedure codes."]];
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you supervise sedation?  Sedation codes are no longer bundled with the procedure codes."]];
             [self markCodes:self.allCodes withWarning:WARNING];
             break;
         case None:
-            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No sedation codes.  Procedure was performed without sedation."]];
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Procedure was performed without sedation."]];
             [self markCodes:self.allCodes withWarning:GOOD];
             break;
         case LessThan10Mins:
