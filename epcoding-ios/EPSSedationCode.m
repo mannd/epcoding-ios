@@ -58,7 +58,7 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
     }
     if (sedationTime >= 23) {
         NSInteger multiplier = [self codeMultiplier:sedationTime];
-        EPSCode *code = [[EPSCode alloc] init];
+        EPSCode *code;
         if (sameMD) {
             code = [EPSCodes getCodeForNumber:@"99153"];
         }

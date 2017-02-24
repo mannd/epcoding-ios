@@ -64,6 +64,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.delegate sendTimeDataBack:cancel sedationTime:self.time];
+    [super viewWillDisappear:animated];
 }
 
 - (void)cancel {

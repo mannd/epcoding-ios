@@ -475,8 +475,9 @@
     static NSString *codeCellIdentifier = @"CodeCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:codeCellIdentifier];
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
-    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:codeCellIdentifier];
+    }
     BOOL isDisabled = NO;
     NSUInteger row = [indexPath row];
     NSUInteger section = [indexPath section];

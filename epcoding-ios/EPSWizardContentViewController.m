@@ -172,8 +172,9 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:wizardCellIdentifier];
     
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:wizardCellIdentifier];
-    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:wizardCellIdentifier];
+    }
     
     NSUInteger row = [indexPath row];
     EPSCode *code = nil;

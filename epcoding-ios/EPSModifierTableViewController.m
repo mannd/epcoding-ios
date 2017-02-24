@@ -57,6 +57,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.delegate sendModifierDataBack:cancel reset:reset selectedModifiers:[self selectedModifiers]];
+    [super viewWillDisappear:animated];
 }
 
 - (NSArray *)selectedModifiers {
@@ -129,8 +130,9 @@
     static NSString *modifierCellIdentifier = @"ModifierCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:modifierCellIdentifier];
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:modifierCellIdentifier];
-    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:modifierCellIdentifier];
+    }
     NSUInteger row = [indexPath row];
     EPSModifier *modifier;
     modifier = [self.modifiers objectAtIndex:row];

@@ -89,9 +89,9 @@
     static NSString *searchCellIdentifier = @"searchCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
-    
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:searchCellIdentifier];
-    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:searchCellIdentifier];
+    }
     
     NSUInteger row = [indexPath row];
     EPSCode *code = nil;
