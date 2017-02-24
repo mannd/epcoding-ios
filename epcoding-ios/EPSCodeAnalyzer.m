@@ -27,11 +27,10 @@
         // only add sedaton button sedation codes if raw codes not used
         if (![self rawSedationCodesUsed]) {
             [array addObjectsFromArray:self.sedationCodes];
-            
         }
-        if (self.sedationCodes != nil) {
-            [EPSCodes hideMultipliers:self.sedationCodes setHidden:[self rawSedationCodesUsed]];
-        }
+
+        [EPSCodes hideMultipliers:self.sedationCodes setHidden:[self rawSedationCodesUsed]];
+
         self.allCodes = array;
         self.sedationStatus = sedationStatus;
     }
@@ -333,7 +332,7 @@
             [self markCodes:self.allCodes withWarning:GOOD];
             break;
         case OtherMDCalculated:
-            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Sedation performed by other MD and sedation coding must be submitted by that MD."]];
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Sedation performed by other MD.  Sedation coding must be submitted by that MD."]];
             [self markCodes:self.sedationCodes withWarning:WARNING];
             break;
         case AssignedSameMD:

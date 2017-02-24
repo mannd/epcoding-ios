@@ -236,6 +236,9 @@
     XCTAssert([EPSSedationCode codeMultiplier:10] == 0);
     XCTAssert([EPSSedationCode codeMultiplier:0] == 0);
     XCTAssert([EPSSedationCode codeMultiplier:-10] == 0);
+    
+    // below should not throw an exception
+    XCTAssertNoThrow([EPSCodes hideMultipliers:nil setHidden:YES]);
 }
 
 //+ (NSString *)codeNumberFromCodeString:(NSString *)codeString leavePlus:(BOOL)leavePlus {

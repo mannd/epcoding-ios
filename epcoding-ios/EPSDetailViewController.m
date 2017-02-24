@@ -282,7 +282,7 @@
             [alert addAction:editCodes];
             break;
         case AssignedSameMD:
-            alert.message = [NSString stringWithFormat:@"Sedation by procedural MD, using:\n %@", [EPSSedationCode printSedationCodes:self.sedationCodes separator:@"\n"]];
+            alert.message = [NSString stringWithFormat:@"Sedation by same MD, using:\n %@", [EPSSedationCode printSedationCodes:self.sedationCodes separator:@"\n"]];
             [alert addAction:editCodes];
             break;
     }

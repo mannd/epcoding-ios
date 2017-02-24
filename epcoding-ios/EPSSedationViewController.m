@@ -120,33 +120,28 @@
 
 - (void)showResults {
     NSArray *sedationCodes = [EPSSedationCode sedationCoding:self.time sameMD:self.sameMD patientOver5:self.ageOver5];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Results" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Coding" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){    [self.navigationController popViewControllerAnimated:YES];}];
     [alert addAction:cancelAction];
     [alert addAction:okAction];
     self.sedationStatus = [self determineSedationStatus];
-    if (self.sedationStatus == None) {
-        alert.message = @"No sedation used during this procedure.  No sedation codes added.";
-    }
-    else if (self.sedationStatus == LessThan10Mins) {
-        alert.message = @"Sedation time < 10 minutes.  No sedation codes can be added.";
-    }
-    else if (self.sedationStatus == OtherMDCalculated) {
-        if ([sedationCodes count] == 1) {
-            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation code that MD adminstering sedation should add is %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
-        }
-        else {
-            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.  Sedation codes that MD adminstering sedation should add are %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
-        }
-    }
-    else {  // self.sedationStatus == AssignedSameMD
-        if ([sedationCodes count] == 1) {
-            alert.message = [NSString stringWithFormat:@"Sedation code added: %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];;
-        }
-        else {
-            alert.message = [NSString stringWithFormat:@"Sedation codes added: %@.", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
-        }
+    switch (self.sedationStatus) {
+        case None:
+            alert.message = @"No sedation used during this procedure.  No sedation codes added.";
+            break;
+        case LessThan10Mins:
+            alert.message = @"Sedation time < 10 minutes.  No sedation codes can be added.";
+            break;
+        case OtherMDCalculated:
+            alert.message = [NSString stringWithFormat:@"Sedation codes will need to be reported by MD administering sedation, not by MD performing procedure.\n\n%@", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];
+            break;
+        case AssignedSameMD:
+            alert.message = [NSString stringWithFormat:@"%@", [EPSSedationCode printSedationCodesWithDescriptions:sedationCodes]];;
+            break;
+        case Unassigned:    // should not happenß®
+        default:
+            alert.message = @"Undefined sedation coding error.";
     }
     [self presentViewController:alert animated:YES completion:nil];
 }

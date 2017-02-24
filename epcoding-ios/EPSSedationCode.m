@@ -88,7 +88,7 @@ NSString *const OTHER_MD_CALCULATED_SEDATION_TIME_STRING = @"Sedation performed 
         codeString = [[codes objectAtIndex:0] unformattedCodeNumberFirst];
     }
     else {
-        codeString = [NSString stringWithFormat:@"%@ and %@", [[codes objectAtIndex:0] unformattedCodeNumberFirst], [[codes objectAtIndex:1] unformattedCodeNumberFirst]];
+        codeString = [NSString stringWithFormat:@"%@\n%@", [[codes objectAtIndex:0] unformattedCodeNumberFirst], [[codes objectAtIndex:1] unformattedCodeNumberFirst]];
     }
     return codeString;
 }
