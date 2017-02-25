@@ -124,10 +124,6 @@
         
         [self addCode:[[EPSCode alloc] initWithNumber:@"93622" description:@"LV pacing & recording" isAddOn:YES] toDictionary:dictionary];
         
-        // TODO: This is wiped out by clear modifiers when each codeTable loads.  Where to add these modifiers?
-//        EPSCode *code93622 = [self getCodeForNumber:@"93622"];
-//        [code93622 addModifier:[EPSModifiers getModifierForNumber:@"26"]];
-        
         [self addCode:[[EPSCode alloc] initWithNumber:@"93623" description:@"Induce post IV drug" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93624" description:@"Follow-up EP testing" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93631" description:@"Intra-op mapping" isAddOn:NO] toDictionary:dictionary];
@@ -348,7 +344,6 @@
 }
 
 + (void)loadSavedModifiers:(NSArray *)codes {
-    // TODO: expand to primary codes, sedation codes too?
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     for (EPSCode *code in codes) {
         NSArray *modifierNumbers = [defaults arrayForKey:code.number];
@@ -364,7 +359,6 @@
 }
 
 + (void)resetSavedModifiers:(NSArray *)codes {
-    //TODO: expand to primary codes, etc.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     for (EPSCode *code in codes) {
         [defaults removeObjectForKey:code.number];

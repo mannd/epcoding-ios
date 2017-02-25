@@ -47,7 +47,7 @@ future updates are free.  And it is tailored to you, the practicing
 electrophysiologist.
 ** Who should use EP Coding?
 Physicians who perform cardiac electrophysiology (EP) procedures and
-are required to submit CPT® codes for these procedures. *EP Coding* is
+are required to submit CPT codes for these procedures. *EP Coding* is
 intended to help EP physicians enter the correct codes in an EHR
 (Electronic Health Record).  It is not intended for professional
 coders nor is it a substitute for the [[https://commerce.ama-assn.org/store/][AMA official CPT documentation]].
@@ -93,7 +93,7 @@ crosshatched in gray.  Codes you select are yellow.
 [[./img/afb_selected_code.png]]
 
 Select a code by tapping it.  Unselect the code by tapping it again.  Hitting the back button and going back to the main procedure list will unselect any selected codes (though selected codes can be saved -- see [[
-**** Clear saved codes
+**** Clear selected codes
 Tap *Clear* to clear the selected codes.
 **** Code modifiers
 The CPT coding system includes hundreds of code /modifiers/ that can or must be added to codes, depending on circumstances.  It is beyond the scope of this help text to explain the intricacies of modifiers.  *EP Coding* includes the most common modifiers, and by default these modifiers are applied to codes when appropriate.  Modifiers can be added or edited for each code, saved to become new defaults, or reset to the original program defaults.
@@ -106,7 +106,7 @@ that can be added or removed from each code.  Select or unselect a
 modifier by tapping on it.  Tap the *Add* button to add the modifier
 (or subtract it) from the code and return to the code list.  Tap the
 *Save* button to make this modifier a default so that it is attached
-to the code for this procedure all the time.  Tap *Reset* to reset
+to the code all the time.  Tap *Reset* to reset
 saved modifiers back to their default values.
 **** Sedation coding
 As of 2017, the AMA, in their never ending quest to make life complicated for physicians, decided to unbundle sedation coding from procedures codes.  Six new sedation codes were added, dependent on the age of the patient and whether the physician performing the procedure was also performing (i.e. supervising) the administration of moderate sedation.  Codes are separated between codes for the initial 15 minutes of sedation, and subsequent 15 minute intervals.  The latter codes can be applied multiple times, depending on the duration of sedation.  To complicate matters further, there are rules for rounding time periods, so that, for example, the initial 15 minutes of sedation code can only be applied for time periods between 10 and 22 minutes.  If you administer 9 minutes of sedation, no sedation codes can be submitted.  Also note that sedation time does not equal procedure time.  It must be tracked and documented separately.
@@ -115,7 +115,7 @@ Give all this, *EP Coding* now has a sedation calculator
 #+CAPTION: Sedation coding calculator
 [[./img/sedation_time.png]]
 
-From the procedure code list screen (see [[code list][figure]]) tap *Sedation* at the bottom of the screen to add sedation codes.  Note that the *Sedation* button is red if you have not entered any sedation information yet for a procedure.  It turns blue like the other buttons after the sedation data is entered.  When you tap the button a menu appears offering to *Add* sedation codes.  (Note that after adding sedation codes, this button appears as *Edit*).  Selecting *Add* then brings up a screen similar to the one above.  Enter the sedation time (not procedure time), rounded down to the nearest minute.  Select whether the same MD (i.e. you) performed the procedure and administered sedation (administering doesn't mean you did it personally).  If another MD, e.g. an anesthesiologist, administered the sedation, the calculator when determine the proper coding, but that other MD is the one who must submit the codes.  The other factor that you must choose is the age of the patient: greater or less than 5 years old.
+From the procedure code list screen (see [[code list][figure]]) tap *Sedation* at the bottom of the screen to add sedation codes.  Note that the *Sedation* button is red if you have not entered any sedation information yet for a procedure.  It turns blue like the other buttons after the sedation data is entered.  When you tap the button a menu appears offering to *Add* sedation codes.  (Note that after adding sedation codes, this button appears as *Edit*).  Selecting *Add* then brings up a screen similar to the one above.  Enter the sedation time (not procedure time), rounded down to the nearest minute.  Select whether the same MD (i.e. you) performed the procedure and administered sedation (administering doesn't mean you did it personally).  If another MD, e.g. an anesthesiologist, administered the sedation, the calculator will determine the proper coding, but that other MD is the one who must submit the codes.  The other factor that you must choose is the age of the patient: greater or less than 5 years old.
 
 To assist with determining the sedation time, tap *Calculate* to the right of the sedation time text entry field.  The next screen will appear.
 
@@ -146,10 +146,10 @@ Tap the menu icon on the upper right of the screen for more options.
 Tap *Search* to search for codes by name or number.  Note that
 due to the [[Abbreviations][abbreviations]] used, a search that you expect to have
 results may come up empty.  For example to search for
-pacer/pacemaker codes, search for "PPM."
+pacer/pacemaker codes, search for "PPM."  [[Abbreviations][Here]] is a list of abbreviations used in *EP Coding*.
 **** <<Wizard>>Device wizard
 Tap *Device Wizard* to steer you through complex device
-upgrades and revisions.  A list of steps and possible codes is shown.  Swipe each coding page and select the codes you need on each page.  Sedation is added on the last page of the Wizard.  Select *Done* to see the code summary, or the back button to exit the Wizard.
+upgrades and revisions.  A list of steps and possible codes is shown.  Swipe each coding page and select the codes you need on each page.  Sedation is added on the first page of the Wizard.  Select the *Sedation Coding* table entry to bring up the sedation calculator.  After swiping through each page of the Wizard, select *Done* to see the code summary, or the back button to exit the Wizard.
 **** Help
 Well, you're reading this, so you must have figured out already that you select *Help* to get help.
 ** General hints
@@ -300,7 +300,7 @@ Well, you're reading this, so you must have figured out already that you select 
      in this module.
    - This module can be useful to look up specific code numbers.
    - Sedation codes are listed, but it is preferable as in the other modules to use the sedation calculator to compute sedation codes.
-** Abbreviations
+** <<Abbreviations>>Abbreviations
    - A = atrial
    - AFB = atrial fibrillation
    - AFL = atrial flutter
@@ -325,12 +325,12 @@ Well, you're reading this, so you must have figured out already that you select 
    - CPT copyright 2014 American Medical Association. All rights
      reserved. CPT is a registered trademark of the American Medical
      Association.
-   - A limited number of CPT® codes are used in this app, under the
+   - A limited number of CPT codes are used in this app, under the
      fair use doctrine of the US Copyright Act.  For a discussion of
      the rationale see [[https://www.epstudiossoftware.com/fair-use-justification-of-cpt-codes-in-ep-coding/][here]].
-   - The source code for EP Coding is available on [[https://github.com/mannd/epcoding-ios][GitHub]].
+   - The source code for *EP Coding* is available on [[https://github.com/mannd/epcoding-ios][GitHub]].
    - EP Coding is open source software and is licensed under the
-     [[http://www.apache.org/licenses/LICENSE-2.0.html][Apache License Version 2.0]].  No guarantees are made as to the
+     [[https://www.apache.org/licenses/LICENSE-2.0.html][Apache License Version 2.0]].  No guarantees are made as to the
      accuracy of the app, so use at your own risk.
    - For questions, error reporting or suggestions contact
      [[mailto:mannd@epstudiossoftware.com][EP Studios]].

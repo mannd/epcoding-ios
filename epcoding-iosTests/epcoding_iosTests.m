@@ -121,14 +121,7 @@
     XCTAssertTrue([[ablationCodes objectAtIndex:0] isEqualToString:@"93656"]);
     NSArray *disabledAblationCodes = [[EPSCodes codeDictionary] valueForKey:@"afbAblationDisabledCodes"];
     XCTAssertTrue([[disabledAblationCodes objectAtIndex:0] isEqualToString:@"93621"]);
- 
-    // TODO do this test when sorting implemented
-    //NSMutableArray *sortedCodes = [EPSCodes allCodesSorted];
-    // EPSCode *code10 = [sortedCodes objectAtIndex:0];
-    // this is what it should be, but codes are sorted yet
-    // XCTAssertTrue([[[sortedCodes objectAtIndex:0] number] isEqualToString:@"0319T"]);
-    // XCTAssertTrue([[code10 number] isEqualToString:@"33264"]);
-}
+ }
 
 - (void)testProcedureKeys
 {
@@ -370,12 +363,12 @@
 - (void)testPrintSedationCodes {
     NSArray *codes = @[[EPSCodes getCodeForNumber:@"99152"], [EPSCodes getCodeForNumber:@"99153"]];
     NSString *result = [EPSSedationCode printSedationCodesWithDescriptions:codes];
-    //NSLog(@"%@", result);
-    NSString *predictedResult = @"99152 (Mod sedation, same MD, initial 15 min, pt ≥ 5 y/o) and +99153 (Mod sedation, same MD, each additional 15 min)";
+    NSLog(@"%@", result);
+    NSString *predictedResult = @"99152 (Moderate sedation, same MD, initial 15 min, pt ≥ 5 y/o)\n+99153 (Moderate sedation, same MD, each additional 15 min)";
     XCTAssert([result isEqualToString:predictedResult]);
     codes = @[[EPSCodes getCodeForNumber:@"99152"]];
     result = [EPSSedationCode printSedationCodesWithDescriptions:codes];
-    predictedResult = @"99152 (Mod sedation, same MD, initial 15 min, pt ≥ 5 y/o)";
+    predictedResult = @"99152 (Moderate sedation, same MD, initial 15 min, pt ≥ 5 y/o)";
     XCTAssert([result isEqualToString:predictedResult]);
 }
 

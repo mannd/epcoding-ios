@@ -114,8 +114,6 @@
     self.patientOver5YearsOld = YES;
     self.sedationStatus = Unassigned;
     
-    // TODO: on iPad, Sedation button turns back to red when master view appears, though selected cells don't change.
-    // even when changing back and forth procedures.  Need to clear selected codes when changing procedures.
     self.buttonSedation.tintColor = [UIColor redColor];
     
 
@@ -257,7 +255,6 @@
     return self.sedationCodes != nil && self.sedationCodes.count > 0;
 }
 
-// TODO: Refactor to just use self.sedationStatus
 - (void)showSedationCodeSummary {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Codes" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *editCodes = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){[self openSedationView];}];
@@ -520,8 +517,6 @@
         else {  // secondary code
             code.selected = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
-            
-            // TODO: prohibited cell with striped background
             cell.backgroundView = [[UIView alloc] init];
             cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
             [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
@@ -596,7 +591,6 @@
     NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
     if (indexPath == nil) {
         selectedCode = nil;
-        //NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         NSUInteger section = indexPath.section;
         NSUInteger row = indexPath.row;
@@ -612,7 +606,6 @@
         [self performSegueWithIdentifier:@"showModifiers" sender:nil];
 
     } else {
-        //NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 

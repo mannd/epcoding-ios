@@ -71,7 +71,6 @@
 }
 
 - (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus {
-    NSLog(@"WizardContentViewController sendSedationDataBack");
     if (cancel) {
         return;
     }
@@ -146,7 +145,6 @@
         viewController.code = selectedCode;
     }
     if ([[segue identifier] isEqualToString:@"showSedationFromWizard"]) {
-        NSLog(@"segue from WizardContentViewController");
         EPSSedationViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
         viewController.time = self.sedationTime;
@@ -239,21 +237,16 @@
     NSIndexPath *indexPath = [self.codeTableView indexPathForRowAtPoint:p];
     if (indexPath == nil) {
         selectedCode = nil;
-        //NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"long press on table view at row %ld", (long)indexPath.row);
         NSUInteger row = indexPath.row;
         selectedCode = [self.codes objectAtIndex:row];
         // ignore long press for special sedation code - it has no modifiers
         if (selectedCode.number == SEDATION_CODE_NUMBER) {
-            NSLog(@"sedation code selected");
             return;
         }
-        //NSLog(@"selected code = %@", [selectedCode unformattedCodeNumber]);
         [self performSegueWithIdentifier:@"showModifiersFromWizard" sender:nil];
         
     } else {
-        //NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 
