@@ -16,14 +16,23 @@
 
 @implementation EPSCodeAnalyzer
 
-- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes
+- (id)initWithPrimaryCodes:(NSArray *)primaryCodes secondaryCodes:(NSArray *)secondaryCodes ignoreNoSecondaryCodes:(BOOL)ignoreNoSecondaryCodes sedationCodes:(NSArray *)sedationCodes sedationStatus:(SedationStatus)sedationStatus
 {
     if (self = [super init]) {
         self.primaryCodes = primaryCodes;
         self.secondaryCodes = secondaryCodes;
+        self.sedationCodes = sedationCodes;
         self.ignoreNoSecondaryCodes = ignoreNoSecondaryCodes;
         NSMutableArray *array = [NSMutableArray  arrayWithArray:[self.primaryCodes arrayByAddingObjectsFromArray:self.secondaryCodes]];
+        // only add sedaton button sedation codes if raw codes not used
+        if (![self rawSedationCodesUsed]) {
+            [array addObjectsFromArray:self.sedationCodes];
+        }
+
+        [EPSCodes hideMultipliers:self.sedationCodes setHidden:[self rawSedationCodesUsed]];
+
         self.allCodes = array;
+        self.sedationStatus = sedationStatus;
     }
     return self;
 }
@@ -57,6 +66,13 @@
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33206", @"33207", @"33208", @"33227", @"33228", @"33229"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33240", @"33230", @"33231", @"33262", @"33263", @"33264"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93600", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93602", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93603", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93610", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93612", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93618", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93653", @"93654", @"93656"]] withWarningLevel:ERROR withMessage:@"You can't combine primary ablation codes."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33270", @"33271"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0389T", @"0390T", @"0391T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
@@ -108,15 +124,19 @@
     return array;
 }
 
+
 - (NSArray *)analysis
 {
     NSMutableArray *array = [[NSMutableArray alloc] init];
+
     // Note quick exit if no codes selected
     if ([self.primaryCodes count] == 0 && [self.secondaryCodes count] == 0) {
-        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No codes selected."]];
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No procedure codes selected."]];
+        // still need to mark codes, since sedation codes may be present
+        [self markCodes:self.allCodes withWarning:WARNING];
         return array;
     }
-    if ([self.primaryCodes count] == 0) {
+    else if ([self.primaryCodes count] == 0) {
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:ERROR withMessage:@"No primary codes selected.  All codes are additional codes."]];
         [self markCodes:self.allCodes withWarning:ERROR];
     }
@@ -132,12 +152,18 @@
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No mapping codes for ablation."]];
         [self markCodes:self.allCodes withWarning:WARNING];
     }
+    [array addObjectsFromArray:[self evaluateSedationStatus]];
+
+    
     NSArray *duplicateCodeErrors = [self combinationCodeNumberErrors];
     [array addObjectsFromArray:duplicateCodeErrors];
     NSArray *firstSpecialCodeErrors = [self firstSpecialCodeNumberErrors];
     [array addObjectsFromArray:firstSpecialCodeErrors];
     NSArray *firstNeedsOthersCodeErrors = [self firstNeedsOthersCodeNumberErrors];
     [array addObjectsFromArray:firstNeedsOthersCodeErrors];
+    
+    // modifiers
+    [array addObjectsFromArray:[self evaluateModifiers]];
     
     if ([array count] == 0)
         [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No errors or warnings."]];
@@ -265,8 +291,85 @@
     return [NSString stringWithFormat:@"[%@]", string];
 }
 
+- (NSSet *)sedationCodeSet {
+    return [[NSSet alloc] initWithObjects:@"99151", @"99152", @"99153", @"99155", @"99156", @"99157", nil];
+}
+
+- (NSArray *)rawSedationCodesUsedError {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    if ([self rawSedationCodesUsed]) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Raw sedation codes selected.  Sedation codes may be inconsistent.  Further analysis of sedation codes will not be performed."]];
+        [self markCodes:self.allCodes withWarning:WARNING];
+    }
+    return array;
+}
+
+- (BOOL)rawSedationCodesUsed {
+    BOOL rawCodesUsed = NO;
+    for (EPSCode *code in self.primaryCodes) {
+        if ([[self sedationCodeSet] containsObject:code.number]) {
+            rawCodesUsed = YES;
+            break;
+        }
+    }
+    return rawCodesUsed;
+}
 
 
+- (NSArray *)evaluateSedationStatus {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    // Deal with selecting sedation codes in All Codes and
+    // using sedation calculator at the same time
+    [array addObjectsFromArray:[self rawSedationCodesUsedError]];
+    if ([array count] > 0 ) {
+        [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Result of Sedation calculator will be ignored. Delete selected raw sedation codes to use results of Sedation calculator."]];
+        return array;
+    }
+    switch (self.sedationStatus) {
+        case Unassigned:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"No sedation codes.  Did you supervise sedation?  Sedation codes are no longer bundled with the procedure codes."]];
+            [self markCodes:self.allCodes withWarning:WARNING];
+            break;
+        case None:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Procedure was performed without sedation."]];
+            [self markCodes:self.allCodes withWarning:GOOD];
+            break;
+        case LessThan10Mins:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"No sedation codes as sedation time was < 10 minutes."]];
+            [self markCodes:self.allCodes withWarning:GOOD];
+            break;
+        case OtherMDCalculated:
+            [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:WARNING withMessage:@"Sedation performed by other MD.  Sedation coding must be submitted by that MD."]];
+            [self markCodes:self.sedationCodes withWarning:WARNING];
+            break;
+        case AssignedSameMD:
+            // no warnings, everything good
+            break;
+    }
+    return array;
+}
 
+- (NSArray *)evaluateModifiers {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    BOOL q0ModifierFound = NO;
+    for (EPSCode *code in self.allCodes) {
+        for (EPSModifier *modifier in code.modifiers) {
+            if ([modifier.number isEqualToString:@"Q0"]) {
+                [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Q0 modifier indicates primary prevention ICD.  Remove Q0 modifier for other ICD indications."]];
+                q0ModifierFound = YES;
+            }
+        }
+    }
+    if (!q0ModifierFound) {
+        // check for ICD codes without Q0 modifier
+        NSSet *icdCodeNumberSet = [[NSSet alloc] initWithArray:@[@"33249", @"33262", @"33263", @"33264"]];
+        for (EPSCode *code in self.allCodes) {
+            if ([icdCodeNumberSet containsObject:code.number]) {
+                [array addObject:[[EPSCodeError alloc] initWithCodes:nil withWarningLevel:GOOD withMessage:@"Add Q0 modifier to ICD implant or generator change codes if indication is primary prevention."]];
+            }
+        }
+    }
+    return array;
+}
 
 @end

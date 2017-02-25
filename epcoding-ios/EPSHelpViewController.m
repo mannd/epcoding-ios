@@ -8,7 +8,7 @@
 
 #import "EPSHelpViewController.h"
 
-#define VERSION @"1.5"
+#define VERSION @"1.6"
 
 @interface EPSHelpViewController ()
 
@@ -35,11 +35,15 @@
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"help" ofType:@"html"] isDirectory:NO];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:requestObj];
+    
+    // centers view with navigationbar in place
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];
+    [super viewDidAppear:animated];
     [self.navigationController setToolbarHidden:YES];
 
 }
@@ -53,11 +57,12 @@
 
 - (void)showAbout
 {
-    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2016 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
+    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2017 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
     NSString *title = @"EP Coding";
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:details delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:details preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

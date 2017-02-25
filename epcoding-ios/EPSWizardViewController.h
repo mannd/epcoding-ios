@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "EPSWizardContentViewController.h"
 
+
 @interface EPSWizardViewController : UIViewController
-    <UIPageViewControllerDataSource>
+    <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray *pageContent;
@@ -18,5 +19,6 @@
 @property (strong, nonatomic) NSArray *codeNumbers;
 @property (strong, nonatomic) NSArray *codeArrays;
 @property (strong, nonatomic) NSMutableArray *selectedCodes;
+@property (strong, nonatomic) EPSSedationCode *sedationCode;
 
 @end

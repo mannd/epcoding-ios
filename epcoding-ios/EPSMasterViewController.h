@@ -11,7 +11,6 @@
 @class EPSDetailViewController;
 
 @interface EPSMasterViewController : UITableViewController
-    <UIActionSheetDelegate>
 
 @property (strong, nonatomic) NSArray *procedureTypes;
 

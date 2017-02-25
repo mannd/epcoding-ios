@@ -11,12 +11,23 @@
 
 @interface EPSCodes : NSObject
 
+
 + (NSDictionary *)allCodes;
 + (void)addCode:(EPSCode *)code toDictionary:(NSMutableDictionary *)dictionary;
 + (EPSCode *)getCodeForNumber:(NSString *)codeNumber;
 + (NSArray *)getCodesForCodeNumbers:(NSArray *)codeNumbers;
 + (NSArray *)allCodesSorted;
 
++ (NSString *)codeNumberFromCodeString:(NSString *)codeString leavePlus:(BOOL)leavePlus;
+
 + (NSDictionary *)codeDictionary;
+
++ (void)clearMultipliers:(NSArray *)array;
++ (void)clearModifiers:(NSArray *)array;
++ (NSDictionary *)defaultModifiers;
++ (void)clearMultipliersAndModifiers:(NSArray *)array;
++ (void)hideMultipliers:(NSArray *)array setHidden:(BOOL)hide;
++ (void)loadDefaultModifiers:(NSArray *)codes;
++ (void)loadSavedModifiers:(NSArray *)codes;+ (void)resetSavedModifiers:(NSArray *)codes;
 
 @end

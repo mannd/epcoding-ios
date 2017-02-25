@@ -7,17 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EPSCodes.h"
+#import "EPSSedationCode.h"
 
-@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIActionSheetDelegate>
+@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
 @property (strong, nonatomic) NSArray *primaryCodes;
 @property (strong, nonatomic) NSArray *secondaryCodes;
+@property (strong, nonatomic) NSMutableArray *sedationCodes;
 @property (strong, nonatomic) NSSet *disabledCodesSet;
 @property BOOL disablePrimaryCodes;
 @property BOOL ignoreNoSecondaryCodesSelected;
 
 @property (weak, nonatomic) IBOutlet UITableView *codeTableView;
+
+@property SedationStatus sedationStatus;
+@property NSInteger sedationTime;
+@property BOOL sameMDPerformsSedation;
+@property BOOL patientOver5YearsOld;
+
+@property (strong, nonatomic) UIBarButtonItem *buttonSedation;
+@property (strong, nonatomic) UIBarButtonItem *buttonSummarize;
+@property (strong, nonatomic) UIBarButtonItem *buttonClear;
+@property (strong, nonatomic) UIBarButtonItem *buttonSave;
 
 @end

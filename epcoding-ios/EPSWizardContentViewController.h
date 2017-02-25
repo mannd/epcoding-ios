@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EPSCode.h"
+#import "EPSSedationCode.h"
 
 @interface EPSWizardContentViewController : UIViewController
-    <UITableViewDelegate, UITableViewDataSource>
+    <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *contentLabel;
@@ -18,5 +20,13 @@
 @property (strong, nonatomic) NSString *titleText;
 @property (strong, nonatomic) NSString *contentText;
 @property (strong, nonatomic) NSArray *codes;
+@property (strong, nonatomic) NSArray *allCodes;
+
+@property (strong, nonatomic) NSMutableArray *sedationCodes;
+
+@property SedationStatus sedationStatus;
+@property NSInteger sedationTime;
+@property BOOL sameMDPerformsSedation;
+@property BOOL patientOver5YearsOld;
 
 @end

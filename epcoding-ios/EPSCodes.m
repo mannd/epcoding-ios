@@ -7,6 +7,8 @@
 //
 
 #import "EPSCodes.h"
+#import "EPSModifiers.h"
+
 
 @implementation EPSCodes
 
@@ -16,6 +18,9 @@
     static NSMutableDictionary *dictionary;
     if (dictionary == nil) {
         dictionary = [[NSMutableDictionary alloc] init];
+        
+        // hopefully rarely needed!
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33010" description:@"Pericardiocentesis" isAddOn:NO] toDictionary:dictionary];
         
         // SubQ ICD
         [self addCode:[[EPSCode alloc] initWithNumber:@"33270" description:@"New or replacement SubQ ICD system, includes testing" isAddOn:NO] toDictionary:dictionary];
@@ -94,17 +99,31 @@
         // note fluoroscopy included in device codes, but this code
         // used e.g to evaluate a lead such as a Riata
         [self addCode:[[EPSCode alloc] initWithNumber:@"76000" description:@"Fluoroscopic lead evaluation" isAddOn:NO] toDictionary:dictionary];
+        
+        // TEE - but only by different MD than performing procedure
+        
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93355" description:@"TEE for guidance of transcatheter intervention, performed by different MD than MD performing intervention." isAddOn:NO] toDictionary:dictionary];
         // Ablation and EP testing codes
         
         // EP Testing and Mapping ///////////////////////
-        [self addCode:[[EPSCode alloc] initWithNumber:@"93600" description:@"His bundle recording only" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93600" description:@"His bundle recording" isAddOn:NO] toDictionary:dictionary];
+        
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93602" description:@"Intra-atrial recording" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93603" description:@"Right ventricular recording" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93610" description:@"Intra-atrial pacing" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93612" description:@"Intraventricular pacing" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93618" description:@"Induction of arrhythmia" isAddOn:NO] toDictionary:dictionary];
+
         
         [self addCode:[[EPSCode alloc] initWithNumber:@"93609" description:@"2D mapping" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93613" description:@"3D mapping" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93619" description:@"EP testing without attempted arrhythmia induction" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93620" description:@"EP testing with attempted arrhythmia induction" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93621" description:@"LA pacing & recording" isAddOn:YES] toDictionary:dictionary];
+        
+        
         [self addCode:[[EPSCode alloc] initWithNumber:@"93622" description:@"LV pacing & recording" isAddOn:YES] toDictionary:dictionary];
+        
         [self addCode:[[EPSCode alloc] initWithNumber:@"93623" description:@"Induce post IV drug" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93624" description:@"Follow-up EP testing" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93631" description:@"Intra-op mapping" isAddOn:NO] toDictionary:dictionary];
@@ -129,9 +148,21 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"93660" description:@"Tilt table test" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93662" description:@"Intracardiac echo" isAddOn:YES] toDictionary:dictionary];
         
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93724" description:@"Noninvasive programmed stimulation" isAddOn:NO] toDictionary:dictionary];
+
+        
         // Unlisted procedure
         [self addCode:[[EPSCode alloc] initWithNumber:@"93799" description:@"Unlisted procedure" isAddOn:NO] toDictionary:dictionary];
-    
+        
+        // New sedation codes, 2017
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99151" description:@"Moderate sedation, same MD, initial 15 min, pt < 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99152" description:@"Moderate sedation, same MD, initial 15 min, pt ≥ 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99153" description:@"Moderate sedation, same MD, each additional 15 min" isAddOn:YES] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99155" description:@"Moderate sedation, different MD, initial 15 min, pt < 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99156" description:@"Moderate sedation, different MD, initial 15 min, pt ≥ 5 y/o" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"99157" description:@"Moderate sedation, different MD, each additional 15 min" isAddOn:YES] toDictionary:dictionary];
+        
+
     }
     return dictionary;
 }
@@ -158,6 +189,7 @@
     }
     return array;
 }
+
 
 // all the codes sets (e.g. afbAblationPrimaryCodes) are contained in this dictionary
 // Format of keys: e.g. afbAblationPrimaryCodes, deviceSecondaryCodes, etc.
@@ -202,17 +234,135 @@
 + (NSArray *)allCodesSorted
 {
     NSDictionary *dictionary = [self allCodes];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    // Not sure this is best way to do this.  This seems to iterate over the keys of dictionary.a
-    // Would like to get all the values out instead and skip a step.
-    for (id code in dictionary)  {
-        [array addObject:code];
-    }
-
-    NSArray *codes = [self getCodesForCodeNumbers:array];
-    NSArray *sortedCodes = [codes sortedArrayUsingSelector:@selector(compareCodes:)];
-    
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[dictionary allValues]];
+    NSArray *sortedCodes = [array sortedArrayUsingSelector:@selector(compareCodes:)];
     return sortedCodes;
+}
+
+
++ (NSString *)codeNumberFromCodeString:(NSString *)codeString leavePlus:(BOOL)leavePlus {
+    // assumes legitimate code string is passed, minimal error checking
+    // takes something like "+99999-26 x 5" and returns simple code number "99999"
+    // if leavePlus then returns "+99999" if plus present
+    NSString *pureCodeNumber = @"";
+    if ([codeString length] < 5) {
+        return @"";
+    }
+    BOOL hasPlus = ([codeString characterAtIndex:0] == '+');
+    if (hasPlus && [codeString length] < 6) {
+        return @"";
+    }
+    if (hasPlus) {
+        pureCodeNumber = [codeString substringWithRange:NSMakeRange(1, 5)];
+    }
+    else {
+        pureCodeNumber = [codeString substringWithRange:NSMakeRange(0, 5)];
+    }
+    if (leavePlus && hasPlus) {
+        pureCodeNumber = [NSString stringWithFormat:@"+%@", pureCodeNumber];
+    }
+    return pureCodeNumber;
+}
+
++ (void)clearMultipliers:(NSArray *)array {
+    for (EPSCode *code in array) {
+        code.multiplier = 0;
+    }
+}
+
++ (void)clearModifiers:(NSArray *)array {
+    for (EPSCode *code in array) {
+        [code clearModifiers];
+    }
+}
+
++ (NSDictionary *)defaultModifiers
+{
+    static NSMutableDictionary *dictionary;
+    if (dictionary == nil ) {
+        dictionary = [[NSMutableDictionary alloc] init];
+        // Modifer 26 alone
+        NSMutableArray *modifierArray_26 = [[NSMutableArray alloc] init];
+        // start with codes with 26 modifier as standard
+        [modifierArray_26 addObject:[EPSModifiers getModifierForNumber:@"26"]];
+        [dictionary setObject:modifierArray_26 forKey:@"93609"];
+        [dictionary setObject:modifierArray_26 forKey:@"93620"];
+        [dictionary setObject:modifierArray_26 forKey:@"93619"];
+        [dictionary setObject:modifierArray_26 forKey:@"93621"];
+        [dictionary setObject:modifierArray_26 forKey:@"93622"];
+        [dictionary setObject:modifierArray_26 forKey:@"93662"];
+        [dictionary setObject:modifierArray_26 forKey:@"76000"];
+        [dictionary setObject:modifierArray_26 forKey:@"93641"];
+        [dictionary setObject:modifierArray_26 forKey:@"93642"];
+        [dictionary setObject:modifierArray_26 forKey:@"93660"];
+        // Modifier 26 and 59
+        NSMutableArray *modifierArray26_56 = [NSMutableArray arrayWithArray:modifierArray_26];
+        [modifierArray26_56 addObject:[EPSModifiers getModifierForNumber:@"59"]];
+        [dictionary setObject:modifierArray26_56 forKey:@"93623"];
+        
+        // Modifer Q0
+        NSMutableArray *modifierArray_Q0 = [[NSMutableArray alloc] init];
+        [modifierArray_Q0 addObject:[EPSModifiers getModifierForNumber:@"Q0"]];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33249"];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33262"];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33263"];
+        [dictionary setObject:modifierArray_Q0 forKey:@"33264"];
+
+        // Modifier 59
+        NSMutableArray *modifierArray_59 = [[NSMutableArray alloc] init];
+        [modifierArray_59 addObject:[EPSModifiers getModifierForNumber:@"59"]];
+        [dictionary setObject:modifierArray_59 forKey:@"33222"];
+        [dictionary setObject:modifierArray_59 forKey:@"33223"];
+        [dictionary setObject:modifierArray_59 forKey:@"33620"];
+
+    }
+    return dictionary;
+}
+
+
+
++ (void)clearMultipliersAndModifiers:(NSArray *)array {
+    for (EPSCode *code in array) {
+        code.multiplier = 0;
+        [code clearModifiers];
+    }
+}
+
++ (void)hideMultipliers:(NSArray *)array setHidden:(BOOL)hide {
+    for (EPSCode *code in array) {
+        code.hideMultiplier = hide;
+    }
+}
+
++ (void)loadDefaultModifiers:(NSArray *)codes {
+    for (EPSCode *code in codes) {
+        NSArray *modifiers = [[EPSCodes defaultModifiers] valueForKey:code.number];
+        if (modifiers != nil) {
+            [code addModifiers:modifiers];
+        }
+    }
+}
+
++ (void)loadSavedModifiers:(NSArray *)codes {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (EPSCode *code in codes) {
+        NSArray *modifierNumbers = [defaults arrayForKey:code.number];
+        if (modifierNumbers != nil) {
+            // override default modifiers, just use saved modifiers, including no modifiers
+            [code clearModifiers];
+            for (NSString *modifierNumber in modifierNumbers) {
+                EPSModifier *modifier = [EPSModifiers getModifierForNumber:modifierNumber];
+                [code addModifier:modifier];
+            }
+        }
+    }
+}
+
++ (void)resetSavedModifiers:(NSArray *)codes {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    for (EPSCode *code in codes) {
+        [defaults removeObjectForKey:code.number];
+    }
 }
 
 @end

@@ -10,7 +10,10 @@
 #import "EPSCodes.h"
 #import "EPSCode.h"
 #import "EPSCodeSummaryTableViewController.h"
+#import "EPSSedationCode.h"
+#import "EPSSedationViewController.h"
 
+NSString *const WIZARD_TITLE = @"Wizard Step %lu";
 
 @interface EPSWizardViewController ()
 
@@ -32,12 +35,14 @@
     [super viewDidLoad];
  
     self.pageContent = @[
-                         @"Step 1. Is this a new implant or simple generator replacement? If so select the appropriate code below and press Done. Otherwise go to next step.",
-                         @"Step 2. Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33214 which covers this entire procedure and press Done. Otherwise go to the next step.",
-                         @"Step 3. Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so use one of the codes below and press Done. Otherwise go on to the next step",
-                         @"Step 4. What's left are lead and generator removals/extractions, and device upgrades. Select what hardware (if any) was removed, and go to the next step.",
-                         @"Step 5. Now code any added hardware. If you added a generator and leads, use the new or replacement system codes, otherwise code for the specific device(s) you added.  Then go to the next step.",
-                         @"Step 6. Did you do anything else? If so select from the choices below. Select Done to see a summary of your codes."];
+                         @"So we don't forget, let's start by adding sedation codes.  Then go to the next step by swiping the screen to the left.",
+                         @"Is this a new implant or simple generator replacement? If so select the appropriate code below and tap Done. Otherwise go to next step.",
+                         @"Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33214 and tap Done. Otherwise go to the next step.",
+                         @"Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so select codes below and tap Done. Otherwise go on to the next step",
+                         @"What's left are lead and generator removals/extractions, and device upgrades. Select what hardware (if any) was removed, and go to the next step.",
+                         @"Now code any added hardware. If you added a generator and leads, use the new or replacement system codes, otherwise code for the specific device(s) you added.  Then go to the next step.",
+                         @"Did you do anything else? If so select from the choices below. Then tap Done."
+                         ];
     self.codes = [EPSCodes allCodesSorted];
     
     self.codeNumbers = @[@[@"33206", @"33207", @"33208", @"33227", @"33228", @"33229", @"33249", @"33262", @"33263", @"33264", @"33225"], @[@"33214", @"33225"], @[@"33215", @"33226", @"33218", @"33220", @"33222", @"33223"], @[@"33233", @"33241", @"33234", @"33235", @"33244"],
@@ -50,12 +55,20 @@
             code.selected = NO;
         }
     }
+    self.sedationCode = [[EPSSedationCode alloc] init];
+    self.sedationCode.sedationStatus = Unassigned;
+    NSArray *sedationArray = @[self.sedationCode];
+    [array insertObject:sedationArray atIndex:0];
     self.codeArrays = array;
+    
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
     
     EPSWizardContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    // need a copy of all the codes to handle reseting modifiers via the pageViewController
+    startingViewController.allCodes = self.codeArrays;
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
@@ -65,10 +78,13 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    [self setTitle:@"Device Wizard"];
+    [self setTitle:[NSString stringWithFormat:WIZARD_TITLE, 1UL]];
     
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
     self.navigationItem.rightBarButtonItem = btn;
+
+    // prevent swipe right from pulling open master view
+    [self.splitViewController setPresentsWithGesture:NO];
 }
 
 - (void)summarize {
@@ -77,7 +93,10 @@
         for (EPSCode *code in array) {
             if ([code selected]) {
                 code.codeStatus = GOOD;
-                [codes addObject:code];
+                // Don't add the pseudo-code sedationCode
+                if (code != self.sedationCode) {
+                    [codes addObject:code];
+                }
             }
         }
     }
@@ -90,6 +109,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    // Toolbar only appears on last page of pageViewController
     [self.navigationController setToolbarHidden:YES];
     
 }
@@ -100,19 +120,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showWizardSummary"]) {
-        [[segue destinationViewController] setSelectedPrimaryCodes:self.selectedCodes];
-        [[segue destinationViewController] setSelectedSecondaryCodes:nil];
-        [[segue destinationViewController] setIgnoreNoSecondaryCodesSelected:YES];
+        EPSCodeSummaryTableViewController *viewController = segue.destinationViewController;
+        [viewController setSelectedPrimaryCodes:self.selectedCodes];
+        [viewController setSelectedSecondaryCodes:nil];
+        [viewController setIgnoreNoSecondaryCodesSelected:YES];
+        [viewController setSelectedSedationCodes:self.sedationCode.sedationCodes];
+        viewController.sedationStatus = self.sedationCode.sedationStatus;
     }
 }
-
 
 - (EPSWizardContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
@@ -152,6 +173,7 @@
     if (index == [self.pageContent count]) {
         return nil;
     }
+
     return [self viewControllerAtIndex:index];
 }
 
@@ -164,5 +186,16 @@
 {
     return 0;
 }
+
+// MARK: pageViewController delegate
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+
+    // .viewControllers[0] is always (in my case at least) the 'current' viewController.
+    EPSWizardContentViewController* vc = self.pageViewController.viewControllers[0];
+    self.navigationItem.title = [NSString stringWithFormat:WIZARD_TITLE, (unsigned long) vc.pageIndex + 1];
+}
+
+
 
 @end
