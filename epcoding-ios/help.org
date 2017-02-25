@@ -45,17 +45,15 @@ documented in the procedure report.  But wait!  You can do this!  You
 have *EP Coding* on your mobile device.  It only cost you 99¢ and
 future updates are free.  And it is tailored to you, the practicing
 electrophysiologist.
-
-
 ** Who should use EP Coding?
 Physicians who perform cardiac electrophysiology (EP) procedures and
 are required to submit CPT® codes for these procedures. *EP Coding* is
 intended to help EP physicians enter the correct codes in an EHR
 (Electronic Health Record).  It is not intended for professional
-coders nor is it a substitute for the [[https://commerce.ama-assn.org/store/][AMA official CPT® documentation]].
+coders nor is it a substitute for the [[https://commerce.ama-assn.org/store/][AMA official CPT documentation]].
 ** How does EP Coding help?
 With *EP Coding* you can:
-- List relevant, up-to-date CPT® codes for EP procedures, with succinct
+- List relevant, up-to-date CPT codes for EP procedures, with succinct
   descriptions.
 - Determine which codes can and cannot be combined for specific procedures.
 - Analyze selected codes for errors and warnings.
@@ -109,9 +107,9 @@ modifier by tapping on it.  Tap the *Add* button to add the modifier
 (or subtract it) from the code and return to the code list.  Tap the
 *Save* button to make this modifier a default so that it is attached
 to the code for this procedure all the time.  Tap *Reset* to reset
-saved modifiers back to their default vaules.
+saved modifiers back to their default values.
 **** Sedation coding
-As of 2017, the AMA, in their neverending quest to make life complicated for physicians, decided to unbundle sedation coding from procedures codes.  Six new sedation codes were added, dependent on the age of the patient and whether the physician performing the procedure was also performing (i.e. supervising) the administration of moderate sedation.  Codes are separated between codes for the initial 15 minutes of sedation, and subsequent 15 minute intervals.  The latter codes can be applied multiple times, depending on the duration of sedation.  To complicate matters further, there are rules for rounding time periods, so that, for example, the initial 15 minutes of sedation code can only be applied for time periods between 10 and 22 minutes.  If you administer 9 minutes of sedation, no sedation codes can be submitted.  Also note that sedation time does not equal procedure time.  It must be tracked and documented separately.
+As of 2017, the AMA, in their never ending quest to make life complicated for physicians, decided to unbundle sedation coding from procedures codes.  Six new sedation codes were added, dependent on the age of the patient and whether the physician performing the procedure was also performing (i.e. supervising) the administration of moderate sedation.  Codes are separated between codes for the initial 15 minutes of sedation, and subsequent 15 minute intervals.  The latter codes can be applied multiple times, depending on the duration of sedation.  To complicate matters further, there are rules for rounding time periods, so that, for example, the initial 15 minutes of sedation code can only be applied for time periods between 10 and 22 minutes.  If you administer 9 minutes of sedation, no sedation codes can be submitted.  Also note that sedation time does not equal procedure time.  It must be tracked and documented separately.
 
 Give all this, *EP Coding* now has a sedation calculator 
 #+CAPTION: Sedation coding calculator
@@ -132,7 +130,7 @@ Tap *Add Codes* to add the sedation codes to the procedure.  A dialog box will a
 Tap *Save* to save your selection of additional codes as a
 default.  If you nearly always select the same additional codes
 (e.g. always do 3D mapping with SVT ablation), save the codes and
-they will pre-selected when you use the app again. Note that
+they will preselected when you use the app again. Note that
 primary code selections are not saved.
 **** All EP codes module
 The all EP codes module lists every EP procedure code in
@@ -224,7 +222,7 @@ Well, you're reading this, so you must have figured out already that you select 
 - Add 93641 if you do DFT testing during the ICD implant.
 - Placing a sub-cutaneous array is probably best coded with 33999
   (unlisted surgical procedure code).
-- <<Q0>>Modifer Q0 must be used for primary prevention ICDs (the majority of implants in most cases).  Modifier Q0 must be removed for other ICD indications (i.e. secondary prevention).
+- <<Q0>>Modifier Q0 must be used for primary prevention ICDs (the majority of implants in most cases).  Modifier Q0 must be removed for other ICD indications (i.e. secondary prevention).
 *** Replace PPM or ICD
    - Use 33227 to 33229 for PPM replacement and 33262 to 33264 for ICD
      replacement depending on number of leads.
@@ -323,7 +321,7 @@ Well, you're reading this, so you must have figured out already that you select 
    - No office based or in-patient billing codes.
    - No device programming codes.
    - Only limited, common code modifiers are presented.
-** Acknowledgements
+** Acknowledgments
    - CPT copyright 2014 American Medical Association. All rights
      reserved. CPT is a registered trademark of the American Medical
      Association.
