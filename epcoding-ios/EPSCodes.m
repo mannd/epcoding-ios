@@ -106,7 +106,14 @@
         // Ablation and EP testing codes
         
         // EP Testing and Mapping ///////////////////////
-        [self addCode:[[EPSCode alloc] initWithNumber:@"93600" description:@"His bundle recording only" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93600" description:@"His bundle recording" isAddOn:NO] toDictionary:dictionary];
+        
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93602" description:@"Intra-atrial recording" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93603" description:@"Right ventricular recording" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93610" description:@"Intra-atrial pacing" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93612" description:@"Intraventricular pacing" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93618" description:@"Induction of arrhythmia" isAddOn:NO] toDictionary:dictionary];
+
         
         [self addCode:[[EPSCode alloc] initWithNumber:@"93609" description:@"2D mapping" isAddOn:YES] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"93613" description:@"3D mapping" isAddOn:YES] toDictionary:dictionary];
