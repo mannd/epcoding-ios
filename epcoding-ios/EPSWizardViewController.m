@@ -13,6 +13,7 @@
 #import "EPSSedationCode.h"
 #import "EPSSedationViewController.h"
 
+NSString *const WIZARD_TITLE = @"Wizard Step %lu";
 
 @interface EPSWizardViewController ()
 
@@ -34,13 +35,14 @@
     [super viewDidLoad];
  
     self.pageContent = @[
-                         @"Step 1. Is this a new implant or simple generator replacement? If so select the appropriate code below, skip to the last page, enter sedation coding, and press Done. Otherwise go to next step.",
-                         @"Step 2. Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33214, skip to the last page for sedation coding, and press Done. Otherwise go to the next step.",
-                         @"Step 3. Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so use select codes below, skip forward to sedation coding, and press Done. Otherwise go on to the next step",
-                         @"Step 4. What's left are lead and generator removals/extractions, and device upgrades. Select what hardware (if any) was removed, and go to the next step.",
-                         @"Step 5. Now code any added hardware. If you added a generator and leads, use the new or replacement system codes, otherwise code for the specific device(s) you added.  Then go to the next step.",
-                         @"Step 6. Did you do anything else? If so select from the choices below. Other go to the next step.",
-                         @"Step 7. Add sedation codes.  Then press Done."];
+                         @"So we don't forget, let's start by adding sedation codes.  Then go to the next step by swiping the screen to the left.",
+                         @"Is this a new implant or simple generator replacement? If so select the appropriate code below and tap Done. Otherwise go to next step.",
+                         @"Is this an upgrade from a single to a dual chamber pacemaker?  If so use code 33214 and tap Done. Otherwise go to the next step.",
+                         @"Is this a lead revision or repair or a pocket revision without adding or removing any hardware?  If so select codes below and tap Done. Otherwise go on to the next step",
+                         @"What's left are lead and generator removals/extractions, and device upgrades. Select what hardware (if any) was removed, and go to the next step.",
+                         @"Now code any added hardware. If you added a generator and leads, use the new or replacement system codes, otherwise code for the specific device(s) you added.  Then go to the next step.",
+                         @"Did you do anything else? If so select from the choices below. Then tap Done."
+                         ];
     self.codes = [EPSCodes allCodesSorted];
     
     self.codeNumbers = @[@[@"33206", @"33207", @"33208", @"33227", @"33228", @"33229", @"33249", @"33262", @"33263", @"33264", @"33225"], @[@"33214", @"33225"], @[@"33215", @"33226", @"33218", @"33220", @"33222", @"33223"], @[@"33233", @"33241", @"33234", @"33235", @"33244"],
@@ -56,12 +58,13 @@
     self.sedationCode = [[EPSSedationCode alloc] init];
     self.sedationCode.sedationStatus = Unassigned;
     NSArray *sedationArray = @[self.sedationCode];
-    [array addObject:sedationArray];
+    [array insertObject:sedationArray atIndex:0];
     self.codeArrays = array;
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
     
     EPSWizardContentViewController *startingViewController = [self viewControllerAtIndex:0];
     // need a copy of all the codes to handle reseting modifiers via the pageViewController
@@ -75,7 +78,7 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    [self setTitle:@"Device Wizard"];
+    [self setTitle:[NSString stringWithFormat:WIZARD_TITLE, 1UL]];
     
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(summarize)];
     self.navigationItem.rightBarButtonItem = btn;
@@ -183,6 +186,16 @@
 {
     return 0;
 }
+
+// MARK: pageViewController delegate
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+
+    // .viewControllers[0] is always (in my case at least) the 'current' viewController.
+    EPSWizardContentViewController* vc = self.pageViewController.viewControllers[0];
+    self.navigationItem.title = [NSString stringWithFormat:WIZARD_TITLE, (unsigned long) vc.pageIndex + 1];
+}
+
 
 
 @end

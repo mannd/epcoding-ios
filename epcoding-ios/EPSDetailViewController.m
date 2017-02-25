@@ -202,7 +202,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Save default codes" message:@"Save selected codes and modifiers as a default?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Save default codes" message:@"Save selected codes as a default?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive
                                                          handler:^(UIAlertAction * action) {[self save];}];
         [alert addAction:okAction];
