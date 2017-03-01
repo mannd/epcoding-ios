@@ -65,13 +65,6 @@
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"92960", @"92961"]] withWarningLevel:ERROR withMessage:@"You can't code for both internal and external cardioversion."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33206", @"33207", @"33208", @"33227", @"33228", @"33229"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33240", @"33230", @"33231", @"33262", @"33263", @"33264"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
-//    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93600", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
-    
-//    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93602", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
-//    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93603", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
-//    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93610", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
-//    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93612", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
-//    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93618", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
 
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93653", @"93654", @"93656"]] withWarningLevel:ERROR withMessage:@"You can't combine primary ablation codes."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33270", @"33271"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
@@ -91,7 +84,14 @@
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93650", @"93609", @"93613"]] withWarningLevel:WARNING withMessage:@"It is not clear if mapping codes can be combined with AV node ablaton."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93650", @"93600", @"93619", @"93620"]] withWarningLevel:WARNING withMessage:@"It is unclear if AV node ablation can be combined with EP testing codes."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93623", @"93650", @"93653", @"93654", @"93656"]] withWarningLevel:WARNING withMessage:@"Recent coding changes may disallow bundling induce post IV drug with ablation."]];
-
+    
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93600", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93602", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93603", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93610", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93612", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93618", @"93619", @"93620", @"93655", @"93657"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     
     return array;
 }
