@@ -59,7 +59,7 @@
 // If it is static, the changes to the CodeErrors persist.
 - (NSArray *)duplicateCodeErrors
 {
-    // duplicate mapping codes
+    // bad duplicate codes
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93609", @"93613"]] withWarningLevel:ERROR withMessage:@"You shouldn't combine 2D and 3D mapping codes."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"92960", @"92961"]] withWarningLevel:ERROR withMessage:@"You can't code for both internal and external cardioversion."]];
@@ -69,6 +69,7 @@
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"93653", @"93654", @"93656"]] withWarningLevel:ERROR withMessage:@"You can't combine primary ablation codes."]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33270", @"33271"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0389T", @"0390T", @"0391T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+        [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33218", @"33220"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     
     return array;
 }
