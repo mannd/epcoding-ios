@@ -372,4 +372,18 @@
     XCTAssert([result isEqualToString:predictedResult]);
 }
 
+- (void)testFirstSpeicalCodeErrors {
+    // these two codes should produce an error
+    NSArray *primaries = @[[EPSCodes getCodeForNumber:@"93600"], [EPSCodes getCodeForNumber:@"93657"]];
+    NSArray *secondaries = nil;
+    EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaries secondaryCodes:secondaries ignoreNoSecondaryCodes:YES sedationCodes:nil sedationStatus:Unassigned];
+    NSArray *results = [analyzer firstSpecialCodeNumberErrors];
+    XCTAssert([results count] == 1);
+    // these two codes shouldn't interact as neither is the first code
+    primaries = @[[EPSCodes getCodeForNumber:@"93655"], [EPSCodes getCodeForNumber:@"93657"]];
+    EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaries secondaryCodes:secondaries ignoreNoSecondaryCodes:YES sedationCodes:nil sedationStatus:Unassigned];
+    results = [analyzer2 firstSpecialCodeNumberErrors];
+    XCTAssert([results count] == 0);
+}
+
 @end
