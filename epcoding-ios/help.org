@@ -31,7 +31,7 @@ almost).
 CPT coding is arcane.  Unlike other medical coding systems, it is a
 proprietary system, copyrighted and owned by the American Medical
 Association (AMA).  It is a secretive system unless you are willing to
-shell out large quantities of money to buy the [[https://commerce.ama-assn.org/store/][offical AMA coding book]]
+shell out large quantities of money to buy the [[https://commerce.ama-assn.org/store/][official AMA coding book]]
 or attend a CPT coding seminar.  To make matters worse, the AMA tweaks
 the system on a yearly basis, so that to keep up it is necessary to
 buy their book or attend a seminar yearly.  But this is overkill for
