@@ -7,8 +7,7 @@
 //
 
 #import "EPSHelpViewController.h"
-
-#define VERSION @"1.6.2"
+#import "EPSAbout.h"
 
 @interface EPSHelpViewController ()
 
@@ -57,12 +56,7 @@
 
 - (void)showAbout
 {
-    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2017 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
-    NSString *title = @"EP Coding";
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:details preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-    [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
+    [EPSAbout show:self];
 }
 
 @end
