@@ -14,6 +14,7 @@
 #import "EPSSedationViewController.h"
 #import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
+#import "EPSAbout.h"
 
 #define HIGHLIGHT yellowColor
 //#define DISABLED_COLOR lightGrayColor
@@ -163,6 +164,11 @@
         UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showHelp" sender:self];}];
         [actionSheet addAction:helpAction];
+    
+        UIAlertAction* aboutAction = [UIAlertAction actionWithTitle:@"About" style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * action) {[EPSAbout show:self];}];
+        [actionSheet addAction:aboutAction];
+
     
         UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                              handler:nil];

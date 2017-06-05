@@ -18,6 +18,7 @@
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
 		8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
+		8EB955751EE4E132006CCCB2 /* EPSAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB955741EE4E132006CCCB2 /* EPSAbout.m */; };
 		8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB9E4CC1E43A45900767217 /* stripes5.png */; };
 		8EC0E8241E3FF03500090E2B /* EPSTimeCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */; };
 		8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
@@ -81,6 +82,8 @@
 		8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSProcedureKeys.m; sourceTree = "<group>"; };
 		8E9AEF0018BCFF4800B6BC1C /* EPSProcedureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKey.h; sourceTree = "<group>"; };
 		8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSProcedureKey.m; sourceTree = "<group>"; };
+		8EB955731EE4E132006CCCB2 /* EPSAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSAbout.h; sourceTree = "<group>"; };
+		8EB955741EE4E132006CCCB2 /* EPSAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSAbout.m; sourceTree = "<group>"; };
 		8EB9E4CC1E43A45900767217 /* stripes5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stripes5.png; sourceTree = "<group>"; };
 		8EC0E8221E3FF03500090E2B /* EPSTimeCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSTimeCalculatorViewController.h; sourceTree = "<group>"; };
 		8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSTimeCalculatorViewController.m; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */,
 				8E6705A31E5A540D00F47885 /* EPSSedationCode.h */,
 				8E6705A41E5A540D00F47885 /* EPSSedationCode.m */,
+				8EB955731EE4E132006CCCB2 /* EPSAbout.h */,
+				8EB955741EE4E132006CCCB2 /* EPSAbout.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */,
 				8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */,
 				8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */,
+				8EB955751EE4E132006CCCB2 /* EPSAbout.m in Sources */,
 				8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */,
 				8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */,
 				8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */,
