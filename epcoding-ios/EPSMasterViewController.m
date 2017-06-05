@@ -10,6 +10,7 @@
 
 #import "EPSDetailViewController.h"
 #import "EPSProcedureKeys.h"
+#import "EPSAbout.h"
 
 // Extension to allow toggle the master view in portrait mode
 // See http://stackoverflow.com/questions/27243158/hiding-the-master-view-controller-with-uisplitviewcontroller-in-ios8
@@ -88,6 +89,10 @@
     UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showHelp" sender:self];}];
     [actionSheet addAction:helpAction];
+    
+    UIAlertAction* aboutAction = [UIAlertAction actionWithTitle:@"About" style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * action) {[EPSAbout show:self];}];
+    [actionSheet addAction:aboutAction];
     
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                          handler:nil];
