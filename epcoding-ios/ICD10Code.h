@@ -17,5 +17,8 @@
 + (ICD10Code *)fileNotFoundICD10Code;
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description;
+- (id)initWithString:(NSString *)string;
+- (BOOL)isCategory;
+
 
 @end

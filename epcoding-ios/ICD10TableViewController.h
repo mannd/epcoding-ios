@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ICD10TableViewController : UITableViewController
+@interface ICD10TableViewController : UITableViewController <UISearchResultsUpdating, UISearchBarDelegate>
 
 @property (strong, nonatomic) UISearchController *searchController;
 

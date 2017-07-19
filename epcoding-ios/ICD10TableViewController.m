@@ -15,6 +15,10 @@
 @end
 
 @implementation ICD10TableViewController
+{
+    NSInteger cellHeight;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,7 +30,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self setTitle:@"ICD 10 Codes"];
-    self.codes = [ICD10Codes allCodesArray];
+    self.codes = [ICD10Codes allCodes];
     // only show "clean" codes during search
 //    cellHeight = 65;
     
@@ -36,6 +40,8 @@
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
+    
+    cellHeight = 65;
 
 }
 
@@ -54,15 +60,64 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.searchController.active) {
+        return [self.searchResults count];
+        
+    } else {
+        return [self.codes count];
+    }
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *searchCellIdentifier = @"ICD10Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:searchCellIdentifier];
+    }
+    
+    NSUInteger row = [indexPath row];
+    ICD10Code *code = nil;
+    
+    if (self.searchController.active) {
+        code = [self.searchResults objectAtIndex:indexPath.row];
+    }
+    else {
+        code = [self.codes objectAtIndex:row];
+    }
+    cell.detailTextLabel.text = [code fullDescription];
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.textLabel.text = [code number];
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+    // default gray color looks bad when background color is red or orange
+    cell.detailTextLabel.textColor = [UIColor blackColor];
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    if ([code isCategory]) {
+        cell.backgroundColor = UIColor.redColor;
+    }
+    else {
+        cell.backgroundColor = UIColor.whiteColor;
+    }
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return cellHeight;
+}
+
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

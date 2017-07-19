@@ -197,24 +197,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableFooterView" contentMode="redraw" id="v5n-tg-3pX">
-                            <rect key="frame" x="0.0" y="72" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="fG8-8c-Jgu" id="dth-Cx-oh2"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ICD10CodeCell" id="BDg-12-8Tk">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BDg-12-8Tk" id="4BG-Oz-Gyf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="fG8-8c-Jgu" id="GL5-hN-dzx"/>
                             <outlet property="delegate" destination="fG8-8c-Jgu" id="NwQ-Ed-Iae"/>
@@ -228,7 +210,6 @@
                 <searchDisplayController id="Kdo-Ye-jyX">
                     <connections>
                         <outlet property="delegate" destination="fG8-8c-Jgu" id="nG2-uR-v5S"/>
-                        <outlet property="searchBar" destination="v5n-tg-3pX" id="zwZ-24-Tmd"/>
                         <outlet property="searchContentsController" destination="fG8-8c-Jgu" id="uVu-xN-4s6"/>
                         <outlet property="searchResultsDataSource" destination="fG8-8c-Jgu" id="BCZ-f4-QTU"/>
                         <outlet property="searchResultsDelegate" destination="fG8-8c-Jgu" id="tPX-zv-RWL"/>

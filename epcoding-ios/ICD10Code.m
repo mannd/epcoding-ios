@@ -34,5 +34,24 @@
     return self;
 }
 
+// assumes valid string > 7 chars long!!
+- (id)initWithString:(NSString *)string {
+    if (self = [super init]) {
+        NSString *rawNumber = [[string substringToIndex:6] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSMutableString *processedNumber = [NSMutableString stringWithString:rawNumber];
+        if ([processedNumber length] > 3) {
+            [processedNumber insertString:@"." atIndex:3];
+        }
+        NSString *description = [[string substringFromIndex:8] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self = [self initWithNumber:[NSString stringWithString:processedNumber] description:description];
+    }
+    return self;
+}
+
+// codes of for X00 are just category codes
+- (BOOL)isCategory {
+    return self.number.length < 4;
+}
+
 
 @end

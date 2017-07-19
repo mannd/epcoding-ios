@@ -13,30 +13,39 @@
 
 @implementation ICD10Codes
 
-+ (NSDictionary *)allCodes
++ (NSArray *)allCodes
 {
-    static NSMutableDictionary *dictionary;
-    if (dictionary == nil) {
-        dictionary = [[NSMutableDictionary alloc] init];
+    static NSMutableArray *array;
+    if (array == nil) {
+        array = [[NSMutableArray alloc] init];
         
         NSString *path = [[NSBundle mainBundle] pathForResource:ICD10CODE_FILENAME ofType:@"txt"];
         if (path == nil) {
-            [dictionary setObject:[ICD10Code fileNotFoundICD10Code] forKey:[ICD10Code fileNotFoundICD10Code].number];
+            [array addObject:[ICD10Code fileNotFoundICD10Code]];
+            return [NSArray arrayWithArray:array];
         }
+        // read everything from text
+        NSString* fileContents = [NSString stringWithContentsOfFile:path
+                                  encoding:NSUTF8StringEncoding error:nil];
         
+        // turn /r/n into just /n
+        fileContents = [fileContents stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        // then, separate by new line
+        NSArray* allLinedStrings =
+        [fileContents componentsSeparatedByCharactersInSet:
+         [NSCharacterSet newlineCharacterSet]];
         
-
+        for (int i = 0; i < allLinedStrings.count; i++) {
+            // if there is a short line or file is terminated by \n, skip it
+            if ([allLinedStrings[i] length] < 7) {
+                continue;
+            }
+            ICD10Code *code = [[ICD10Code alloc] initWithString:allLinedStrings[i]];
+            [array addObject:code];
+        }
     }
-    return dictionary;
+    return [NSArray arrayWithArray:array];
 }
-
-+ (NSArray *)allCodesArray
-{
-    NSDictionary *dictionary = [self allCodes];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[dictionary allValues]];
-    return array;
-}
-
 
 
 
