@@ -7,6 +7,8 @@
 //
 
 #import "ICD10TableViewController.h"
+#import "ICD10Code.h"
+#import "ICD10Codes.h"
 
 @interface ICD10TableViewController ()
 
@@ -22,6 +24,19 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self setTitle:@"ICD 10 Codes"];
+    self.codes = [ICD10Codes allCodesArray];
+    // only show "clean" codes during search
+//    cellHeight = 65;
+    
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.delegate = self;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.definesPresentationContext = YES;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,11 +44,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"fullDescription contains[c] %@ OR number contains %@", searchText, searchText];
+    self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
+    
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -94,5 +117,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - UISearchController delegate
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    NSString *searchString = searchController.searchBar.text;
+    [self filterContentForSearchText:searchString scope:nil];
+    [self.tableView reloadData];
+}
+
+
 
 @end

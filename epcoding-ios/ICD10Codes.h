@@ -11,6 +11,7 @@
 @interface ICD10Codes : NSObject
 
 + (NSDictionary *)allCodes;
++ (NSArray *)allCodesArray;
 
 
 @end

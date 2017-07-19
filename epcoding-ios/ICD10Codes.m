@@ -30,6 +30,14 @@
     return dictionary;
 }
 
++ (NSArray *)allCodesArray
+{
+    NSDictionary *dictionary = [self allCodes];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[dictionary allValues]];
+    return array;
+}
+
+
 
 
 @end

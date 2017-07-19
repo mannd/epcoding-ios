@@ -10,4 +10,9 @@
 
 @interface ICD10TableViewController : UITableViewController
 
+@property (strong, nonatomic) UISearchController *searchController;
+
+@property (strong, nonatomic) NSArray *codes;
+@property (strong, nonatomic) NSArray *searchResults;
+
 @end
