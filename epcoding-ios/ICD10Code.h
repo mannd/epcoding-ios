@@ -14,5 +14,8 @@
 @property (strong, nonatomic) NSString *fullDescription;
 
 + (NSString *)processRawNumber:(NSString *)rawCodeNumber;
++ (ICD10Code *)fileNotFoundICD10Code;
+
+- (id)initWithNumber:(NSString *)number description:(NSString *)description;
 
 @end

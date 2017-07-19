@@ -20,5 +20,19 @@
     return [NSString stringWithString:result];
 }
 
++ (ICD10Code *)fileNotFoundICD10Code {
+    ICD10Code *code = [[ICD10Code alloc] initWithNumber:@"Error" description:@"Could not open ICD 10 code list file"];
+    return code;
+}
+
+
+- (id)initWithNumber:(NSString *)number description:(NSString *)description {
+    if (self = [super init]) {
+        self.number = number;
+        self.fullDescription = description;
+    }
+    return self;
+}
+
 
 @end

@@ -56,8 +56,7 @@
                       UPGRADE_SYSTEM_TITLE,
                       SUBQ_ICD_TITLE,
                       OTHER_PROCEDURE_TITLE,
-                      ALL_EP_CODES_TITLE,
-                      ICD10_TITLE, nil];
+                      ALL_EP_CODES_TITLE, nil];
     self.procedureTypes = array;
     // put right button only on iPhone, it will appear twice in the view on iPad
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
@@ -87,6 +86,9 @@
     UIAlertAction* wizardAction = [UIAlertAction actionWithTitle:@"Device Wizard" style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showWizard" sender:self];}];
     [actionSheet addAction:wizardAction];
+    UIAlertAction *icd10Action = [UIAlertAction actionWithTitle:@"ICD 10 Codes" style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction *action) {[self performSegueWithIdentifier:@"showIcd10Codes" sender:self];}];
+    [actionSheet addAction:icd10Action];
     UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showHelp" sender:self];}];
     [actionSheet addAction:helpAction];
