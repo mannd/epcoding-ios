@@ -56,7 +56,8 @@
                       UPGRADE_SYSTEM_TITLE,
                       SUBQ_ICD_TITLE,
                       OTHER_PROCEDURE_TITLE,
-                      ALL_EP_CODES_TITLE, nil];
+                      ALL_EP_CODES_TITLE,
+                      ICD10_TITLE, nil];
     self.procedureTypes = array;
     // put right button only on iPhone, it will appear twice in the view on iPad
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {

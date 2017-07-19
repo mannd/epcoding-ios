@@ -14,6 +14,8 @@
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
 		8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
 		8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */; };
+		8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
+		8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
 		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
@@ -74,6 +76,8 @@
 		8E6705A41E5A540D00F47885 /* EPSSedationCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationCode.m; sourceTree = "<group>"; };
 		8E707E851E3D245B007F8AF8 /* EPSSedationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSedationViewController.h; sourceTree = "<group>"; };
 		8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationViewController.m; sourceTree = "<group>"; };
+		8E716CDA1F1FC84B0078CD34 /* ICD10Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10Code.h; sourceTree = "<group>"; };
+		8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10Code.m; sourceTree = "<group>"; };
 		8E84DBB21E2C223700CB851D /* EPSModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifier.h; sourceTree = "<group>"; };
 		8E84DBB31E2C223700CB851D /* EPSModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifier.m; sourceTree = "<group>"; };
 		8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSearchTableViewController.h; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 				8E6705A41E5A540D00F47885 /* EPSSedationCode.m */,
 				8EB955731EE4E132006CCCB2 /* EPSAbout.h */,
 				8EB955741EE4E132006CCCB2 /* EPSAbout.m */,
+				8E716CDA1F1FC84B0078CD34 /* ICD10Code.h */,
+				8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 			files = (
 				8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */,
 				8EC0E8241E3FF03500090E2B /* EPSTimeCalculatorViewController.m in Sources */,
+				8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */,
 				8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
 				8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */,
 				8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
@@ -413,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
