@@ -14,6 +14,12 @@
 		8E60902F18B55142001F3D7A /* EPSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902E18B55142001F3D7A /* EPSTestViewController.m */; };
 		8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
 		8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */; };
+		8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
+		8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
+		8E716CDF1F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */; };
+		8E716CE01F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */; };
+		8E716CE31F1FCE700078CD34 /* ICD10Codes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CE21F1FCE700078CD34 /* ICD10Codes.m */; };
+		8E716CE61F1FD9960078CD34 /* ICD10TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */; };
 		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
@@ -74,6 +80,13 @@
 		8E6705A41E5A540D00F47885 /* EPSSedationCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationCode.m; sourceTree = "<group>"; };
 		8E707E851E3D245B007F8AF8 /* EPSSedationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSedationViewController.h; sourceTree = "<group>"; };
 		8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationViewController.m; sourceTree = "<group>"; };
+		8E716CDA1F1FC84B0078CD34 /* ICD10Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10Code.h; sourceTree = "<group>"; };
+		8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10Code.m; sourceTree = "<group>"; };
+		8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2017.txt; sourceTree = "<group>"; };
+		8E716CE11F1FCE700078CD34 /* ICD10Codes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10Codes.h; sourceTree = "<group>"; };
+		8E716CE21F1FCE700078CD34 /* ICD10Codes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10Codes.m; sourceTree = "<group>"; };
+		8E716CE41F1FD9960078CD34 /* ICD10TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10TableViewController.h; sourceTree = "<group>"; };
+		8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10TableViewController.m; sourceTree = "<group>"; };
 		8E84DBB21E2C223700CB851D /* EPSModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifier.h; sourceTree = "<group>"; };
 		8E84DBB31E2C223700CB851D /* EPSModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifier.m; sourceTree = "<group>"; };
 		8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSearchTableViewController.h; sourceTree = "<group>"; };
@@ -190,6 +203,7 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
+				8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
 				8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */,
@@ -237,6 +251,12 @@
 				8E6705A41E5A540D00F47885 /* EPSSedationCode.m */,
 				8EB955731EE4E132006CCCB2 /* EPSAbout.h */,
 				8EB955741EE4E132006CCCB2 /* EPSAbout.m */,
+				8E716CDA1F1FC84B0078CD34 /* ICD10Code.h */,
+				8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */,
+				8E716CE11F1FCE700078CD34 /* ICD10Codes.h */,
+				8E716CE21F1FCE700078CD34 /* ICD10Codes.m */,
+				8E716CE41F1FD9960078CD34 /* ICD10TableViewController.h */,
+				8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -361,6 +381,7 @@
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
 				8ECCF8BD18C65E9000001DC6 /* README.md in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
+				8E716CDF1F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
 				8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */,
@@ -373,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDBEC2A180CCDEC0041A4E3 /* InfoPlist.strings in Resources */,
+				8E716CE01F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,10 +407,12 @@
 			files = (
 				8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */,
 				8EC0E8241E3FF03500090E2B /* EPSTimeCalculatorViewController.m in Sources */,
+				8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */,
 				8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
 				8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */,
 				8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */,
 				8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */,
+				8E716CE61F1FD9960078CD34 /* ICD10TableViewController.m in Sources */,
 				8EDBEC14180CCDEB0041A4E3 /* EPSMasterViewController.m in Sources */,
 				8EDBEC07180CCDEB0041A4E3 /* main.m in Sources */,
 				8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */,
@@ -406,6 +430,7 @@
 				8EDBEC0B180CCDEB0041A4E3 /* EPSAppDelegate.m in Sources */,
 				8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */,
 				8E3751481E46950200075653 /* EPSModifiers.m in Sources */,
+				8E716CE31F1FCE700078CD34 /* ICD10Codes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */,
 				8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

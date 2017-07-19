@@ -15,6 +15,7 @@
 #import "EPSCodeError.h"
 #import "EPSModifier.h"
 #import "EPSSedationCode.h"
+#import "ICD10Code.h"
 
 @interface epcoding_iosTests : XCTestCase
 
@@ -384,6 +385,20 @@
     EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaries secondaryCodes:secondaries ignoreNoSecondaryCodes:YES sedationCodes:nil sedationStatus:Unassigned];
     results = [analyzer2 firstSpecialCodeNumberErrors];
     XCTAssert([results count] == 0);
+}
+
+- (void)testICD10CodeProcessing {
+    NSString *code1 = nil;
+    XCTAssert([ICD10Code processRawNumber:code1] == nil);
+    NSString *code2 = @"X00";
+    XCTAssert([[ICD10Code processRawNumber:code2] isEqualToString:code2]);
+    NSString *code3 = @"X003";
+    XCTAssert([[ICD10Code processRawNumber:code3] isEqualToString:@"X00.3"]);
+    NSString *code4 = @"X123456";
+    XCTAssert([[ICD10Code processRawNumber:code4] isEqualToString:@"X12.3456"]);
+
+    
+
 }
 
 @end
