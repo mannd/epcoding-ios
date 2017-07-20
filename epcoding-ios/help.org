@@ -21,6 +21,7 @@ Don't want to read the manual?  Here's the TL;DR:
 - Select codes from the list of codes presented.
 - Tap the *Sedation* button to calculate sedation coding for the procedure.
 - Tap *Summarize* to see a summary of selected codes along with warnings or errors in coding.
+- Select [[ICD10][ICD-10 diagnostic codes]].
 But there's a lot more to *EP Coding*.  Read on if you dare...
 ** Why EP Coding?
 Current Procedural Terminology a.k.a. CPT® coding is not for the faint
@@ -205,10 +206,10 @@ add-on codes without primary codes, lack of sedation coding, and other
 possibly erroneous coding situations.  Note that not all incorrect
 combinations of codes can be detected.  When in doubt, consult with
 your professional coders.
-*** Options menu
+*** Searching, Device Wizard, ICD-10 Codes
 Tap the menu icon on the upper right of the screen for more options.
-**** <<Search>>Search codes
-Tap *Search* to search for codes by name or number.  Note that due to
+**** <<Search>>Search CPT codes
+Tap *Search* to search for CPT codes by name or number.  Note that due to
 the [[Abbreviations][abbreviations]] used, a search that you expect to have results may
 come up empty.  For example to search for pacer/pacemaker codes,
 search for "PPM."  [[Abbreviations][Here]] is a list of abbreviations used in *EP
@@ -221,12 +222,13 @@ added on the first page of the Wizard.  Select the *Sedation Coding*
 table entry to bring up the sedation calculator.  After swiping
 through each page of the Wizard, select *Done* to see the code
 summary, or the back button to exit the Wizard.
-**** ICD-10 diagnostic codes
-Ah, it’s time to forget all those ICD-9 codes you spent all those years remembering, because now the NEW IMPROVED! ICD-10 codes are here!  And not only are the new codes completely different, there’s a whole lot more of them too!  To help with the painful transition to ICD-10, *EP Coding* includes a searchable list of a subset of these codes.  The codes are the so-called ICD-10-CM codes which are the diagnostic codes (the ICD-10-PCS procedure codes are not included, as these are more relevant to facility coding).  The diagnostic codes included are all the cardiology-related codes.  Technically speaking, these are all codes in I00-I99, R00-R09, Q20-Q28, and Z86.74.  This is only a subset of the total code set, but still includes over 1400 codes!  Clearly not all are relevant to EP procedures, but it is easier to include this large set of codes than to pick through them all to see which are most relevant to electrophysiologists.  Fortunately there is a search bar at the top of the list.  Use this to narrow down and find the right code.  For example, here is a search for "fib":
+**** <<ICD10>>ICD-10 codes
+Ah, it’s time to forget all those ICD-9 codes you spent all those years remembering, because now the NEW IMPROVED ICD-10 codes are here!  And not only are the new codes completely different, there are a whole lot more of them now too!  To help with the painful transition to ICD-10, *EP Coding* includes a searchable list of a subset of these codes.  The codes are the so-called ICD-10-CM codes which are the diagnostic codes (the ICD-10-PCS procedure codes are not included, as these are more relevant to facility coding).  The diagnostic codes included are all the cardiology-related codes.  Technically speaking, these are all codes in the ranges I00-I99, R00-R09, Q20-Q28, and Z86.74.  This is only a subset of the total code set, but still includes over 1400 codes!  Clearly not all are needed to code EP procedures, but it is easier to include this large set of codes than to pick through them all to see which are most relevant to electrophysiologists.  Fortunately there is a search bar at the top of the list.  Use this to narrow down and find the right code.  For example, here is a search for "fib":
 
 #+CAPTION: ICD-10 search for "fib".
 [[./img/icd_10_codes.png]]
 
+Note that all ICD-10 codes start with a /letter/ not a /number/.  Thus for example the code for /Paroxysmal atrial fibrillation/ is *I48.0*, /not/ *148.0*.
 **** Help
 Well, you're reading this, so you must have figured out already that
 you select *Help* to get help.
