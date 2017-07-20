@@ -21,7 +21,7 @@
 }
 
 + (ICD10Code *)fileNotFoundICD10Code {
-    ICD10Code *code = [[ICD10Code alloc] initWithNumber:@"Error" description:@"Could not open ICD 10 code list file"];
+    ICD10Code *code = [[ICD10Code alloc] initWithNumber:@"Error" description:@"Could not open ICD-10 code list file"];
     return code;
 }
 

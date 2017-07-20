@@ -86,7 +86,7 @@
     UIAlertAction* wizardAction = [UIAlertAction actionWithTitle:@"Device Wizard" style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showWizard" sender:self];}];
     [actionSheet addAction:wizardAction];
-    UIAlertAction *icd10Action = [UIAlertAction actionWithTitle:@"ICD 10 Codes" style:UIAlertActionStyleDefault
+    UIAlertAction *icd10Action = [UIAlertAction actionWithTitle:@"ICD-10 Codes" style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {[self performSegueWithIdentifier:@"showIcd10Codes" sender:self];}];
     [actionSheet addAction:icd10Action];
     UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault

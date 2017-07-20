@@ -31,7 +31,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self setTitle:@"ICD 10 Codes"];
+    [self setTitle:@"ICD-10 Codes"];
     self.codes = [ICD10Codes allCodes];
     // only show "clean" codes during search
 //    cellHeight = 65;

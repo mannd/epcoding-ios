@@ -221,6 +221,12 @@ added on the first page of the Wizard.  Select the *Sedation Coding*
 table entry to bring up the sedation calculator.  After swiping
 through each page of the Wizard, select *Done* to see the code
 summary, or the back button to exit the Wizard.
+**** ICD-10 diagnostic codes
+Ah, it’s time to forget all those ICD-9 codes you spent all those years remembering, because now the NEW IMPROVED! ICD-10 codes are here!  And not only are the new codes completely different, there’s a whole lot more of them too!  To help with the painful transition to ICD-10, *EP Coding* includes a searchable list of a subset of these codes.  The codes are the so-called ICD-10-CM codes which are the diagnostic codes (the ICD-10-PCS procedure codes are not included, as these are more relevant to facility coding).  The diagnostic codes included are all the cardiology-related codes.  Technically speaking, these are all codes in I00-I99, R00-R09, Q20-Q28, and Z86.74.  This is only a subset of the total code set, but still includes over 1400 codes!  Clearly not all are relevant to EP procedures, but it is easier to include this large set of codes than to pick through them all to see which are most relevant to electrophysiologists.  Fortunately there is a search bar at the top of the list.  Use this to narrow down and find the right code.  For example, here is a search for "fib":
+
+#+CAPTION: ICD-10 search for "fib".
+[[./img/icd_10_codes.png]]
+
 **** Help
 Well, you're reading this, so you must have figured out already that
 you select *Help* to get help.
@@ -393,7 +399,7 @@ you select *Help* to get help.
 - V = ventricular
 - VT = ventricular tachycardia
 ** Limitations
-- EP procedure codes only.
+- Only EP procedure CPT codes are included.
 - No surgical EP codes (e.g. LV lead via thoracotomy).
 - Some rare or obsolete codes are not included.
 - Code descriptions are paraphrased.
@@ -403,6 +409,8 @@ you select *Help* to get help.
 - Only limited, common code modifiers are presented.
 - Code analysis marks common errors, but is no substitute for a
   professional coder!
+- Only a subset of ICD-10-CM codes are included.  For example, I did not include [[http://www.icd10data.com/ICD10CM/Codes/V00-Y99/V90-V94/V91-/V91.07XA][V91.07XA Burn due to water-skis on fire, initial encounter]].
+- ICD-10-PCS are not included, as these are generally not used by physicians.
 ** Acknowledgments
 - CPT copyright 2014 American Medical Association. All rights
   reserved. CPT is a registered trademark of the American Medical
@@ -410,6 +418,7 @@ you select *Help* to get help.
 - A limited number of CPT codes are used in this app, under the
   fair use doctrine of the US Copyright Act.  For a discussion of the
   rationale see [[https://www.epstudiossoftware.com/fair-use-justification-of-cpt-codes-in-ep-coding/][here]].
+- ICD-10-CM codes were downloaded from [[https://www.cms.gov/Medicare/Coding/ICD10/2017-ICD-10-CM-and-GEMs.html][CMS.gov]].  These codes are a modification by the US government of the World Health Organization ICD-10 codes, and are freely available for download.  There appears to be no specific licensing requirement for this code set.
 - The source code for *EP Coding* is available on [[https://github.com/mannd/epcoding-ios][GitHub]].
 - EP Coding is open source software and is licensed under the
   [[https://www.apache.org/licenses/LICENSE-2.0.html][Apache License Version 2.0]].  No guarantees are made as to the
