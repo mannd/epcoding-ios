@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 // TODO: update version
-#define VERSION @"1.6.3"
+#define VERSION @"1.8"
 
 @implementation EPSAbout
 
