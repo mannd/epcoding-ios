@@ -1,42 +1,40 @@
 //
-//  EPSSearchTableViewController.m
+//  ICD10TableViewController.m
 //  EP Coding
 //
-//  Created by David Mann on 4/16/14.
-//  Copyright (c) 2014 David Mann. All rights reserved.
+//  Created by David Mann on 7/19/17.
+//  Copyright © 2017 David Mann. All rights reserved.
 //
 
-#import "EPSSearchTableViewController.h"
-#import "EPSCodes.h"
-#import "EPSCode.h"
+#import "ICD10TableViewController.h"
+#import "ICD10Code.h"
+#import "ICD10Codes.h"
 
-@interface EPSSearchTableViewController ()
+#define SECTION_COLOR UIColor.orangeColor
+
+@interface ICD10TableViewController ()
 
 @end
 
-@implementation EPSSearchTableViewController
+@implementation ICD10TableViewController
 {
     NSInteger cellHeight;
-
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"Search Codes"];
-    self.codes = [EPSCodes allCodesSorted];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self setTitle:@"ICD-10 Codes"];
+    self.codes = [ICD10Codes allCodes];
     // only show "clean" codes during search
-    [EPSCodes clearMultipliersAndModifiers:self.codes];
-    cellHeight = 65;
+//    cellHeight = 65;
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
@@ -44,17 +42,12 @@
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
-
+    
+    cellHeight = 70;
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.navigationController setToolbarHidden:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -65,6 +58,7 @@
     self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
     
 }
+
 
 #pragma mark - Table view data source
 
@@ -86,7 +80,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *searchCellIdentifier = @"searchCell";
+    static NSString *searchCellIdentifier = @"ICD10Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:searchCellIdentifier];
     if (!cell) {
@@ -94,7 +88,7 @@
     }
     
     NSUInteger row = [indexPath row];
-    EPSCode *code = nil;
+    ICD10Code *code = nil;
     
     if (self.searchController.active) {
         code = [self.searchResults objectAtIndex:indexPath.row];
@@ -102,22 +96,23 @@
     else {
         code = [self.codes objectAtIndex:row];
     }
-    cell.detailTextLabel.text = [code unformattedCodeDescription];
-    cell.textLabel.text = [code unformattedCodeNumber];
+    cell.detailTextLabel.text = [code fullDescription];
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.textLabel.text = [code number];
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
-    cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    
+        
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return cellHeight;
 }
+
 
 #pragma mark - UISearchController delegate
 
@@ -127,6 +122,7 @@
     [self filterContentForSearchText:searchString scope:nil];
     [self.tableView reloadData];
 }
+
 
 
 @end

@@ -154,29 +154,27 @@
 }
 
 - (void)showMenu {
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction* searchAction = [UIAlertAction actionWithTitle:@"Search" style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showSearch" sender:self];}];
-        [actionSheet addAction:searchAction];
-        UIAlertAction* wizardAction = [UIAlertAction actionWithTitle:@"Device Wizard" style:UIAlertActionStyleDefault
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* searchAction = [UIAlertAction actionWithTitle:@"Search" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showSearch" sender:self];}];
+    [actionSheet addAction:searchAction];
+    UIAlertAction* wizardAction = [UIAlertAction actionWithTitle:@"Device Wizard" style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showWizard" sender:self];}];
-        [actionSheet addAction:wizardAction];
-        UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showHelp" sender:self];}];
-        [actionSheet addAction:helpAction];
-    
-        UIAlertAction* aboutAction = [UIAlertAction actionWithTitle:@"About" style:UIAlertActionStyleDefault
+    [actionSheet addAction:wizardAction];
+    UIAlertAction *icd10Action = [UIAlertAction actionWithTitle:@"ICD-10 Codes" style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction *action) {[self performSegueWithIdentifier:@"showIcd10Codes" sender:self];}];
+    [actionSheet addAction:icd10Action];
+    UIAlertAction* helpAction = [UIAlertAction actionWithTitle:@"Help" style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * action) {[self performSegueWithIdentifier:@"showHelp" sender:self];}];
+    [actionSheet addAction:helpAction];
+    UIAlertAction* aboutAction = [UIAlertAction actionWithTitle:@"About" style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction * action) {[EPSAbout show:self];}];
-        [actionSheet addAction:aboutAction];
-
-    
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-                                                             handler:nil];
-        [actionSheet addAction:cancelAction];
-    
-        actionSheet.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
-
-        [self presentViewController:actionSheet animated:YES completion:nil];
+    [actionSheet addAction:aboutAction];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                                                         handler:nil];
+    [actionSheet addAction:cancelAction];
+    actionSheet.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 
