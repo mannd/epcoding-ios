@@ -16,8 +16,6 @@
 		8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */; };
 		8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
 		8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
-		8E716CDF1F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */; };
-		8E716CE01F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */; };
 		8E716CE31F1FCE700078CD34 /* ICD10Codes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CE21F1FCE700078CD34 /* ICD10Codes.m */; };
 		8E716CE61F1FD9960078CD34 /* ICD10TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */; };
 		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
@@ -54,6 +52,7 @@
 		8EDBEC2A180CCDEC0041A4E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDBEC28180CCDEC0041A4E3 /* InfoPlist.strings */; };
 		8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC2B180CCDEC0041A4E3 /* epcoding_iosTests.m */; };
 		8EE149B31E5D55E800740392 /* img in Resources */ = {isa = PBXBuildFile; fileRef = 8EE149B21E5D55E800740392 /* img */; };
+		8EFB94301F203A6900EF5A50 /* cardICD10codes2017.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8EFB942F1F203A6900EF5A50 /* cardICD10codes2017.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +81,6 @@
 		8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationViewController.m; sourceTree = "<group>"; };
 		8E716CDA1F1FC84B0078CD34 /* ICD10Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10Code.h; sourceTree = "<group>"; };
 		8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10Code.m; sourceTree = "<group>"; };
-		8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2017.txt; sourceTree = "<group>"; };
 		8E716CE11F1FCE700078CD34 /* ICD10Codes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10Codes.h; sourceTree = "<group>"; };
 		8E716CE21F1FCE700078CD34 /* ICD10Codes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10Codes.m; sourceTree = "<group>"; };
 		8E716CE41F1FD9960078CD34 /* ICD10TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10TableViewController.h; sourceTree = "<group>"; };
@@ -140,6 +138,7 @@
 		8EDBEC29180CCDEC0041A4E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EDBEC2B180CCDEC0041A4E3 /* epcoding_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = epcoding_iosTests.m; sourceTree = "<group>"; };
 		8EE149B21E5D55E800740392 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
+		8EFB942F1F203A6900EF5A50 /* cardICD10codes2017.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2017.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +202,7 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
-				8E716CDE1F1FCE4A0078CD34 /* cardICD10codes2017.txt */,
+				8EFB942F1F203A6900EF5A50 /* cardICD10codes2017.txt */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
 				8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */,
@@ -381,7 +380,7 @@
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
 				8ECCF8BD18C65E9000001DC6 /* README.md in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
-				8E716CDF1F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */,
+				8EFB94301F203A6900EF5A50 /* cardICD10codes2017.txt in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
 				8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */,
@@ -394,7 +393,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDBEC2A180CCDEC0041A4E3 /* InfoPlist.strings in Resources */,
-				8E716CE01F1FCE4A0078CD34 /* cardICD10codes2017.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

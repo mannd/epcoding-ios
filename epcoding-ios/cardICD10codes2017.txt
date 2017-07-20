@@ -1327,3 +1327,99 @@ I9788   Other intraoperative complications of the circulatory system, not elsewh
 I9789   Other postprocedural complications and disorders of the circulatory system, not elsewhere classified
 I998    Other disorder of circulatory system
 I999    Unspecified disorder of circulatory system
+Q200    Common arterial trunk
+Q201    Double outlet right ventricle
+Q202    Double outlet left ventricle
+Q203    Discordant ventriculoarterial connection
+Q204    Double inlet ventricle
+Q205    Discordant atrioventricular connection
+Q206    Isomerism of atrial appendages
+Q208    Other congenital malformations of cardiac chambers and connections
+Q209    Congenital malformation of cardiac chambers and connections, unspecified
+Q210    Ventricular septal defect
+Q211    Atrial septal defect
+Q212    Atrioventricular septal defect
+Q213    Tetralogy of Fallot
+Q214    Aortopulmonary septal defect
+Q218    Other congenital malformations of cardiac septa
+Q219    Congenital malformation of cardiac septum, unspecified
+Q220    Pulmonary valve atresia
+Q221    Congenital pulmonary valve stenosis
+Q222    Congenital pulmonary valve insufficiency
+Q223    Other congenital malformations of pulmonary valve
+Q224    Congenital tricuspid stenosis
+Q225    Ebstein's anomaly
+Q226    Hypoplastic right heart syndrome
+Q228    Other congenital malformations of tricuspid valve
+Q229    Congenital malformation of tricuspid valve, unspecified
+Q230    Congenital stenosis of aortic valve
+Q231    Congenital insufficiency of aortic valve
+Q232    Congenital mitral stenosis
+Q233    Congenital mitral insufficiency
+Q234    Hypoplastic left heart syndrome
+Q238    Other congenital malformations of aortic and mitral valves
+Q239    Congenital malformation of aortic and mitral valves, unspecified
+Q240    Dextrocardia
+Q241    Levocardia
+Q242    Cor triatriatum
+Q243    Pulmonary infundibular stenosis
+Q244    Congenital subaortic stenosis
+Q245    Malformation of coronary vessels
+Q246    Congenital heart block
+Q248    Other specified congenital malformations of heart
+Q249    Congenital malformation of heart, unspecified
+Q250    Patent ductus arteriosus
+Q251    Coarctation of aorta
+Q2521   Interruption of aortic arch
+Q2529   Other atresia of aorta
+Q253    Supravalvular aortic stenosis
+Q2540   Congenital malformation of aorta unspecified
+Q2541   Absence and aplasia of aorta
+Q2542   Hypoplasia of aorta
+Q2543   Congenital aneurysm of aorta
+Q2544   Congenital dilation of aorta
+Q2545   Double aortic arch
+Q2546   Tortuous aortic arch
+Q2547   Right aortic arch
+Q2548   Anomalous origin of subclavian artery
+Q2549   Other congenital malformations of aorta
+Q255    Atresia of pulmonary artery
+Q256    Stenosis of pulmonary artery
+Q2571   Coarctation of pulmonary artery
+Q2572   Congenital pulmonary arteriovenous malformation
+Q2579   Other congenital malformations of pulmonary artery
+Q258    Other congenital malformations of other great arteries
+Q259    Congenital malformation of great arteries, unspecified
+Q260    Congenital stenosis of vena cava
+Q261    Persistent left superior vena cava
+Q262    Total anomalous pulmonary venous connection
+Q263    Partial anomalous pulmonary venous connection
+Q264    Anomalous pulmonary venous connection, unspecified
+Q265    Anomalous portal venous connection
+Q266    Portal vein-hepatic artery fistula
+Q268    Other congenital malformations of great veins
+Q269    Congenital malformation of great vein, unspecified
+Q270    Congenital absence and hypoplasia of umbilical artery
+Q271    Congenital renal artery stenosis
+Q272    Other congenital malformations of renal artery
+Q2730   Arteriovenous malformation, site unspecified
+Q2731   Arteriovenous malformation of vessel of upper limb
+Q2732   Arteriovenous malformation of vessel of lower limb
+Q2733   Arteriovenous malformation of digestive system vessel
+Q2734   Arteriovenous malformation of renal vessel
+Q2739   Arteriovenous malformation, other site
+Q274    Congenital phlebectasia
+Q278    Other specified congenital malformations of peripheral vascular system
+Q279    Congenital malformation of peripheral vascular system, unspecified
+Q280    Arteriovenous malformation of precerebral vessels
+Q281    Other malformations of precerebral vessels
+Q282    Arteriovenous malformation of cerebral vessels
+Q283    Other malformations of cerebral vessels
+Q288    Other specified congenital malformations of circulatory system
+Q289    Congenital malformation of circulatory system, unspecified
+R000    Tachycardia, unspecified
+R001    Bradycardia, unspecified
+R002    Palpitations
+R008    Other abnormalities of heart beat
+R009    Unspecified abnormalities of heart beat
+Z8674   Personal history of sudden cardiac arrest

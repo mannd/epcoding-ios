@@ -18,7 +18,6 @@
 
 - (id)initWithNumber:(NSString *)number description:(NSString *)description;
 - (id)initWithString:(NSString *)string;
-- (BOOL)isCategory;
 
 
 @end

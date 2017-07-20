@@ -29,7 +29,8 @@
                                   encoding:NSUTF8StringEncoding error:nil];
         
         // turn /r/n into just /n
-        fileContents = [fileContents stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        // For efficiency, change line endings in text file manually to just \n, and skip below
+        //fileContents = [fileContents stringByReplacingOccurrencesOfString:@"\r" withString:@""];
         // then, separate by new line
         NSArray* allLinedStrings =
         [fileContents componentsSeparatedByCharactersInSet:

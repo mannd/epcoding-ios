@@ -48,10 +48,5 @@
     return self;
 }
 
-// codes of for X00 are just category codes
-- (BOOL)isCategory {
-    return self.number.length < 4;
-}
-
 
 @end
