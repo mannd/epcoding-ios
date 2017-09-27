@@ -34,7 +34,7 @@
     return self;
 }
 
-// assumes valid string > 7 chars long!!
+// assumes valid string > 8 chars long!!
 - (id)initWithString:(NSString *)string {
     if (self = [super init]) {
         NSString *rawNumber = [[string substringToIndex:6] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
