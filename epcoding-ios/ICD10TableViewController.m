@@ -11,6 +11,7 @@
 #import "ICD10Codes.h"
 
 #define SECTION_COLOR UIColor.orangeColor
+#define ICD_10_YEAR @"2018"
 
 @interface ICD10TableViewController ()
 
@@ -31,7 +32,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self setTitle:@"ICD-10 Codes"];
+    [self setTitle:[NSString stringWithFormat:@"%@ ICD-10 Codes", ICD_10_YEAR]];
     self.codes = [ICD10Codes allCodes];
     // only show "clean" codes during search
 //    cellHeight = 65;

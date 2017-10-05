@@ -51,8 +51,8 @@
 		8EDBEC22180CCDEC0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
 		8EDBEC2A180CCDEC0041A4E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDBEC28180CCDEC0041A4E3 /* InfoPlist.strings */; };
 		8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC2B180CCDEC0041A4E3 /* epcoding_iosTests.m */; };
+		8EDFBBFD1F86C02D00926BF1 /* cardICD10codes2018.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8EDFBBFC1F86C02D00926BF1 /* cardICD10codes2018.txt */; };
 		8EE149B31E5D55E800740392 /* img in Resources */ = {isa = PBXBuildFile; fileRef = 8EE149B21E5D55E800740392 /* img */; };
-		8EFB94301F203A6900EF5A50 /* cardICD10codes2017.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8EFB942F1F203A6900EF5A50 /* cardICD10codes2017.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,8 +137,8 @@
 		8EDBEC27180CCDEC0041A4E3 /* epcoding-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "epcoding-iosTests-Info.plist"; sourceTree = "<group>"; };
 		8EDBEC29180CCDEC0041A4E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EDBEC2B180CCDEC0041A4E3 /* epcoding_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = epcoding_iosTests.m; sourceTree = "<group>"; };
+		8EDFBBFC1F86C02D00926BF1 /* cardICD10codes2018.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2018.txt; sourceTree = "<group>"; };
 		8EE149B21E5D55E800740392 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
-		8EFB942F1F203A6900EF5A50 /* cardICD10codes2017.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2017.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +202,7 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
-				8EFB942F1F203A6900EF5A50 /* cardICD10codes2017.txt */,
+				8EDFBBFC1F86C02D00926BF1 /* cardICD10codes2018.txt */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
 				8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */,
@@ -338,7 +338,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = EPS;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "David Mann";
 				TargetAttributes = {
 					8EDBEBF6180CCDEB0041A4E3 = {
@@ -378,9 +378,9 @@
 				8ECCF8BB18C65E7100001DC6 /* help.org in Resources */,
 				8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */,
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
+				8EDFBBFD1F86C02D00926BF1 /* cardICD10codes2018.txt in Resources */,
 				8ECCF8BD18C65E9000001DC6 /* README.md in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
-				8EFB94301F203A6900EF5A50 /* cardICD10codes2017.txt in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
 				8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */,
@@ -487,14 +487,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -532,14 +538,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
