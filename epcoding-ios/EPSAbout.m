@@ -10,12 +10,12 @@
 #import <UIKit/UIKit.h>
 
 // TODO: update version
-#define VERSION @"1.8"
+#define VERSION @"1.9"
 
 @implementation EPSAbout
 
 + (void)show:(UIViewController *)vc {
-    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2014-2017 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
+    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2013-2017 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , VERSION];
     NSString *title = @"EP Coding";
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:details preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
