@@ -18,13 +18,13 @@
 		8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
 		8E716CE31F1FCE700078CD34 /* ICD10Codes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CE21F1FCE700078CD34 /* ICD10Codes.m */; };
 		8E716CE61F1FD9960078CD34 /* ICD10TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */; };
+		8E7CF8E81FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7CF8E71FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m */; };
 		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
 		8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
 		8EB955751EE4E132006CCCB2 /* EPSAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB955741EE4E132006CCCB2 /* EPSAbout.m */; };
 		8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB9E4CC1E43A45900767217 /* stripes5.png */; };
-		8EC0E8241E3FF03500090E2B /* EPSTimeCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */; };
 		8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C1D18B7D09B0007E198 /* EPSCode.m */; };
 		8EC43C2218B92C6F0007E198 /* EPSCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC43C2118B92C6F0007E198 /* EPSCodes.m */; };
 		8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
@@ -85,6 +85,8 @@
 		8E716CE21F1FCE700078CD34 /* ICD10Codes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10Codes.m; sourceTree = "<group>"; };
 		8E716CE41F1FD9960078CD34 /* ICD10TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10TableViewController.h; sourceTree = "<group>"; };
 		8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICD10TableViewController.m; sourceTree = "<group>"; };
+		8E7CF8E61FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPSDateTimeCalculatorTableViewController.h; sourceTree = "<group>"; };
+		8E7CF8E71FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPSDateTimeCalculatorTableViewController.m; sourceTree = "<group>"; };
 		8E84DBB21E2C223700CB851D /* EPSModifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifier.h; sourceTree = "<group>"; };
 		8E84DBB31E2C223700CB851D /* EPSModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifier.m; sourceTree = "<group>"; };
 		8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSearchTableViewController.h; sourceTree = "<group>"; };
@@ -96,8 +98,6 @@
 		8EB955731EE4E132006CCCB2 /* EPSAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSAbout.h; sourceTree = "<group>"; };
 		8EB955741EE4E132006CCCB2 /* EPSAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSAbout.m; sourceTree = "<group>"; };
 		8EB9E4CC1E43A45900767217 /* stripes5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stripes5.png; sourceTree = "<group>"; };
-		8EC0E8221E3FF03500090E2B /* EPSTimeCalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSTimeCalculatorViewController.h; sourceTree = "<group>"; };
-		8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSTimeCalculatorViewController.m; sourceTree = "<group>"; };
 		8EC43C1C18B7D09B0007E198 /* EPSCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCode.h; sourceTree = "<group>"; };
 		8EC43C1D18B7D09B0007E198 /* EPSCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSCode.m; sourceTree = "<group>"; };
 		8EC43C2018B92C6F0007E198 /* EPSCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSCodes.h; sourceTree = "<group>"; };
@@ -242,8 +242,6 @@
 				8E3751471E46950200075653 /* EPSModifiers.m */,
 				8E707E851E3D245B007F8AF8 /* EPSSedationViewController.h */,
 				8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */,
-				8EC0E8221E3FF03500090E2B /* EPSTimeCalculatorViewController.h */,
-				8EC0E8231E3FF03500090E2B /* EPSTimeCalculatorViewController.m */,
 				8E3751491E46C27B00075653 /* EPSModifierTableViewController.h */,
 				8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */,
 				8E6705A31E5A540D00F47885 /* EPSSedationCode.h */,
@@ -256,6 +254,8 @@
 				8E716CE21F1FCE700078CD34 /* ICD10Codes.m */,
 				8E716CE41F1FD9960078CD34 /* ICD10TableViewController.h */,
 				8E716CE51F1FD9960078CD34 /* ICD10TableViewController.m */,
+				8E7CF8E61FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.h */,
+				8E7CF8E71FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m */,
 			);
 			path = "epcoding-ios";
 			sourceTree = "<group>";
@@ -404,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */,
-				8EC0E8241E3FF03500090E2B /* EPSTimeCalculatorViewController.m in Sources */,
 				8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */,
 				8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */,
 				8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */,
@@ -424,6 +423,7 @@
 				8EB955751EE4E132006CCCB2 /* EPSAbout.m in Sources */,
 				8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */,
 				8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */,
+				8E7CF8E81FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m in Sources */,
 				8EC43C1E18B7D09B0007E198 /* EPSCode.m in Sources */,
 				8EDBEC0B180CCDEB0041A4E3 /* EPSAppDelegate.m in Sources */,
 				8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EPSCodes.h"
 #import "EPSSedationCode.h"
+#import "EPSDateTimeCalculatorTableViewController.h"
 
 @protocol sendDataProtocol <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface EPSSedationViewController : UIViewController <UITextFieldDelegate>
+@interface EPSSedationViewController : UIViewController <UITextFieldDelegate, sendTimeDataProtocol>
 
 @property (strong, nonatomic) IBOutlet UISwitch *sameMDSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *patientAgeSwitch;

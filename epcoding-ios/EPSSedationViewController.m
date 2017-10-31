@@ -7,7 +7,7 @@
 //
 
 #import "EPSSedationViewController.h"
-#import "EPSTimeCalculatorViewController.h"
+#import "EPSDateTimeCalculatorTableViewController.h"
 #import "EPSCodes.h"
 #import "EPSSedationCode.h"
 
@@ -46,8 +46,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"showTimeCalculator"]) {
-        EPSTimeCalculatorViewController *viewController = segue.destinationViewController;
+    if ([[segue identifier] isEqualToString:@"showDateTimeCalculator"]) {
+        EPSDateTimeCalculatorTableViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
     }
 }
@@ -85,14 +85,6 @@
 }
 
 - (IBAction)addCodesAction:(id)sender {
-//    // if time is zero or not an integer or if not same MD performing then give error message
-//    if (![self.timeTextField.text integerValue] && [self.sameMDSwitch isOn]) {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number more than 0.  If no sedation was performed, choose No Sedation button instead." preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:cancelAlert];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
     self.time = [self.timeTextField.text integerValue];
     self.canceled = NO;
     self.noSedation = NO;
