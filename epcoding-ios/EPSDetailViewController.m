@@ -11,8 +11,6 @@
 #import "EPSProcedureKeys.h"
 #import "EPSProcedureKey.h"
 #import "EPSCodeSummaryTableViewController.h"
-#import "EPSSedationViewController.h"
-#import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
 #import "EPSAbout.h"
 
@@ -114,6 +112,8 @@
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
     self.sedationStatus = Unassigned;
+    self.startSedationDate = nil;
+    self.endSedationDate = nil;
     
     self.buttonSedation.tintColor = [UIColor redColor];
     
@@ -370,6 +370,8 @@
         viewController.ageOver5 = self.patientOver5YearsOld;
         viewController.sameMD = self.sameMDPerformsSedation;
         viewController.sedationStatus = self.sedationStatus;
+        viewController.startSedationDate = self.startSedationDate;
+        viewController.endSedationDate = self.endSedationDate;
     }
     else if ([[segue identifier] isEqualToString:@"showModifiers"]) {
         EPSModifierTableViewController *viewController = segue.destinationViewController;
@@ -378,13 +380,15 @@
     }
 }
 
-- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus {
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
     if (cancel) {
         return;
     }
     self.sameMDPerformsSedation = sameMD;
     self.patientOver5YearsOld = !lessThan5;
     self.sedationTime = time;
+    self.startSedationDate = startDate;
+    self.endSedationDate = endDate;
     [self determineSedationCoding];
     self.sedationStatus = sedationStatus;
     self.buttonSedation.tintColor = self.buttonSave.tintColor;

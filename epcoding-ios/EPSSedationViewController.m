@@ -7,7 +7,7 @@
 //
 
 #import "EPSSedationViewController.h"
-#import "EPSTimeCalculatorViewController.h"
+#import "EPSDateTimeCalculatorTableViewController.h"
 #import "EPSCodes.h"
 #import "EPSSedationCode.h"
 
@@ -46,24 +46,28 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([[segue identifier] isEqualToString:@"showTimeCalculator"]) {
-        EPSTimeCalculatorViewController *viewController = segue.destinationViewController;
+    if ([[segue identifier] isEqualToString:@"showDateTimeCalculator"]) {
+        EPSDateTimeCalculatorTableViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
+        viewController.startSedationDate = self.startSedationDate;
+        viewController.endSedationDate = self.endSedationDate;
     }
 }
 
--(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time;
+-(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 {
     if (canceled) {
         return;
     }
+    self.startSedationDate = startDate;
+    self.endSedationDate = endDate;
     self.time = time;
     self.timeTextField.text = [NSString stringWithFormat:@"%lu", (long)time];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time sedationStatus:self.sedationStatus];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time sedationStatus:self.sedationStatus startDate:self.startSedationDate endDate:self.endSedationDate];
     [super viewWillDisappear:animated];
 }
 
@@ -81,18 +85,12 @@
     self.time = 0;
     self.canceled = NO;
     self.noSedation = YES;
+    self.startSedationDate = nil;
+    self.endSedationDate = nil;
     [self showResults];
 }
 
 - (IBAction)addCodesAction:(id)sender {
-//    // if time is zero or not an integer or if not same MD performing then give error message
-//    if (![self.timeTextField.text integerValue] && [self.sameMDSwitch isOn]) {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sedation Time Error" message:@"Time must be a number more than 0.  If no sedation was performed, choose No Sedation button instead." preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancelAlert = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:cancelAlert];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
     self.time = [self.timeTextField.text integerValue];
     self.canceled = NO;
     self.noSedation = NO;

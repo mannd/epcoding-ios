@@ -172,11 +172,7 @@ appear.
 #+CAPTION: Sedation time calculator
 [[./img/sedation_time_calculator.png]]
 
-Use the date and time wheel to set the start of sedation time, and
-then select end time on the segmented control at the top of the
-screen.  Set the end time on the wheel and then the *Done* button.
-The calculated time in minutes will be transferred to the Sedation
-time text entry field.
+This calculator works much like the Apple Calendar app in selecting the starting and ending date and time for sedation.  Tap on either time and a date and time picker wheel will appear from which you can select the date and time.  When you have selected both the start and end time for sedation, tap the *Calculate* button to transfer the time difference in minutes to the Sedation time text entry field.  Tap *Cancel* or the back button to go back to the Sedation entry screen without calculating the sedation time.
 
 Tap *Add Codes* to add the sedation codes to the procedure.  A dialog
 box will appear summarizing the sedation coding.  Tap *No Sedation* if
