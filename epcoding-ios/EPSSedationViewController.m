@@ -49,21 +49,25 @@
     if ([[segue identifier] isEqualToString:@"showDateTimeCalculator"]) {
         EPSDateTimeCalculatorTableViewController *viewController = segue.destinationViewController;
         viewController.delegate = self;
+        viewController.startSedationDate = self.startSedationDate;
+        viewController.endSedationDate = self.endSedationDate;
     }
 }
 
--(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time;
+-(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 {
     if (canceled) {
         return;
     }
+    self.startSedationDate = startDate;
+    self.endSedationDate = endDate;
     self.time = time;
     self.timeTextField.text = [NSString stringWithFormat:@"%lu", (long)time];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time sedationStatus:self.sedationStatus];
+    [self.delegate sendSedationDataBack:self.canceled samePhysician:self.sameMD lessThan5:!self.ageOver5 sedationTime:self.time sedationStatus:self.sedationStatus startDate:self.startSedationDate endDate:self.endSedationDate];
     [super viewWillDisappear:animated];
 }
 
@@ -81,6 +85,8 @@
     self.time = 0;
     self.canceled = NO;
     self.noSedation = YES;
+    self.startSedationDate = nil;
+    self.endSedationDate = nil;
     [self showResults];
 }
 

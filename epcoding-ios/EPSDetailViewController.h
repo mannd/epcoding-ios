@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "EPSCodes.h"
 #import "EPSSedationCode.h"
+#import "EPSSedationViewController.h"
+#import "EPSModifierTableViewController.h"
 
-@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+@interface EPSDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, sendDataProtocol, sendModifiersProtocol>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -32,5 +34,8 @@
 @property (strong, nonatomic) UIBarButtonItem *buttonSummarize;
 @property (strong, nonatomic) UIBarButtonItem *buttonClear;
 @property (strong, nonatomic) UIBarButtonItem *buttonSave;
+
+@property (strong, nonatomic) NSDate *startSedationDate;
+@property (strong, nonatomic) NSDate *endSedationDate;
 
 @end

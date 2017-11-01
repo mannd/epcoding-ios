@@ -43,8 +43,17 @@
     self.endDatePickerVisible = NO;
     self.endDatePicker.hidden = YES;
     self.endDatePicker.translatesAutoresizingMaskIntoConstraints = NO;
+    if (self.startSedationDate == nil) {
+        self.startSedationDate = [[NSDate alloc] init];
+    }
+    if (self.endSedationDate == nil) {
+        self.endSedationDate = [[NSDate alloc] init];
+    }
+    self.startDatePicker.date = self.startSedationDate;
+    self.endDatePicker.date = self.endSedationDate;
     self.startCell.detailTextLabel.text = [self.formatter stringFromDate:self.startDatePicker.date];
     self.endCell.detailTextLabel.text = [self.formatter stringFromDate:self.endDatePicker.date];
+
     [super viewDidAppear:animated];
 }
 
@@ -55,7 +64,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [self.delegate sendTimeDataBack:cancel sedationTime:self.time];
+    [self.delegate sendTimeDataBack:cancel sedationTime:self.time
+     startDate:self.startSedationDate endDate:self.endSedationDate];
     [super viewWillDisappear:animated];
 }
 
@@ -65,9 +75,9 @@
 }
 
 - (void)calculate {
-    NSDate *endTime = self.endDatePicker.date;
-    NSDate *startTime = self.startDatePicker.date;
-    self.time = round([endTime timeIntervalSinceDate:startTime] / 60.0);
+    self.endSedationDate = self.endDatePicker.date;
+    self.startSedationDate = self.startDatePicker.date;
+    self.time = round([self.endSedationDate timeIntervalSinceDate:self.startSedationDate] / 60.0);
     if (self.time < 1) {
         self.time = 0;
     }
@@ -175,60 +185,6 @@
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)startDateChanged:(id)sender {
     self.startCell.detailTextLabel.text = [self.formatter stringFromDate:self.startDatePicker.date];

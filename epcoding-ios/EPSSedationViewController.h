@@ -13,7 +13,7 @@
 
 @protocol sendDataProtocol <NSObject>
 
--(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus;
+-(void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 @end
 
@@ -22,6 +22,9 @@
 @property (strong, nonatomic) IBOutlet UISwitch *sameMDSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *patientAgeSwitch;
 @property (strong, nonatomic) IBOutlet UITextField *timeTextField;
+
+@property (strong, nonatomic) NSDate *startSedationDate;
+@property (strong, nonatomic) NSDate *endSedationDate;
 
 @property BOOL canceled;
 @property BOOL sameMD;

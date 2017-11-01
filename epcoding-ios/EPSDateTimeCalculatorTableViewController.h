@@ -10,10 +10,10 @@
 
 @protocol sendTimeDataProtocol <NSObject>
 
--(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time;
+-(void)sendTimeDataBack:(BOOL)canceled sedationTime:(NSInteger)time startDate:(NSDate *)startDate
+                endDate:(NSDate *)endDate;
 
 @end
-
 
 @interface EPSDateTimeCalculatorTableViewController : UITableViewController
 
@@ -21,6 +21,9 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (strong, nonatomic) IBOutlet UITableViewCell *endCell;
 @property (strong, nonatomic) IBOutlet UIDatePicker *endDatePicker;
+
+@property (strong, nonatomic) NSDate *startSedationDate;
+@property (strong, nonatomic) NSDate *endSedationDate;
 
 @property BOOL startDatePickerVisible;
 @property BOOL endDatePickerVisible;
