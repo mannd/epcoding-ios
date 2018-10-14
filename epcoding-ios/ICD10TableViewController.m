@@ -11,7 +11,7 @@
 #import "ICD10Codes.h"
 
 #define SECTION_COLOR UIColor.orangeColor
-#define ICD_10_YEAR @"2018"
+#define ICD_10_YEAR @"2019"
 
 @interface ICD10TableViewController ()
 
