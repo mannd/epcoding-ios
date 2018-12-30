@@ -36,12 +36,9 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"33211" description:@"Insert temporary transvenous A and V pacing electrodes" isAddOn:NO] toDictionary:dictionary];
         
         // Leadless PPM
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0387T" description:@"New or replacement leadless PPM" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0388T" description:@"Transcatheter removal of leadless PPM" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0389T" description:@"Programming evaluation/testing of leadless PPM" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0390T" description:@"Peri-procedural device evaluation/testing of leadless PPM" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"0391T" description:@"Interrogation of leadless PPM" isAddOn:NO] toDictionary:dictionary];
-        
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33274" description:@"New or replacement leadless PPM" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33275" description:@"Transcatheter removal of leadless PPM" isAddOn:NO] toDictionary:dictionary];
+
 		// PPM Generators
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33212" description:@"Implant single chamber PPM generator, existing lead" isAddOn:NO] toDictionary:dictionary];
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33213" description:@"Implant dual chamber PPM generator, existing leads" isAddOn:NO] toDictionary:dictionary];
@@ -87,8 +84,8 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"33264" description:@"CRT ICD generator replacement" isAddOn:NO] toDictionary:dictionary];
         
         // ILR
-        [self addCode:[[EPSCode alloc] initWithNumber:@"33282" description:@"Insertion of loop recorder" isAddOn:NO] toDictionary:dictionary];
-        [self addCode:[[EPSCode alloc] initWithNumber:@"33284" description:@"Removal of loop recorder" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33285" description:@"Insertion of subcutaneous cardiac rhythm monitor" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33286" description:@"Removal of subcutaneous cardiac rhythm monitor" isAddOn:NO] toDictionary:dictionary];
         
         [self addCode:[[EPSCode alloc] initWithNumber:@"33999" description:@"Unlisted surgical procedure, e.g. SubQ array lead" isAddOn:NO] toDictionary:dictionary];
         
@@ -198,15 +195,15 @@
     static NSMutableDictionary *dictionary;
     if (dictionary == nil) {
         dictionary = [[NSMutableDictionary alloc] init];
-  
+
         // Primary codes
         [dictionary setObject:@[@"93656"] forKey:@"afbAblationPrimaryCodes"];
         [dictionary setObject:@[@"93653"] forKey:@"svtAblationPrimaryCodes"];
         [dictionary setObject:@[@"93654"] forKey:@"vtAblationPrimaryCodes"];
         [dictionary setObject:@[@"93650"] forKey:@"avnAblationPrimaryCodes"];
         [dictionary setObject:@[@"93619", @"93620"] forKey:@"epTestingPrimaryCodes"];
-        [dictionary setObject:@[@"33270", @"33271", @"33272", @"33273", @"0387T", @"0388T", @"0389T", @"0390T", @"0391T"] forKey:@"subQIcdPrimaryCodes"];
-        [dictionary setObject:@[@"33282", @"33284", @"93660", @"92960", @"92961", @"76000"] forKey:@"otherProcedurePrimaryCodes"];
+        [dictionary setObject:@[@"33270", @"33271", @"33272", @"33273", @"33274", @"33275"] forKey:@"subQIcdPrimaryCodes"];
+        [dictionary setObject:@[@"33285", @"33286", @"93660", @"92960", @"92961", @"76000"] forKey:@"otherProcedurePrimaryCodes"];
         [dictionary setObject:@[@"33206", @"33207", @"33208", @"33225"] forKey:@"newPpmPrimaryCodes"];
         [dictionary setObject:@[@"33227", @"33228", @"33229"] forKey:@"replacePpmPrimaryCodes"];
         [dictionary setObject:@[@"33249", @"33225"] forKey:@"newIcdPrimaryCodes"];
