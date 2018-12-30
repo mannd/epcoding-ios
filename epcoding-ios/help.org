@@ -368,10 +368,6 @@ you select *Help* to get help.
 **** Lead repair
 - One lead repaired: 33218
 - Two leads repaired: 33220
-*** SubQ ICD/Leadless PPM
-- SubQ ICD and leadless PPM codes use emerging technology codes
-  that are temporary and will probably be changed in a future CPT
-  update.
 *** Other procedures
 - These are miscellaneous EP procedures (tilt table, cardioversions, etc.).
 - Fluoroscopy to check for lead integrity: 76000
