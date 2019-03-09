@@ -54,7 +54,7 @@
     self.startCell.detailTextLabel.text = [self.formatter stringFromDate:self.startDatePicker.date];
     self.endCell.detailTextLabel.text = [self.formatter stringFromDate:self.endDatePicker.date];
 
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
