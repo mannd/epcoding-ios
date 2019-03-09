@@ -53,6 +53,8 @@
     self.patientOver5YearsOld = YES;
     self.sedationStatus = Unassigned;
     self.sedationCodes = [[NSMutableArray alloc] init];
+    self.startSedationDate = nil;
+    self.endSedationDate = nil;
      
     // Add default codes here
     [self clearAllMultipliersAndModifiers];
@@ -70,7 +72,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus {
+- (void)sendSedationDataBack:(BOOL)cancel samePhysician:(BOOL)sameMD lessThan5:(BOOL)lessThan5 sedationTime:(NSInteger)time sedationStatus:(SedationStatus)sedationStatus startDate:(NSDate *)startDate endDate:(NSDate *)endDate{
     if (cancel) {
         return;
     }
@@ -78,6 +80,8 @@
     self.sameMDPerformsSedation = sameMD;
     self.patientOver5YearsOld = !lessThan5;
     self.sedationTime = time;
+    self.startSedationDate = startDate;
+    self.endSedationDate = endDate;
     [self.sedationCodes removeAllObjects];
     NSArray *array = [EPSSedationCode sedationCoding:time sameMD:sameMD patientOver5:!lessThan5];
     [self.sedationCodes addObjectsFromArray:array];
@@ -150,6 +154,8 @@
         viewController.time = self.sedationTime;
         viewController.ageOver5 = self.patientOver5YearsOld;
         viewController.sameMD = self.sameMDPerformsSedation;
+        viewController.startSedationDate = self.startSedationDate;
+        viewController.endSedationDate = self.endSedationDate;
         viewController.sedationStatus = self.sedationStatus;
     }
 
@@ -249,8 +255,5 @@
     } else {
     }
 }
-
-
-
 
 @end
