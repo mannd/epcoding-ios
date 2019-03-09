@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "EPSCode.h"
 #import "EPSSedationCode.h"
+#import "EPSSedationViewController.h"
+#import "EPSModifierTableViewController.h"
 
 @interface EPSWizardContentViewController : UIViewController
-    <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate,
+sendDataProtocol, sendModifiersProtocol>
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *contentLabel;
@@ -23,6 +26,8 @@
 @property (strong, nonatomic) NSArray *allCodes;
 
 @property (strong, nonatomic) NSMutableArray *sedationCodes;
+@property (strong, nonatomic) NSDate *startSedationDate;
+@property (strong, nonatomic) NSDate *endSedationDate;
 
 @property SedationStatus sedationStatus;
 @property NSInteger sedationTime;
