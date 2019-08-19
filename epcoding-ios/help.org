@@ -14,6 +14,7 @@
 #+LINK_HOME: 
 #+XSLT:
 #+HTML_HEAD: <style media="screen" type="text/css"> img {max-width: 100%; height: auto;} </style>
+#+HTML_HEAD: <style  type="text/css">:root { color-scheme: light dark; }</style>
 * EP Coding Help
 ** EP Coding 101
 Don't want to read the manual?  Here's the TL;DR:

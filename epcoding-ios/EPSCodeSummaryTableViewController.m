@@ -132,7 +132,8 @@
 
     // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
-    
+    cell.textLabel.textColor = [UIColor blackColor];
+
     return cell;
 }
 

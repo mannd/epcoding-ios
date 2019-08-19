@@ -511,7 +511,13 @@
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
-    cell.detailTextLabel.textColor = [UIColor blackColor];
+    if (@available(iOS 13.0, *)) {
+        cell.detailTextLabel.textColor = [UIColor labelColor];
+        cell.textLabel.textColor = [UIColor labelColor];
+    } else {
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
 
     
     
@@ -521,21 +527,45 @@
             code.selected = YES;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [cell setBackgroundColor:[UIColor greenColor]];
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+            // TODO: Must set text to dark color here regardless of mode.
         }
         else {  // secondary code
             code.selected = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.backgroundView = [[UIView alloc] init];
             cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-            [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
+            if (@available(iOS 13.0, *)) {
+                [cell setBackgroundColor:[UIColor systemBackgroundColor]];
+            } else {
+                [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
+            }
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
         }
         [cell setUserInteractionEnabled:NO];
     }
     else {
         cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-        // must specifically set this, or will be set randomly
-        cell.backgroundColor = ([code selected] ? [UIColor HIGHLIGHT] : [UIColor whiteColor]);
-        //[cell setBackgroundColor:[UIColor whiteColor]];
+        if (@available(iOS 13.0, *)) {
+            if ([code selected]) {
+                cell.backgroundColor = [UIColor HIGHLIGHT];
+                cell.textLabel.textColor = [UIColor blackColor];
+                cell.detailTextLabel.textColor = [UIColor blackColor];
+            }
+            else {
+                cell.backgroundColor = [UIColor systemBackgroundColor];
+            }
+
+        } else {
+            if ([code selected]) {
+                cell.backgroundColor = [UIColor HIGHLIGHT];
+            }
+            else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
+        }
         [cell setUserInteractionEnabled:YES];
     }
     
@@ -564,24 +594,40 @@
     if (section == 0) {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.backgroundColor = [UIColor whiteColor];
+            if (@available(iOS 13.0, *)) {
+                cell.backgroundColor = [UIColor systemBackgroundColor];
+                cell.textLabel.textColor = [UIColor labelColor];
+                cell.detailTextLabel.textColor = [UIColor labelColor];
+            } else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
             [[self.primaryCodes objectAtIndex:row] setSelected:NO];
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.backgroundColor = [UIColor HIGHLIGHT];
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor = [UIColor blackColor];
             [[self.primaryCodes objectAtIndex:row] setSelected:YES];
         }
     } else {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.backgroundColor = [UIColor whiteColor];
+            if (@available(iOS 13.0, *)) {
+                cell.backgroundColor = [UIColor systemBackgroundColor];
+                cell.textLabel.textColor = [UIColor labelColor];
+                cell.detailTextLabel.textColor = [UIColor labelColor];
+            } else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
 
             [[self.secondaryCodes objectAtIndex:row] setSelected:NO];
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.backgroundColor = [UIColor HIGHLIGHT];
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor = [UIColor blackColor];
 
             [[self.secondaryCodes objectAtIndex:row] setSelected:YES];
         }

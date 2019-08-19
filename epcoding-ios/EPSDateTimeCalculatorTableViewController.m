@@ -100,7 +100,11 @@
 }
 
 - (void)hideStartDatePickerCell {
-    self.startCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    if (@available(iOS 13.0, *)) {
+        self.startCell.detailTextLabel.textColor = [UIColor labelColor];
+    } else {
+        self.startCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    }
     self.startDatePickerVisible = NO;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -128,7 +132,11 @@
 }
 
 - (void)hideEndDatePickerCell {
-    self.endCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    if (@available(iOS 13.0, *)) {
+        self.endCell.detailTextLabel.textColor = [UIColor labelColor];
+    } else {
+        self.endCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    }
     self.endDatePickerVisible = NO;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];

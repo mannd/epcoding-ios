@@ -104,7 +104,11 @@
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
-    cell.detailTextLabel.textColor = [UIColor blackColor];
+    if (@available(iOS 13.0, *)) {
+        cell.detailTextLabel.textColor = [UIColor labelColor];
+    } else {
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+    }
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
         
     return cell;

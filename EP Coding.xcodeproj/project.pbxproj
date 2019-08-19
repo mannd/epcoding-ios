@@ -22,6 +22,7 @@
 		8E7CF8E81FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7CF8E71FA8F07B00A6D065 /* EPSDateTimeCalculatorTableViewController.m */; };
 		8E84DBB41E2C223700CB851D /* EPSModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E84DBB31E2C223700CB851D /* EPSModifier.m */; };
 		8E8E06DF18FEE3E700170147 /* EPSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */; };
+		8E92D321230A1CAE00DC2941 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E92D320230A1CAE00DC2941 /* Launch Screen.storyboard */; };
 		8E9AEEFE18BCFEB700B6BC1C /* EPSProcedureKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */; };
 		8E9AEF0218BCFF4800B6BC1C /* EPSProcedureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEF0118BCFF4800B6BC1C /* EPSProcedureKey.m */; };
 		8EB955751EE4E132006CCCB2 /* EPSAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB955741EE4E132006CCCB2 /* EPSAbout.m */; };
@@ -92,6 +93,7 @@
 		8E84DBB31E2C223700CB851D /* EPSModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifier.m; sourceTree = "<group>"; };
 		8E8E06DD18FEE3E700170147 /* EPSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSearchTableViewController.h; sourceTree = "<group>"; };
 		8E8E06DE18FEE3E700170147 /* EPSSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSearchTableViewController.m; sourceTree = "<group>"; };
+		8E92D320230A1CAE00DC2941 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8E9AEEFC18BCFEB700B6BC1C /* EPSProcedureKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKeys.h; sourceTree = "<group>"; };
 		8E9AEEFD18BCFEB700B6BC1C /* EPSProcedureKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSProcedureKeys.m; sourceTree = "<group>"; };
 		8E9AEF0018BCFF4800B6BC1C /* EPSProcedureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSProcedureKey.h; sourceTree = "<group>"; };
@@ -165,6 +167,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E92D31F230A1C5700DC2941 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8EDBEC0F180CCDEB0041A4E3 /* Main_iPad.storyboard */,
+				8E92D320230A1CAE00DC2941 /* Launch Screen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		8EDBEBEE180CCDEB0041A4E3 = {
 			isa = PBXGroup;
 			children = (
@@ -202,11 +213,11 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
+				8E92D31F230A1C5700DC2941 /* Storyboards */,
 				8E3F19872173B448008BD262 /* cardICD10codes2019.txt */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
 				8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */,
-				8EDBEC0F180CCDEB0041A4E3 /* Main_iPad.storyboard */,
 				8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */,
 				8EDBEC12180CCDEB0041A4E3 /* EPSMasterViewController.h */,
 				8EDBEC13180CCDEB0041A4E3 /* EPSMasterViewController.m */,
@@ -380,6 +391,7 @@
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
 				8ECCF8BD18C65E9000001DC6 /* README.md in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
+				8E92D321230A1CAE00DC2941 /* Launch Screen.storyboard in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
 				8E3F19882173B448008BD262 /* cardICD10codes2019.txt in Resources */,
@@ -526,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -573,7 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -584,7 +596,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -602,7 +613,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -192,10 +192,27 @@
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.detailTextLabel.textColor = [UIColor blackColor];
+    if (@available(iOS 13.0, *)) {
+        cell.detailTextLabel.textColor = [UIColor labelColor];
+    } else {
+        // Fallback on earlier versions
+    }
     cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
     // must specifically set this, or will be set randomly
-    cell.backgroundColor = ([code selected] ? [UIColor yellowColor] : [UIColor whiteColor]);
+    if ([code selected]) {
+        cell.backgroundColor = [UIColor yellowColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+    }
+    else {
+        if (@available(iOS 13.0, *)) {
+            cell.backgroundColor = [UIColor systemBackgroundColor];
+            cell.textLabel.textColor = [UIColor labelColor];
+            cell.detailTextLabel.textColor = [UIColor labelColor];
+        } else {
+            cell.backgroundColor = [UIColor whiteColor];
+        }
+    }
     [cell setUserInteractionEnabled:YES];
     return cell;
 }
@@ -218,16 +235,26 @@
         // selected sedation codes stays selected
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         cell.backgroundColor = [UIColor yellowColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
         [[self.codes objectAtIndex:row] setSelected:YES];
     }
     else if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 13.0, *)) {
+            cell.backgroundColor = [UIColor systemBackgroundColor];
+            cell.textLabel.textColor = [UIColor labelColor];
+            cell.detailTextLabel.textColor = [UIColor labelColor];
+        } else {
+            cell.backgroundColor = [UIColor whiteColor];
+        }
         [[self.codes objectAtIndex:row] setSelected:NO];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         cell.backgroundColor = [UIColor yellowColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
         [[self.codes objectAtIndex:row] setSelected:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
