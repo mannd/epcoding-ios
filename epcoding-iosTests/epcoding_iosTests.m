@@ -35,11 +35,6 @@
     [super tearDown];
 }
 
-//- (void)testExample
-//{
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-//}
-
 - (void)testCode
 {
     EPSCode *code = [[EPSCode alloc] initWithNumber:@"99999" description:@"Test Code" isAddOn:YES];
@@ -198,9 +193,6 @@
     NSLog(@"/n/n codes 10 is %@/n/n", [EPSCodeAnalyzer codeNumbersToString:codes10]);
     XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codes10] isEqualToString:@"[33233,33228]"]);
     XCTAssertTrue([EPSCodeAnalyzer codeNumbersToString:nil] == nil);
-    
-    
-
 }
 
 - (void)testCodeError
