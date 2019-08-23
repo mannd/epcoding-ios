@@ -28,9 +28,15 @@
     splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAutomatic;
     
     UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    pageControl.pageIndicatorTintColor = [UIColor systemGrayColor];
+    if (@available(iOS 13.0, *)) {
+        pageControl.currentPageIndicatorTintColor = [UIColor labelColor];
+        pageControl.backgroundColor = [UIColor systemBackgroundColor];
+    } else {
+        pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+        pageControl.backgroundColor = [UIColor whiteColor];
+       // Fallback on earlier versions
+    }
     return YES;
 }
 							

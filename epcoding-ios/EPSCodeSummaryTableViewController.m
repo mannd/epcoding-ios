@@ -64,14 +64,14 @@
     UIColor *color;
     switch (level) {
         case GOOD:
-            color = [UIColor greenColor];
+            color = [UIColor systemGreenColor];
             break;
         case WARNING:
-            color = [UIColor orangeColor];
+            color = [UIColor systemOrangeColor];
             break;
         case ERROR:
         default:
-            color = [UIColor redColor];
+            color = [UIColor systemRedColor];
             break;
     }
     return color;

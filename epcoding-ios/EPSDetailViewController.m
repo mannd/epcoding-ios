@@ -14,7 +14,7 @@
 #import "EPSModifiers.h"
 #import "EPSAbout.h"
 
-#define HIGHLIGHT yellowColor
+#define HIGHLIGHT systemYellowColor
 //#define DISABLED_COLOR lightGrayColor
 // gray stripes on white background make it easier to read code
 #define DISABLED_COLOR whiteColor
@@ -115,8 +115,7 @@
     self.startSedationDate = nil;
     self.endSedationDate = nil;
     
-    self.buttonSedation.tintColor = [UIColor redColor];
-    
+    self.buttonSedation.tintColor = [UIColor systemRedColor];
 
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
     
@@ -526,10 +525,9 @@
         if (section == 0) { // primary code
             code.selected = YES;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            [cell setBackgroundColor:[UIColor greenColor]];
-            cell.textLabel.textColor = [UIColor grayColor];
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-            // TODO: Must set text to dark color here regardless of mode.
+            [cell setBackgroundColor:[UIColor systemGreenColor]];
+            cell.textLabel.textColor = [UIColor systemGrayColor];
+            cell.detailTextLabel.textColor = [UIColor systemGrayColor];
         }
         else {  // secondary code
             code.selected = NO;
@@ -541,8 +539,8 @@
             } else {
                 [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
             }
-            cell.textLabel.textColor = [UIColor grayColor];
-            cell.detailTextLabel.textColor = [UIColor grayColor];
+            cell.textLabel.textColor = [UIColor systemGrayColor];
+            cell.detailTextLabel.textColor = [UIColor systemGrayColor];
         }
         [cell setUserInteractionEnabled:NO];
     }

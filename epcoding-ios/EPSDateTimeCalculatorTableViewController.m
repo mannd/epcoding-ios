@@ -86,7 +86,7 @@
 }
 
 - (void)showStartDatePickerCell {
-    self.startCell.detailTextLabel.textColor = [UIColor redColor];
+    self.startCell.detailTextLabel.textColor = [UIColor systemRedColor];
     self.startDatePickerVisible = YES;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -118,7 +118,7 @@
 }
 
 - (void)showEndDatePickerCell {
-    self.endCell.detailTextLabel.textColor = [UIColor redColor];
+    self.endCell.detailTextLabel.textColor = [UIColor systemRedColor];
     self.endDatePickerVisible = YES;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];

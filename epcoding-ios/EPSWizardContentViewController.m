@@ -200,7 +200,7 @@
     cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
     // must specifically set this, or will be set randomly
     if ([code selected]) {
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = [UIColor systemYellowColor];
         cell.textLabel.textColor = [UIColor blackColor];
         cell.detailTextLabel.textColor = [UIColor blackColor];
     }
@@ -234,7 +234,7 @@
         [self performSegueWithIdentifier:@"showSedationFromWizard" sender:nil];
         // selected sedation codes stays selected
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = [UIColor systemYellowColor];
         cell.textLabel.textColor = [UIColor blackColor];
         cell.detailTextLabel.textColor = [UIColor blackColor];
         [[self.codes objectAtIndex:row] setSelected:YES];
@@ -252,7 +252,7 @@
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = [UIColor systemYellowColor];
         cell.textLabel.textColor = [UIColor blackColor];
         cell.detailTextLabel.textColor = [UIColor blackColor];
         [[self.codes objectAtIndex:row] setSelected:YES];
