@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
-    <device id="retina5_5" orientation="portrait" appearance="dark"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -304,19 +304,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6q-iU-tn5">
-                                <rect key="frame" x="182.66666666666666" y="235.66666666666666" width="51" height="30.999999999999972"/>
+                                <rect key="frame" x="182.66666666666666" y="270.66666666666669" width="51" height="31"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5QL-tq-0nI">
-                                <rect key="frame" x="182.66666666666666" y="361" width="51" height="31"/>
+                                <rect key="frame" x="182.66666666666666" y="396" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procedure MD performed sedation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaj-uw-vbu">
-                                <rect key="frame" x="74.333333333333343" y="191.33333333333334" width="265.33333333333326" height="20.333333333333343"/>
+                                <rect key="frame" x="74.333333333333343" y="226.33333333333334" width="265.33333333333326" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patient age 5 years or older" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2c-hb-2eA">
-                                <rect key="frame" x="102" y="316.66666666666669" width="210" height="20.333333333333314"/>
+                                <rect key="frame" x="102" y="351.66666666666669" width="210" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -327,11 +327,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXR-YF-A2N">
-                                <rect key="frame" x="135" y="112.33333333333333" width="144" height="28.999999999999986"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QXR-YF-A2N">
+                                <rect key="frame" x="167" y="112.33333333333331" width="80" height="64"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfR-Eq-EXh">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="34"/>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="6Jc-gj-cS1"/>
@@ -340,7 +340,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sy-vc-DAh">
-                                        <rect key="frame" x="80" y="0.0" width="64" height="29"/>
+                                        <rect key="frame" x="0.0" y="34.000000000000014" width="80" height="30"/>
                                         <state key="normal" title="Calculate"/>
                                         <connections>
                                             <segue destination="xWn-tP-7fk" kind="show" identifier="showDateTimeCalculator" id="qIV-Pu-Eut"/>
@@ -348,9 +348,6 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="GEL-S4-LKb"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -561,13 +558,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="W1z-nG-wvg"/>
+        <segue reference="GWJ-Yr-pBw"/>
         <segue reference="ekT-Lx-x4n"/>
-        <segue reference="cAw-5u-oIT"/>
+        <segue reference="bIa-Hl-gS9"/>
         <segue reference="rJZ-SZ-PKU"/>
-        <segue reference="kcy-14-cfN"/>
-        <segue reference="efx-dF-0YA"/>
+        <segue reference="5m5-fF-sHx"/>
+        <segue reference="Mvd-nK-6ZG"/>
         <segue reference="HMq-lD-WHy"/>
-        <segue reference="HbE-bm-eGa"/>
+        <segue reference="ka1-zr-2vU"/>
     </inferredMetricsTieBreakers>
 </document>
