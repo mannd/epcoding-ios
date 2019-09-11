@@ -7,6 +7,7 @@
 //
 
 #import "EPSDateTimeCalculatorTableViewController.h"
+#import "EPSUtilities.h"
 
 @interface EPSDateTimeCalculatorTableViewController ()
 @property (strong, atomic) NSDateFormatter *formatter;
@@ -23,9 +24,9 @@
     [super viewDidLoad];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-    UIBarButtonItem *calculateButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Calculate" style: UIBarButtonItemStylePlain target: self action: @selector(calculate)];
+    UIBarButtonItem *calculateButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Calculate" style: UIBarButtonItemStyleDone target: self action: @selector(calculate)];
     
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, calculateButton, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: cancelButton, calculateButton, nil]];
 
     self.formatter = [[NSDateFormatter alloc] init];
     [self.formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -86,7 +87,7 @@
 }
 
 - (void)showStartDatePickerCell {
-    self.startCell.detailTextLabel.textColor = [UIColor redColor];
+    self.startCell.detailTextLabel.textColor = [UIColor systemRedColor];
     self.startDatePickerVisible = YES;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -100,7 +101,11 @@
 }
 
 - (void)hideStartDatePickerCell {
-    self.startCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    if (@available(iOS 13.0, *)) {
+        self.startCell.detailTextLabel.textColor = [UIColor labelColor];
+    } else {
+        self.startCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    }
     self.startDatePickerVisible = NO;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -114,7 +119,7 @@
 }
 
 - (void)showEndDatePickerCell {
-    self.endCell.detailTextLabel.textColor = [UIColor redColor];
+    self.endCell.detailTextLabel.textColor = [UIColor systemRedColor];
     self.endDatePickerVisible = YES;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -128,7 +133,11 @@
 }
 
 - (void)hideEndDatePickerCell {
-    self.endCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    if (@available(iOS 13.0, *)) {
+        self.endCell.detailTextLabel.textColor = [UIColor labelColor];
+    } else {
+        self.endCell.detailTextLabel.textColor = [UIColor darkTextColor];
+    }
     self.endDatePickerVisible = NO;
     [self.tableView beginUpdates];
     [self.tableView endUpdates];

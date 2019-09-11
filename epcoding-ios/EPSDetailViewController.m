@@ -13,11 +13,13 @@
 #import "EPSCodeSummaryTableViewController.h"
 #import "EPSModifiers.h"
 #import "EPSAbout.h"
+#import "EPSUtilities.h"
 
-#define HIGHLIGHT yellowColor
+#define HIGHLIGHT systemYellowColor
 //#define DISABLED_COLOR lightGrayColor
 // gray stripes on white background make it easier to read code
 #define DISABLED_COLOR whiteColor
+
 
 @interface EPSDetailViewController ()
 
@@ -103,11 +105,12 @@
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
+
     self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
     self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
     self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
-    self.toolbarItems = [NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil]];
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;
@@ -115,8 +118,7 @@
     self.startSedationDate = nil;
     self.endSedationDate = nil;
     
-    self.buttonSedation.tintColor = [UIColor redColor];
-    
+    self.buttonSedation.tintColor = [UIColor systemRedColor];
 
     backgroundImage = [UIImage imageNamed:@"stripes5.png"];
     
@@ -511,7 +513,13 @@
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
-    cell.detailTextLabel.textColor = [UIColor blackColor];
+    if (@available(iOS 13.0, *)) {
+        cell.detailTextLabel.textColor = [UIColor labelColor];
+        cell.textLabel.textColor = [UIColor labelColor];
+    } else {
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
 
     
     
@@ -520,22 +528,45 @@
         if (section == 0) { // primary code
             code.selected = YES;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            [cell setBackgroundColor:[UIColor greenColor]];
+            [cell setBackgroundColor:[UIColor systemGreenColor]];
+            cell.textLabel.textColor = [UIColor systemGrayColor];
+            cell.detailTextLabel.textColor = [UIColor systemGrayColor];
         }
         else {  // secondary code
             code.selected = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.backgroundView = [[UIView alloc] init];
             cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-            [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
+            if (@available(iOS 13.0, *)) {
+                [cell setBackgroundColor:[UIColor systemBackgroundColor]];
+            } else {
+                [cell setBackgroundColor:[UIColor DISABLED_COLOR]];
+            }
+            cell.textLabel.textColor = [UIColor systemGrayColor];
+            cell.detailTextLabel.textColor = [UIColor systemGrayColor];
         }
         [cell setUserInteractionEnabled:NO];
     }
     else {
         cell.accessoryType = ([code selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
-        // must specifically set this, or will be set randomly
-        cell.backgroundColor = ([code selected] ? [UIColor HIGHLIGHT] : [UIColor whiteColor]);
-        //[cell setBackgroundColor:[UIColor whiteColor]];
+        if (@available(iOS 13.0, *)) {
+            if ([code selected]) {
+                cell.backgroundColor = [UIColor HIGHLIGHT];
+                cell.textLabel.textColor = [UIColor blackColor];
+                cell.detailTextLabel.textColor = [UIColor blackColor];
+            }
+            else {
+                cell.backgroundColor = [UIColor systemBackgroundColor];
+            }
+
+        } else {
+            if ([code selected]) {
+                cell.backgroundColor = [UIColor HIGHLIGHT];
+            }
+            else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
+        }
         [cell setUserInteractionEnabled:YES];
     }
     
@@ -564,24 +595,40 @@
     if (section == 0) {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.backgroundColor = [UIColor whiteColor];
+            if (@available(iOS 13.0, *)) {
+                cell.backgroundColor = [UIColor systemBackgroundColor];
+                cell.textLabel.textColor = [UIColor labelColor];
+                cell.detailTextLabel.textColor = [UIColor labelColor];
+            } else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
             [[self.primaryCodes objectAtIndex:row] setSelected:NO];
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.backgroundColor = [UIColor HIGHLIGHT];
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor = [UIColor blackColor];
             [[self.primaryCodes objectAtIndex:row] setSelected:YES];
         }
     } else {
         if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.backgroundColor = [UIColor whiteColor];
+            if (@available(iOS 13.0, *)) {
+                cell.backgroundColor = [UIColor systemBackgroundColor];
+                cell.textLabel.textColor = [UIColor labelColor];
+                cell.detailTextLabel.textColor = [UIColor labelColor];
+            } else {
+                cell.backgroundColor = [UIColor whiteColor];
+            }
 
             [[self.secondaryCodes objectAtIndex:row] setSelected:NO];
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.backgroundColor = [UIColor HIGHLIGHT];
+            cell.textLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor = [UIColor blackColor];
 
             [[self.secondaryCodes objectAtIndex:row] setSelected:YES];
         }

@@ -35,11 +35,6 @@
     [super tearDown];
 }
 
-//- (void)testExample
-//{
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-//}
-
 - (void)testCode
 {
     EPSCode *code = [[EPSCode alloc] initWithNumber:@"99999" description:@"Test Code" isAddOn:YES];
@@ -169,7 +164,7 @@
     NSArray *codeNumbers = [analyzer codeNumbersFromCodes:primaryCodes];
     XCTAssertTrue([[codeNumbers objectAtIndex:2] isEqualToString:@"00002"]);
     // note there is space after terminal "]" in next method
-    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codeNumbers] isEqualToString:@"[00000,00001,00002]"]);
+    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codeNumbers] isEqualToString:@"[00000, 00001, 00002]"]);
     EPSCode *afbAblationCode = [[EPSCode alloc] initWithNumber:@"93653" description:nil isAddOn:NO];
     EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:nil ignoreNoSecondaryCodes:NO sedationCodes:nil sedationStatus:Unassigned];
     XCTAssertTrue([analyzer2 noMappingCodesForAblation]);
@@ -180,11 +175,11 @@
     NSArray *badCodes = @[@"00000", @"00002"];
     NSArray *badCodeResult = [analyzer codesWithBadCombosFromCodeSet:codeNumberSet andBadCodeNumbers:badCodes];
     //NSLog(@"Bad codes = %@", [EPSCodeAnalyzer codeNumbersToString:badCodeResult]);
-    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:badCodeResult] isEqualToString:@"[00000,00002]"]);
+    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:badCodeResult] isEqualToString:@"[00000, 00002]"]);
     // make sure unmatched codes are stripped off
     NSArray *newBadCodes = @[@"00000", @"00001", @"99999"];
     NSArray *badCodeResult2 = [analyzer codesWithBadCombosFromCodeSet:codeNumberSet andBadCodeNumbers:newBadCodes];
-    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:badCodeResult2] isEqualToString:@"[00000,00001]"]);
+    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:badCodeResult2] isEqualToString:@"[00000, 00001]"]);
     EPSCode *code01 = [[EPSCode alloc] initWithNumber:@"33233" description:@"testcode0" isAddOn:NO];
     EPSCode *code02 = [[EPSCode alloc] initWithNumber:@"33228" description:@"testcode0" isAddOn:NO];
     EPSCode *code03 = [[EPSCode alloc] initWithNumber:@"00000" description:@"testcode0" isAddOn:NO];
@@ -196,11 +191,8 @@
     EPSCodeError *errorCode1 = [errorCodes objectAtIndex:0];
     NSArray *codes10 = [errorCode1 codes];
     NSLog(@"/n/n codes 10 is %@/n/n", [EPSCodeAnalyzer codeNumbersToString:codes10]);
-    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codes10] isEqualToString:@"[33233,33228]"]);
+    XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codes10] isEqualToString:@"[33233, 33228]"]);
     XCTAssertTrue([EPSCodeAnalyzer codeNumbersToString:nil] == nil);
-    
-    
-
 }
 
 - (void)testCodeError

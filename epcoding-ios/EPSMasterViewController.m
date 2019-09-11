@@ -63,6 +63,8 @@
         UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
         self.navigationItem.rightBarButtonItem = btn;
     }
+    // Default preferredDisplayMode: overlays in portrait mode and is on left border in landscape mode.
+    self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAutomatic;
 }
 
 - (void)viewDidAppear:(BOOL)animated

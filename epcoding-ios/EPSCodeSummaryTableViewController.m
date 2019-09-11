@@ -64,14 +64,14 @@
     UIColor *color;
     switch (level) {
         case GOOD:
-            color = [UIColor greenColor];
+            color = [UIColor systemGreenColor];
             break;
         case WARNING:
-            color = [UIColor orangeColor];
+            color = [UIColor systemOrangeColor];
             break;
         case ERROR:
         default:
-            color = [UIColor redColor];
+            color = [UIColor systemRedColor];
             break;
     }
     return color;
@@ -132,7 +132,8 @@
 
     // default gray color looks bad when background color is red or orange
     cell.detailTextLabel.textColor = [UIColor blackColor];
-    
+    cell.textLabel.textColor = [UIColor blackColor];
+
     return cell;
 }
 

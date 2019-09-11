@@ -8,6 +8,7 @@
 
 #import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
+#import "EPSUtilities.h"
 
 #define HIGHLIGHT_COLOR cyanColor
 
@@ -25,12 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     cellHeight = 65;
     NSArray *array = [EPSModifiers allModifiersSorted];
     [EPSModifiers clearSelectedAllModifiers];
@@ -42,7 +37,7 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle: @"Add" style: UIBarButtonItemStyleDone target: self action: @selector(addAction)];
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
     UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetAction)];
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil]];
     [self.navigationController setToolbarHidden:NO];
     
     for (EPSModifier *modifier in self.modifiers) {
@@ -52,7 +47,6 @@
             }
         }
     }
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -144,11 +138,27 @@
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     // default gray color looks bad when background color is red or orange
-    cell.detailTextLabel.textColor = [UIColor blackColor];
+    if (@available(iOS 13.0, *)) {
+        cell.detailTextLabel.textColor = [UIColor labelColor];
+        cell.textLabel.textColor = [UIColor labelColor];
+    } else {
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
     cell.accessoryType = ([modifier selected] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
         // must specifically set this, or will be set randomly
-    cell.backgroundColor = ([modifier selected] ? [UIColor HIGHLIGHT_COLOR] : [UIColor whiteColor]);
-        //[cell setBackgroundColor:[UIColor whiteColor]];
+    if ([modifier selected]) {
+        [cell setBackgroundColor:[UIColor HIGHLIGHT_COLOR]];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
+    else {
+        if (@available(iOS 13.0, *)) {
+            [cell setBackgroundColor:[UIColor systemBackgroundColor]];
+        } else {
+            [cell setBackgroundColor:[UIColor whiteColor]];
+        }
+    }
     [cell setUserInteractionEnabled:YES];
     
     return cell;
@@ -162,27 +172,24 @@
     NSUInteger row = indexPath.row;
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 13.0, *)) {
+            [cell setBackgroundColor:[UIColor systemBackgroundColor]];
+            cell.detailTextLabel.textColor = [UIColor labelColor];
+            cell.textLabel.textColor = [UIColor labelColor];
+        } else {
+            [cell setBackgroundColor:[UIColor whiteColor]];
+        }
         [[self.modifiers objectAtIndex:row] setSelected:NO];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         cell.backgroundColor = [UIColor HIGHLIGHT_COLOR];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
         [[self.modifiers objectAtIndex:row] setSelected:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -288,7 +288,7 @@
     if (codeNumbers == nil || [codeNumbers count] == 0) {
         return nil;
     }
-    NSString *string = [codeNumbers componentsJoinedByString:@","];
+    NSString *string = [codeNumbers componentsJoinedByString:@", "];
     return [NSString stringWithFormat:@"[%@]", string];
 }
 
