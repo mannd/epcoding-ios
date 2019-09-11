@@ -199,19 +199,8 @@
                             <outlet property="delegate" destination="fG8-8c-Jgu" id="NwQ-Ed-Iae"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="Kdo-Ye-jyX" id="7ue-pq-LBC"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yvk-yH-ebd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Kdo-Ye-jyX">
-                    <connections>
-                        <outlet property="delegate" destination="fG8-8c-Jgu" id="nG2-uR-v5S"/>
-                        <outlet property="searchContentsController" destination="fG8-8c-Jgu" id="uVu-xN-4s6"/>
-                        <outlet property="searchResultsDataSource" destination="fG8-8c-Jgu" id="BCZ-f4-QTU"/>
-                        <outlet property="searchResultsDelegate" destination="fG8-8c-Jgu" id="tPX-zv-RWL"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1236" y="-846"/>
         </scene>
@@ -245,19 +234,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="yFK-Kb-18a"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="TB6-d3-IMa" id="ABm-Lw-N09"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unw-KF-JGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="TB6-d3-IMa">
-                    <connections>
-                        <outlet property="delegate" destination="nzB-TU-9Vd" id="d85-gE-DUC"/>
-                        <outlet property="searchContentsController" destination="nzB-TU-9Vd" id="ryF-bv-sBS"/>
-                        <outlet property="searchResultsDataSource" destination="nzB-TU-9Vd" id="r6s-0o-fVS"/>
-                        <outlet property="searchResultsDelegate" destination="nzB-TU-9Vd" id="mb9-Pc-mcN"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-414" y="1013"/>
         </scene>
