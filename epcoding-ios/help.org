@@ -404,7 +404,7 @@ you select *Help* to get help.
 - Only limited, common code modifiers are presented.
 - Code analysis marks common errors, but is no substitute for a
   professional coder!
-- Only a subset of ICD-10-CM codes are included--those relevant to cardiology.  For example, I did not include [[https://www.zazzle.com/icd_10_v91_07_burn_due_to_water_skis_on_fire_coffee_mug-168077308405155734][V91.07XA Burn due to water-skis on fire, initial encounter]].
+- Only a subset of ICD-10-CM codes are included--those relevant to cardiology.  For example, I did not include V91.07XA Burn due to water-skis on fire, initial encounter.
 - ICD-10-PCS are not included, as these are generally not used by physicians.
 ** Acknowledgments
 - CPT copyright 2014 American Medical Association. All rights
