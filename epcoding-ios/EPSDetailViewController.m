@@ -13,11 +13,13 @@
 #import "EPSCodeSummaryTableViewController.h"
 #import "EPSModifiers.h"
 #import "EPSAbout.h"
+#import "EPSUtilities.h"
 
 #define HIGHLIGHT systemYellowColor
 //#define DISABLED_COLOR lightGrayColor
 // gray stripes on white background make it easier to read code
 #define DISABLED_COLOR whiteColor
+
 
 @interface EPSDetailViewController ()
 
@@ -103,11 +105,12 @@
     [self configureView];
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
+
     self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
     self.buttonSummarize = [[ UIBarButtonItem alloc ] initWithTitle: @"Summarize" style: UIBarButtonItemStylePlain target: self action: @selector(summarizeCoding)];
     self.buttonClear = [[UIBarButtonItem alloc]initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearEntries)];
     self.buttonSave = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveCoding)];
-    self.toolbarItems = [NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: self.buttonSedation, self.buttonSummarize, self.buttonClear, self.buttonSave, nil]];
     self.sedationTime = 0;
     self.sameMDPerformsSedation = YES;
     self.patientOver5YearsOld = YES;

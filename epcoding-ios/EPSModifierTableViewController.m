@@ -8,6 +8,7 @@
 
 #import "EPSModifierTableViewController.h"
 #import "EPSModifiers.h"
+#import "EPSUtilities.h"
 
 #define HIGHLIGHT_COLOR cyanColor
 
@@ -36,7 +37,7 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle: @"Add" style: UIBarButtonItemStyleDone target: self action: @selector(addAction)];
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
     UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetAction)];
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: cancelButton, saveButton, resetButton, addButton, nil]];
     [self.navigationController setToolbarHidden:NO];
     
     for (EPSModifier *modifier in self.modifiers) {

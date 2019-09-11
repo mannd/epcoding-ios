@@ -7,6 +7,7 @@
 //
 
 #import "EPSDateTimeCalculatorTableViewController.h"
+#import "EPSUtilities.h"
 
 @interface EPSDateTimeCalculatorTableViewController ()
 @property (strong, atomic) NSDateFormatter *formatter;
@@ -23,9 +24,9 @@
     [super viewDidLoad];
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-    UIBarButtonItem *calculateButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Calculate" style: UIBarButtonItemStylePlain target: self action: @selector(calculate)];
+    UIBarButtonItem *calculateButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Calculate" style: UIBarButtonItemStyleDone target: self action: @selector(calculate)];
     
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, calculateButton, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: cancelButton, calculateButton, nil]];
 
     self.formatter = [[NSDateFormatter alloc] init];
     [self.formatter setDateStyle:NSDateFormatterMediumStyle];

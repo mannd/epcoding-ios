@@ -10,6 +10,7 @@
 #import "EPSDateTimeCalculatorTableViewController.h"
 #import "EPSCodes.h"
 #import "EPSSedationCode.h"
+#import "EPSUtilities.h"
 
 @interface EPSSedationViewController ()
 
@@ -29,7 +30,7 @@
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
     UIBarButtonItem *noSedationButton = [[UIBarButtonItem alloc] initWithTitle:@"No Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(noSedationAction:)];
     UIBarButtonItem *addCodesButton = [[ UIBarButtonItem alloc ] initWithTitle: @"Add Codes" style: UIBarButtonItemStyleDone target: self action: @selector(addCodesAction:)];
-    self.toolbarItems = [ NSArray arrayWithObjects: cancelButton, noSedationButton, addCodesButton, nil];
+    self.toolbarItems = [EPSUtilities spaceoutToolbar:[NSArray arrayWithObjects: cancelButton, noSedationButton, addCodesButton, nil]];
     [self.navigationController setToolbarHidden:NO];
 
 }
