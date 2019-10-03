@@ -10,10 +10,10 @@
 		8E2E3AAD232992A400EA7E97 /* EPSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E3AAC232992A400EA7E97 /* EPSUtilities.m */; };
 		8E3751481E46950200075653 /* EPSModifiers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3751471E46950200075653 /* EPSModifiers.m */; };
 		8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */; };
-		8E3F19882173B448008BD262 /* cardICD10codes2019.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E3F19872173B448008BD262 /* cardICD10codes2019.txt */; };
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
+		8E6823BB23467F660012397E /* cardICD10codes2020.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E6823BA23467F660012397E /* cardICD10codes2020.txt */; };
 		8E707E871E3D245B007F8AF8 /* EPSSedationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */; };
 		8E716CDC1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
 		8E716CDD1F1FC84B0078CD34 /* ICD10Code.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E716CDB1F1FC84B0078CD34 /* ICD10Code.m */; };
@@ -73,12 +73,12 @@
 		8E3751471E46950200075653 /* EPSModifiers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifiers.m; sourceTree = "<group>"; };
 		8E3751491E46C27B00075653 /* EPSModifierTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifierTableViewController.h; sourceTree = "<group>"; };
 		8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifierTableViewController.m; sourceTree = "<group>"; };
-		8E3F19872173B448008BD262 /* cardICD10codes2019.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2019.txt; sourceTree = "<group>"; };
 		8E60902818B514C1001F3D7A /* EPSHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSHelpViewController.h; sourceTree = "<group>"; };
 		8E60902918B514C1001F3D7A /* EPSHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSHelpViewController.m; sourceTree = "<group>"; };
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		8E6705A31E5A540D00F47885 /* EPSSedationCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSedationCode.h; sourceTree = "<group>"; };
 		8E6705A41E5A540D00F47885 /* EPSSedationCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationCode.m; sourceTree = "<group>"; };
+		8E6823BA23467F660012397E /* cardICD10codes2020.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cardICD10codes2020.txt; sourceTree = "<group>"; };
 		8E707E851E3D245B007F8AF8 /* EPSSedationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSSedationViewController.h; sourceTree = "<group>"; };
 		8E707E861E3D245B007F8AF8 /* EPSSedationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSSedationViewController.m; sourceTree = "<group>"; };
 		8E716CDA1F1FC84B0078CD34 /* ICD10Code.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICD10Code.h; sourceTree = "<group>"; };
@@ -213,8 +213,8 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
+				8E6823BA23467F660012397E /* cardICD10codes2020.txt */,
 				8E92D31F230A1C5700DC2941 /* Storyboards */,
-				8E3F19872173B448008BD262 /* cardICD10codes2019.txt */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
 				8EDBEC0A180CCDEB0041A4E3 /* EPSAppDelegate.m */,
@@ -390,11 +390,11 @@
 				8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */,
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
 				8ECCF8BD18C65E9000001DC6 /* README.md in Resources */,
+				8E6823BB23467F660012397E /* cardICD10codes2020.txt in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
 				8E92D321230A1CAE00DC2941 /* Launch Screen.storyboard in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
-				8E3F19882173B448008BD262 /* cardICD10codes2019.txt in Resources */,
 				8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */,
 				8EDBEC05180CCDEB0041A4E3 /* InfoPlist.strings in Resources */,
 			);
@@ -598,12 +598,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-ios/epcoding-ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MARKETING_VERSION = 1.14;
+				MARKETING_VERSION = 1.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.epstudios.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "EP Coding";
 				PROVISIONING_PROFILE = "";
@@ -617,12 +617,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-ios/epcoding-ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MARKETING_VERSION = 1.14;
+				MARKETING_VERSION = 1.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.epstudios.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "EP Coding";
 				PROVISIONING_PROFILE = "";
