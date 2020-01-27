@@ -96,10 +96,15 @@
         // note fluoroscopy included in device codes, but this code
         // used e.g to evaluate a lead such as a Riata
         [self addCode:[[EPSCode alloc] initWithNumber:@"76000" description:@"Fluoroscopic lead evaluation" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"76937" description:@"Ultrasonic guidance for vascular access" isAddOn:NO] toDictionary:dictionary];
         
-        // TEE - but only by different MD than performing procedure
-        
-        [self addCode:[[EPSCode alloc] initWithNumber:@"93355" description:@"TEE for guidance of transcatheter intervention, performed by different MD than MD performing intervention." isAddOn:NO] toDictionary:dictionary];
+        // TEE
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93312" description:@"TEE, complete" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93315" description:@"TEE, complete, congenital heart disease" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93320" description:@"Doppler imaging, complete" isAddOn:YES] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93321" description:@"Doppler imaging, follow-up or limited study" isAddOn:YES] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93325" description:@"Doppler color flow velocity mapping" isAddOn:YES] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"93355" description:@"TEE for guidance of transcatheter vascular interventions, such as TAVR, LAA closure, etc." isAddOn:NO] toDictionary:dictionary];
         // Ablation and EP testing codes
         
         // EP Testing and Mapping ///////////////////////
@@ -282,6 +287,7 @@
         NSMutableArray *modifierArray_26 = [[NSMutableArray alloc] init];
         // start with codes with 26 modifier as standard
         [modifierArray_26 addObject:[EPSModifiers getModifierForNumber:@"26"]];
+        [dictionary setObject:modifierArray_26 forKey:@"93312"];
         [dictionary setObject:modifierArray_26 forKey:@"93609"];
         [dictionary setObject:modifierArray_26 forKey:@"93620"];
         [dictionary setObject:modifierArray_26 forKey:@"93619"];
