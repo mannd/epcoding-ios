@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
+#import <WebKit/WKNavigationDelegate.h>
 
 @interface EPSHelpViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet WKWebView *webView;
 
 @end
