@@ -37,6 +37,7 @@
 		8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */; };
 		8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */; };
 		8ED5C9DF2517BB1000771F96 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED5C9DE2517BB1000771F96 /* WebKit.framework */; };
+		8ED5C9E32517BC0100771F96 /* org.css in Resources */ = {isa = PBXBuildFile; fileRef = 8ED5C9E22517BC0100771F96 /* org.css */; };
 		8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
 		8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
@@ -117,6 +118,7 @@
 		8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-2.0.txt"; sourceTree = "<group>"; };
 		8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EPCodingLaunchScreen_2.storyboard; sourceTree = "<group>"; };
 		8ED5C9DE2517BB1000771F96 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		8ED5C9E22517BC0100771F96 /* org.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = org.css; sourceTree = "<group>"; };
 		8EDAD1FE1901243900CE48CF /* EPSWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardViewController.h; sourceTree = "<group>"; };
 		8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSWizardViewController.m; sourceTree = "<group>"; };
 		8EDAD2021901286900CE48CF /* EPSWizardContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardContentViewController.h; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 		8EDBEC01180CCDEB0041A4E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8ED5C9E22517BC0100771F96 /* org.css */,
 				8EE149B21E5D55E800740392 /* img */,
 				8ECCF8BA18C65E7100001DC6 /* help.org */,
 				8E60902B18B54335001F3D7A /* help.html */,
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDBEC11180CCDEB0041A4E3 /* Main_iPad.storyboard in Resources */,
+				8ED5C9E32517BC0100771F96 /* org.css in Resources */,
 				8ECCF8BB18C65E7100001DC6 /* help.org in Resources */,
 				8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */,
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
