@@ -11,7 +11,7 @@
 #import "ICD10Codes.h"
 
 #define SECTION_COLOR UIColor.systemOrangeColor
-#define ICD_10_YEAR @"2020"
+#define ICD_10_YEAR @"2021"
 
 @interface ICD10TableViewController ()
 
@@ -39,7 +39,7 @@
     
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.obscuresBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
