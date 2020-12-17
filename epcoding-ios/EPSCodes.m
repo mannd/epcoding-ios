@@ -23,7 +23,7 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"33010" description:@"Pericardiocentesis" isAddOn:NO] toDictionary:dictionary];
         
         // SubQ ICD
-        [self addCode:[[EPSCode alloc] initWithNumber:@"33270" description:@"New or replacement SubQ ICD system, includes testing" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33270" description:@"New or replacement SubQ ICD system, including SubQ lead, and including testing" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"33271" description:@"Insertion of SubQ defibrillator electrode only" isAddOn:NO] toDictionary:dictionary];
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33272" description:@"Removal of SubQ ICD electrode" isAddOn:NO] toDictionary:dictionary];
 		[self addCode:[[EPSCode alloc] initWithNumber:@"33273" description:@"Repositioning of SubQ ICD electrode" isAddOn:NO] toDictionary:dictionary];
@@ -79,7 +79,7 @@
         [self addCode:[[EPSCode alloc] initWithNumber:@"33249" description:@"New ICD, single or dual, with leads" isAddOn:NO] toDictionary:dictionary];
         
         // Replacement ICD/CRT
-        [self addCode:[[EPSCode alloc] initWithNumber:@"33262" description:@"Single lead ICD generator replacement" isAddOn:NO] toDictionary:dictionary];
+        [self addCode:[[EPSCode alloc] initWithNumber:@"33262" description:@"Single lead ICD generator or SubQ ICD generator replacement" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"33263" description:@"Dual lead ICD generator replacement" isAddOn:NO] toDictionary:dictionary];
         [self addCode:[[EPSCode alloc] initWithNumber:@"33264" description:@"CRT ICD generator replacement" isAddOn:NO] toDictionary:dictionary];
         
@@ -207,7 +207,7 @@
         [dictionary setObject:@[@"93654"] forKey:@"vtAblationPrimaryCodes"];
         [dictionary setObject:@[@"93650"] forKey:@"avnAblationPrimaryCodes"];
         [dictionary setObject:@[@"93619", @"93620"] forKey:@"epTestingPrimaryCodes"];
-        [dictionary setObject:@[@"33270", @"33271", @"33272", @"33273", @"33274", @"33275"] forKey:@"subQIcdPrimaryCodes"];
+        [dictionary setObject:@[@"33270", @"33262", @"33271", @"33272", @"33273", @"33274", @"33275"] forKey:@"subQIcdPrimaryCodes"];
         [dictionary setObject:@[@"33285", @"33286", @"93660", @"92960", @"92961", @"76000"] forKey:@"otherProcedurePrimaryCodes"];
         [dictionary setObject:@[@"33206", @"33207", @"33208", @"33225"] forKey:@"newPpmPrimaryCodes"];
         [dictionary setObject:@[@"33227", @"33228", @"33229"] forKey:@"replacePpmPrimaryCodes"];
