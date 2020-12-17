@@ -94,7 +94,7 @@
     // test presence of specific codes
     NSDictionary *codeDictionary = [EPSCodes allCodes];
     EPSCode *code1 = [codeDictionary objectForKey:@"33270"];
-    XCTAssertTrue([code1.fullDescription isEqualToString:@"New or replacement SubQ ICD system, includes testing"]);
+    XCTAssertTrue([code1.fullDescription isEqualToString:@"New or replacement SubQ ICD system, including SubQ lead, and including testing"]);
     XCTAssertTrue([code1.number isEqualToString:@"33270"]);
     XCTAssertFalse([code1 isAddOn]);
     EPSCode *code2 = [codeDictionary objectForKey:@"93624"];
