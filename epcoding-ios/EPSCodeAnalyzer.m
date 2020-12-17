@@ -70,6 +70,7 @@
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33270", @"33271"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
     [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"0389T", @"0390T", @"0391T"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
         [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33218", @"33220"]] withWarningLevel:ERROR withMessage:DEFAULT_DUPLICATE_ERROR]];
+    [array addObject:[[EPSCodeError alloc] initWithCodes:[NSMutableArray arrayWithArray:@[@"33270", @"93641"]] withWarningLevel:ERROR withMessage:@"DFT testing is already included in code 33270."]];
     
     return array;
 }
