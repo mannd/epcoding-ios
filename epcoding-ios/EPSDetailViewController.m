@@ -103,7 +103,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     cellHeight = 65;
     [self configureView];
-    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"more"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
     self.navigationItem.rightBarButtonItem = btn;
 
     self.buttonSedation = [[UIBarButtonItem alloc] initWithTitle:@"Sedation" style:UIBarButtonItemStylePlain target:self action:@selector(calculateSedation)];
