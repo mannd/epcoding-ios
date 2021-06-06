@@ -60,7 +60,7 @@
     self.procedureTypes = array;
     // put right button only on iPhone, it will appear twice in the view on iPad
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showMenu)];
+        UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"more"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
         self.navigationItem.rightBarButtonItem = btn;
     }
     // Default preferredDisplayMode: overlays in portrait mode and is on left border in landscape mode.
