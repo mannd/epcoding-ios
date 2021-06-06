@@ -66,15 +66,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showAbout
-{
+- (void)showAbout {
     [EPSAbout show:self];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath  isEqual: @"canGoBack"] || [keyPath  isEqual: @"canGoForward"]) {
         [self updateButtons];
-        }
+    }
 }
 
 -(void)updateButtons {
@@ -94,4 +93,5 @@
         [self.webView goForward];
     }
 }
+
 @end
