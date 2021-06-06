@@ -12,5 +12,7 @@
 
 @interface EPSHelpViewController : UIViewController
 @property (strong, nonatomic) IBOutlet WKWebView *webView;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *forwardButton;
 
 @end
