@@ -79,7 +79,9 @@
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
             self.disabledCodesSet = [NSSet setWithArray:disabledKeys];
         }
-        [self clearEntries];
+        /// CHANGE #1 - no need to reload tableview here???
+        [self clearSelected];
+//        [self clearEntries];
         NSMutableArray *sedationCodes = [[NSMutableArray alloc] init];
         self.sedationCodes = sedationCodes;
         // reset all codes to unadorned codes (but will be overriden by saved codes)
@@ -185,9 +187,12 @@
     [self performSegueWithIdentifier:@"showHelp" sender:nil];
 }
 
+// FIXME: URGENT!: This clears entries but adds hash marks to table.
 - (void)clearEntries
 {
+    NSLog(@"clearEntries");
     [self clearSelected];
+    // reloadData is drawing the data wrong
     [self.codeTableView reloadData];
 }
 
@@ -531,6 +536,8 @@
             [cell setBackgroundColor:[UIColor systemGreenColor]];
             cell.textLabel.textColor = [UIColor systemGrayColor];
             cell.detailTextLabel.textColor = [UIColor systemGrayColor];
+            /// CHANGE #3
+            cell.backgroundView = nil;
         }
         else {  // secondary code
             code.selected = NO;
@@ -567,6 +574,8 @@
                 cell.backgroundColor = [UIColor whiteColor];
             }
         }
+        /// CHANGE #2
+        cell.backgroundView = nil;
         [cell setUserInteractionEnabled:YES];
     }
     
