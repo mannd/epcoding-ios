@@ -92,7 +92,7 @@
     return self.fullDescription;
 }
 
-- (NSComparisonResult)compareCodes:(id)object
+- (NSComparisonResult)compareCodes:(EPSCode *)object
 {
     return [self.number compare:[object number]];
 }

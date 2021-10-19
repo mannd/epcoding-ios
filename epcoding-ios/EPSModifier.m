@@ -20,7 +20,7 @@
     return self;
 }
 
-- (NSComparisonResult)compareModifiers:(id)object
+- (NSComparisonResult)compareModifiers:(EPSModifier *)object
 {
     return [self.number compare:[object number]];
 }

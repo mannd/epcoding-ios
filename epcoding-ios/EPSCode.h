@@ -41,7 +41,7 @@ enum status {GOOD, WARNING, ERROR};
 - (NSString *)unformattedCodeNumberFirst;
 - (NSString *)unformattedCodeNumber;
 - (NSString *)unformattedCodeDescription;
-- (NSComparisonResult)compareCodes:(id)object;
+- (NSComparisonResult)compareCodes:(EPSCode *)object;
 - (NSString *)modifierString;
 
 @end
