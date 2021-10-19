@@ -10,6 +10,7 @@
 		8E2E3AAD232992A400EA7E97 /* EPSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E3AAC232992A400EA7E97 /* EPSUtilities.m */; };
 		8E3751481E46950200075653 /* EPSModifiers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3751471E46950200075653 /* EPSModifiers.m */; };
 		8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */; };
+		8E59CAC4271F4D100087ADDD /* icd10cm_codes_2022.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E59CAC3271F4D100087ADDD /* icd10cm_codes_2022.txt */; };
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
@@ -37,7 +38,6 @@
 		8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */; };
 		8ED5C9DF2517BB1000771F96 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED5C9DE2517BB1000771F96 /* WebKit.framework */; };
 		8ED5C9E32517BC0100771F96 /* org.css in Resources */ = {isa = PBXBuildFile; fileRef = 8ED5C9E22517BC0100771F96 /* org.css */; };
-		8ED5C9E72517C14700771F96 /* icd10cm_codes_2021.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8ED5C9E62517C14700771F96 /* icd10cm_codes_2021.txt */; };
 		8EDAD2001901243900CE48CF /* EPSWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */; };
 		8EDAD2041901286900CE48CF /* EPSWizardContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAD2031901286900CE48CF /* EPSWizardContentViewController.m */; };
 		8EDBEBFB180CCDEB0041A4E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFA180CCDEB0041A4E3 /* Foundation.framework */; };
@@ -75,6 +75,7 @@
 		8E3751471E46950200075653 /* EPSModifiers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifiers.m; sourceTree = "<group>"; };
 		8E3751491E46C27B00075653 /* EPSModifierTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifierTableViewController.h; sourceTree = "<group>"; };
 		8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifierTableViewController.m; sourceTree = "<group>"; };
+		8E59CAC3271F4D100087ADDD /* icd10cm_codes_2022.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icd10cm_codes_2022.txt; sourceTree = "<group>"; };
 		8E60902818B514C1001F3D7A /* EPSHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSHelpViewController.h; sourceTree = "<group>"; };
 		8E60902918B514C1001F3D7A /* EPSHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSHelpViewController.m; sourceTree = "<group>"; };
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EPCodingLaunchScreen_2.storyboard; sourceTree = "<group>"; };
 		8ED5C9DE2517BB1000771F96 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8ED5C9E22517BC0100771F96 /* org.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = org.css; sourceTree = "<group>"; };
-		8ED5C9E62517C14700771F96 /* icd10cm_codes_2021.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icd10cm_codes_2021.txt; sourceTree = "<group>"; };
 		8EDAD1FE1901243900CE48CF /* EPSWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardViewController.h; sourceTree = "<group>"; };
 		8EDAD1FF1901243900CE48CF /* EPSWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSWizardViewController.m; sourceTree = "<group>"; };
 		8EDAD2021901286900CE48CF /* EPSWizardContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSWizardContentViewController.h; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
-				8ED5C9E62517C14700771F96 /* icd10cm_codes_2021.txt */,
+				8E59CAC3271F4D100087ADDD /* icd10cm_codes_2022.txt */,
 				8E92D31F230A1C5700DC2941 /* Storyboards */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
@@ -393,8 +393,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDBEC11180CCDEB0041A4E3 /* Main_iPad.storyboard in Resources */,
+				8E59CAC4271F4D100087ADDD /* icd10cm_codes_2022.txt in Resources */,
 				8ED5C9E32517BC0100771F96 /* org.css in Resources */,
-				8ED5C9E72517C14700771F96 /* icd10cm_codes_2021.txt in Resources */,
 				8ECCF8BB18C65E7100001DC6 /* help.org in Resources */,
 				8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */,
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
