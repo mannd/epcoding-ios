@@ -538,7 +538,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.backgroundView = [[UIView alloc] init];
             // This background view must be nil in other circumstances, particularly when view reloaded.
-            cell.backgroundView.backgroundColor = [[UIColor colorWithPatternImage:backgroundImage] colorWithAlphaComponent:0.6];
+            cell.backgroundView.backgroundColor = [[UIColor colorWithPatternImage:backgroundImage] colorWithAlphaComponent:0.8];
             if (@available(iOS 13.0, *)) {
                 [cell setBackgroundColor:[UIColor systemBackgroundColor]];
             } else {
