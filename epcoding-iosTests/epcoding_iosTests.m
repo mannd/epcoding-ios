@@ -145,7 +145,7 @@
     NSArray *secondaryCodes = @[code3, code4, code5];
     EPSCodeAnalyzer *analyzer = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:primaryCodes secondaryCodes:secondaryCodes  ignoreNoSecondaryCodes:NO sedationCodes:nil sedationStatus:Unassigned];
     XCTAssertTrue([[analyzer allCodes] count] == 6);
-    XCTAssertTrue([[[[analyzer allCodes] objectAtIndex:3] number] isEqualToString:@"00003"]);
+    XCTAssertTrue([[(EPSCode *)[[analyzer allCodes] objectAtIndex:3] number] isEqualToString:@"00003"]);
     XCTAssertTrue([[[[analyzer allCodes] objectAtIndex:5] fullDescription] isEqualToString:@"testcode5"]);
     NSArray *allCodeNumbers = [analyzer allCodeNumbers];
     XCTAssertTrue([[allCodeNumbers objectAtIndex:0] isEqualToString:@"00000"]);
@@ -207,7 +207,7 @@
     EPSCodeError *codeError = [[EPSCodeError alloc] initWithCodes:codes withWarningLevel:ERROR withMessage:@"This is a test error."];
     XCTAssertTrue([codeError warningLevel] == ERROR);
     NSMutableArray *array = [codeError codes];
-    XCTAssertTrue([[[array objectAtIndex:1] number] isEqualToString:@"00001"]);
+    XCTAssertTrue([[(EPSCode *)[array objectAtIndex:1] number] isEqualToString:@"00001"]);
 }
 
 - (void)testCodeMultiplier {
