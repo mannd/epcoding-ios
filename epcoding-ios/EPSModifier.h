@@ -15,6 +15,6 @@
 @property BOOL selected;
 
 - (id)initWithNumber:(NSString *)number andDescription:(NSString *)description;
-- (NSComparisonResult)compareModifiers:(id)object;
+- (NSComparisonResult)compareModifiers:(EPSModifier *)object;
 
 @end

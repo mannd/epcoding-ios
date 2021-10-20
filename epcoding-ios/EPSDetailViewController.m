@@ -79,7 +79,7 @@
             NSArray *disabledKeys = [codeDictionary valueForKey:disabledCodeKey];
             self.disabledCodesSet = [NSSet setWithArray:disabledKeys];
         }
-        [self clearEntries];
+        [self clearSelected];
         NSMutableArray *sedationCodes = [[NSMutableArray alloc] init];
         self.sedationCodes = sedationCodes;
         // reset all codes to unadorned codes (but will be overriden by saved codes)
@@ -528,15 +528,17 @@
         if (section == 0) { // primary code
             code.selected = YES;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            [cell setBackgroundColor:[UIColor systemGreenColor]];
+            [cell setBackgroundColor:[[UIColor systemGreenColor] colorWithAlphaComponent:0.5]];
             cell.textLabel.textColor = [UIColor systemGrayColor];
             cell.detailTextLabel.textColor = [UIColor systemGrayColor];
+            cell.backgroundView = nil;
         }
         else {  // secondary code
             code.selected = NO;
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.backgroundView = [[UIView alloc] init];
-            cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+            // This background view must be nil in other circumstances, particularly when view reloaded.
+            cell.backgroundView.backgroundColor = [[UIColor colorWithPatternImage:backgroundImage] colorWithAlphaComponent:0.8];
             if (@available(iOS 13.0, *)) {
                 [cell setBackgroundColor:[UIColor systemBackgroundColor]];
             } else {
@@ -567,6 +569,7 @@
                 cell.backgroundColor = [UIColor whiteColor];
             }
         }
+        cell.backgroundView = nil;
         [cell setUserInteractionEnabled:YES];
     }
     
