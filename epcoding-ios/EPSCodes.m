@@ -224,8 +224,8 @@
         [dictionary setObject:@[@"93641", @"33210", @"33218", @"33220", @"92960", @"92961"] forKey:@"icdReplacementSecondaryCodes"];
 
         // Disabled codes
-        [dictionary setObject:@[@"93621", @"93462"] forKey:@"afbAblationDisabledCodes"];
-        [dictionary setObject:@[@"93657"] forKey:@"svtAblationDisabledCodes"];
+        [dictionary setObject:@[@"93621", @"93462", @"93613", @"93662", @"93609"] forKey:@"afbAblationDisabledCodes"];
+        [dictionary setObject:@[@"93657", @"93613", @"93621", @"93609"] forKey:@"svtAblationDisabledCodes"];
         [dictionary setObject:@[@"93657", @"93609", @"93613", @"93622"] forKey:@"vtAblationDisabledCodes"];
         [dictionary setObject:@[@"93657", @"93655"] forKey:@"epTestingDisabledCodes"];
        
