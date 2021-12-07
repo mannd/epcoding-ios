@@ -18,7 +18,12 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./org.css"/>
 * EP Coding Help
 ** 2022 Update
-As of January 1, 2022, 3D mapping and intra-cardiac echocardiogram have been bundled into the atrial fibrillation ablation coding, and 3D mapping and LA pacing and recording have been bundled into the SVT ablation coding.  This is now reflected in the app, in that these bundled codes are now hashed out in their respective screens, and a warning will appear if these codes are combined.
+As of January 1, 2022, 3D mapping and intra-cardiac echocardiogram
+have been bundled into the atrial fibrillation ablation coding, and 3D
+mapping and LA pacing and recording have been bundled into the SVT
+ablation coding.  This is now reflected in the app, in that these
+bundled codes are now hashed out in their respective screens, and a
+warning will appear if these codes are combined.
 ** EP Coding 101
 Don't want to read the manual?  Here's the TL;DR:
 - Choose a procedure.
@@ -243,7 +248,9 @@ you select *Help* to get help.
   Alternatively, use [[Search][*Search*]].
 - There are some rarely used codes in the All EP Codes module that
   aren't present in the other modules.
-- Don't try to add codes that are disabled in a procedure module.  Disabled codes are codes that the CPT gods have decided can't be used for specific procedures.
+- Don't try to add codes that are disabled in a procedure module.
+  Disabled codes are codes that the CPT gods have decided can't be
+  used for specific procedures.
 - If you nearly always add codes to a procedure (e.g. 3D mapping
   with AFB ablation), then save it as a default using the [[Save][*Save*]]
   button.
@@ -256,7 +263,9 @@ you select *Help* to get help.
   sure how to code a procedure.
 ** Specific procedures
 *** AFB ablation
-- As of January, 2022, AFB ablation, 93656, now includes 3D mapping, and intra-cardiac echo, as well as LA pacing and recording and transseptal puncture.
+- As of January, 2022, AFB ablation, 93656, now includes 3D mapping,
+  and intra-cardiac echo, as well as LA pacing and recording and
+  transseptal puncture.
 - Includes comprehensive EP testing, LA pacing and recording and transseptal puncture.
 - Add 93657 if additional AFB ablation done beyond pulmonary vein
   isolation.
