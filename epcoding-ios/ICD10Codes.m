@@ -9,7 +9,7 @@
 #import "ICD10Code.h"
 #import "ICD10Codes.h"
 
-#define ICD10CODE_FILENAME @"icd10cm_codes_2022"
+#define ICD10CODE_FILENAME @"icd10cm_codes_2023"
 
 
 @implementation ICD10Codes
