@@ -166,8 +166,11 @@
     // note there is space after terminal "]" in next method
     XCTAssertTrue([[EPSCodeAnalyzer codeNumbersToString:codeNumbers] isEqualToString:@"[00000, 00001, 00002]"]);
     EPSCode *afbAblationCode = [[EPSCode alloc] initWithNumber:@"93653" description:nil isAddOn:NO];
+    // noMappingCodesForAblation removed since Jan, 2022 update, since all ablation codes
+    // now include bundled mapping.  So noMappingCodes for Ablation is always false now.
     EPSCodeAnalyzer *analyzer2 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:nil ignoreNoSecondaryCodes:NO sedationCodes:nil sedationStatus:Unassigned];
-    XCTAssertTrue([analyzer2 noMappingCodesForAblation]);
+    //XCTAssertTrue([analyzer2 noMappingCodesForAblation]); // obsolete, see note above.
+    XCTAssertFalse([analyzer2 noMappingCodesForAblation]);
     EPSCode *twoDMappingCode = [[EPSCode alloc] initWithNumber:@"93609" description:nil isAddOn:NO];
     EPSCodeAnalyzer *analyzer3 = [[EPSCodeAnalyzer alloc] initWithPrimaryCodes:@[afbAblationCode] secondaryCodes:@[twoDMappingCode] ignoreNoSecondaryCodes:NO sedationCodes:nil sedationStatus:Unassigned];
     XCTAssertFalse([analyzer3 noMappingCodesForAblation]);

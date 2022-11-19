@@ -10,7 +10,6 @@
 		8E2E3AAD232992A400EA7E97 /* EPSUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2E3AAC232992A400EA7E97 /* EPSUtilities.m */; };
 		8E3751481E46950200075653 /* EPSModifiers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3751471E46950200075653 /* EPSModifiers.m */; };
 		8E37514B1E46C27B00075653 /* EPSModifierTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */; };
-		8E59CAC4271F4D100087ADDD /* icd10cm_codes_2022.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E59CAC3271F4D100087ADDD /* icd10cm_codes_2022.txt */; };
 		8E60902A18B514C2001F3D7A /* EPSHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E60902918B514C1001F3D7A /* EPSHelpViewController.m */; };
 		8E60902C18B54335001F3D7A /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 8E60902B18B54335001F3D7A /* help.html */; };
 		8E6705A51E5A540D00F47885 /* EPSSedationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6705A41E5A540D00F47885 /* EPSSedationCode.m */; };
@@ -32,7 +31,6 @@
 		8ECCF8AE18C1268200001DC6 /* EPSCodeSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8AD18C1268200001DC6 /* EPSCodeSummaryTableViewController.m */; };
 		8ECCF8B218C1CB9700001DC6 /* EPSCodeAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B118C1CB9700001DC6 /* EPSCodeAnalyzer.m */; };
 		8ECCF8B618C2324A00001DC6 /* EPSCodeError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECCF8B518C2324A00001DC6 /* EPSCodeError.m */; };
-		8ECCF8BB18C65E7100001DC6 /* help.org in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BA18C65E7100001DC6 /* help.org */; };
 		8ECCF8BD18C65E9000001DC6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BC18C65E9000001DC6 /* README.md */; };
 		8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8ECCF8BE18C65E9900001DC6 /* LICENSE-2.0.txt */; };
 		8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECE7A2C1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard */; };
@@ -55,6 +53,7 @@
 		8EDBEC22180CCDEC0041A4E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDBEBFE180CCDEB0041A4E3 /* UIKit.framework */; };
 		8EDBEC2A180CCDEC0041A4E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDBEC28180CCDEC0041A4E3 /* InfoPlist.strings */; };
 		8EDBEC2C180CCDEC0041A4E3 /* epcoding_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDBEC2B180CCDEC0041A4E3 /* epcoding_iosTests.m */; };
+		8EDDF5532929111600F05EAF /* icd10cm_codes_2023.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8EDDF5522929111600F05EAF /* icd10cm_codes_2023.txt */; };
 		8EE149B31E5D55E800740392 /* img in Resources */ = {isa = PBXBuildFile; fileRef = 8EE149B21E5D55E800740392 /* img */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +74,6 @@
 		8E3751471E46950200075653 /* EPSModifiers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifiers.m; sourceTree = "<group>"; };
 		8E3751491E46C27B00075653 /* EPSModifierTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSModifierTableViewController.h; sourceTree = "<group>"; };
 		8E37514A1E46C27B00075653 /* EPSModifierTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSModifierTableViewController.m; sourceTree = "<group>"; };
-		8E59CAC3271F4D100087ADDD /* icd10cm_codes_2022.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = icd10cm_codes_2022.txt; sourceTree = "<group>"; };
 		8E60902818B514C1001F3D7A /* EPSHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSHelpViewController.h; sourceTree = "<group>"; };
 		8E60902918B514C1001F3D7A /* EPSHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSHelpViewController.m; sourceTree = "<group>"; };
 		8E60902B18B54335001F3D7A /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
@@ -144,6 +142,7 @@
 		8EDBEC27180CCDEC0041A4E3 /* epcoding-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "epcoding-iosTests-Info.plist"; sourceTree = "<group>"; };
 		8EDBEC29180CCDEC0041A4E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EDBEC2B180CCDEC0041A4E3 /* epcoding_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = epcoding_iosTests.m; sourceTree = "<group>"; };
+		8EDDF5522929111600F05EAF /* icd10cm_codes_2023.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = icd10cm_codes_2023.txt; path = "../../../Downloads/2023 Code Descriptions in Tabular Order/icd10cm_codes_2023.txt"; sourceTree = "<group>"; };
 		8EE149B21E5D55E800740392 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,7 +218,7 @@
 		8EDBEC00180CCDEB0041A4E3 /* epcoding-ios */ = {
 			isa = PBXGroup;
 			children = (
-				8E59CAC3271F4D100087ADDD /* icd10cm_codes_2022.txt */,
+				8EDDF5522929111600F05EAF /* icd10cm_codes_2023.txt */,
 				8E92D31F230A1C5700DC2941 /* Storyboards */,
 				8EB9E4CC1E43A45900767217 /* stripes5.png */,
 				8EDBEC09180CCDEB0041A4E3 /* EPSAppDelegate.h */,
@@ -393,15 +392,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EDBEC11180CCDEB0041A4E3 /* Main_iPad.storyboard in Resources */,
-				8E59CAC4271F4D100087ADDD /* icd10cm_codes_2022.txt in Resources */,
 				8ED5C9E32517BC0100771F96 /* org.css in Resources */,
-				8ECCF8BB18C65E7100001DC6 /* help.org in Resources */,
 				8ECE7A2D1C989CD0001DAEF0 /* EPCodingLaunchScreen_2.storyboard in Resources */,
 				8E60902C18B54335001F3D7A /* help.html in Resources */,
 				8ECCF8BD18C65E9000001DC6 /* README.md in Resources */,
 				8EDBEC19180CCDEB0041A4E3 /* Images.xcassets in Resources */,
 				8E92D321230A1CAE00DC2941 /* Launch Screen.storyboard in Resources */,
 				8ECCF8BF18C65E9900001DC6 /* LICENSE-2.0.txt in Resources */,
+				8EDDF5532929111600F05EAF /* icd10cm_codes_2023.txt in Resources */,
 				8EE149B31E5D55E800740392 /* img in Resources */,
 				8EB9E4CD1E43A45900767217 /* stripes5.png in Resources */,
 				8EDBEC05180CCDEB0041A4E3 /* InfoPlist.strings in Resources */,
@@ -608,13 +606,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = W74NPJXYEG;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-ios/epcoding-ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.21.0;
+				MARKETING_VERSION = 1.22.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.epstudios.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "EP Coding";
 				PROVISIONING_PROFILE = "";
@@ -628,13 +626,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = W74NPJXYEG;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epcoding-ios/epcoding-ios-Prefix.pch";
 				INFOPLIST_FILE = "epcoding-ios/epcoding-ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.21.0;
+				MARKETING_VERSION = 1.22.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.epstudios.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "EP Coding";
 				PROVISIONING_PROFILE = "";
