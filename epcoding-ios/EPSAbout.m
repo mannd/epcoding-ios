@@ -12,7 +12,7 @@
 @implementation EPSAbout
 
 + (void)show:(UIViewController *)vc {
-    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2013-2021 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , [self getVersion]];
+    NSString *details = [[NSString alloc] initWithFormat: @"Copyright \u00a9 2013-2022 EP Studios, Inc.\nAll rights reserved.\nVersion %@" , [self getVersion]];
     NSString *title = @"EP Coding";
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:details preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];

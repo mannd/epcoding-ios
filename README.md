@@ -10,7 +10,7 @@ EP Coding is open source, and licensed under the
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ## Copyright
-Copyright © 2013 - 2018 [EP Studios, Inc.](http://www.epstudiossoftware.com)
+Copyright © 2013 - 2022 [EP Studios, Inc.](http://www.epstudiossoftware.com)
 
 CPT copyright 2014 American Medical Association. All rights
 reserved. CPT is a registered trademark of the American Medical
@@ -35,7 +35,7 @@ the Copyright Act and not subjected to the licensing fees imposed by
 the AMA.  A full discussion of the rationale for fair use of these
 codes is contained on [our website](http://www.epstudiossoftware.com/?p=1313).
 
-ICD-10-CM codes are available for free download from [CMS.gov](https://www.cms.gov/Medicare/Coding/ICD10/) These codes are a modification by the US government of the World Health Organization ICD-10 codes.  There appears to be no specific licensing requirement for this version of the ICD-10 code set.  Only a subset of the ICD-10-CM diagnostic codes relevant to cardiology are included in this program.
+ICD-10-CM codes are available for free download from [CMS.gov](https://www.cms.gov/Medicare/Coding/ICD10/) These codes are a modification by the US government of the World Health Organization ICD-10 codes.  There appears to be no specific licensing requirement for this version of the ICD-10 code set.  
 
 ## Author
 David Mann, MD
