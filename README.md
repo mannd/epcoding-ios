@@ -1,7 +1,14 @@
 EP Coding
 =========
 
-[![Build Status](https://travis-ci.org/mannd/epcoding-ios.svg?branch=master)](https://travis-ci.org/mannd/epcoding-ios)
+## NOTE: EP CODING is at EOL*
+EP Coding has been unpublished from Google Play.  It has become too
+difficult to maintain and keep up-to-date with changes in the coding
+of electrophysiologic procedures.  Current users still have access to
+it, but there will be no further updates.  More information [is
+available here](https://www.epstudiossoftware.com/farewell-ep-coding/).
+
+*End of life
 
 ## Coding for electrophysiology procedures
 EP Coding is an Apple iOS app that is intended to help practicing cardiac electrophysiology (EP) doctors document and bill their procedures by selecting proper CPT® codes, based on the latest coding guidelines.  The app is not for professional coders.  It is useful for physicians who need to enter procedure codes directly into EHR systems, such as EPIC, or who just need to communicate to the coders what they have done.  Of course all codes billed must also be documented in procedure notes.  The rules for entering codes are complex, and the codes themselves are not mnemonic, hence this app.  This app will be updated on at least a yearly basis with the latest coding changes.  EP Studios is not liable for any errors in coding that might occur from using this app.  Please see the licensing information below.
