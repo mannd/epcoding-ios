@@ -2,7 +2,7 @@ EP Coding
 =========
 
 ## NOTE: EP CODING is at EOL*
-EP Coding has been unpublished from Google Play.  It has become too
+EP Coding has been unpublished from the Apple App Store.  It has become too
 difficult to maintain and keep up-to-date with changes in the coding
 of electrophysiologic procedures.  Current users still have access to
 it, but there will be no further updates.  More information [is
